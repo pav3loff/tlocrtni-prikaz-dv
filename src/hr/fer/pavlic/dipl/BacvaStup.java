@@ -227,6 +227,11 @@ public class BacvaStup implements IStup {
 	public void setIzolatori(List<Izolator> izolatori) {
 		this.izolatori = izolatori;
 	}
+	
+	@Override
+	public TipStupa getType() {
+		return TipStupa.BACVA;
+	}
 
 	@Override
 	public JSONObject getJson() {
@@ -258,9 +263,9 @@ public class BacvaStup implements IStup {
 		
 		// raspodjela izolatora lijevo i desno
 		for(Izolator izolator : izolatori) {
-			if(izolator.isDesno()) {
+			if(izolator.getSpojnaTockaIzolatoraX() > 0) { // izolator je s jedne strane
 				desniIzolatori.add(izolator);
-			} else {
+			} else { // izolator je s druge strane
 				lijeviIzolatori.add(izolator);
 			}
 		}

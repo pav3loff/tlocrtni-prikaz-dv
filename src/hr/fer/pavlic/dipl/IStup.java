@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 public interface IStup {
 	
+	TipStupa getType();
+	
 	JSONObject getJson();
 	
 	IStup separateST(IStup stup);

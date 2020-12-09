@@ -15,12 +15,11 @@ public class Izolator {
 	private String materijal;
 	private String izvedba;
 	private int brojClanaka;
-	private boolean isDesno;
 	
 	public Izolator(int idIzolatora, double spojnaTockaIzolatoraX, double spojnaTockaIzolatoraY,
 			double spojnaTockaIzolatoraZ, double spojnaTockaVodicaX, double spojnaTockaVodicaY,
 			double spojnaTockaVodicaZ, double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, String materijal,
-			String izvedba, int brojClanaka, boolean isDesno) {
+			String izvedba, int brojClanaka) {
 		super();
 		this.idIzolatora = idIzolatora;
 		this.spojnaTockaIzolatoraX = spojnaTockaIzolatoraX;
@@ -33,7 +32,6 @@ public class Izolator {
 		this.materijal = materijal;
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
-		this.isDesno = isDesno;
 	}
 	
 	public Izolator(JSONObject izolatorJson) {
@@ -79,10 +77,6 @@ public class Izolator {
 		
 		if(!(izolatorJson.isNull("brojClanaka"))) {
 			this.setBrojClanaka(izolatorJson.getInt("brojClanaka"));
-		}
-		
-		if(!(izolatorJson.isNull("isDesno"))) {
-			this.setDesno(izolatorJson.getBoolean("isDesno"));
 		}
 	}
 
@@ -173,14 +167,6 @@ public class Izolator {
 	public void setBrojClanaka(int brojClanaka) {
 		this.brojClanaka = brojClanaka;
 	}
-
-	public boolean isDesno() {
-		return isDesno;
-	}
-
-	public void setDesno(boolean isDesno) {
-		this.isDesno = isDesno;
-	}
 	
 	public JSONObject getJson() {
 		JSONObject izolatorJson = new JSONObject();
@@ -196,7 +182,6 @@ public class Izolator {
 		izolatorJson.put("materijal", this.materijal);
 		izolatorJson.put("izvedba", this.izvedba);
 		izolatorJson.put("brojClanaka", this.brojClanaka);
-		izolatorJson.put("isDesno", this.isDesno);
 		
 		return izolatorJson;
 	}

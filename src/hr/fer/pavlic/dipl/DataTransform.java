@@ -32,9 +32,6 @@ public class DataTransform {
 				stup = null;
 			}
 			
-			// test ispis prije transformacija
-			System.out.println(stup.getJson());
-			
 			// ukloniti preklapanje
 			stup = stup.separateST(stup);
 			
@@ -44,9 +41,22 @@ public class DataTransform {
 			azuriraniStupovi.add(stup);
 		}
 		
-		// test ispis nakon transformacija
+		// test ispis svih transformiranih tocaka
 		for(IStup azuriraniStup : azuriraniStupovi) {
-			System.out.println(azuriraniStup.getJson());
+			TipStupa tipStupa = azuriraniStup.getType();
+			
+			if(tipStupa == TipStupa.BACVA) {
+				BacvaStup bacvaStup = (BacvaStup) azuriraniStup;
+				
+				for(Izolator izolator : bacvaStup.getIzolatori()) {
+					System.out.println("(" + izolator.getSpojnaTockaIzolatoraX() 
+						+ ", " + izolator.getSpojnaTockaIzolatoraZ() + ")");
+					System.out.println("(" + izolator.getSpojnaTockaVodicaX() 
+						+ ", " + izolator.getSpojnaTockaVodicaZ() + ")");
+				}
+			}
+			
+			System.out.println("-------------");
 		}
 		
 		// WGS -> UTM

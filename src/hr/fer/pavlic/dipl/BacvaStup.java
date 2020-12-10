@@ -186,45 +186,6 @@ public class BacvaStup extends Stup {
 		return new BacvaStup(this.getIdStupa(), this.isZatezniStup(), this.getOrijentacija(), this.getGeoSirina(), 
 				this.getGeoDuzina(), this.getVisina(), this.getTipStupa(),this.getProizvodac(), this.getTezina(), 
 				this.getOznakaUzemljenja(), this.getVrstaZastite(), azuriraniIzolatori);
-	}
-
-	@Override
-	public Stup changeOrientation(Stup stup) {
-		BacvaStup bacvaStup = (BacvaStup) stup;
-		double alfa = Math.toRadians(bacvaStup.getOrijentacija());
-		
-		// ST s desne strane imaju kut alfa (negativan); ST s lijeve strane imaju kut -180 + alfa
-		List<Izolator> azuriraniIzolatori = new LinkedList<>();
-		
-		for(Izolator izolator : bacvaStup.getIzolatori()) {
-			double xSti = izolator.getSpojnaTockaIzolatoraX();
-			double zSti = izolator.getSpojnaTockaIzolatoraZ();
-			double zStv = izolator.getSpojnaTockaVodicaZ();
-			
-			// izracun X STV
-			double beta = Math.toRadians(Math.abs(izolator.getKutIzmedjuSpojneTockeVodicaIRavnineKonzole()));
-			double d = Math.abs(zStv) * Math.sin(Math.toRadians(90) - beta) / Math.sin(beta);
-			double xStv = xSti - d;
-			
-			// prilagodba STI (rotacija koordinatnog sustava za orijentaciju stupa)
-			double azuriraniXSti = xSti * Math.cos(alfa) + zSti * Math.sin(alfa);
-			double azuriraniZSti = xSti * Math.sin(alfa) + zSti * Math.cos(alfa);
-			
-			// prilagodba STV (rotacija koordinatnog sustava za orijentaciju stupa)
-			double azuriraniXStv = xStv * Math.cos(alfa) - zStv * Math.sin(alfa);
-			double azuriraniZStv = xStv * Math.sin(alfa) + zStv * Math.cos(alfa);
-			
-			izolator.setSpojnaTockaIzolatoraX(Math.round(azuriraniXSti * 100.0) / 100.0);
-			izolator.setSpojnaTockaIzolatoraZ(Math.round(azuriraniZSti * 100.0) / 100.0);
-			izolator.setSpojnaTockaVodicaX(Math.round(azuriraniXStv * 100.0) / 100.0);
-			izolator.setSpojnaTockaVodicaZ(Math.round(azuriraniZStv * 100.0) / 100.0);
-			
-			azuriraniIzolatori.add(izolator);
-		}
-		
-		bacvaStup.setIzolatori(azuriraniIzolatori);
-		
-		return bacvaStup;
-	}
+	}	
 
 }

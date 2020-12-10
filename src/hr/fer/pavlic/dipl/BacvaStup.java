@@ -11,23 +11,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Stream;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class BacvaStup implements IStup {
-	
-	private int idStupa;
-	private boolean isZatezniStup;
-	private double orijentacija;
-	private double geoSirina;
-	private double geoDuzina;
-	private double visina;
-	private String tipStupa;
-	private String proizvodac;
-	private double tezina;
-	private String oznakaUzemljenja;
-	private String vrstaZastite;
-	private List<Izolator> izolatori;
+public class BacvaStup extends Stup {
 	
 	public BacvaStup() {
 		super();
@@ -36,77 +22,12 @@ public class BacvaStup implements IStup {
 	public BacvaStup(int idStupa, boolean isZatezniStup, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori) {
-		super();
-		this.idStupa = idStupa;
-		this.isZatezniStup = isZatezniStup;
-		this.orijentacija = orijentacija;
-		this.geoSirina = geoSirina;
-		this.geoDuzina = geoDuzina;
-		this.visina = visina;
-		this.tipStupa = tipStupa;
-		this.proizvodac = proizvodac;
-		this.tezina = tezina;
-		this.oznakaUzemljenja = oznakaUzemljenja;
-		this.vrstaZastite = vrstaZastite;
-		this.izolatori = izolatori;
+		super(idStupa, isZatezniStup, orijentacija, geoSirina, geoDuzina, visina, tipStupa, proizvodac, tezina,
+				oznakaUzemljenja, vrstaZastite, izolatori);
 	}
 	
-	public BacvaStup(JSONObject bacvaStupJson) {
-		if(!(bacvaStupJson.isNull("idStupa"))) {
-			this.setIdStupa(bacvaStupJson.getInt("idStupa"));
-		}
-		
-		if(!(bacvaStupJson.isNull("isZatezniStup"))) {
-			this.setZatezniStup(bacvaStupJson.getBoolean("isZatezniStup"));
-		}
-		
-		if(!(bacvaStupJson.isNull("orijentacija"))) {
-			this.setOrijentacija(bacvaStupJson.getDouble("orijentacija"));
-		}
-		
-		if(!(bacvaStupJson.isNull("geoSirina"))) {
-			this.setGeoSirina(bacvaStupJson.getDouble("geoSirina"));
-		}
-		
-		if(!(bacvaStupJson.isNull("geoDuzina"))) {
-			this.setGeoDuzina(bacvaStupJson.getDouble("geoDuzina"));
-		}
-		
-		if(!(bacvaStupJson.isNull("visina"))) {
-			this.setVisina(bacvaStupJson.getDouble("visina"));
-		}
-		
-		if(!(bacvaStupJson.isNull("tipStupa"))) {
-			this.setTipStupa(bacvaStupJson.getString("tipStupa"));
-		}
-		
-		if(!(bacvaStupJson.isNull("proizvodac"))) {
-			this.setProizvodac(bacvaStupJson.getString("proizvodac"));
-		}
-		
-		if(!(bacvaStupJson.isNull("tezina"))) {
-			this.setTezina(bacvaStupJson.getDouble("tezina"));
-		}
-		
-		if(!(bacvaStupJson.isNull("oznakaUzemljenja"))) {
-			this.setOznakaUzemljenja(bacvaStupJson.getString("oznakaUzemljenja"));
-		}
-		
-		if(!(bacvaStupJson.isNull("vrstaZastite"))) {
-			this.setVrstaZastite(bacvaStupJson.getString("vrstaZastite"));
-		}
-		
-		if(!(bacvaStupJson.isNull("izolatori"))) {
-			JSONArray izolatoriJson = bacvaStupJson.getJSONArray("izolatori");
-			
-			this.izolatori = new LinkedList<Izolator>();
-			
-			for(int i = 0; i < izolatoriJson.length(); i++) {
-				JSONObject izolatorJson = izolatoriJson.getJSONObject(i);
-				
-				this.izolatori.add(new Izolator(izolatorJson));
-			}
-		}
+	public BacvaStup(JSONObject stupJson) {
+		super(stupJson);
 	}
 	
 	private static class Util {
@@ -120,112 +41,6 @@ public class BacvaStup implements IStup {
 			
 			return null;
 		}
-		
-		private static JSONArray getAsJsonArray(List<Izolator> izolatori) {
-			JSONArray izolatoriJson = new JSONArray();
-			
-			for(Izolator izolator : izolatori) {
-				izolatoriJson.put(izolator.getJson());
-			}
-			
-			return izolatoriJson;
-		}
-	}
-
-	public int getIdStupa() {
-		return idStupa;
-	}
-
-	public void setIdStupa(int idStupa) {
-		this.idStupa = idStupa;
-	}
-
-	public boolean isZatezniStup() {
-		return isZatezniStup;
-	}
-
-	public void setZatezniStup(boolean isZatezniStup) {
-		this.isZatezniStup = isZatezniStup;
-	}
-
-	public double getOrijentacija() {
-		return orijentacija;
-	}
-
-	public void setOrijentacija(double orijentacija) {
-		this.orijentacija = orijentacija;
-	}
-
-	public double getGeoSirina() {
-		return geoSirina;
-	}
-
-	public void setGeoSirina(double geoSirina) {
-		this.geoSirina = geoSirina;
-	}
-
-	public double getGeoDuzina() {
-		return geoDuzina;
-	}
-
-	public void setGeoDuzina(double geoDuzina) {
-		this.geoDuzina = geoDuzina;
-	}
-
-	public double getVisina() {
-		return visina;
-	}
-
-	public void setVisina(double visina) {
-		this.visina = visina;
-	}
-
-	public String getTipStupa() {
-		return tipStupa;
-	}
-
-	public void setTipStupa(String tipStupa) {
-		this.tipStupa = tipStupa;
-	}
-
-	public String getProizvodac() {
-		return proizvodac;
-	}
-
-	public void setProizvodac(String proizvodac) {
-		this.proizvodac = proizvodac;
-	}
-
-	public double getTezina() {
-		return tezina;
-	}
-
-	public void setTezina(double tezina) {
-		this.tezina = tezina;
-	}
-
-	public String getOznakaUzemljenja() {
-		return oznakaUzemljenja;
-	}
-
-	public void setOznakaUzemljenja(String oznakaUzemljenja) {
-		this.oznakaUzemljenja = oznakaUzemljenja;
-	}
-
-	public String getVrstaZastite() {
-		return vrstaZastite;
-	}
-
-	public void setVrstaZastite(String vrstaZastite) {
-		this.vrstaZastite = vrstaZastite;
-	}
-
-	public List<Izolator> getIzolatori() {
-		return izolatori;
-	}
-
-	public void setIzolatori(List<Izolator> izolatori) {
-		this.izolatori = izolatori;
 	}
 	
 	@Override
@@ -234,28 +49,7 @@ public class BacvaStup implements IStup {
 	}
 
 	@Override
-	public JSONObject getJson() {
-		JSONObject bacvaStupJson = new JSONObject();
-		
-		bacvaStupJson.put("idStupa", this.idStupa);
-		bacvaStupJson.put("oblikGlaveStupa", "Bacva");
-		bacvaStupJson.put("isZatezniStup", this.isZatezniStup);
-		bacvaStupJson.put("orijentacija", this.orijentacija);
-		bacvaStupJson.put("geoSirina", this.geoSirina);
-		bacvaStupJson.put("geoDuzina", this.geoDuzina);
-		bacvaStupJson.put("visina", this.visina);
-		bacvaStupJson.put("tipStupa", this.tipStupa);
-		bacvaStupJson.put("proizvodac", this.proizvodac);
-		bacvaStupJson.put("tezina", this.tezina);
-		bacvaStupJson.put("oznakaUzemljenja", this.oznakaUzemljenja);
-		bacvaStupJson.put("vrstaZastite", this.vrstaZastite);
-		bacvaStupJson.put("izolatori", Util.getAsJsonArray(this.izolatori));
-		
-		return bacvaStupJson;
-	}
-
-	@Override
-	public BacvaStup separateST(IStup stup) {
+	public BacvaStup separateST(Stup stup) {
 		List<Izolator> izolatori = ((BacvaStup) stup).getIzolatori();
 		List<Izolator> azuriraniIzolatori = new LinkedList<>();
 		List<Izolator> desniIzolatori = new LinkedList<>();
@@ -389,13 +183,13 @@ public class BacvaStup implements IStup {
 			azuriraniIzolatori.addAll(azuriraniIzolatoriLijevo);
 		}
 		
-		return new BacvaStup(this.idStupa, this.isZatezniStup, this.orijentacija, this.geoSirina, 
-				this.geoDuzina, this.visina, this.tipStupa,this.proizvodac, this.tezina, 
-				this.oznakaUzemljenja, this.vrstaZastite, azuriraniIzolatori);
+		return new BacvaStup(this.getIdStupa(), this.isZatezniStup(), this.getOrijentacija(), this.getGeoSirina(), 
+				this.getGeoDuzina(), this.getVisina(), this.getTipStupa(),this.getProizvodac(), this.getTezina(), 
+				this.getOznakaUzemljenja(), this.getVrstaZastite(), azuriraniIzolatori);
 	}
 
 	@Override
-	public IStup changeOrientation(IStup stup) {
+	public Stup changeOrientation(Stup stup) {
 		BacvaStup bacvaStup = (BacvaStup) stup;
 		double alfa = Math.toRadians(bacvaStup.getOrijentacija());
 		

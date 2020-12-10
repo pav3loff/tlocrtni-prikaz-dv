@@ -20,11 +20,11 @@ public class DataTransform {
 		
 		// transformirati podatke da nema preklapanja spojnih tocaka + promjena orijentacije tocaka
 		JSONArray stupoviJson = jsonObject.getJSONArray("stupovi");
-		List<IStup> azuriraniStupovi = new LinkedList<>();
+		List<Stup> azuriraniStupovi = new LinkedList<>();
 	
 		for(int i = 0; i < stupoviJson.length(); i++) {
 			JSONObject stupJson = stupoviJson.getJSONObject(i);
-			IStup stup;
+			Stup stup;
 			
 			if(stupJson.getString("oblikGlaveStupa").equals("BACVA")) {
 				stup = new BacvaStup(stupJson);
@@ -42,7 +42,7 @@ public class DataTransform {
 		}
 		
 		// test ispis svih transformiranih tocaka
-		for(IStup azuriraniStup : azuriraniStupovi) {
+		for(Stup azuriraniStup : azuriraniStupovi) {
 			TipStupa tipStupa = azuriraniStup.getType();
 			
 			if(tipStupa == TipStupa.BACVA) {

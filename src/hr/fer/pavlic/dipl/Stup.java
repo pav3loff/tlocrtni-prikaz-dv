@@ -1,0 +1,238 @@
+package hr.fer.pavlic.dipl;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public abstract class Stup {
+	
+	private int idStupa;
+	private boolean isZatezniStup;
+	private double orijentacija;
+	private double geoSirina;
+	private double geoDuzina;
+	private double visina;
+	private String tipStupa;
+	private String proizvodac;
+	private double tezina;
+	private String oznakaUzemljenja;
+	private String vrstaZastite;
+	private List<Izolator> izolatori;
+	
+	public Stup() {
+		super();
+	}
+	
+	public Stup(int idStupa, boolean isZatezniStup, double orijentacija, double geoSirina, double geoDuzina,
+			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
+			String vrstaZastite, List<Izolator> izolatori) {
+		super();
+		this.idStupa = idStupa;
+		this.isZatezniStup = isZatezniStup;
+		this.orijentacija = orijentacija;
+		this.geoSirina = geoSirina;
+		this.geoDuzina = geoDuzina;
+		this.visina = visina;
+		this.tipStupa = tipStupa;
+		this.proizvodac = proizvodac;
+		this.tezina = tezina;
+		this.oznakaUzemljenja = oznakaUzemljenja;
+		this.vrstaZastite = vrstaZastite;
+		this.izolatori = izolatori;
+	}
+	
+	public Stup(JSONObject stupJson) {
+		if(!(stupJson.isNull("idStupa"))) {
+			this.setIdStupa(stupJson.getInt("idStupa"));
+		}
+		
+		if(!(stupJson.isNull("isZatezniStup"))) {
+			this.setZatezniStup(stupJson.getBoolean("isZatezniStup"));
+		}
+		
+		if(!(stupJson.isNull("orijentacija"))) {
+			this.setOrijentacija(stupJson.getDouble("orijentacija"));
+		}
+		
+		if(!(stupJson.isNull("geoSirina"))) {
+			this.setGeoSirina(stupJson.getDouble("geoSirina"));
+		}
+		
+		if(!(stupJson.isNull("geoDuzina"))) {
+			this.setGeoDuzina(stupJson.getDouble("geoDuzina"));
+		}
+		
+		if(!(stupJson.isNull("visina"))) {
+			this.setVisina(stupJson.getDouble("visina"));
+		}
+		
+		if(!(stupJson.isNull("tipStupa"))) {
+			this.setTipStupa(stupJson.getString("tipStupa"));
+		}
+		
+		if(!(stupJson.isNull("proizvodac"))) {
+			this.setProizvodac(stupJson.getString("proizvodac"));
+		}
+		
+		if(!(stupJson.isNull("tezina"))) {
+			this.setTezina(stupJson.getDouble("tezina"));
+		}
+		
+		if(!(stupJson.isNull("oznakaUzemljenja"))) {
+			this.setOznakaUzemljenja(stupJson.getString("oznakaUzemljenja"));
+		}
+		
+		if(!(stupJson.isNull("vrstaZastite"))) {
+			this.setVrstaZastite(stupJson.getString("vrstaZastite"));
+		}
+		
+		if(!(stupJson.isNull("izolatori"))) {
+			JSONArray izolatoriJson = stupJson.getJSONArray("izolatori");
+			
+			this.izolatori = new LinkedList<Izolator>();
+			
+			for(int i = 0; i < izolatoriJson.length(); i++) {
+				JSONObject izolatorJson = izolatoriJson.getJSONObject(i);
+				
+				this.izolatori.add(new Izolator(izolatorJson));
+			}
+		}
+	}
+	
+	private static class Util {
+		private static JSONArray getAsJsonArray(List<Izolator> izolatori) {
+			JSONArray izolatoriJson = new JSONArray();
+			
+			for(Izolator izolator : izolatori) {
+				izolatoriJson.put(izolator.getJson());
+			}
+			
+			return izolatoriJson;
+		}
+	}
+	
+	public int getIdStupa() {
+		return idStupa;
+	}
+
+	public void setIdStupa(int idStupa) {
+		this.idStupa = idStupa;
+	}
+
+	public boolean isZatezniStup() {
+		return isZatezniStup;
+	}
+
+	public void setZatezniStup(boolean isZatezniStup) {
+		this.isZatezniStup = isZatezniStup;
+	}
+
+	public double getOrijentacija() {
+		return orijentacija;
+	}
+
+	public void setOrijentacija(double orijentacija) {
+		this.orijentacija = orijentacija;
+	}
+
+	public double getGeoSirina() {
+		return geoSirina;
+	}
+
+	public void setGeoSirina(double geoSirina) {
+		this.geoSirina = geoSirina;
+	}
+
+	public double getGeoDuzina() {
+		return geoDuzina;
+	}
+
+	public void setGeoDuzina(double geoDuzina) {
+		this.geoDuzina = geoDuzina;
+	}
+
+	public double getVisina() {
+		return visina;
+	}
+
+	public void setVisina(double visina) {
+		this.visina = visina;
+	}
+
+	public String getTipStupa() {
+		return tipStupa;
+	}
+
+	public void setTipStupa(String tipStupa) {
+		this.tipStupa = tipStupa;
+	}
+
+	public String getProizvodac() {
+		return proizvodac;
+	}
+
+	public void setProizvodac(String proizvodac) {
+		this.proizvodac = proizvodac;
+	}
+
+	public double getTezina() {
+		return tezina;
+	}
+
+	public void setTezina(double tezina) {
+		this.tezina = tezina;
+	}
+
+	public String getOznakaUzemljenja() {
+		return oznakaUzemljenja;
+	}
+
+	public void setOznakaUzemljenja(String oznakaUzemljenja) {
+		this.oznakaUzemljenja = oznakaUzemljenja;
+	}
+
+	public String getVrstaZastite() {
+		return vrstaZastite;
+	}
+
+	public void setVrstaZastite(String vrstaZastite) {
+		this.vrstaZastite = vrstaZastite;
+	}
+
+	public List<Izolator> getIzolatori() {
+		return izolatori;
+	}
+
+	public void setIzolatori(List<Izolator> izolatori) {
+		this.izolatori = izolatori;
+	}
+	
+	public JSONObject getJson() {
+		JSONObject bacvaStupJson = new JSONObject();
+		
+		bacvaStupJson.put("idStupa", this.idStupa);
+		bacvaStupJson.put("oblikGlaveStupa", "Bacva");
+		bacvaStupJson.put("isZatezniStup", this.isZatezniStup);
+		bacvaStupJson.put("orijentacija", this.orijentacija);
+		bacvaStupJson.put("geoSirina", this.geoSirina);
+		bacvaStupJson.put("geoDuzina", this.geoDuzina);
+		bacvaStupJson.put("visina", this.visina);
+		bacvaStupJson.put("tipStupa", this.tipStupa);
+		bacvaStupJson.put("proizvodac", this.proizvodac);
+		bacvaStupJson.put("tezina", this.tezina);
+		bacvaStupJson.put("oznakaUzemljenja", this.oznakaUzemljenja);
+		bacvaStupJson.put("vrstaZastite", this.vrstaZastite);
+		bacvaStupJson.put("izolatori", Util.getAsJsonArray(this.izolatori));
+		
+		return bacvaStupJson;
+	}
+	
+	public abstract TipStupa getType();
+	
+	public abstract Stup separateST(Stup stup);
+	
+	public abstract Stup changeOrientation(Stup stup);
+
+}

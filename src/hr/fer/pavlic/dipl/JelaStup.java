@@ -26,9 +26,4 @@ public class JelaStup extends Stup {
 		return TipStupa.JELA;
 	}
 
-	@Override
-	public Stup separateST(Stup stup) {
-		return null;
-	}
-
 }

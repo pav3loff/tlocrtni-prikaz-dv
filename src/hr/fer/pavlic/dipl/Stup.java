@@ -284,7 +284,7 @@ public abstract class Stup {
 		return stup;
 	}
 	
-	// Transformacija za izbjegavanje preklapanja spojnih točaka jednaka je za tipove stupa BACVA i JELA
+	// Transformacija za izbjegavanje preklapanja spojnih točaka jednaka je za tipove stupa BACVA, JELA i DUNAV
 	public Stup separateST(Stup stup) {
 		List<Izolator> izolatori = stup.getIzolatori();
 		List<Izolator> azuriraniIzolatori = new LinkedList<>();
@@ -301,8 +301,8 @@ public abstract class Stup {
 		}
 		
 		if(desniIzolatori.size() > 0) {
-			// stup tipa bacva: 6 izolatora sa svake strane -> 3 para jednakih STI
-			// stup tipa jela: 2 izolatora s jedna i 4 s druge strane
+			// nosivi stup tipa bacva i dunav: 6 izolatora sa svake strane -> 3 para jednakih STI
+			// nosivi stup tipa jela: 2 izolatora s jedna i 4 s druge strane
 			// zatezni stupovi nemaju parove jednakih STI
 			// grupiranje parova
 			Map<SpojnaTocka, List<Izolator>> parovi = new LinkedHashMap<>();

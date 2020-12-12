@@ -30,6 +30,8 @@ public class DataTransform {
 				stup = new BacvaStup(stupJson);
 			} else if(stupJson.get("oblikGlaveStupa").equals("JELA")) {
 				stup = new JelaStup(stupJson);
+			} else if(stupJson.get("oblikGlaveStupa").equals("DUNAV")) {
+				stup = new DunavStup(stupJson);
 			} else {
 				stup = null;
 			}
@@ -47,7 +49,7 @@ public class DataTransform {
 		for(Stup azuriraniStup : azuriraniStupovi) {
 			TipStupa tipStupa = azuriraniStup.getType();
 			
-			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA) {
+			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA || tipStupa == TipStupa.DUNAV) {
 				for(Izolator izolator : azuriraniStup.getIzolatori()) {
 					System.out.println("(" + izolator.getSpojnaTockaIzolatoraX() 
 						+ ", " + izolator.getSpojnaTockaIzolatoraZ() + ")");

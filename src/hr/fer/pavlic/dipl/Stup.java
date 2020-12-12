@@ -426,6 +426,57 @@ public abstract class Stup {
 		return stup;
 	}	
 	
+	public JSONObject convertUtmToWgs(JSONObject stupJson) {
+		double geoSirinaStupa = stupJson.getDouble("geoSirina");
+		double geoDuzinaStupa = stupJson.getDouble("geoDuzina");
+		
+		try {
+			UtmCoordinate stupUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(geoSirinaStupa, geoDuzinaStupa));
+			
+			JSONArray izolatoriJson = stupJson.getJSONArray("izolatori");
+			
+			for(int i = 0; i < izolatoriJson.length(); i++) {
+				JSONObject izolator = izolatoriJson.getJSONObject(i);
+				
+				if(!(izolator.isNull("spojnaTockaIzolatoraX")) && 
+						!(izolator.isNull("spojnaTockaIzolatoraZ"))) {
+					double spojnaTockaIzolatoraX = izolator.getDouble("spojnaTockaIzolatoraX");
+					double spojnaTockaIzolatoraZ = izolator.getDouble("spojnaTockaIzolatoraZ");
+					
+					UtmCoordinate spojnaTockaIzolatoraUtm = new UtmCoordinate(
+							stupUtm.getLongZone(), stupUtm.getLatZone(), 
+							stupUtm.getEasting() + spojnaTockaIzolatoraX, 
+							stupUtm.getNorthing() + spojnaTockaIzolatoraZ);
+					
+					WgsCoordinate spojnaTockaIzolatoraWgs = UtmWgsConverter.convertToWgs(spojnaTockaIzolatoraUtm);
+					
+					izolator.put("spojnaTockaIzolatoraGeoSirina", spojnaTockaIzolatoraWgs.getGeoSirina());
+					izolator.put("spojnaTockaIzolatoraGeoDuzina", spojnaTockaIzolatoraWgs.getGeoDuzina());
+				}
+				
+				if(!(izolator.isNull("spojnaTockaVodicaX")) &&
+						!(izolator.isNull("spojnaTockaVodicaZ"))) {
+					double spojnaTockaVodicaX = izolator.getDouble("spojnaTockaVodicaX");
+					double spojnaTockaVodicaZ = izolator.getDouble("spojnaTockaVodicaZ");
+					
+					UtmCoordinate spojnaTockaVodicaUtm = new UtmCoordinate(
+							stupUtm.getLongZone(), stupUtm.getLatZone(),
+							stupUtm.getEasting() + spojnaTockaVodicaX,
+							stupUtm.getNorthing() + spojnaTockaVodicaZ);
+					
+					WgsCoordinate spojnaTockaVodicaWgs = UtmWgsConverter.convertToWgs(spojnaTockaVodicaUtm);
+					
+					izolator.put("spojnaTockaVodicaGeoSirina", spojnaTockaVodicaWgs.getGeoSirina());
+					izolator.put("spojnaTockaVodicaGeoDuzina", spojnaTockaVodicaWgs.getGeoDuzina());
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Neuspješna konverzija!");
+		}
+		
+		return stupJson;
+	}
+	
 	public abstract TipStupa getType();
 
 }

@@ -61,7 +61,29 @@ public class DataTransform {
 			System.out.println("-------------");
 		}
 		
-		// WGS -> UTM
+		// WGS -> UTM test ispis
+		for(Stup azuriraniStup : azuriraniStupovi) {
+			TipStupa tipStupa = azuriraniStup.getType();
+			
+			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA || tipStupa == TipStupa.DUNAV) {
+				JSONObject azuriraniStupJson = azuriraniStup.getJson();
+				JSONObject azuriraniStupJsonWgs = azuriraniStup.convertUtmToWgs(azuriraniStupJson);
+				
+				System.out.println(azuriraniStupJsonWgs.getDouble("geoSirina") + "," +
+					azuriraniStupJsonWgs.getDouble("geoDuzina"));
+				
+				JSONArray izolatoriJson = azuriraniStupJson.getJSONArray("izolatori");
+				for(int i = 0; i < izolatoriJson.length(); i++) {
+					JSONObject izolatorJson = izolatoriJson.getJSONObject(i);
+					System.out.println(izolatorJson.getDouble("spojnaTockaIzolatoraGeoSirina") + "," +
+							izolatorJson.getDouble("spojnaTockaIzolatoraGeoDuzina"));
+					System.out.println(izolatorJson.getDouble("spojnaTockaVodicaGeoSirina") + "," + 
+							izolatorJson.getDouble("spojnaTockaVodicaGeoDuzina"));
+				}
+			}
+			
+			System.out.println("-------------");
+		}
 	}
 	
 }

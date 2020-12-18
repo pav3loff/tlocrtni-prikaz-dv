@@ -80,6 +80,8 @@ public class DataTransform {
 		for(Stup azuriraniStup : azuriraniStupovi) {
 			TipStupa tipStupa = azuriraniStup.getType();
 			
+			System.out.println(tipStupa);
+			
 			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA || tipStupa == TipStupa.DUNAV || 
 					tipStupa == TipStupa.PORTAL || tipStupa == TipStupa.Y || tipStupa == TipStupa.MACKA ||
 					tipStupa == TipStupa.DVOSTRUKA_JELA || tipStupa == TipStupa.DVOSTRUKI_Y ||
@@ -103,6 +105,8 @@ public class DataTransform {
 		// WGS -> UTM test ispis
 		for(Stup azuriraniStup : azuriraniStupovi) {
 			TipStupa tipStupa = azuriraniStup.getType();
+			
+			System.out.println(tipStupa);
 			
 			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA || tipStupa == TipStupa.DUNAV || 
 					tipStupa == TipStupa.PORTAL || tipStupa == TipStupa.Y || tipStupa == TipStupa.MACKA ||

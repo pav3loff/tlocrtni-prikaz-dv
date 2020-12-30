@@ -1,0 +1,29 @@
+.spojna-tocka-izolatora {
+  -webkit-animation: fadein 0.5s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #d1e8e2;
+}
+
+.spojna-tocka-vodica {
+  -webkit-animation: fadein 0.5s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #d9b08c;
+}
+
+.spojna-tocka-zastitnog-uzeta {
+  -webkit-animation: fadein 0.5s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #ffcb6a;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

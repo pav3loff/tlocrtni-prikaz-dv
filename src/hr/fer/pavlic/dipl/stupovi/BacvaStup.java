@@ -10,11 +10,11 @@ public class BacvaStup extends Stup {
 		super();
 	}
 	
-	public BacvaStup(int idStupa, boolean isZatezniStup, double orijentacija, double geoSirina, double geoDuzina,
+	public BacvaStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
-			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZastitneUzadi) {
-		super(idStupa, isZatezniStup, orijentacija, geoSirina, geoDuzina, visina, tipStupa, proizvodac, tezina,
-				oznakaUzemljenja, vrstaZastite, izolatori, spojneTockeZastitneUzadi);
+			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+		super(id, isZatezni, orijentacija, geoSirina, geoDuzina, visina, tipStupa, proizvodac, tezina,
+				oznakaUzemljenja, vrstaZastite, izolatori, spojneTockeZu);
 	}
 	
 	public BacvaStup(JSONObject stupJson) {

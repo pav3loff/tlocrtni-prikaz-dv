@@ -1,0 +1,22 @@
+.stup {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #d1e8e2;
+}
+
+.stup-detailed {
+  -webkit-animation: fadein 0.5s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #116466;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -21,8 +21,8 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 public abstract class Stup {
 	
 	private final static int RAZMAK = 2;
-	private int idStupa;
-	private boolean isZatezniStup;
+	private int id;
+	private boolean isZatezni;
 	private double orijentacija;
 	private double geoSirina;
 	private double geoDuzina;
@@ -33,18 +33,18 @@ public abstract class Stup {
 	private String oznakaUzemljenja;
 	private String vrstaZastite;
 	private List<Izolator> izolatori;
-	private List<SpojnaTockaZastitnogUzeta> spojneTockeZastitneUzadi;
+	private List<SpojnaTockaZastitnogUzeta> spojneTockeZu;
 	
 	public Stup() {
 		super();
 	}
 	
-	public Stup(int idStupa, boolean isZatezniStup, double orijentacija, double geoSirina, double geoDuzina,
+	public Stup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
-			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZastitneUzadi) {
+			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
 		super();
-		this.idStupa = idStupa;
-		this.isZatezniStup = isZatezniStup;
+		this.id = id;
+		this.isZatezni = isZatezni;
 		this.orijentacija = orijentacija;
 		this.geoSirina = geoSirina;
 		this.geoDuzina = geoDuzina;
@@ -55,16 +55,16 @@ public abstract class Stup {
 		this.oznakaUzemljenja = oznakaUzemljenja;
 		this.vrstaZastite = vrstaZastite;
 		this.izolatori = izolatori;
-		this.spojneTockeZastitneUzadi = spojneTockeZastitneUzadi;
+		this.spojneTockeZu = spojneTockeZu;
 	}
 	
 	public Stup(JSONObject stupJson) {
-		if(!(stupJson.isNull("idStupa"))) {
-			this.setIdStupa(stupJson.getInt("idStupa"));
+		if(!(stupJson.isNull("id"))) {
+			this.setId(stupJson.getInt("id"));
 		}
 		
-		if(!(stupJson.isNull("isZatezniStup"))) {
-			this.setZatezniStup(stupJson.getBoolean("isZatezniStup"));
+		if(!(stupJson.isNull("isZatezni"))) {
+			this.setZatezni(stupJson.getBoolean("isZatezni"));
 		}
 		
 		if(!(stupJson.isNull("orijentacija"))) {
@@ -116,14 +116,14 @@ public abstract class Stup {
 		}
 		
 		if(!(stupJson.isNull("spojneTockeZastitneUzadi"))) {
-			JSONArray spojneTockeZastitneUzadi = stupJson.getJSONArray("spojneTockeZastitneUzadi");
+			JSONArray spojneTockeZuJson = stupJson.getJSONArray("spojneTockeZastitneUzadi");
 			
-			this.spojneTockeZastitneUzadi = new LinkedList<SpojnaTockaZastitnogUzeta>();
+			this.spojneTockeZu = new LinkedList<SpojnaTockaZastitnogUzeta>();
 			
-			for(int i = 0; i < spojneTockeZastitneUzadi.length(); i++) {
-				JSONObject spojnaTockaZastitnogUzetaJson = spojneTockeZastitneUzadi.getJSONObject(i);
+			for(int i = 0; i < spojneTockeZuJson.length(); i++) {
+				JSONObject spojnaTockaZuJson = spojneTockeZuJson.getJSONObject(i);
 				
-				this.spojneTockeZastitneUzadi.add(new SpojnaTockaZastitnogUzeta(spojnaTockaZastitnogUzetaJson));
+				this.spojneTockeZu.add(new SpojnaTockaZastitnogUzeta(spojnaTockaZuJson));
 			}
 		}
 	}
@@ -139,15 +139,15 @@ public abstract class Stup {
 			return izolatoriJson;
 		}
 		
-		private static JSONArray getSpojneTockeZastitneUzadiAsJsonArray(
-				List<SpojnaTockaZastitnogUzeta> spojneTockeZastitneUzadi) {
-			JSONArray spojneTockeZastitneUzadiJson = new JSONArray();
+		private static JSONArray getSpojneTockeZuAsJsonArray(
+				List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+			JSONArray spojneTockeZuJson = new JSONArray();
 			
-			for(SpojnaTockaZastitnogUzeta spojnaTockaZastitnogUzeta : spojneTockeZastitneUzadi) {
-				spojneTockeZastitneUzadiJson.put(spojnaTockaZastitnogUzeta.getAsJson());
+			for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
+				spojneTockeZuJson.put(spojnaTockaZu.getAsJson());
 			}
 			
-			return spojneTockeZastitneUzadiJson;
+			return spojneTockeZuJson;
 		}
 		
 		// metoda containsKey sucelja Map objekte ne uspoređuje s equals; potrebno je ručno implementirati
@@ -162,20 +162,20 @@ public abstract class Stup {
 		}
 	}
 	
-	public int getIdStupa() {
-		return idStupa;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdStupa(int idStupa) {
-		this.idStupa = idStupa;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public boolean isZatezniStup() {
-		return isZatezniStup;
+	public boolean isZatezni() {
+		return isZatezni;
 	}
 
-	public void setZatezniStup(boolean isZatezniStup) {
-		this.isZatezniStup = isZatezniStup;
+	public void setZatezni(boolean isZatezni) {
+		this.isZatezni = isZatezni;
 	}
 
 	public double getOrijentacija() {
@@ -258,20 +258,20 @@ public abstract class Stup {
 		this.izolatori = izolatori;
 	}
 	
-	public List<SpojnaTockaZastitnogUzeta> getSpojneTockeZastitneUzadi() {
-		return spojneTockeZastitneUzadi;
+	public List<SpojnaTockaZastitnogUzeta> getSpojneTockeZu() {
+		return spojneTockeZu;
 	}
 
-	public void setSpojneTockeZastitneUzadi(List<SpojnaTockaZastitnogUzeta> spojneTockeZastitneUzadi) {
-		this.spojneTockeZastitneUzadi = spojneTockeZastitneUzadi;
+	public void setSpojneTockeZu(List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+		this.spojneTockeZu = spojneTockeZu;
 	}
 
 	public JSONObject getJson() {
 		JSONObject stupJson = new JSONObject();
 		
-		stupJson.put("idStupa", this.idStupa);
-		stupJson.put("oblikGlaveStupa", "Bacva");
-		stupJson.put("isZatezniStup", this.isZatezniStup);
+		stupJson.put("id", this.id);
+		stupJson.put("oblikGlaveStupa", this.getType());
+		stupJson.put("isZatezni", this.isZatezni);
 		stupJson.put("orijentacija", this.orijentacija);
 		stupJson.put("geoSirina", this.geoSirina);
 		stupJson.put("geoDuzina", this.geoDuzina);
@@ -283,7 +283,7 @@ public abstract class Stup {
 		stupJson.put("vrstaZastite", this.vrstaZastite);
 		stupJson.put("izolatori", Util.getIzolatoriAsJsonArray(this.izolatori));
 		stupJson.put("spojneTockeZastitneUzadi", 
-				Util.getSpojneTockeZastitneUzadiAsJsonArray(this.spojneTockeZastitneUzadi));
+				Util.getSpojneTockeZuAsJsonArray(this.spojneTockeZu));
 		
 		return stupJson;
 	}
@@ -304,9 +304,9 @@ public abstract class Stup {
 		// raspodjela izolatora lijevo i desno
 		// centralni izolator (X = 0) ostaje nepromijenjen (ako postoji)
 		for(Izolator izolator : izolatori) {
-			if(izolator.getSpojnaTockaIzolatoraX() > 0) { // izolator je s jedne strane
+			if(izolator.getStiX() > 0) { // izolator je s jedne strane
 				desniIzolatori.add(izolator);
-			} else if(izolator.getSpojnaTockaIzolatoraX() < 0) { // izolator je s druge strane
+			} else if(izolator.getStiX() < 0) { // izolator je s druge strane
 				lijeviIzolatori.add(izolator);
 			} else { // izolator je na centralnoj osi - ne mijenja se
 				azuriraniIzolatori.add(izolator);
@@ -328,7 +328,7 @@ public abstract class Stup {
 		stup.setIzolatori(azuriraniIzolatori);
 		
 		// transformacija spojnih točaka zaštitne užadi
-		List<SpojnaTockaZastitnogUzeta> spojneTockeZu = stup.getSpojneTockeZastitneUzadi();
+		List<SpojnaTockaZastitnogUzeta> spojneTockeZu = stup.getSpojneTockeZu();
 		List<SpojnaTockaZastitnogUzeta> azuriraneSpojneTockeZu = new LinkedList<>();
 		List<SpojnaTockaZastitnogUzeta> desneSpojneTockeZu = new LinkedList<>();
 		List<SpojnaTockaZastitnogUzeta> lijeveSpojneTockeZu = new LinkedList<>();
@@ -336,9 +336,9 @@ public abstract class Stup {
 		// raspodjela spojnih točaka zaštitne užadi lijevo i desno
 		// centralna spojna točka ZU (X = 0) ostaje nepromijenjena (ako postoji)
 		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
-			if(spojnaTockaZu.getSpojnaTockaZastitnogUzetaX() > 0) { // spojna točka je s jedne strane
+			if(spojnaTockaZu.getX() > 0) { // spojna točka je s jedne strane
 				desneSpojneTockeZu.add(spojnaTockaZu);
-			} else if(spojnaTockaZu.getSpojnaTockaZastitnogUzetaX() < 0) { // spojna točka je s druge strane
+			} else if(spojnaTockaZu.getX() < 0) { // spojna točka je s druge strane
 				lijeveSpojneTockeZu.add(spojnaTockaZu);
 			} else { // spojna točka je na centralnoj osi - ne mijenja se
 				azuriraneSpojneTockeZu.add(spojnaTockaZu);
@@ -358,7 +358,7 @@ public abstract class Stup {
 			azuriraneSpojneTockeZu.addAll(azuriraneSpojneTockeZuLijevo);
 		}
 				
-		stup.setSpojneTockeZastitneUzadi(azuriraneSpojneTockeZu);
+		stup.setSpojneTockeZu(azuriraneSpojneTockeZu);
 		
 		return stup;
 	}
@@ -373,9 +373,9 @@ public abstract class Stup {
 		List<Izolator> azuriraniIzolatori = new LinkedList<>();
 		
 		for(Izolator izolator : stup.getIzolatori()) {
-			double xSti = izolator.getSpojnaTockaIzolatoraX();
-			double zSti = izolator.getSpojnaTockaIzolatoraZ();
-			double zStv = izolator.getSpojnaTockaVodicaZ();
+			double xSti = izolator.getStiX();
+			double zSti = izolator.getStiZ();
+			double zStv = izolator.getStvZ();
 			
 			// izracun X STV
 			double beta = Math.toRadians(Math.abs(izolator.getKutIzmedjuSpojneTockeVodicaIRavnineKonzole()));
@@ -390,10 +390,10 @@ public abstract class Stup {
 			double azuriraniXStv = xStv * Math.cos(alfa) - zStv * Math.sin(alfa);
 			double azuriraniZStv = xStv * Math.sin(alfa) + zStv * Math.cos(alfa);
 			
-			izolator.setSpojnaTockaIzolatoraX(azuriraniXSti);
-			izolator.setSpojnaTockaIzolatoraZ(azuriraniZSti);
-			izolator.setSpojnaTockaVodicaX(azuriraniXStv);
-			izolator.setSpojnaTockaVodicaZ(azuriraniZStv);
+			izolator.setStiX(azuriraniXSti);
+			izolator.setStiZ(azuriraniZSti);
+			izolator.setStvX(azuriraniXStv);
+			izolator.setStvZ(azuriraniZStv);
 			
 			azuriraniIzolatori.add(izolator);
 		}
@@ -403,20 +403,20 @@ public abstract class Stup {
 		// prilagodba STZU
 		List<SpojnaTockaZastitnogUzeta> azuriraneSpojneTockeZu = new LinkedList<>();
 		
-		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : stup.getSpojneTockeZastitneUzadi()) {
-			double xStzu = spojnaTockaZu.getSpojnaTockaZastitnogUzetaX();
-			double zStzu = spojnaTockaZu.getSpojnaTockaZastitnogUzetaZ();
+		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : stup.getSpojneTockeZu()) {
+			double xStzu = spojnaTockaZu.getX();
+			double zStzu = spojnaTockaZu.getZ();
 			
 			double azuriraniXStzu = xStzu * Math.cos(alfa) - zStzu * Math.sin(alfa);
 			double azuriraniZStzu = xStzu * Math.sin(alfa) + zStzu * Math.cos(alfa);
 			
-			spojnaTockaZu.setSpojnaTockaZastitnogUzetaX(azuriraniXStzu);
-			spojnaTockaZu.setSpojnaTockaZastitnogUzetaZ(azuriraniZStzu);
+			spojnaTockaZu.setX(azuriraniXStzu);
+			spojnaTockaZu.setZ(azuriraniZStzu);
 			
 			azuriraneSpojneTockeZu.add(spojnaTockaZu);
 		}
 		
-		stup.setSpojneTockeZastitneUzadi(azuriraneSpojneTockeZu);
+		stup.setSpojneTockeZu(azuriraneSpojneTockeZu);
 		
 		return stup;
 	}
@@ -438,21 +438,21 @@ public abstract class Stup {
 			List<Izolator> izolatori = stup.getIzolatori();
 			
 			for(Izolator izolator : izolatori) {
-				double spojnaTockaIzolatoraX = izolator.getSpojnaTockaIzolatoraX();
-				double spojnaTockaIzolatoraZ = izolator.getSpojnaTockaIzolatoraZ();
+				double stiX = izolator.getStiX();
+				double stiZ = izolator.getStiZ();
 					
 				UtmCoordinate spojnaTockaIzolatoraUtm = new UtmCoordinate(
 						stupUtm.getLongZone(), stupUtm.getLatZone(), 
-						stupUtm.getEasting() + spojnaTockaIzolatoraX, 
-						stupUtm.getNorthing() + spojnaTockaIzolatoraZ);
+						stupUtm.getEasting() + stiX, 
+						stupUtm.getNorthing() + stiZ);
 					
 				WgsCoordinate spojnaTockaIzolatoraWgs = UtmWgsConverter.convertToWgs(spojnaTockaIzolatoraUtm);
 					
-				izolator.setSpojnaTockaIzolatoraGeoSirina(spojnaTockaIzolatoraWgs.getGeoSirina());
-				izolator.setSpojnaTockaIzolatoraGeoDuzina(spojnaTockaIzolatoraWgs.getGeoDuzina());
+				izolator.setStiGeoSirina(spojnaTockaIzolatoraWgs.getGeoSirina());
+				izolator.setStiGeoDuzina(spojnaTockaIzolatoraWgs.getGeoDuzina());
 				
-				double spojnaTockaVodicaX = izolator.getSpojnaTockaVodicaX();
-				double spojnaTockaVodicaZ = izolator.getSpojnaTockaVodicaZ();
+				double spojnaTockaVodicaX = izolator.getStvX();
+				double spojnaTockaVodicaZ = izolator.getStvZ();
 					
 				UtmCoordinate spojnaTockaVodicaUtm = new UtmCoordinate(
 						stupUtm.getLongZone(), stupUtm.getLatZone(),
@@ -461,27 +461,27 @@ public abstract class Stup {
 					
 				WgsCoordinate spojnaTockaVodicaWgs = UtmWgsConverter.convertToWgs(spojnaTockaVodicaUtm);
 					
-				izolator.setSpojnaTockaVodicaGeoSirina(spojnaTockaVodicaWgs.getGeoSirina());
-				izolator.setSpojnaTockaVodicaGeoDuzina(spojnaTockaVodicaWgs.getGeoDuzina());
+				izolator.setStvGeoSirina(spojnaTockaVodicaWgs.getGeoSirina());
+				izolator.setStvGeoDuzina(spojnaTockaVodicaWgs.getGeoDuzina());
 				
 			}
 			
-			List<SpojnaTockaZastitnogUzeta> spojneTockeZu = stup.getSpojneTockeZastitneUzadi();
+			List<SpojnaTockaZastitnogUzeta> spojneTockeZu = stup.getSpojneTockeZu();
 			
 			for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
-				double spojnaTockaZuX = spojnaTockaZu.getSpojnaTockaZastitnogUzetaX();
-				double spojnaTockaZuZ = spojnaTockaZu.getSpojnaTockaZastitnogUzetaZ();
+				double spojnaTockaZuX = spojnaTockaZu.getX();
+				double spojnaTockaZuZ = spojnaTockaZu.getZ();
 					
 				UtmCoordinate spojnaTockaZuUtm = new UtmCoordinate(
 						stupUtm.getLongZone(), stupUtm.getLatZone(), 
 						stupUtm.getEasting() + spojnaTockaZuX, 
 						stupUtm.getNorthing() + spojnaTockaZuZ);
 					
-				WgsCoordinate spojnaTockaZastitnogUzetaWgs = 
+				WgsCoordinate spojnaTockaZuWgs = 
 						UtmWgsConverter.convertToWgs(spojnaTockaZuUtm);
 					
-				spojnaTockaZu.setSpojnaTockaZastitnogUzetaGeoSirina(spojnaTockaZastitnogUzetaWgs.getGeoSirina());
-				spojnaTockaZu.setSpojnaTockaZastitnogUzetaGeoDuzina(spojnaTockaZastitnogUzetaWgs.getGeoDuzina());
+				spojnaTockaZu.setGeoSirina(spojnaTockaZuWgs.getGeoSirina());
+				spojnaTockaZu.setGeoDuzina(spojnaTockaZuWgs.getGeoDuzina());
 				
 			}
 		} catch (Exception e) {
@@ -499,8 +499,8 @@ public abstract class Stup {
 		Map<SpojnaTocka, List<Izolator>> parovi = new LinkedHashMap<>();
 					
 		for(Izolator izolator : izolatori) {
-			SpojnaTocka st = new SpojnaTocka(izolator.getSpojnaTockaIzolatoraX(), 
-					izolator.getSpojnaTockaIzolatoraY(), izolator.getSpojnaTockaIzolatoraZ());
+			SpojnaTocka st = new SpojnaTocka(izolator.getStiX(), 
+					izolator.getStiY(), izolator.getStiZ());
 					SpojnaTocka kljuc = Util.getKeyIfExists(parovi, st);
 						
 			if(kljuc != null) {
@@ -536,8 +536,8 @@ public abstract class Stup {
 						
 			for(Izolator izolator : par) {
 				double noviX = RAZMAK * i * predznak;
-				izolator.setSpojnaTockaIzolatoraX(noviX);
-				izolator.setSpojnaTockaVodicaX(noviX);
+				izolator.setStiX(noviX);
+				izolator.setStvX(noviX);
 			}
 						
 			azuriraniIzolatori.addAll(par);
@@ -556,8 +556,8 @@ public abstract class Stup {
 			@Override
 			public int compare(SpojnaTockaZastitnogUzeta stZu1, SpojnaTockaZastitnogUzeta stZu2) {
 				return isDesno ? 
-						Double.compare(stZu1.getSpojnaTockaZastitnogUzetaX(), stZu2.getSpojnaTockaZastitnogUzetaX()) : 
-						Double.compare(stZu2.getSpojnaTockaZastitnogUzetaX(), stZu1.getSpojnaTockaZastitnogUzetaX());
+						Double.compare(stZu1.getX(), stZu2.getX()) : 
+						Double.compare(stZu2.getX(), stZu1.getX());
 			}
 						
 		});
@@ -568,7 +568,7 @@ public abstract class Stup {
 		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
 			// koordinata X = RAZMAK * i + 1 (desna strana)
 			// koordinata X = (RAZMAK * i + 1) * -1 (lijeva strana)
-			spojnaTockaZu.setSpojnaTockaZastitnogUzetaX((RAZMAK * i + 1) * predznak);
+			spojnaTockaZu.setX((RAZMAK * i + 1) * predznak);
 						
 			i += 1;
 		}

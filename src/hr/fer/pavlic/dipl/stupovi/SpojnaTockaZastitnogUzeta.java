@@ -4,112 +4,112 @@ import org.json.JSONObject;
 
 public class SpojnaTockaZastitnogUzeta {
 
-	private int idSpojneTockeZastitnogUzeta;
-	private double spojnaTockaZastitnogUzetaX;
-	private double spojnaTockaZastitnogUzetaY;
-	private double spojnaTockaZastitnogUzetaZ;
-	private double spojnaTockaZastitnogUzetaGeoSirina;
-	private double spojnaTockaZastitnogUzetaGeoDuzina;
+	private int id;
+	private double x;
+	private double y;
+	private double z;
+	private double geoSirina;
+	private double geoDuzina;
 	
-	public SpojnaTockaZastitnogUzeta(int idSpojneTockeZastitnogUzeta, double spojnaTockaZastitnogUzetaX,
-			double spojnaTockaZastitnogUzetaY, double spojnaTockaZastitnogUzetaZ) {
+	public SpojnaTockaZastitnogUzeta(int id, double x, double y, double z, double geoSirina, double geoDuzina) {
 		super();
-		this.idSpojneTockeZastitnogUzeta = idSpojneTockeZastitnogUzeta;
-		this.spojnaTockaZastitnogUzetaX = spojnaTockaZastitnogUzetaX;
-		this.spojnaTockaZastitnogUzetaY = spojnaTockaZastitnogUzetaY;
-		this.spojnaTockaZastitnogUzetaZ = spojnaTockaZastitnogUzetaZ;
-		this.spojnaTockaZastitnogUzetaGeoSirina = this.spojnaTockaZastitnogUzetaGeoDuzina = 0;
+		this.id = id;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.geoSirina = geoSirina;
+		this.geoDuzina = geoDuzina;
 	}
-	
-	public SpojnaTockaZastitnogUzeta(JSONObject spojnaTockaZastitnogUzetaJson) {
-		if(!(spojnaTockaZastitnogUzetaJson.isNull("idSpojneTockeZastitnogUzeta"))) {
-			this.idSpojneTockeZastitnogUzeta = spojnaTockaZastitnogUzetaJson.getInt("idSpojneTockeZastitnogUzeta");
+
+	public SpojnaTockaZastitnogUzeta(JSONObject spojnaTockaZuJson) {
+		if(!(spojnaTockaZuJson.isNull("id"))) {
+			this.id = spojnaTockaZuJson.getInt("id");
 		}
 		
-		if(!(spojnaTockaZastitnogUzetaJson.isNull("spojnaTockaZastitnogUzetaX"))) {
-			this.spojnaTockaZastitnogUzetaX = spojnaTockaZastitnogUzetaJson.getDouble("spojnaTockaZastitnogUzetaX");
+		if(!(spojnaTockaZuJson.isNull("x"))) {
+			this.x = spojnaTockaZuJson.getDouble("x");
 		}
 		
-		if(!(spojnaTockaZastitnogUzetaJson.isNull("spojnaTockaZastitnogUzetaY"))) {
-			this.spojnaTockaZastitnogUzetaY = spojnaTockaZastitnogUzetaJson.getDouble("spojnaTockaZastitnogUzetaY");
+		if(!(spojnaTockaZuJson.isNull("y"))) {
+			this.y = spojnaTockaZuJson.getDouble("y");
 		}
 		
-		if(!(spojnaTockaZastitnogUzetaJson.isNull("spojnaTockaZastitnogUzetaZ"))) {
-			this.spojnaTockaZastitnogUzetaZ = spojnaTockaZastitnogUzetaJson.getDouble("spojnaTockaZastitnogUzetaZ");
+		if(!(spojnaTockaZuJson.isNull("z"))) {
+			this.z = spojnaTockaZuJson.getDouble("z");
 		}
 		
-		if(!(spojnaTockaZastitnogUzetaJson.isNull("spojnaTockaZastitnogUzetaGeoSirina"))) {
-			this.spojnaTockaZastitnogUzetaGeoSirina = spojnaTockaZastitnogUzetaJson.getDouble("spojnaTockaZastitnogUzetaGeoSirina");
+		if(!(spojnaTockaZuJson.isNull("geoSirina"))) {
+			this.geoSirina = spojnaTockaZuJson.getDouble("geoSirina");
 		} else {
-			this.spojnaTockaZastitnogUzetaGeoSirina = 0;
+			this.geoSirina = 0;
 		}
 		
-		if(!(spojnaTockaZastitnogUzetaJson.isNull("spojnaTockaZastitnogUzetaGeoDuzina"))) {
-			this.spojnaTockaZastitnogUzetaGeoDuzina = spojnaTockaZastitnogUzetaJson.getDouble("spojnaTockaZastitnogUzetaGeoDuzina");
+		if(!(spojnaTockaZuJson.isNull("geoDuzina"))) {
+			this.geoDuzina = spojnaTockaZuJson.getDouble("geoDuzina");
 		} else {
-			this.spojnaTockaZastitnogUzetaGeoDuzina = 0;
+			this.geoDuzina = 0;
 		}
 	}
 
-	public int getIdSpojneTockeZastitnogUzeta() {
-		return idSpojneTockeZastitnogUzeta;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdSpojneTockeZastitnogUzeta(int idSpojneTockeZastitnogUzeta) {
-		this.idSpojneTockeZastitnogUzeta = idSpojneTockeZastitnogUzeta;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public double getSpojnaTockaZastitnogUzetaX() {
-		return spojnaTockaZastitnogUzetaX;
+	public double getX() {
+		return x;
 	}
 
-	public void setSpojnaTockaZastitnogUzetaX(double spojnaTockaZastitnogUzetaX) {
-		this.spojnaTockaZastitnogUzetaX = spojnaTockaZastitnogUzetaX;
+	public void setX(double x) {
+		this.x = x;
 	}
 
-	public double getSpojnaTockaZastitnogUzetaY() {
-		return spojnaTockaZastitnogUzetaY;
+	public double getY() {
+		return y;
 	}
 
-	public void setSpojnaTockaZastitnogUzetaY(double spojnaTockaZastitnogUzetaY) {
-		this.spojnaTockaZastitnogUzetaY = spojnaTockaZastitnogUzetaY;
+	public void setY(double y) {
+		this.y = y;
 	}
 
-	public double getSpojnaTockaZastitnogUzetaZ() {
-		return spojnaTockaZastitnogUzetaZ;
+	public double getZ() {
+		return z;
 	}
 
-	public void setSpojnaTockaZastitnogUzetaZ(double spojnaTockaZastitnogUzetaZ) {
-		this.spojnaTockaZastitnogUzetaZ = spojnaTockaZastitnogUzetaZ;
-	}
-	
-	public double getSpojnaTockaZastitnogUzetaGeoSirina() {
-		return spojnaTockaZastitnogUzetaGeoSirina;
+	public void setZ(double z) {
+		this.z = z;
 	}
 
-	public void setSpojnaTockaZastitnogUzetaGeoSirina(double spojnaTockaZastitnogUzetaGeoSirina) {
-		this.spojnaTockaZastitnogUzetaGeoSirina = spojnaTockaZastitnogUzetaGeoSirina;
+	public double getGeoSirina() {
+		return geoSirina;
 	}
 
-	public double getSpojnaTockaZastitnogUzetaGeoDuzina() {
-		return spojnaTockaZastitnogUzetaGeoDuzina;
+	public void setGeoSirina(double geoSirina) {
+		this.geoSirina = geoSirina;
 	}
 
-	public void setSpojnaTockaZastitnogUzetaGeoDuzina(double spojnaTockaZastitnogUzetaGeoDuzina) {
-		this.spojnaTockaZastitnogUzetaGeoDuzina = spojnaTockaZastitnogUzetaGeoDuzina;
+	public double getGeoDuzina() {
+		return geoDuzina;
+	}
+
+	public void setGeoDuzina(double geoDuzina) {
+		this.geoDuzina = geoDuzina;
 	}
 
 	public JSONObject getAsJson() {
-		JSONObject spojnaTockaZastitnogUzetaJson = new JSONObject();
+		JSONObject stzuJson = new JSONObject();
 		
-		spojnaTockaZastitnogUzetaJson.put("idSpojneTockaZastitnogUzeta", this.idSpojneTockeZastitnogUzeta);
-		spojnaTockaZastitnogUzetaJson.put("spojnaTockaZastitnogUzetaX", this.spojnaTockaZastitnogUzetaX);
-		spojnaTockaZastitnogUzetaJson.put("spojnaTockaZastitnogUzetaY", this.spojnaTockaZastitnogUzetaY);
-		spojnaTockaZastitnogUzetaJson.put("spojnaTockaZastitnogUzetaZ", this.spojnaTockaZastitnogUzetaZ);
-		spojnaTockaZastitnogUzetaJson.put("spojnaTockaZastitnogUzetaGeoSirina", this.spojnaTockaZastitnogUzetaGeoSirina);
-		spojnaTockaZastitnogUzetaJson.put("spojnaTockaZastitnogUzetaGeoDuzina", this.spojnaTockaZastitnogUzetaGeoDuzina);
+		stzuJson.put("id", this.id);
+		stzuJson.put("x", this.x);
+		stzuJson.put("y", this.y);
+		stzuJson.put("z", this.z);
+		stzuJson.put("geoSirina", this.geoSirina);
+		stzuJson.put("geoDuzina", this.geoDuzina);
 		
-		return spojnaTockaZastitnogUzetaJson;
+		return stzuJson;
 	}
 	
 }

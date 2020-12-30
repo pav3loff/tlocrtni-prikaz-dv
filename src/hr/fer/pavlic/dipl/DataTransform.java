@@ -1,5 +1,7 @@
 package hr.fer.pavlic.dipl;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -16,13 +18,10 @@ import hr.fer.pavlic.dipl.stupovi.DvostrukaJelaStup;
 import hr.fer.pavlic.dipl.stupovi.DvostrukaMackaStup;
 import hr.fer.pavlic.dipl.stupovi.DvostrukiPortalStup;
 import hr.fer.pavlic.dipl.stupovi.DvostrukiYStup;
-import hr.fer.pavlic.dipl.stupovi.Izolator;
 import hr.fer.pavlic.dipl.stupovi.JelaStup;
 import hr.fer.pavlic.dipl.stupovi.MackaStup;
 import hr.fer.pavlic.dipl.stupovi.PortalStup;
-import hr.fer.pavlic.dipl.stupovi.SpojnaTockaZastitnogUzeta;
 import hr.fer.pavlic.dipl.stupovi.Stup;
-import hr.fer.pavlic.dipl.stupovi.TipStupa;
 import hr.fer.pavlic.dipl.stupovi.YStup;
 
 public class DataTransform {
@@ -73,64 +72,26 @@ public class DataTransform {
 			// promjena orijentacije tocaka
 			stup = stup.changeOrientation(stup);
 			
+			// transf UTM <-> WGS
+			stup = stup.convertUtmToWgs(stup);
+			
 			azuriraniStupovi.add(stup);
 		}
 		
-		// test ispis svih transformiranih tocaka
-		for(Stup azuriraniStup : azuriraniStupovi) {
-			TipStupa tipStupa = azuriraniStup.getType();
+		// zapisati json u datoteku
+		JSONArray stupoviJsonOut = new JSONArray();
+		
+		for(Stup stup : azuriraniStupovi) {
+			JSONObject stupJson = stup.getJson();
 			
-			System.out.println(tipStupa);
-			
-			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA || tipStupa == TipStupa.DUNAV || 
-					tipStupa == TipStupa.PORTAL || tipStupa == TipStupa.Y || tipStupa == TipStupa.MACKA ||
-					tipStupa == TipStupa.DVOSTRUKA_JELA || tipStupa == TipStupa.DVOSTRUKI_Y ||
-					tipStupa == TipStupa.DVOSTRUKI_PORTAL || tipStupa == TipStupa.DVOSTRUKA_MACKA) {
-				for(Izolator izolator : azuriraniStup.getIzolatori()) {
-					System.out.println("(" + izolator.getSpojnaTockaIzolatoraX() 
-						+ ", " + izolator.getSpojnaTockaIzolatoraZ() + ")");
-					System.out.println("(" + izolator.getSpojnaTockaVodicaX() 
-						+ ", " + izolator.getSpojnaTockaVodicaZ() + ")");
-				}
-				
-				for(SpojnaTockaZastitnogUzeta spojnaTockaZu : azuriraniStup.getSpojneTockeZastitneUzadi()) {
-					System.out.println("(" + spojnaTockaZu.getSpojnaTockaZastitnogUzetaX()
-							+ ", " + spojnaTockaZu.getSpojnaTockaZastitnogUzetaZ() + ")");
-				}
-			} 
-			
-			System.out.println("-------------");
+			stupoviJsonOut.put(stupJson);
 		}
 		
-		// WGS -> UTM test ispis
-		for(Stup azuriraniStup : azuriraniStupovi) {
-			TipStupa tipStupa = azuriraniStup.getType();
-			
-			System.out.println(tipStupa);
-			
-			if(tipStupa == TipStupa.BACVA || tipStupa == TipStupa.JELA || tipStupa == TipStupa.DUNAV || 
-					tipStupa == TipStupa.PORTAL || tipStupa == TipStupa.Y || tipStupa == TipStupa.MACKA ||
-					tipStupa == TipStupa.DVOSTRUKA_JELA || tipStupa == TipStupa.DVOSTRUKI_Y ||
-					tipStupa == TipStupa.DVOSTRUKI_PORTAL || tipStupa == TipStupa.DVOSTRUKA_MACKA) {
-				Stup azuriraniStupWgs = azuriraniStup.convertUtmToWgs(azuriraniStup);
-				
-				System.out.println(azuriraniStupWgs.getGeoSirina() + "," +
-						azuriraniStupWgs.getGeoDuzina());
-				
-				List<Izolator> izolatori = azuriraniStupWgs.getIzolatori();
-				for(Izolator izolator : izolatori) {
-					System.out.println(izolator.getSpojnaTockaIzolatoraGeoSirina() + "," +
-							izolator.getSpojnaTockaIzolatoraGeoDuzina());
-					System.out.println(izolator.getSpojnaTockaVodicaGeoSirina() + "," + 
-							izolator.getSpojnaTockaVodicaGeoDuzina());
-				}
-				
-				List<SpojnaTockaZastitnogUzeta> spojneTockeZu = azuriraniStup.getSpojneTockeZastitneUzadi();
-				for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
-					System.out.println(spojnaTockaZu.getSpojnaTockaZastitnogUzetaGeoSirina() + "," +
-							spojnaTockaZu.getSpojnaTockaZastitnogUzetaGeoDuzina());
-				}
-			}
+		try(FileWriter writer = new FileWriter(
+				Paths.get("C:/Users/mario/Desktop/tlocrtni_prikaz_dalekovoda/dataOut.json").toFile())) {
+			writer.write(stupoviJsonOut.toString());
+		} catch (IOException exc) {
+			System.out.println("Neuspješno pisanje u datoteku!");
 		}
 	}
 	

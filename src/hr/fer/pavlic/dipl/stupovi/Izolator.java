@@ -4,73 +4,102 @@ import org.json.JSONObject;
 
 public class Izolator {
 	
-	private int idIzolatora;
-	private double spojnaTockaIzolatoraX;
-	private double spojnaTockaIzolatoraY;
-	private double spojnaTockaIzolatoraZ;
-	private double spojnaTockaVodicaX;
-	private double spojnaTockaVodicaY;
-	private double spojnaTockaVodicaZ;
+	private int id;
+	private double stiX;
+	private double stiY;
+	private double stiZ;
+	private double stvX;
+	private double stvY;
+	private double stvZ;
 	private double kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 	private String materijal;
 	private String izvedba;
 	private int brojClanaka;
-	private double spojnaTockaIzolatoraGeoSirina;
-	private double spojnaTockaIzolatoraGeoDuzina;
-	private double spojnaTockaVodicaGeoSirina;
-	private double spojnaTockaVodicaGeoDuzina;
+	private double stiGeoSirina;
+	private double stiGeoDuzina;
+	private double stvGeoSirina;
+	private double stvGeoDuzina;
 	
-	public Izolator(int idIzolatora, double spojnaTockaIzolatoraX, double spojnaTockaIzolatoraY,
-			double spojnaTockaIzolatoraZ, double spojnaTockaVodicaX, double spojnaTockaVodicaY,
-			double spojnaTockaVodicaZ, double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, String materijal,
-			String izvedba, int brojClanaka) {
+	public Izolator(int id, double stiX, double stiY, double stiZ, double stvX, double stvY, double stvZ,
+			double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, String materijal, String izvedba, int brojClanaka) {
 		super();
-		this.idIzolatora = idIzolatora;
-		this.spojnaTockaIzolatoraX = spojnaTockaIzolatoraX;
-		this.spojnaTockaIzolatoraY = spojnaTockaIzolatoraY;
-		this.spojnaTockaIzolatoraZ = spojnaTockaIzolatoraZ;
-		this.spojnaTockaVodicaX = spojnaTockaVodicaX;
-		this.spojnaTockaVodicaY = spojnaTockaVodicaY;
-		this.spojnaTockaVodicaZ = spojnaTockaVodicaZ;
+		this.id = id;
+		this.stiX = stiX;
+		this.stiY = stiY;
+		this.stiZ = stiZ;
+		this.stvX = stvX;
+		this.stvY = stvY;
+		this.stvZ = stvZ;
 		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 		this.materijal = materijal;
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
-		this.spojnaTockaIzolatoraGeoSirina = this.spojnaTockaIzolatoraGeoDuzina = 
-				this.spojnaTockaVodicaGeoSirina = this.spojnaTockaVodicaGeoDuzina = 0;
+		this.stiGeoSirina = this.stiGeoDuzina = this.stvGeoSirina = this.stvGeoDuzina = 0;
 	}
-	
+
 	public Izolator(JSONObject izolatorJson) {
-		if(!(izolatorJson.isNull("idIzolatora"))) {
-			this.idIzolatora = izolatorJson.getInt("idIzolatora");
+		if(!(izolatorJson.isNull("id"))) {
+			this.id = izolatorJson.getInt("id");
 		}
 		
-		if(!(izolatorJson.isNull("spojnaTockaIzolatoraX"))) {
-			this.spojnaTockaIzolatoraX = izolatorJson.getDouble("spojnaTockaIzolatoraX");
+		if(!(izolatorJson.isNull("spojnaTockaIzolatora"))) {
+			JSONObject stiJson = izolatorJson.getJSONObject("spojnaTockaIzolatora");
+			
+			if(!(stiJson.isNull("x"))) {
+				this.stiX = stiJson.getDouble("x");
+			}
+			
+			if(!(stiJson.isNull("y"))) {
+				this.stiY = stiJson.getDouble("y");
+			}
+			
+			if(!(stiJson.isNull("z"))) {
+				this.stiZ = stiJson.getDouble("z");
+			}
+			
+			if(!(stiJson.isNull("geoSirina"))) {
+				this.stiGeoSirina = stiJson.getDouble("geoSirina");
+			} else {
+				this.stiGeoSirina = 0;
+			}
+			
+			if(!(stiJson.isNull("geoDuzina"))) {
+				this.stiGeoDuzina = stiJson.getDouble("geoDuzina");
+			} else {
+				this.stiGeoDuzina = 0;
+			}
 		}
 		
-		if(!(izolatorJson.isNull("spojnaTockaIzolatoraY"))) {
-			this.spojnaTockaIzolatoraY = izolatorJson.getDouble("spojnaTockaIzolatoraY");
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaIzolatoraZ"))) {
-			this.spojnaTockaIzolatoraZ = izolatorJson.getDouble("spojnaTockaIzolatoraZ");
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaVodicaX"))) {
-			this.spojnaTockaVodicaX = izolatorJson.getDouble("spojnaTockaVodicaX");
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaVodicaY"))) {
-			this.spojnaTockaVodicaY = izolatorJson.getDouble("spojnaTockaVodicaY");
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaVodicaZ"))) {
-			this.spojnaTockaVodicaZ = izolatorJson.getDouble("spojnaTockaVodicaZ");
+		if(!(izolatorJson.isNull("spojnaTockaVodica"))) {
+			JSONObject stvJson = izolatorJson.getJSONObject("spojnaTockaVodica");
+			if(!(stvJson.isNull("x"))) {
+				this.stvX = stvJson.getDouble("x");
+			}
+			
+			if(!(stvJson.isNull("y"))) {
+				this.stvY = stvJson.getDouble("y");
+			}
+			
+			if(!(stvJson.isNull("z"))) {
+				this.stvZ = stvJson.getDouble("z");
+			}
+			
+			if(!(stvJson.isNull("geoSirina"))) {
+				this.stvGeoSirina = stvJson.getDouble("geoSirina");
+			} else {
+				this.stvGeoSirina = 0;
+			}
+			
+			if(!(stvJson.isNull("geoDuzina"))) {
+				this.stvGeoDuzina = stvJson.getDouble("geoDuzina");
+			} else {
+				this.stvGeoDuzina = 0;
+			}
 		}
 		
 		if(!(izolatorJson.isNull("kutIzmedjuSpojneTockeVodicaIRavnineKonzole"))) {
-			this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = izolatorJson.getDouble("kutIzmedjuSpojneTockeVodicaIRavnineKonzole");
+			this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = 
+					izolatorJson.getDouble("kutIzmedjuSpojneTockeVodicaIRavnineKonzole");
 		}
 		
 		if(!(izolatorJson.isNull("materijal"))) {
@@ -84,86 +113,62 @@ public class Izolator {
 		if(!(izolatorJson.isNull("brojClanaka"))) {
 			this.brojClanaka = izolatorJson.getInt("brojClanaka");
 		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaIzolatoraGeoSirina"))) {
-			this.spojnaTockaIzolatoraGeoSirina = izolatorJson.getDouble("spojnaTockaIzolatoraGeoSirina");
-		} else {
-			this.spojnaTockaIzolatoraGeoSirina = 0;
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaIzolatoraGeoDuzina"))) {
-			this.setSpojnaTockaIzolatoraGeoDuzina(izolatorJson.getDouble("spojnaTockaIzolatoraGeoDuzina"));
-		} else {
-			this.spojnaTockaIzolatoraGeoDuzina = 0;
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaVodicaGeoSirina"))) {
-			this.spojnaTockaVodicaGeoSirina = izolatorJson.getDouble("spojnaTockaVodicaGeoSirina");
-		} else {
-			this.spojnaTockaVodicaGeoSirina = 0;
-		}
-		
-		if(!(izolatorJson.isNull("spojnaTockaVodicaGeoDuzina"))) {
-			this.spojnaTockaVodicaGeoDuzina = izolatorJson.getDouble("spojnaTockaVodicaGeoDuzina");
-		} else {
-			this.spojnaTockaVodicaGeoDuzina = 0;
-		}
 	}
 
-	public int getIdIzolatora() {
-		return idIzolatora;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdIzolatora(int idIzolatora) {
-		this.idIzolatora = idIzolatora;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public double getSpojnaTockaIzolatoraX() {
-		return spojnaTockaIzolatoraX;
+	public double getStiX() {
+		return stiX;
 	}
 
-	public void setSpojnaTockaIzolatoraX(double spojnaTockaIzolatoraX) {
-		this.spojnaTockaIzolatoraX = spojnaTockaIzolatoraX;
+	public void setStiX(double stiX) {
+		this.stiX = stiX;
 	}
 
-	public double getSpojnaTockaIzolatoraY() {
-		return spojnaTockaIzolatoraY;
+	public double getStiY() {
+		return stiY;
 	}
 
-	public void setSpojnaTockaIzolatoraY(double spojnaTockaIzolatoraY) {
-		this.spojnaTockaIzolatoraY = spojnaTockaIzolatoraY;
+	public void setStiY(double stiY) {
+		this.stiY = stiY;
 	}
 
-	public double getSpojnaTockaIzolatoraZ() {
-		return spojnaTockaIzolatoraZ;
+	public double getStiZ() {
+		return stiZ;
 	}
 
-	public void setSpojnaTockaIzolatoraZ(double spojnaTockaIzolatoraZ) {
-		this.spojnaTockaIzolatoraZ = spojnaTockaIzolatoraZ;
+	public void setStiZ(double stiZ) {
+		this.stiZ = stiZ;
 	}
 
-	public double getSpojnaTockaVodicaX() {
-		return spojnaTockaVodicaX;
+	public double getStvX() {
+		return stvX;
 	}
 
-	public void setSpojnaTockaVodicaX(double spojnaTockaVodicaX) {
-		this.spojnaTockaVodicaX = spojnaTockaVodicaX;
+	public void setStvX(double stvX) {
+		this.stvX = stvX;
 	}
 
-	public double getSpojnaTockaVodicaY() {
-		return spojnaTockaVodicaY;
+	public double getStvY() {
+		return stvY;
 	}
 
-	public void setSpojnaTockaVodicaY(double spojnaTockaVodicaY) {
-		this.spojnaTockaVodicaY = spojnaTockaVodicaY;
+	public void setStvY(double stvY) {
+		this.stvY = stvY;
 	}
 
-	public double getSpojnaTockaVodicaZ() {
-		return spojnaTockaVodicaZ;
+	public double getStvZ() {
+		return stvZ;
 	}
 
-	public void setSpojnaTockaVodicaZ(double spojnaTockaVodicaZ) {
-		this.spojnaTockaVodicaZ = spojnaTockaVodicaZ;
+	public void setStvZ(double stvZ) {
+		this.stvZ = stvZ;
 	}
 
 	public double getKutIzmedjuSpojneTockeVodicaIRavnineKonzole() {
@@ -197,57 +202,62 @@ public class Izolator {
 	public void setBrojClanaka(int brojClanaka) {
 		this.brojClanaka = brojClanaka;
 	}
-	
-	public double getSpojnaTockaIzolatoraGeoSirina() {
-		return spojnaTockaIzolatoraGeoSirina;
+
+	public double getStiGeoSirina() {
+		return stiGeoSirina;
 	}
 
-	public void setSpojnaTockaIzolatoraGeoSirina(double spojnaTockaIzolatoraGeoSirina) {
-		this.spojnaTockaIzolatoraGeoSirina = spojnaTockaIzolatoraGeoSirina;
+	public void setStiGeoSirina(double stiGeoSirina) {
+		this.stiGeoSirina = stiGeoSirina;
 	}
 
-	public double getSpojnaTockaIzolatoraGeoDuzina() {
-		return spojnaTockaIzolatoraGeoDuzina;
+	public double getStiGeoDuzina() {
+		return stiGeoDuzina;
 	}
 
-	public void setSpojnaTockaIzolatoraGeoDuzina(double spojnaTockaIzolatoraGeoDuzina) {
-		this.spojnaTockaIzolatoraGeoDuzina = spojnaTockaIzolatoraGeoDuzina;
+	public void setStiGeoDuzina(double stiGeoDuzina) {
+		this.stiGeoDuzina = stiGeoDuzina;
 	}
 
-	public double getSpojnaTockaVodicaGeoSirina() {
-		return spojnaTockaVodicaGeoSirina;
+	public double getStvGeoSirina() {
+		return stvGeoSirina;
 	}
 
-	public void setSpojnaTockaVodicaGeoSirina(double spojnaTockaVodicaGeoSirina) {
-		this.spojnaTockaVodicaGeoSirina = spojnaTockaVodicaGeoSirina;
+	public void setStvGeoSirina(double stvGeoSirina) {
+		this.stvGeoSirina = stvGeoSirina;
 	}
 
-	public double getSpojnaTockaVodicaGeoDuzina() {
-		return spojnaTockaVodicaGeoDuzina;
+	public double getStvGeoDuzina() {
+		return stvGeoDuzina;
 	}
 
-	public void setSpojnaTockaVodicaGeoDuzina(double spojnaTockaVodicaGeoDuzina) {
-		this.spojnaTockaVodicaGeoDuzina = spojnaTockaVodicaGeoDuzina;
+	public void setStvGeoDuzina(double stvGeoDuzina) {
+		this.stvGeoDuzina = stvGeoDuzina;
 	}
 
 	public JSONObject getJson() {
-		JSONObject izolatorJson = new JSONObject();
+		JSONObject stiJson = new JSONObject();
+		stiJson.put("x", this.stiX);
+		stiJson.put("y", this.stiY);
+		stiJson.put("z", this.stiZ);
+		stiJson.put("geoSirina", this.stiGeoSirina);
+		stiJson.put("geoDuzina", this.stiGeoDuzina);
 		
-		izolatorJson.put("idIzolatora", this.idIzolatora);
-		izolatorJson.put("spojnaTockaIzolatoraX", this.spojnaTockaIzolatoraX);
-		izolatorJson.put("spojnaTockaIzolatoraY", this.spojnaTockaIzolatoraY);
-		izolatorJson.put("spojnaTockaIzolatoraZ", this.spojnaTockaIzolatoraZ);
-		izolatorJson.put("spojnaTockaVodicaX", this.spojnaTockaVodicaX);
-		izolatorJson.put("spojnaTockaVodicaY", this.spojnaTockaVodicaY);
-		izolatorJson.put("spojnaTockaVodicaZ", this.spojnaTockaVodicaZ);
+		JSONObject stvJson = new JSONObject();
+		stvJson.put("x", this.stvX);
+		stvJson.put("y", this.stvY);
+		stvJson.put("z", this.stvZ);
+		stvJson.put("geoSirina", this.stvGeoSirina);
+		stvJson.put("geoDuzina", this.stvGeoDuzina);
+		
+		JSONObject izolatorJson = new JSONObject();
+		izolatorJson.put("id", this.id);
 		izolatorJson.put("kutIzmedjuSpojneTockeVodicaIRavnineKonzole", this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
 		izolatorJson.put("materijal", this.materijal);
 		izolatorJson.put("izvedba", this.izvedba);
 		izolatorJson.put("brojClanaka", this.brojClanaka);
-		izolatorJson.put("spojnaTockaIzolatoraGeoSirina", this.spojnaTockaIzolatoraGeoSirina);
-		izolatorJson.put("spojnaTockaIzolatoraGeoDuzina", this.spojnaTockaIzolatoraGeoDuzina);
-		izolatorJson.put("spojnaTockaVodicaGeoSirina", this.spojnaTockaVodicaGeoSirina);
-		izolatorJson.put("spojnaTockaVodicaGeoDuzina", this.spojnaTockaVodicaGeoDuzina);
+		izolatorJson.put("spojnaTockaIzolatora", stiJson);
+		izolatorJson.put("spojnaTockaVodica", stvJson);
 		
 		return izolatorJson;
 	}

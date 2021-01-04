@@ -47,8 +47,8 @@ function Stup(props) {
           {props.izolatori.map((izolator) => (
             <Izolator
               key={izolator.id}
+              elementId={"STUP" + props.id + "IZOLATOR" + izolator.id}
               {...izolator}
-              parentId={"STUP" + props.id + "IZL" + izolator.id}
               bounds={props.bounds}
               zoom={props.zoom}
               selectedElementId={props.selectedElementId}

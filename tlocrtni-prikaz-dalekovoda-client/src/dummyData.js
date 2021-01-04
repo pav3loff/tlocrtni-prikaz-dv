@@ -11,8 +11,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920255782553781,
-          geoSirina: 45.8672849049357,
+          geoDuzina: 15.92025578,
+          geoSirina: 45.8672849,
           x: 1.7320508075688774,
           y: 10,
           z: -0.9999999999999999,
@@ -22,8 +22,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.920251013028073,
-          geoSirina: 45.867281648918585,
+          geoDuzina: 15.92025101,
+          geoSirina: 45.86728165,
           x: 1.3660254037844388,
           y: 10,
           z: -1.3660254037844386,
@@ -32,8 +32,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920255782553781,
-          geoSirina: 45.8672849049357,
+          geoDuzina: 15.92025578,
+          geoSirina: 45.8672849,
           x: 1.7320508075688774,
           y: 10,
           z: -0.9999999999999999,
@@ -43,8 +43,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.920257582681774,
-          geoSirina: 45.86728939072649,
+          geoDuzina: 15.92025758,
+          geoSirina: 45.86728939,
           x: 1.8660254037844388,
           y: 10,
           z: -0.49999999999999983,
@@ -53,8 +53,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920277946439569,
-          geoSirina: 45.8672757257771,
+          geoDuzina: 15.92027795,
+          geoSirina: 45.86727573,
           x: 3.464101615137755,
           y: 9.15,
           z: -1.9999999999999998,
@@ -64,8 +64,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.920273176913376,
-          geoSirina: 45.8672724697609,
+          geoDuzina: 15.92027318,
+          geoSirina: 45.86727247,
           x: 3.0980762113533165,
           y: 9.15,
           z: -2.3660254037844384,
@@ -74,8 +74,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920277946439569,
-          geoSirina: 45.8672757257771,
+          geoDuzina: 15.92027795,
+          geoSirina: 45.86727573,
           x: 3.464101615137755,
           y: 9.15,
           z: -1.9999999999999998,
@@ -85,8 +85,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.920279746569033,
-          geoSirina: 45.86728021156754,
+          geoDuzina: 15.92027975,
+          geoSirina: 45.86728021,
           x: 3.5980762113533165,
           y: 9.15,
           z: -1.4999999999999998,
@@ -95,8 +95,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920300110318017,
-          geoSirina: 45.86726654661424,
+          geoDuzina: 15.92030011,
+          geoSirina: 45.86726655,
           x: 5.196152422706632,
           y: 8.3,
           z: -2.9999999999999996,
@@ -106,8 +106,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.920295340791338,
-          geoSirina: 45.867263290598956,
+          geoDuzina: 15.92029534,
+          geoSirina: 45.86726329,
           x: 4.830127018922194,
           y: 8.3,
           z: -3.366025403784438,
@@ -116,8 +116,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920300110318017,
-          geoSirina: 45.86726654661424,
+          geoDuzina: 15.92030011,
+          geoSirina: 45.86726655,
           x: 5.196152422706632,
           y: 8.3,
           z: -2.9999999999999996,
@@ -127,8 +127,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.92030191044895,
-          geoSirina: 45.86727103240431,
+          geoDuzina: 15.92030191,
+          geoSirina: 45.86727103,
           x: 5.330127018922194,
           y: 8.3,
           z: -2.4999999999999996,
@@ -137,8 +137,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920211454760182,
-          geoSirina: 45.86730326324011,
+          geoDuzina: 15.92021145,
+          geoSirina: 45.86730326,
           x: -1.7320508075688774,
           y: 10,
           z: 0.9999999999999999,
@@ -148,8 +148,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 7,
         spojnaTockaVodica: {
-          geoDuzina: 15.920206685235446,
-          geoSirina: 45.86730000722114,
+          geoDuzina: 15.92020669,
+          geoSirina: 45.86730001,
           x: -2.098076211353316,
           y: 10,
           z: 0.633974596215561,
@@ -158,8 +158,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920211454760182,
-          geoSirina: 45.86730326324011,
+          geoDuzina: 15.92021145,
+          geoSirina: 45.86730326,
           x: -1.7320508075688774,
           y: 10,
           z: 0.9999999999999999,
@@ -169,8 +169,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 8,
         spojnaTockaVodica: {
-          geoDuzina: 15.920213254885235,
-          geoSirina: 45.8673077490316,
+          geoDuzina: 15.92021325,
+          geoSirina: 45.86730775,
           x: -1.598076211353316,
           y: 10,
           z: 1.4999999999999998,
@@ -179,8 +179,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920189290852372,
-          geoSirina: 45.867312442385916,
+          geoDuzina: 15.92018929,
+          geoSirina: 45.86731244,
           x: -3.464101615137755,
           y: 9.15,
           z: 1.9999999999999998,
@@ -190,8 +190,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 9,
         spojnaTockaVodica: {
-          geoDuzina: 15.920184521328121,
-          geoSirina: 45.86730918636601,
+          geoDuzina: 15.92018452,
+          geoSirina: 45.86730919,
           x: -3.8301270189221936,
           y: 9.15,
           z: 1.633974596215561,
@@ -200,8 +200,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920189290852372,
-          geoSirina: 45.867312442385916,
+          geoDuzina: 15.92018929,
+          geoSirina: 45.86731244,
           x: -3.464101615137755,
           y: 9.15,
           z: 1.9999999999999998,
@@ -211,8 +211,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 10,
         spojnaTockaVodica: {
-          geoDuzina: 15.920191090975955,
-          geoSirina: 45.86731692817777,
+          geoDuzina: 15.92019109,
+          geoSirina: 45.86731693,
           x: -3.3301270189221936,
           y: 9.15,
           z: 2.4999999999999996,
@@ -221,8 +221,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920167126937221,
-          geoSirina: 45.867321621527466,
+          geoDuzina: 15.92016713,
+          geoSirina: 45.86732162,
           x: -5.196152422706632,
           y: 8.3,
           z: 2.9999999999999996,
@@ -232,8 +232,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 11,
         spojnaTockaVodica: {
-          geoDuzina: 15.920162357413458,
-          geoSirina: 45.86731836550664,
+          geoDuzina: 15.92016236,
+          geoSirina: 45.86731837,
           x: -5.562177826491071,
           y: 8.3,
           z: 2.633974596215561,
@@ -242,8 +242,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920167126937221,
-          geoSirina: 45.867321621527466,
+          geoDuzina: 15.92016713,
+          geoSirina: 45.86732162,
           x: -5.196152422706632,
           y: 8.3,
           z: 2.9999999999999996,
@@ -253,8 +253,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 12,
         spojnaTockaVodica: {
-          geoDuzina: 15.920168927059335,
-          geoSirina: 45.86732610731968,
+          geoDuzina: 15.92016893,
+          geoSirina: 45.86732611,
           x: -5.062177826491071,
           y: 8.3,
           z: 3.4999999999999996,
@@ -264,8 +264,8 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.920233618660651,
-        geoSirina: 45.86729408409004,
+        geoDuzina: 15.92023362,
+        geoSirina: 45.86729408,
         x: 0,
         y: 120,
         z: 0,
@@ -289,8 +289,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.923977785864555,
-          geoSirina: 45.870842893970725,
+          geoDuzina: 15.92397779,
+          geoSirina: 45.87084289,
           x: 1.7320508075688774,
           y: 10,
           z: -0.9999999999999999,
@@ -300,8 +300,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.923974500567667,
-          geoSirina: 45.87083902317984,
+          geoDuzina: 15.9239745,
+          geoSirina: 45.87083902,
           x: 1.4820508075688774,
           y: 10,
           z: -1.4330127018922192,
@@ -310,8 +310,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.923999950531506,
-          geoSirina: 45.87083371408892,
+          geoDuzina: 15.92399995,
+          geoSirina: 45.87083371,
           x: 3.464101615137755,
           y: 9.15,
           z: -1.9999999999999998,
@@ -321,8 +321,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.923996665233643,
-          geoSirina: 45.87082984329867,
+          geoDuzina: 15.92399667,
+          geoSirina: 45.87082984,
           x: 3.214101615137755,
           y: 9.15,
           z: -2.433012701892219,
@@ -331,8 +331,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.924022115191118,
-          geoSirina: 45.870824534202846,
+          geoDuzina: 15.92402212,
+          geoSirina: 45.87082453,
           x: 5.196152422706632,
           y: 8.3,
           z: -2.9999999999999996,
@@ -342,8 +342,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.924018829892274,
-          geoSirina: 45.87082066341324,
+          geoDuzina: 15.92401883,
+          geoSirina: 45.87082066,
           x: 4.946152422706632,
           y: 8.3,
           z: -3.4330127018922187,
@@ -352,8 +352,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.923933456508621,
-          geoSirina: 45.87086125372154,
+          geoDuzina: 15.92393346,
+          geoSirina: 45.87086125,
           x: -1.7320508075688774,
           y: 10,
           z: 0.9999999999999999,
@@ -363,8 +363,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.92393017121369,
-          geoSirina: 45.870857382929366,
+          geoDuzina: 15.92393017,
+          geoSirina: 45.87085738,
           x: -1.9820508075688774,
           y: 10,
           z: 0.5669872981077806,
@@ -373,8 +373,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.92391129181964,
-          geoSirina: 45.87087043359054,
+          geoDuzina: 15.92391129,
+          geoSirina: 45.87087043,
           x: -3.464101615137755,
           y: 9.15,
           z: 1.9999999999999998,
@@ -384,8 +384,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.92390800652569,
-          geoSirina: 45.87086656279774,
+          geoDuzina: 15.92390801,
+          geoSirina: 45.87086656,
           x: -3.714101615137755,
           y: 9.15,
           z: 1.5669872981077804,
@@ -394,8 +394,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.923889127123319,
-          geoSirina: 45.87087961345528,
+          geoDuzina: 15.92388913,
+          geoSirina: 45.87087961,
           x: -5.196152422706632,
           y: 8.3,
           z: 2.9999999999999996,
@@ -405,8 +405,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.923885841830344,
-          geoSirina: 45.87087574266186,
+          geoDuzina: 15.92388584,
+          geoSirina: 45.87087574,
           x: -5.446152422706632,
           y: 8.3,
           z: 2.5669872981077804,
@@ -416,8 +416,8 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.92395562119026,
-        geoSirina: 45.870852073848255,
+        geoDuzina: 15.92395562,
+        geoSirina: 45.87085207,
         x: 0,
         y: 120,
         z: 0,
@@ -441,8 +441,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.933762791226808,
-          geoSirina: 45.87173986450965,
+          geoDuzina: 15.93376279,
+          geoSirina: 45.87173986,
           x: 1.7320508075688774,
           y: 10,
           z: -0.9999999999999999,
@@ -452,8 +452,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.933749908174228,
-          geoSirina: 45.871739969828475,
+          geoDuzina: 15.93374991,
+          geoSirina: 45.87173997,
           x: 0.7320508075688772,
           y: 10,
           z: -0.9999999999999998,
@@ -462,8 +462,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.933762791226808,
-          geoSirina: 45.87173986450965,
+          geoDuzina: 15.93376279,
+          geoSirina: 45.87173986,
           x: 1.7320508075688774,
           y: 10,
           z: -0.9999999999999999,
@@ -473,8 +473,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.933756480225082,
-          geoSirina: 45.871747710834896,
+          geoDuzina: 15.93375648,
+          geoSirina: 45.87174771,
           x: 1.2320508075688772,
           y: 10,
           z: -0.13397459621556113,
@@ -483,8 +483,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.933784954606915,
-          geoSirina: 45.871730682738786,
+          geoDuzina: 15.93378495,
+          geoSirina: 45.87173068,
           x: 3.464101615137755,
           y: 8,
           z: -1.9999999999999998,
@@ -494,8 +494,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.93377207155654,
-          geoSirina: 45.871730788060106,
+          geoDuzina: 15.93377207,
+          geoSirina: 45.87173079,
           x: 2.464101615137755,
           y: 10,
           z: -1.9999999999999998,
@@ -504,8 +504,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.933784954606915,
-          geoSirina: 45.871730682738786,
+          geoDuzina: 15.93378495,
+          geoSirina: 45.87173068,
           x: 3.464101615137755,
           y: 8,
           z: -1.9999999999999998,
@@ -515,8 +515,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.933778643609347,
-          geoSirina: 45.871738529065254,
+          geoDuzina: 15.93377864,
+          geoSirina: 45.87173853,
           x: 2.964101615137755,
           y: 10,
           z: -1.133974596215561,
@@ -525,8 +525,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.93371846444456,
-          geoSirina: 45.87175822803858,
+          geoDuzina: 15.93371846,
+          geoSirina: 45.87175823,
           x: -1.7320508075688774,
           y: 10,
           z: 0.9999999999999999,
@@ -536,8 +536,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.933705581387574,
-          geoSirina: 45.87175833335243,
+          geoDuzina: 15.93370558,
+          geoSirina: 45.87175833,
           x: -2.7320508075688776,
           y: 10,
           z: 0.9999999999999998,
@@ -546,8 +546,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.93371846444456,
-          geoSirina: 45.87175822803858,
+          geoDuzina: 15.93371846,
+          geoSirina: 45.87175823,
           x: -1.7320508075688774,
           y: 10,
           z: 0.9999999999999999,
@@ -557,8 +557,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.933712153434518,
-          geoSirina: 45.871766074361425,
+          geoDuzina: 15.93371215,
+          geoSirina: 45.87176607,
           x: -2.2320508075688776,
           y: 10,
           z: 1.8660254037844386,
@@ -568,8 +568,8 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.933740627839356,
-        geoSirina: 45.87174904627625,
+        geoDuzina: 15.93374063,
+        geoSirina: 45.87174905,
         x: 0,
         y: 120,
         z: 0,
@@ -593,8 +593,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.944919797034762,
-          geoSirina: 45.8719788298387,
+          geoDuzina: 15.9449198,
+          geoSirina: 45.87197883,
           x: 1.7320508075688774,
           y: 10,
           z: -0.9999999999999999,
@@ -604,8 +604,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.944916510225367,
-          geoSirina: 45.87197495966325,
+          geoDuzina: 15.94491651,
+          geoSirina: 45.87197496,
           x: 1.4820508075688774,
           y: 10,
           z: -1.4330127018922192,
@@ -614,8 +614,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.944941958637205,
-          geoSirina: 45.87196964591531,
+          geoDuzina: 15.94494196,
+          geoSirina: 45.87196965,
           x: 3.464101615137755,
           y: 8,
           z: -1.9999999999999998,
@@ -625,8 +625,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.944938671826835,
-          geoSirina: 45.87196577574049,
+          geoDuzina: 15.94493867,
+          geoSirina: 45.87196578,
           x: 3.214101615137755,
           y: 10,
           z: -2.433012701892219,
@@ -635,8 +635,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.944875473807839,
-          geoSirina: 45.87199719767273,
+          geoDuzina: 15.94487547,
+          geoSirina: 45.8719972,
           x: -1.7320508075688774,
           y: 10,
           z: 0.9999999999999999,
@@ -646,8 +646,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.944872187000398,
-          geoSirina: 45.871993327496,
+          geoDuzina: 15.94487219,
+          geoSirina: 45.87199333,
           x: -1.9820508075688774,
           y: 10,
           z: 0.5669872981077806,
@@ -657,8 +657,8 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.944897635424972,
-        geoSirina: 45.871988013757836,
+        geoDuzina: 15.94489764,
+        geoSirina: 45.87198801,
         x: 0,
         y: 120,
         z: 0,
@@ -682,8 +682,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892725730556599,
-          geoSirina: 45.862560643037256,
+          geoDuzina: 15.89272573,
+          geoSirina: 45.86256064,
           x: 1.0000000000000002,
           y: 8,
           z: 1.7320508075688772,
@@ -693,8 +693,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.892730693396432,
-          geoSirina: 45.86255766688979,
+          geoDuzina: 15.89273069,
+          geoSirina: 45.86255767,
           x: 1.3889309567151034,
           y: 8,
           z: 1.4056989852358075,
@@ -703,8 +703,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892725730556599,
-          geoSirina: 45.862560643037256,
+          geoDuzina: 15.89272573,
+          geoSirina: 45.86256064,
           x: 1.0000000000000002,
           y: 8,
           z: 1.7320508075688772,
@@ -714,8 +714,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.892719610078665,
-          geoSirina: 45.86256225380865,
+          geoDuzina: 15.89271961,
+          geoSirina: 45.86256225,
           x: 0.5229055529306647,
           y: 8,
           z: 1.9056989852358075,
@@ -724,8 +724,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892738861139044,
-          geoSirina: 45.862576129898414,
+          geoDuzina: 15.89273886,
+          geoSirina: 45.86257613,
           x: 2.0000000000000004,
           y: 7,
           z: 3.4641016151377544,
@@ -735,8 +735,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.892743823979535,
-          geoSirina: 45.8625731537504,
+          geoDuzina: 15.89274382,
+          geoSirina: 45.86257315,
           x: 2.3889309567151034,
           y: 7,
           z: 3.137749792804685,
@@ -745,8 +745,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892738861139044,
-          geoSirina: 45.862576129898414,
+          geoDuzina: 15.89273886,
+          geoSirina: 45.86257613,
           x: 2.0000000000000004,
           y: 7,
           z: 3.4641016151377544,
@@ -756,8 +756,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.892732740659808,
-          geoSirina: 45.86257774067054,
+          geoDuzina: 15.89273274,
+          geoSirina: 45.86257774,
           x: 1.522905552930665,
           y: 7,
           z: 3.637749792804685,
@@ -766,8 +766,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892751991728826,
-          geoSirina: 45.86259161675799,
+          geoDuzina: 15.89275199,
+          geoSirina: 45.86259162,
           x: 3.000000000000001,
           y: 7,
           z: 5.196152422706632,
@@ -777,8 +777,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.892756954569972,
-          geoSirina: 45.86258864060938,
+          geoDuzina: 15.89275695,
+          geoSirina: 45.86258864,
           x: 3.3889309567151034,
           y: 7,
           z: 4.869800600373562,
@@ -787,8 +787,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892751991728826,
-          geoSirina: 45.86259161675799,
+          geoDuzina: 15.89275199,
+          geoSirina: 45.86259162,
           x: 3.000000000000001,
           y: 7,
           z: 5.196152422706632,
@@ -798,8 +798,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.892745871248286,
-          geoSirina: 45.86259322753081,
+          geoDuzina: 15.89274587,
+          geoSirina: 45.86259323,
           x: 2.522905552930665,
           y: 7,
           z: 5.369800600373562,
@@ -808,8 +808,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892699469413712,
-          geoSirina: 45.86252966931012,
+          geoDuzina: 15.89269947,
+          geoSirina: 45.86252967,
           x: -1.0000000000000002,
           y: 8,
           z: -1.7320508075688772,
@@ -819,8 +819,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 7,
         spojnaTockaVodica: {
-          geoDuzina: 15.892704432252232,
-          geoSirina: 45.86252669316379,
+          geoDuzina: 15.89270443,
+          geoSirina: 45.86252669,
           x: -0.6110690432848972,
           y: 8,
           z: -2.058402629901947,
@@ -829,8 +829,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892699469413712,
-          geoSirina: 45.86252966931012,
+          geoDuzina: 15.89269947,
+          geoSirina: 45.86252967,
           x: -1.0000000000000002,
           y: 8,
           z: -1.7320508075688772,
@@ -840,8 +840,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 8,
         spojnaTockaVodica: {
-          geoDuzina: 15.892693348938383,
-          geoSirina: 45.8625312800801,
+          geoDuzina: 15.89269335,
+          geoSirina: 45.86253128,
           x: -1.477094447069336,
           y: 8,
           z: -1.558402629901947,
@@ -850,8 +850,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892686338853268,
-          geoSirina: 45.86251418244414,
+          geoDuzina: 15.89268634,
+          geoSirina: 45.86251418,
           x: -2.0000000000000004,
           y: 7,
           z: -3.4641016151377544,
@@ -861,8 +861,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 9,
         spojnaTockaVodica: {
-          geoDuzina: 15.892691301691134,
-          geoSirina: 45.862511206298365,
+          geoDuzina: 15.8926913,
+          geoSirina: 45.86251121,
           x: -1.6110690432848975,
           y: 7,
           z: -3.790453437470824,
@@ -871,8 +871,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892686338853268,
-          geoSirina: 45.86251418244414,
+          geoDuzina: 15.89268634,
+          geoSirina: 45.86251418,
           x: -2.0000000000000004,
           y: 7,
           z: -3.4641016151377544,
@@ -882,8 +882,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 10,
         spojnaTockaVodica: {
-          geoDuzina: 15.892680218379244,
-          geoSirina: 45.8625157932134,
+          geoDuzina: 15.89268022,
+          geoSirina: 45.86251579,
           x: -2.477094447069336,
           y: 7,
           z: -3.290453437470824,
@@ -892,8 +892,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892673208300161,
-          geoSirina: 45.862498695576555,
+          geoDuzina: 15.89267321,
+          geoSirina: 45.8624987,
           x: -3.000000000000001,
           y: 7,
           z: -5.196152422706632,
@@ -903,8 +903,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 11,
         spojnaTockaVodica: {
-          geoDuzina: 15.89267817113737,
-          geoSirina: 45.86249571943135,
+          geoDuzina: 15.89267817,
+          geoSirina: 45.86249572,
           x: -2.611069043284898,
           y: 7,
           z: -5.522504245039701,
@@ -913,8 +913,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.892673208300161,
-          geoSirina: 45.862498695576555,
+          geoDuzina: 15.89267321,
+          geoSirina: 45.8624987,
           x: -3.000000000000001,
           y: 7,
           z: -5.196152422706632,
@@ -924,8 +924,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 12,
         spojnaTockaVodica: {
-          geoDuzina: 15.892667087827439,
-          geoSirina: 45.86250030634511,
+          geoDuzina: 15.89266709,
+          geoSirina: 45.86250031,
           x: -3.4770944470693363,
           y: 7,
           z: -5.022504245039701,
@@ -935,8 +935,8 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.892712599981488,
-        geoSirina: 45.86254515617449,
+        geoDuzina: 15.8927126,
+        geoSirina: 45.86254516,
         x: 0,
         y: 120,
         z: 0,
@@ -960,8 +960,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.911437238745958,
-          geoSirina: 45.86157241761732,
+          geoDuzina: 15.91143724,
+          geoSirina: 45.86157242,
           x: 1.0000000000000002,
           y: 8,
           z: -1.7320508075688772,
@@ -971,8 +971,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.91143106785802,
-          geoSirina: 45.86157090392075,
+          geoDuzina: 15.91143107,
+          geoSirina: 45.8615709,
           x: 0.5229055529306647,
           y: 8,
           z: -1.9056989852358075,
@@ -981,8 +981,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.911449864807851,
-          geoSirina: 45.86155672737701,
+          geoDuzina: 15.91144986,
+          geoSirina: 45.86155673,
           x: 2.0000000000000004,
           y: 7,
           z: -3.4641016151377544,
@@ -992,8 +992,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.911443693921322,
-          geoSirina: 45.8615552136811,
+          geoDuzina: 15.91144369,
+          geoSirina: 45.86155521,
           x: 1.522905552930665,
           y: 7,
           z: -3.637749792804685,
@@ -1002,8 +1002,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.911462490862686,
-          geoSirina: 45.86154103713531,
+          geoDuzina: 15.91146249,
+          geoSirina: 45.86154104,
           x: 3.000000000000001,
           y: 7,
           z: -5.196152422706632,
@@ -1013,8 +1013,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.91145631997757,
-          geoSirina: 45.86153952344008,
+          geoDuzina: 15.91145632,
+          geoSirina: 45.86153952,
           x: 2.522905552930665,
           y: 7,
           z: -5.369800600373562,
@@ -1023,8 +1023,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.911411986601,
-          geoSirina: 45.86160379809376,
+          geoDuzina: 15.91141199,
+          geoSirina: 45.8616038,
           x: -1.0000000000000002,
           y: 8,
           z: 1.7320508075688772,
@@ -1034,8 +1034,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.91140581571024,
-          geoSirina: 45.86160228439586,
+          geoDuzina: 15.91140582,
+          geoSirina: 45.86160228,
           x: -1.477094447069336,
           y: 8,
           z: 1.558402629901947,
@@ -1044,8 +1044,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.911399360517935,
-          geoSirina: 45.86161948832992,
+          geoDuzina: 15.91139936,
+          geoSirina: 45.86161949,
           x: -2.0000000000000004,
           y: 7,
           z: 3.4641016151377544,
@@ -1055,8 +1055,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.911393189625764,
-          geoSirina: 45.86161797463134,
+          geoDuzina: 15.91139319,
+          geoSirina: 45.86161797,
           x: -2.477094447069336,
           y: 7,
           z: 3.290453437470824,
@@ -1065,8 +1065,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.911386734427811,
-          geoSirina: 45.86163517856469,
+          geoDuzina: 15.91138673,
+          geoSirina: 45.86163518,
           x: -3.000000000000001,
           y: 7,
           z: 5.196152422706632,
@@ -1076,8 +1076,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.91138056353423,
-          geoSirina: 45.86163366486545,
+          geoDuzina: 15.91138056,
+          geoSirina: 45.86163366,
           x: -3.4770944470693363,
           y: 7,
           z: 5.022504245039701,
@@ -1087,8 +1087,8 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.911424612677008,
-        geoSirina: 45.86158810785625,
+        geoDuzina: 15.91142461,
+        geoSirina: 45.86158811,
         x: 0,
         y: 120,
         z: 0,
@@ -1112,8 +1112,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.927731623749851,
-          geoSirina: 45.85788206323129,
+          geoDuzina: 15.92773162,
+          geoSirina: 45.85788206,
           x: 0,
           y: 8,
           z: 0,
@@ -1123,8 +1123,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.927728999218486,
-          geoSirina: 45.85787720143535,
+          geoDuzina: 15.927729,
+          geoSirina: 45.8578772,
           x: -0.19746542181734927,
           y: 8,
           z: -0.5425317875662491,
@@ -1133,8 +1133,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.927731623749851,
-          geoSirina: 45.85788206323129,
+          geoDuzina: 15.92773162,
+          geoSirina: 45.85788206,
           x: 0,
           y: 8,
           z: 0,
@@ -1144,8 +1144,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.927726910049465,
-          geoSirina: 45.857886082267775,
+          geoDuzina: 15.92772691,
+          geoSirina: 45.85788608,
           x: -0.3711135994842796,
           y: 8,
           z: 0.44227596544595893,
@@ -1154,8 +1154,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.927757044131233,
-          geoSirina: 45.857884982632335,
+          geoDuzina: 15.92775704,
+          geoSirina: 45.85788498,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1165,8 +1165,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.927754419597521,
-          geoSirina: 45.857880120837,
+          geoDuzina: 15.92775442,
+          geoSirina: 45.85788012,
           x: 1.772150084207067,
           y: 8,
           z: -0.19523543223238843,
@@ -1175,8 +1175,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.927757044131233,
-          geoSirina: 45.857884982632335,
+          geoDuzina: 15.92775704,
+          geoSirina: 45.85788498,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1186,8 +1186,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.927752330432453,
-          geoSirina: 45.85788900166986,
+          geoDuzina: 15.92775233,
+          geoSirina: 45.857889,
           x: 1.5985019065401365,
           y: 8,
           z: 0.7895723207798195,
@@ -1196,8 +1196,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.927706203371045,
-          geoSirina: 45.857879143824555,
+          geoDuzina: 15.9277062,
+          geoSirina: 45.85787914,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1207,8 +1207,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.927703578842026,
-          geoSirina: 45.85787428202802,
+          geoDuzina: 15.92770358,
+          geoSirina: 45.85787428,
           x: -2.1670809278417655,
           y: 8,
           z: -0.8898281429001098,
@@ -1217,8 +1217,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.927706203371045,
-          geoSirina: 45.857879143824555,
+          geoDuzina: 15.9277062,
+          geoSirina: 45.85787914,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1228,8 +1228,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.927701489669055,
-          geoSirina: 45.857883162860006,
+          geoDuzina: 15.92770149,
+          geoSirina: 45.85788316,
           x: -2.3407291055086956,
           y: 8,
           z: 0.09497961011209821,
@@ -1239,16 +1239,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.927744333940222,
-        geoSirina: 45.85788352293252,
+        geoDuzina: 15.92774433,
+        geoSirina: 45.85788352,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.927718913560128,
-        geoSirina: 45.85788060352863,
+        geoDuzina: 15.92771891,
+        geoSirina: 45.8578806,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -1272,8 +1272,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.94103563279543,
-          geoSirina: 45.86469602509926,
+          geoDuzina: 15.94103563,
+          geoSirina: 45.86469603,
           x: 0,
           y: 8,
           z: 0,
@@ -1283,8 +1283,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.941033006779076,
-          geoSirina: 45.86469116362653,
+          geoDuzina: 15.94103301,
+          geoSirina: 45.86469116,
           x: -0.19746542181734927,
           y: 8,
           z: -0.5425317875662491,
@@ -1293,8 +1293,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.941061056937597,
-          geoSirina: 45.864698941504166,
+          geoDuzina: 15.94106106,
+          geoSirina: 45.86469894,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1304,8 +1304,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.941058430918895,
-          geoSirina: 45.86469408003203,
+          geoDuzina: 15.94105843,
+          geoSirina: 45.86469408,
           x: 1.772150084207067,
           y: 8,
           z: -0.19523543223238843,
@@ -1314,8 +1314,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.941010208655836,
-          geoSirina: 45.86469310868867,
+          geoDuzina: 15.94101021,
+          geoSirina: 45.86469311,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1325,8 +1325,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.941007582641829,
-          geoSirina: 45.864688247215334,
+          geoDuzina: 15.94100758,
+          geoSirina: 45.86468825,
           x: -2.1670809278417655,
           y: 8,
           z: -0.8898281429001098,
@@ -1336,16 +1336,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.941048344866193,
-        geoSirina: 45.86469748330243,
+        geoDuzina: 15.94104834,
+        geoSirina: 45.86469748,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.941022920725311,
-        geoSirina: 45.864694566894684,
+        geoDuzina: 15.94102292,
+        geoSirina: 45.86469457,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -1369,8 +1369,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.951936640207895,
-          geoSirina: 45.86009399255925,
+          geoDuzina: 15.95193664,
+          geoSirina: 45.86009399,
           x: 0,
           y: 8,
           z: 0,
@@ -1380,8 +1380,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.951937682900112,
-          geoSirina: 45.86008955193803,
+          geoDuzina: 15.95193768,
+          geoSirina: 45.86008955,
           x: 0.08682408883346517,
           y: 8,
           z: -0.492403876506104,
@@ -1390,8 +1390,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.951936640207895,
-          geoSirina: 45.86009399255925,
+          geoDuzina: 15.95193664,
+          geoSirina: 45.86009399,
           x: 0,
           y: 8,
           z: 0,
@@ -1401,8 +1401,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.951935597515517,
-          geoSirina: 45.86009843318047,
+          geoDuzina: 15.9519356,
+          geoSirina: 45.86009843,
           x: -0.08682408883346517,
           y: 8,
           z: 0.492403876506104,
@@ -1411,8 +1411,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.951962062779307,
-          geoSirina: 45.8600969065502,
+          geoDuzina: 15.95196206,
+          geoSirina: 45.86009691,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1422,8 +1422,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.951963105469549,
-          geoSirina: 45.860092465928766,
+          geoDuzina: 15.95196311,
+          geoSirina: 45.86009247,
           x: 2.0564395948578813,
           y: 8,
           z: -0.14510752117224335,
@@ -1432,8 +1432,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.951962062779307,
-          geoSirina: 45.8600969065502,
+          geoDuzina: 15.95196206,
+          geoSirina: 45.86009691,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1443,8 +1443,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.951961020088905,
-          geoSirina: 45.860101347171614,
+          geoDuzina: 15.95196102,
+          geoSirina: 45.86010135,
           x: 1.8827914171909508,
           y: 8,
           z: 0.8397002318399647,
@@ -1453,8 +1453,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.951911217639049,
-          geoSirina: 45.86009107856264,
+          geoDuzina: 15.95191122,
+          geoSirina: 45.86009108,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1464,8 +1464,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.951912260333245,
-          geoSirina: 45.86008663794162,
+          geoDuzina: 15.95191226,
+          geoSirina: 45.86008664,
           x: -1.8827914171909508,
           y: 8,
           z: -0.8397002318399647,
@@ -1474,8 +1474,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.951911217639049,
-          geoSirina: 45.86009107856264,
+          geoDuzina: 15.95191122,
+          geoSirina: 45.86009108,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1485,8 +1485,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.951910174944693,
-          geoSirina: 45.860095519183616,
+          geoDuzina: 15.95191017,
+          geoSirina: 45.86009552,
           x: -2.0564395948578813,
           y: 8,
           z: 0.14510752117224335,
@@ -1496,16 +1496,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.95194935149328,
-        geoSirina: 45.86009544955542,
+        geoDuzina: 15.95194935,
+        geoSirina: 45.86009545,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.95192392892315,
-        geoSirina: 45.86009253556166,
+        geoDuzina: 15.95192393,
+        geoSirina: 45.86009254,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -1529,8 +1529,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.966184649906445,
-          geoSirina: 45.860272948350534,
+          geoDuzina: 15.96618465,
+          geoSirina: 45.86027295,
           x: 0,
           y: 8,
           z: 0,
@@ -1540,8 +1540,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.966185691465268,
-          geoSirina: 45.86026850760832,
+          geoDuzina: 15.96618569,
+          geoSirina: 45.86026851,
           x: 0.08682408883346517,
           y: 8,
           z: -0.492403876506104,
@@ -1550,8 +1550,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.966210073252123,
-          geoSirina: 45.86027585916096,
+          geoDuzina: 15.96621007,
+          geoSirina: 45.86027586,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1561,8 +1561,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.966211114808967,
-          geoSirina: 45.860271418418534,
+          geoDuzina: 15.96621111,
+          geoSirina: 45.86027142,
           x: 2.0564395948578813,
           y: 8,
           z: -0.14510752117224335,
@@ -1571,8 +1571,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.966159226563333,
-          geoSirina: 45.860270037534434,
+          geoDuzina: 15.96615923,
+          geoSirina: 45.86027004,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1582,8 +1582,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.966160268124133,
-          geoSirina: 45.86026559679243,
+          geoDuzina: 15.96616027,
+          geoSirina: 45.8602656,
           x: -1.8827914171909508,
           y: 8,
           z: -0.8397002318399647,
@@ -1593,16 +1593,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.966197361578963,
-        geoSirina: 45.860274403756456,
+        geoDuzina: 15.96619736,
+        geoSirina: 45.8602744,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.966171938234568,
-        geoSirina: 45.8602714929432,
+        geoDuzina: 15.96617194,
+        geoSirina: 45.86027149,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -1626,8 +1626,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.968930651784513,
-          geoSirina: 45.87730593972558,
+          geoDuzina: 15.96893065,
+          geoSirina: 45.87730594,
           x: 0,
           y: 10,
           z: 0,
@@ -1637,8 +1637,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.968931693420194,
-          geoSirina: 45.87730149897061,
+          geoDuzina: 15.96893169,
+          geoSirina: 45.8773015,
           x: 0.08682408883346517,
           y: 8,
           z: -0.492403876506104,
@@ -1647,8 +1647,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.968930651784513,
-          geoSirina: 45.87730593972558,
+          geoDuzina: 15.96893065,
+          geoSirina: 45.87730594,
           x: 0,
           y: 10,
           z: 0,
@@ -1658,8 +1658,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.96892961014867,
-          geoSirina: 45.87731038048054,
+          geoDuzina: 15.96892961,
+          geoSirina: 45.87731038,
           x: -0.08682408883346517,
           y: 8,
           z: 0.492403876506104,
@@ -1668,8 +1668,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.968956083045656,
-          geoSirina: 45.87730884985235,
+          geoDuzina: 15.96895608,
+          geoSirina: 45.87730885,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1679,8 +1679,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.968957124679358,
-          geoSirina: 45.87730440909717,
+          geoDuzina: 15.96895712,
+          geoSirina: 45.87730441,
           x: 2.0564395948578813,
           y: 8,
           z: -0.14510752117224335,
@@ -1689,8 +1689,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.968956083045656,
-          geoSirina: 45.87730884985235,
+          geoDuzina: 15.96895608,
+          geoSirina: 45.87730885,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1700,8 +1700,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.968955041411794,
-          geoSirina: 45.877313290607525,
+          geoDuzina: 15.96895504,
+          geoSirina: 45.87731329,
           x: 1.8827914171909508,
           y: 8,
           z: 0.8397002318399647,
@@ -1710,8 +1710,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.968905220525933,
-          geoSirina: 45.877303029593115,
+          geoDuzina: 15.96890522,
+          geoSirina: 45.87730303,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1721,8 +1721,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.968906262163594,
-          geoSirina: 45.87729858883836,
+          geoDuzina: 15.96890626,
+          geoSirina: 45.87729859,
           x: -1.8827914171909508,
           y: 8,
           z: -0.8397002318399647,
@@ -1731,8 +1731,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.968905220525933,
-          geoSirina: 45.877303029593115,
+          geoDuzina: 15.96890522,
+          geoSirina: 45.87730303,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1742,8 +1742,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.968904178888113,
-          geoSirina: 45.877307470347844,
+          geoDuzina: 15.96890418,
+          geoSirina: 45.87730747,
           x: -2.0564395948578813,
           y: 8,
           z: 0.14510752117224335,
@@ -1753,16 +1753,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.968943367414763,
-        geoSirina: 45.877307394789675,
+        geoDuzina: 15.96894337,
+        geoSirina: 45.87730739,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.968917936154902,
-        geoSirina: 45.87730448466006,
+        geoDuzina: 15.96891794,
+        geoSirina: 45.87730448,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -1786,8 +1786,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.941979633435828,
-          geoSirina: 45.86134902230682,
+          geoDuzina: 15.94197963,
+          geoSirina: 45.86134902,
           x: 0,
           y: 10,
           z: 0,
@@ -1797,8 +1797,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.941980676944125,
-          geoSirina: 45.86134458177118,
+          geoDuzina: 15.94198068,
+          geoSirina: 45.86134458,
           x: 0.08682408883346517,
           y: 8,
           z: -0.492403876506104,
@@ -1807,8 +1807,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.94200505609544,
-          geoSirina: 45.86135193851462,
+          geoDuzina: 15.94200506,
+          geoSirina: 45.86135194,
           x: 1.969615506024416,
           y: 8,
           z: 0.34729635533386066,
@@ -1818,8 +1818,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.942006099601757,
-          geoSirina: 45.86134749797877,
+          geoDuzina: 15.9420061,
+          geoSirina: 45.8613475,
           x: 2.0564395948578813,
           y: 8,
           z: -0.14510752117224335,
@@ -1828,8 +1828,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.941954210778789,
-          geoSirina: 45.86134610609332,
+          geoDuzina: 15.94195421,
+          geoSirina: 45.86134611,
           x: -1.969615506024416,
           y: 8,
           z: -0.34729635533386066,
@@ -1839,8 +1839,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.941955254289061,
-          geoSirina: 45.86134166555789,
+          geoDuzina: 15.94195525,
+          geoSirina: 45.86134167,
           x: -1.8827914171909508,
           y: 8,
           z: -0.8397002318399647,
@@ -1850,16 +1850,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.941992344765312,
-        geoSirina: 45.861350480411446,
+        geoDuzina: 15.94199234,
+        geoSirina: 45.86135048,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.941966922106987,
-        geoSirina: 45.86134756420078,
+        geoDuzina: 15.94196692,
+        geoSirina: 45.86134756,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -1883,8 +1883,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.922007038988239,
-          geoSirina: 45.855792999910555,
+          geoDuzina: 15.92200704,
+          geoSirina: 45.855793,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -1894,8 +1894,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.922008083992372,
-          geoSirina: 45.85578855954192,
+          geoDuzina: 15.92200808,
+          geoSirina: 45.85578856,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -1904,8 +1904,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.922007038988239,
-          geoSirina: 45.855792999910555,
+          geoDuzina: 15.92200704,
+          geoSirina: 45.855793,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -1915,8 +1915,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.922005993983944,
-          geoSirina: 45.855797440279176,
+          geoDuzina: 15.92200599,
+          geoSirina: 45.85579744,
           x: 1.8827914171909508,
           y: 10,
           z: 0.8397002318399647,
@@ -1925,8 +1925,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.92203245813619,
-          geoSirina: 45.85579592059717,
+          geoDuzina: 15.92203246,
+          geoSirina: 45.85579592,
           x: 3.939231012048832,
           y: 9,
           z: 0.6945927106677213,
@@ -1936,8 +1936,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.922033503138348,
-          geoSirina: 45.85579148022832,
+          geoDuzina: 15.9220335,
+          geoSirina: 45.85579148,
           x: 4.026055100882298,
           y: 9,
           z: 0.20218883416161731,
@@ -1946,8 +1946,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.92203245813619,
-          geoSirina: 45.85579592059717,
+          geoDuzina: 15.92203246,
+          geoSirina: 45.85579592,
           x: 3.939231012048832,
           y: 9,
           z: 0.6945927106677213,
@@ -1957,8 +1957,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.922031413133872,
-          geoSirina: 45.85580036096602,
+          geoDuzina: 15.92203141,
+          geoSirina: 45.85580036,
           x: 3.852406923215367,
           y: 9,
           z: 1.1869965871738253,
@@ -1967,8 +1967,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.922057877286719,
-          geoSirina: 45.855798841278094,
+          geoDuzina: 15.92205788,
+          geoSirina: 45.85579884,
           x: 5.908846518073248,
           y: 8,
           z: 1.041889066001582,
@@ -1978,8 +1978,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.922058922286901,
-          geoSirina: 45.85579440090903,
+          geoDuzina: 15.92205892,
+          geoSirina: 45.8557944,
           x: 5.995670606906713,
           y: 8,
           z: 0.549485189495478,
@@ -1988,8 +1988,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.922057877286719,
-          geoSirina: 45.855798841278094,
+          geoDuzina: 15.92205788,
+          geoSirina: 45.85579884,
           x: 5.908846518073248,
           y: 8,
           z: 1.041889066001582,
@@ -1999,8 +1999,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.922056832286376,
-          geoSirina: 45.855803281647155,
+          geoDuzina: 15.92205683,
+          geoSirina: 45.85580328,
           x: 5.822022429239783,
           y: 8,
           z: 1.534292942507686,
@@ -2009,8 +2009,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.921956200700063,
-          geoSirina: 45.855787158520265,
+          geoDuzina: 15.9219562,
+          geoSirina: 45.85578716,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2020,8 +2020,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 7,
         spojnaTockaVodica: {
-          geoDuzina: 15.921957245708148,
-          geoSirina: 45.85578271815207,
+          geoDuzina: 15.92195725,
+          geoSirina: 45.85578272,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -2030,8 +2030,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.921956200700063,
-          geoSirina: 45.855787158520265,
+          geoDuzina: 15.9219562,
+          geoSirina: 45.85578716,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2041,8 +2041,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 8,
         spojnaTockaVodica: {
-          geoDuzina: 15.921955155691817,
-          geoSirina: 45.85579159888847,
+          geoDuzina: 15.92195516,
+          geoSirina: 45.8557916,
           x: -2.0564395948578813,
           y: 10,
           z: 0.14510752117224335,
@@ -2051,8 +2051,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.921930781559839,
-          geoSirina: 45.85578423781662,
+          geoDuzina: 15.92193078,
+          geoSirina: 45.85578424,
           x: -3.939231012048832,
           y: 9,
           z: -0.6945927106677213,
@@ -2062,8 +2062,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 9,
         spojnaTockaVodica: {
-          geoDuzina: 15.9219318265699,
-          geoSirina: 45.85577979744862,
+          geoDuzina: 15.92193183,
+          geoSirina: 45.8557798,
           x: -3.852406923215367,
           y: 9,
           z: -1.1869965871738253,
@@ -2072,8 +2072,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.921930781559839,
-          geoSirina: 45.85578423781662,
+          geoDuzina: 15.92193078,
+          geoSirina: 45.85578424,
           x: -3.939231012048832,
           y: 9,
           z: -0.6945927106677213,
@@ -2083,8 +2083,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 10,
         spojnaTockaVodica: {
-          geoDuzina: 15.921929736549616,
-          geoSirina: 45.85578867818459,
+          geoDuzina: 15.92192974,
+          geoSirina: 45.85578868,
           x: -4.026055100882298,
           y: 9,
           z: -0.20218883416161731,
@@ -2093,8 +2093,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.92190536242219,
-          geoSirina: 45.855781317107265,
+          geoDuzina: 15.92190536,
+          geoSirina: 45.85578132,
           x: -5.908846518073248,
           y: 8,
           z: -1.041889066001582,
@@ -2104,8 +2104,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 11,
         spojnaTockaVodica: {
-          geoDuzina: 15.921906407434228,
-          geoSirina: 45.85577687673949,
+          geoDuzina: 15.92190641,
+          geoSirina: 45.85577688,
           x: -5.822022429239783,
           y: 8,
           z: -1.534292942507686,
@@ -2114,8 +2114,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.92190536242219,
-          geoSirina: 45.855781317107265,
+          geoDuzina: 15.92190536,
+          geoSirina: 45.85578132,
           x: -5.908846518073248,
           y: 8,
           z: -1.041889066001582,
@@ -2125,8 +2125,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 12,
         spojnaTockaVodica: {
-          geoDuzina: 15.921904317409991,
-          geoSirina: 45.85578575747503,
+          geoDuzina: 15.92190432,
+          geoSirina: 45.85578576,
           x: -5.995670606906713,
           y: 8,
           z: -0.549485189495478,
@@ -2136,16 +2136,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.921994329415229,
-        geoSirina: 45.85579153956512,
+        geoDuzina: 15.92199433,
+        geoSirina: 45.85579154,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.92196891027114,
-        geoSirina: 45.85578861886997,
+        geoDuzina: 15.92196891,
+        geoSirina: 45.85578862,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -2169,8 +2169,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.898489023484432,
-          geoSirina: 45.859320067553334,
+          geoDuzina: 15.89848902,
+          geoSirina: 45.85932007,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -2180,8 +2180,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.898490070425776,
-          geoSirina: 45.85931562738835,
+          geoDuzina: 15.89849007,
+          geoSirina: 45.85931563,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -2190,8 +2190,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.898514443090619,
-          geoSirina: 45.85932299347282,
+          geoDuzina: 15.89851444,
+          geoSirina: 45.85932299,
           x: 3.939231012048832,
           y: 9,
           z: 0.6945927106677213,
@@ -2201,8 +2201,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.898515490029988,
-          geoSirina: 45.859318553307624,
+          geoDuzina: 15.89851549,
+          geoSirina: 45.85931855,
           x: 4.026055100882298,
           y: 9,
           z: 0.20218883416161731,
@@ -2211,8 +2211,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.898539862699389,
-          geoSirina: 45.85932591938664,
+          geoDuzina: 15.89853986,
+          geoSirina: 45.85932592,
           x: 5.908846518073248,
           y: 8,
           z: 1.041889066001582,
@@ -2222,8 +2222,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.898540909636782,
-          geoSirina: 45.859321479221215,
+          geoDuzina: 15.89854091,
+          geoSirina: 45.85932148,
           x: 5.995670606906713,
           y: 8,
           z: 0.549485189495478,
@@ -2232,8 +2232,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.898438184279808,
-          geoSirina: 45.8593142156973,
+          geoDuzina: 15.89843818,
+          geoSirina: 45.85931422,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2243,8 +2243,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.898439231225105,
-          geoSirina: 45.85930977553274,
+          geoDuzina: 15.89843923,
+          geoSirina: 45.85930978,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -2253,8 +2253,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.898412764681371,
-          geoSirina: 45.859311289760775,
+          geoDuzina: 15.89841276,
+          geoSirina: 45.85931129,
           x: -3.939231012048832,
           y: 9,
           z: -0.6945927106677213,
@@ -2264,8 +2264,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.898413811628643,
-          geoSirina: 45.85930684959643,
+          geoDuzina: 15.89841381,
+          geoSirina: 45.85930685,
           x: -3.852406923215367,
           y: 9,
           z: -1.1869965871738253,
@@ -2274,8 +2274,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.898387345085517,
-          geoSirina: 45.85930836381855,
+          geoDuzina: 15.89838735,
+          geoSirina: 45.85930836,
           x: -5.908846518073248,
           y: 8,
           z: -1.041889066001582,
@@ -2285,8 +2285,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.898388392034766,
-          geoSirina: 45.859303923654416,
+          geoDuzina: 15.89838839,
+          geoSirina: 45.85930392,
           x: -5.822022429239783,
           y: 8,
           z: -1.534292942507686,
@@ -2296,16 +2296,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.898476313682307,
-        geoSirina: 45.859318604591465,
+        geoDuzina: 15.89847631,
+        geoSirina: 45.8593186,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.898450894079996,
-        geoSirina: 45.85931567866344,
+        geoDuzina: 15.89845089,
+        geoSirina: 45.85931568,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -2329,8 +2329,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.87251100682031,
-          geoSirina: 45.864188136799676,
+          geoDuzina: 15.87251101,
+          geoSirina: 45.86418814,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -2340,8 +2340,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.872512055918989,
-          geoSirina: 45.86418369686113,
+          geoDuzina: 15.87251206,
+          geoSirina: 45.8641837,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -2350,8 +2350,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.87251100682031,
-          geoSirina: 45.864188136799676,
+          geoDuzina: 15.87251101,
+          geoSirina: 45.86418814,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -2361,8 +2361,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.872509957721473,
-          geoSirina: 45.864192576738205,
+          geoDuzina: 15.87250996,
+          geoSirina: 45.86419258,
           x: 1.8827914171909508,
           y: 10,
           z: 0.8397002318399647,
@@ -2371,8 +2371,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872536427371513,
-          geoSirina: 45.864191068495536,
+          geoDuzina: 15.87253643,
+          geoSirina: 45.86419107,
           x: 3.939231012048832,
           y: 10,
           z: 0.6945927106677213,
@@ -2382,8 +2382,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.872537476468215,
-          geoSirina: 45.864186628556794,
+          geoDuzina: 15.87253748,
+          geoSirina: 45.86418663,
           x: 4.026055100882298,
           y: 10,
           z: 0.20218883416161731,
@@ -2392,8 +2392,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872536427371513,
-          geoSirina: 45.864191068495536,
+          geoDuzina: 15.87253643,
+          geoSirina: 45.86419107,
           x: 3.939231012048832,
           y: 10,
           z: 0.6945927106677213,
@@ -2403,8 +2403,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.87253537827465,
-          geoSirina: 45.86419550843429,
+          geoDuzina: 15.87253538,
+          geoSirina: 45.86419551,
           x: 3.852406923215367,
           y: 10,
           z: 1.1869965871738253,
@@ -2413,8 +2413,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872561847925306,
-          geoSirina: 45.864194000185734,
+          geoDuzina: 15.87256185,
+          geoSirina: 45.864194,
           x: 5.908846518073248,
           y: 10,
           z: 1.041889066001582,
@@ -2424,8 +2424,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.872562897020034,
-          geoSirina: 45.864189560246764,
+          geoDuzina: 15.8725629,
+          geoSirina: 45.86418956,
           x: 5.995670606906713,
           y: 10,
           z: 0.549485189495478,
@@ -2434,8 +2434,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872561847925306,
-          geoSirina: 45.864194000185734,
+          geoDuzina: 15.87256185,
+          geoSirina: 45.864194,
           x: 5.908846518073248,
           y: 10,
           z: 1.041889066001582,
@@ -2445,8 +2445,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.872560798830419,
-          geoSirina: 45.86419844012472,
+          geoDuzina: 15.8725608,
+          geoSirina: 45.86419844,
           x: 5.822022429239783,
           y: 10,
           z: 1.534292942507686,
@@ -2455,8 +2455,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872460165725682,
-          geoSirina: 45.86418227339087,
+          geoDuzina: 15.87246017,
+          geoSirina: 45.86418227,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2466,8 +2466,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 7,
         spojnaTockaVodica: {
-          geoDuzina: 15.87246121482831,
-          geoSirina: 45.86417783345275,
+          geoDuzina: 15.87246121,
+          geoSirina: 45.86417783,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -2476,8 +2476,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872460165725682,
-          geoSirina: 45.86418227339087,
+          geoDuzina: 15.87246017,
+          geoSirina: 45.86418227,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2487,8 +2487,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 8,
         spojnaTockaVodica: {
-          geoDuzina: 15.872459116622892,
-          geoSirina: 45.864186713328955,
+          geoDuzina: 15.87245912,
+          geoSirina: 45.86418671,
           x: -2.0564395948578813,
           y: 10,
           z: 0.14510752117224335,
@@ -2497,8 +2497,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872434745182254,
-          geoSirina: 45.86417934167795,
+          geoDuzina: 15.87243475,
+          geoSirina: 45.86417934,
           x: -3.939231012048832,
           y: 10,
           z: -0.6945927106677213,
@@ -2508,8 +2508,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 9,
         spojnaTockaVodica: {
-          geoDuzina: 15.872435794286858,
-          geoSirina: 45.86417490174005,
+          geoDuzina: 15.87243579,
+          geoSirina: 45.8641749,
           x: -3.852406923215367,
           y: 10,
           z: -1.1869965871738253,
@@ -2518,8 +2518,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872434745182254,
-          geoSirina: 45.86417934167795,
+          geoDuzina: 15.87243475,
+          geoSirina: 45.86417934,
           x: -3.939231012048832,
           y: 10,
           z: -0.6945927106677213,
@@ -2529,8 +2529,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 10,
         spojnaTockaVodica: {
-          geoDuzina: 15.87243369607749,
-          geoSirina: 45.864183781615814,
+          geoDuzina: 15.8724337,
+          geoSirina: 45.86418378,
           x: -4.026055100882298,
           y: 10,
           z: -0.20218883416161731,
@@ -2539,8 +2539,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872409324641419,
-          geoSirina: 45.86417640995934,
+          geoDuzina: 15.87240932,
+          geoSirina: 45.86417641,
           x: -5.908846518073248,
           y: 10,
           z: -1.041889066001582,
@@ -2550,8 +2550,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 11,
         spojnaTockaVodica: {
-          geoDuzina: 15.872410373747998,
-          geoSirina: 45.86417197002168,
+          geoDuzina: 15.87241037,
+          geoSirina: 45.86417197,
           x: -5.822022429239783,
           y: 10,
           z: -1.534292942507686,
@@ -2560,8 +2560,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.872409324641419,
-          geoSirina: 45.86417640995934,
+          geoDuzina: 15.87240932,
+          geoSirina: 45.86417641,
           x: -5.908846518073248,
           y: 10,
           z: -1.041889066001582,
@@ -2571,8 +2571,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 12,
         spojnaTockaVodica: {
-          geoDuzina: 15.872408275534676,
-          geoSirina: 45.864180849897004,
+          geoDuzina: 15.87240828,
+          geoSirina: 45.86418085,
           x: -5.995670606906713,
           y: 10,
           z: -0.549485189495478,
@@ -2582,16 +2582,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.872498296545682,
-        geoSirina: 45.8641866709496,
+        geoDuzina: 15.8724983,
+        geoSirina: 45.86418667,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.872472875998367,
-        geoSirina: 45.864183739245206,
+        geoDuzina: 15.87247288,
+        geoSirina: 45.86418374,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -2615,8 +2615,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.888819014497315,
-          geoSirina: 45.855043093977315,
+          geoDuzina: 15.88881901,
+          geoSirina: 45.85504309,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -2626,8 +2626,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.88882006213457,
-          geoSirina: 45.85503865389266,
+          geoDuzina: 15.88882006,
+          geoSirina: 45.85503865,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -2636,8 +2636,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.888844431676318,
-          geoSirina: 45.85504602207049,
+          geoDuzina: 15.88884443,
+          geoSirina: 45.85504602,
           x: 3.939231012048832,
           y: 10,
           z: 0.6945927106677213,
@@ -2647,8 +2647,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.888845479311598,
-          geoSirina: 45.85504158198561,
+          geoDuzina: 15.88884548,
+          geoSirina: 45.85504158,
           x: 4.026055100882298,
           y: 10,
           z: 0.20218883416161731,
@@ -2657,8 +2657,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.888869848857906,
-          geoSirina: 45.85504895015798,
+          geoDuzina: 15.88886985,
+          geoSirina: 45.85504895,
           x: 5.908846518073248,
           y: 10,
           z: 1.041889066001582,
@@ -2668,8 +2668,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.888870896491213,
-          geoSirina: 45.85504451007289,
+          geoDuzina: 15.8888709,
+          geoSirina: 45.85504451,
           x: 5.995670606906713,
           y: 10,
           z: 0.549485189495478,
@@ -2678,8 +2678,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.888768180147068,
-          geoSirina: 45.855037237773935,
+          geoDuzina: 15.88876818,
+          geoSirina: 45.85503724,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2689,8 +2689,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.888769227788272,
-          geoSirina: 45.855032797689695,
+          geoDuzina: 15.88876923,
+          geoSirina: 45.8550328,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -2699,8 +2699,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.888742762975822,
-          geoSirina: 45.85503430966373,
+          geoDuzina: 15.88874276,
+          geoSirina: 45.85503431,
           x: -3.939231012048832,
           y: 10,
           z: -0.6945927106677213,
@@ -2710,8 +2710,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.888743810619001,
-          geoSirina: 45.8550298695797,
+          geoDuzina: 15.88874381,
+          geoSirina: 45.85502987,
           x: -3.852406923215367,
           y: 10,
           z: -1.1869965871738253,
@@ -2720,8 +2720,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.88871734580716,
-          geoSirina: 45.85503138154783,
+          geoDuzina: 15.88871735,
+          geoSirina: 45.85503138,
           x: -5.908846518073248,
           y: 10,
           z: -1.041889066001582,
@@ -2731,8 +2731,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.888718393452315,
-          geoSirina: 45.85502694146404,
+          geoDuzina: 15.88871839,
+          geoSirina: 45.85502694,
           x: -5.822022429239783,
           y: 10,
           z: -1.534292942507686,
@@ -2742,16 +2742,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.888806305908783,
-        geoSirina: 45.8550416299286,
+        geoDuzina: 15.88880631,
+        geoSirina: 45.85504163,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.88878088873366,
-        geoSirina: 45.85503870182691,
+        geoDuzina: 15.88878089,
+        geoSirina: 45.8550387,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -2775,8 +2775,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.86255399740033,
-          geoSirina: 45.85940716188024,
+          geoDuzina: 15.862554,
+          geoSirina: 45.85940716,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -2786,8 +2786,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.862555047208623,
-          geoSirina: 45.85940272202451,
+          geoDuzina: 15.86255505,
+          geoSirina: 45.85940272,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -2796,8 +2796,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.86255399740033,
-          geoSirina: 45.85940716188024,
+          geoDuzina: 15.862554,
+          geoSirina: 45.85940716,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -2807,8 +2807,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.862552947591876,
-          geoSirina: 45.85941160173597,
+          geoDuzina: 15.86255295,
+          geoSirina: 45.8594116,
           x: 1.8827914171909508,
           y: 10,
           z: 0.8397002318399647,
@@ -2817,8 +2817,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862579415277787,
-          geoSirina: 45.85941009581512,
+          geoDuzina: 15.86257942,
+          geoSirina: 45.8594101,
           x: 3.939231012048832,
           y: 10,
           z: 0.6945927106677213,
@@ -2828,8 +2828,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.862580465084106,
-          geoSirina: 45.859405655959186,
+          geoDuzina: 15.86258047,
+          geoSirina: 45.85940566,
           x: 4.026055100882298,
           y: 10,
           z: 0.20218883416161731,
@@ -2838,8 +2838,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862579415277787,
-          geoSirina: 45.85941009581512,
+          geoDuzina: 15.86257942,
+          geoSirina: 45.8594101,
           x: 3.939231012048832,
           y: 10,
           z: 0.6945927106677213,
@@ -2849,8 +2849,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.862578365471308,
-          geoSirina: 45.859414535671064,
+          geoDuzina: 15.86257837,
+          geoSirina: 45.85941454,
           x: 3.852406923215367,
           y: 10,
           z: 1.1869965871738253,
@@ -2859,8 +2859,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862604833157839,
-          geoSirina: 45.85941302974433,
+          geoDuzina: 15.86260483,
+          geoSirina: 45.85941303,
           x: 5.908846518073248,
           y: 10,
           z: 1.041889066001582,
@@ -2870,8 +2870,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.862605882962184,
-          geoSirina: 45.859408589888154,
+          geoDuzina: 15.86260588,
+          geoSirina: 45.85940859,
           x: 5.995670606906713,
           y: 10,
           z: 0.549485189495478,
@@ -2880,8 +2880,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862604833157839,
-          geoSirina: 45.85941302974433,
+          geoDuzina: 15.86260483,
+          geoSirina: 45.85941303,
           x: 5.908846518073248,
           y: 10,
           z: 1.041889066001582,
@@ -2891,8 +2891,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.862603783353334,
-          geoSirina: 45.85941746960049,
+          geoDuzina: 15.86260378,
+          geoSirina: 45.85941747,
           x: 5.822022429239783,
           y: 10,
           z: 1.534292942507686,
@@ -2901,8 +2901,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862503161653196,
-          geoSirina: 45.85940129399345,
+          geoDuzina: 15.86250316,
+          geoSirina: 45.85940129,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2912,8 +2912,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 7,
         spojnaTockaVodica: {
-          geoDuzina: 15.862504211465438,
-          geoSirina: 45.859396854138154,
+          geoDuzina: 15.86250421,
+          geoSirina: 45.85939685,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -2922,8 +2922,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862503161653196,
-          geoSirina: 45.85940129399345,
+          geoDuzina: 15.86250316,
+          geoSirina: 45.85940129,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -2933,8 +2933,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 8,
         spojnaTockaVodica: {
-          geoDuzina: 15.862502111840792,
-          geoSirina: 45.859405733848725,
+          geoDuzina: 15.86250211,
+          geoSirina: 45.85940573,
           x: -2.0564395948578813,
           y: 10,
           z: 0.14510752117224335,
@@ -2943,8 +2943,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862477743783518,
-          geoSirina: 45.85939836004153,
+          geoDuzina: 15.86247774,
+          geoSirina: 45.85939836,
           x: -3.939231012048832,
           y: 10,
           z: -0.6945927106677213,
@@ -2954,8 +2954,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 9,
         spojnaTockaVodica: {
-          geoDuzina: 15.862478793597736,
-          geoSirina: 45.85939392018644,
+          geoDuzina: 15.86247879,
+          geoSirina: 45.85939392,
           x: -3.852406923215367,
           y: 10,
           z: -1.1869965871738253,
@@ -2964,8 +2964,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862477743783518,
-          geoSirina: 45.85939836004153,
+          geoDuzina: 15.86247774,
+          geoSirina: 45.85939836,
           x: -3.939231012048832,
           y: 10,
           z: -0.6945927106677213,
@@ -2975,8 +2975,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 10,
         spojnaTockaVodica: {
-          geoDuzina: 15.86247669396914,
-          geoSirina: 45.85940279989659,
+          geoDuzina: 15.86247669,
+          geoSirina: 45.8594028,
           x: -4.026055100882298,
           y: 10,
           z: -0.20218883416161731,
@@ -2985,8 +2985,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862452325916436,
-          geoSirina: 45.859395426083935,
+          geoDuzina: 15.86245233,
+          geoSirina: 45.85939543,
           x: -5.908846518073248,
           y: 10,
           z: -1.041889066001582,
@@ -2996,8 +2996,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 11,
         spojnaTockaVodica: {
-          geoDuzina: 15.862453375732628,
-          geoSirina: 45.859390986229066,
+          geoDuzina: 15.86245338,
+          geoSirina: 45.85939099,
           x: -5.822022429239783,
           y: 10,
           z: -1.534292942507686,
@@ -3006,8 +3006,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.862452325916436,
-          geoSirina: 45.859395426083935,
+          geoDuzina: 15.86245233,
+          geoSirina: 45.85939543,
           x: -5.908846518073248,
           y: 10,
           z: -1.041889066001582,
@@ -3017,8 +3017,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 12,
         spojnaTockaVodica: {
-          geoDuzina: 15.862451276100082,
-          geoSirina: 45.85939986593878,
+          geoDuzina: 15.86245128,
+          geoSirina: 45.85939987,
           x: -5.995670606906713,
           y: 10,
           z: -0.549485189495478,
@@ -3028,24 +3028,24 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.862528579525467,
-        geoSirina: 45.85940422793969,
+        geoDuzina: 15.86252858,
+        geoSirina: 45.85940423,
         x: 0,
         y: 120,
         z: 0,
         id: 1,
       },
       {
-        geoDuzina: 15.862541288462575,
-        geoSirina: 45.859405694910684,
+        geoDuzina: 15.86254129,
+        geoSirina: 45.85940569,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 2,
       },
       {
-        geoDuzina: 15.862515870589007,
-        geoSirina: 45.85940276096727,
+        geoDuzina: 15.86251587,
+        geoSirina: 45.85940276,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -3069,8 +3069,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.868304997428357,
-          geoSirina: 45.85032014748145,
+          geoDuzina: 15.868305,
+          geoSirina: 45.85032015,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -3080,8 +3080,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.868306046617821,
-          geoSirina: 45.850315707570324,
+          geoDuzina: 15.86830605,
+          geoSirina: 45.85031571,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -3090,8 +3090,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.868330411442491,
-          geoSirina: 45.850323080167975,
+          geoDuzina: 15.86833041,
+          geoSirina: 45.85032308,
           x: 3.939231012048832,
           y: 10,
           z: 0.6945927106677213,
@@ -3101,8 +3101,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.868331460629982,
-          geoSirina: 45.850318640256646,
+          geoDuzina: 15.86833146,
+          geoSirina: 45.85031864,
           x: 4.026055100882298,
           y: 10,
           z: 0.20218883416161731,
@@ -3111,8 +3111,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.868355825459217,
-          geoSirina: 45.85032601284883,
+          geoDuzina: 15.86835583,
+          geoSirina: 45.85032601,
           x: 5.908846518073248,
           y: 10,
           z: 1.041889066001582,
@@ -3122,8 +3122,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.868356874644734,
-          geoSirina: 45.85032157293729,
+          geoDuzina: 15.86835687,
+          geoSirina: 45.85032157,
           x: 5.995670606906713,
           y: 10,
           z: 0.549485189495478,
@@ -3132,8 +3132,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.868254169407862,
-          geoSirina: 45.85031428209134,
+          geoDuzina: 15.86825417,
+          geoSirina: 45.85031428,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -3143,8 +3143,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.868255218601274,
-          geoSirina: 45.85030984218065,
+          geoDuzina: 15.86825522,
+          geoSirina: 45.85030984,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -3153,8 +3153,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.868228755401502,
-          geoSirina: 45.850311349387766,
+          geoDuzina: 15.86822876,
+          geoSirina: 45.85031135,
           x: -3.939231012048832,
           y: 10,
           z: -0.6945927106677213,
@@ -3164,8 +3164,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.868229804596886,
-          geoSirina: 45.850306909477304,
+          geoDuzina: 15.8682298,
+          geoSirina: 45.85030691,
           x: -3.852406923215367,
           y: 10,
           z: -1.1869965871738253,
@@ -3174,8 +3174,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.86820334139773,
-          geoSirina: 45.850308416678516,
+          geoDuzina: 15.86820334,
+          geoSirina: 45.85030842,
           x: -5.908846518073248,
           y: 10,
           z: -1.041889066001582,
@@ -3185,8 +3185,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.86820439059509,
-          geoSirina: 45.850303976768274,
+          geoDuzina: 15.86820439,
+          geoSirina: 45.85030398,
           x: -5.822022429239783,
           y: 10,
           z: -1.534292942507686,
@@ -3196,24 +3196,24 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.868279583416815,
-        geoSirina: 45.85031721478922,
+        geoDuzina: 15.86827958,
+        geoSirina: 45.85031721,
         x: 0,
         y: 120,
         z: 0,
         id: 1,
       },
       {
-        geoDuzina: 15.868292290422263,
-        geoSirina: 45.85031868113604,
+        geoDuzina: 15.86829229,
+        geoSirina: 45.85031868,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 2,
       },
       {
-        geoDuzina: 15.868266876412015,
-        geoSirina: 45.85031574844099,
+        geoDuzina: 15.86826688,
+        geoSirina: 45.85031575,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -3237,8 +3237,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920428043055013,
-          geoSirina: 45.867206004625416,
+          geoDuzina: 15.92042804,
+          geoSirina: 45.867206,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -3248,8 +3248,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.920429088384784,
-          geoSirina: 45.86720156427745,
+          geoDuzina: 15.92042909,
+          geoSirina: 45.86720156,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -3258,8 +3258,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920428043055013,
-          geoSirina: 45.867206004625416,
+          geoDuzina: 15.92042804,
+          geoSirina: 45.867206,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -3269,8 +3269,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.920426997725079,
-          geoSirina: 45.86721044497339,
+          geoDuzina: 15.920427,
+          geoSirina: 45.86721044,
           x: 1.8827914171909508,
           y: 10,
           z: 0.8397002318399647,
@@ -3279,8 +3279,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920453467337214,
-          geoSirina: 45.86720892561895,
+          geoDuzina: 15.92045347,
+          geoSirina: 45.86720893,
           x: 3.939231012048832,
           y: 8,
           z: 0.6945927106677213,
@@ -3290,8 +3290,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.920454512665009,
-          geoSirina: 45.86720448527076,
+          geoDuzina: 15.92045451,
+          geoSirina: 45.86720449,
           x: 4.026055100882298,
           y: 8,
           z: 0.20218883416161731,
@@ -3300,8 +3300,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920453467337214,
-          geoSirina: 45.86720892561895,
+          geoDuzina: 15.92045347,
+          geoSirina: 45.86720893,
           x: 3.939231012048832,
           y: 8,
           z: 0.6945927106677213,
@@ -3311,8 +3311,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.920452422009257,
-          geoSirina: 45.86721336596712,
+          geoDuzina: 15.92045242,
+          geoSirina: 45.86721337,
           x: 3.852406923215367,
           y: 8,
           z: 1.1869965871738253,
@@ -3321,8 +3321,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920478891621993,
-          geoSirina: 45.867211846606786,
+          geoDuzina: 15.92047889,
+          geoSirina: 45.86721185,
           x: 5.908846518073248,
           y: 8,
           z: 1.041889066001582,
@@ -3332,8 +3332,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.920479936947812,
-          geoSirina: 45.86720740625839,
+          geoDuzina: 15.92047994,
+          geoSirina: 45.86720741,
           x: 5.995670606906713,
           y: 8,
           z: 0.549485189495478,
@@ -3342,8 +3342,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920478891621993,
-          geoSirina: 45.867211846606786,
+          geoDuzina: 15.92047889,
+          geoSirina: 45.86721185,
           x: 5.908846518073248,
           y: 8,
           z: 1.041889066001582,
@@ -3353,8 +3353,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.920477846296013,
-          geoSirina: 45.86721628695518,
+          geoDuzina: 15.92047785,
+          geoSirina: 45.86721629,
           x: 5.822022429239783,
           y: 8,
           z: 1.534292942507686,
@@ -3363,8 +3363,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920377194498343,
-          geoSirina: 45.867200162621316,
+          geoDuzina: 15.92037719,
+          geoSirina: 45.86720016,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -3374,8 +3374,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 7,
         spojnaTockaVodica: {
-          geoDuzina: 15.92037823983207,
-          geoSirina: 45.86719572227376,
+          geoDuzina: 15.92037824,
+          geoSirina: 45.86719572,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -3384,8 +3384,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920377194498343,
-          geoSirina: 45.867200162621316,
+          geoDuzina: 15.92037719,
+          geoSirina: 45.86720016,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -3395,8 +3395,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 8,
         spojnaTockaVodica: {
-          geoDuzina: 15.920376149164456,
-          geoSirina: 45.86720460296885,
+          geoDuzina: 15.92037615,
+          geoSirina: 45.8672046,
           x: -2.0564395948578813,
           y: 10,
           z: 0.14510752117224335,
@@ -3405,8 +3405,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920351770223876,
-          geoSirina: 45.86719724161074,
+          geoDuzina: 15.92035177,
+          geoSirina: 45.86719724,
           x: -3.939231012048832,
           y: 8,
           z: -0.6945927106677213,
@@ -3416,8 +3416,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 9,
         spojnaTockaVodica: {
-          geoDuzina: 15.92035281555958,
-          geoSirina: 45.86719280126342,
+          geoDuzina: 15.92035282,
+          geoSirina: 45.8671928,
           x: -3.852406923215367,
           y: 8,
           z: -1.1869965871738253,
@@ -3426,8 +3426,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920351770223876,
-          geoSirina: 45.86719724161074,
+          geoDuzina: 15.92035177,
+          geoSirina: 45.86719724,
           x: -3.939231012048832,
           y: 8,
           z: -0.6945927106677213,
@@ -3437,8 +3437,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 10,
         spojnaTockaVodica: {
-          geoDuzina: 15.920350724888012,
-          geoSirina: 45.86720168195806,
+          geoDuzina: 15.92035072,
+          geoSirina: 45.86720168,
           x: -4.026055100882298,
           y: 8,
           z: -0.20218883416161731,
@@ -3447,8 +3447,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920326345951986,
-          geoSirina: 45.86719432059447,
+          geoDuzina: 15.92032635,
+          geoSirina: 45.86719432,
           x: -5.908846518073248,
           y: 8,
           z: -1.041889066001582,
@@ -3458,8 +3458,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 11,
         spojnaTockaVodica: {
-          geoDuzina: 15.920327391289668,
-          geoSirina: 45.867189880247366,
+          geoDuzina: 15.92032739,
+          geoSirina: 45.86718988,
           x: -5.822022429239783,
           y: 8,
           z: -1.534292942507686,
@@ -3468,8 +3468,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.920326345951986,
-          geoSirina: 45.86719432059447,
+          geoDuzina: 15.92032635,
+          geoSirina: 45.86719432,
           x: -5.908846518073248,
           y: 8,
           z: -1.041889066001582,
@@ -3479,8 +3479,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 12,
         spojnaTockaVodica: {
-          geoDuzina: 15.920325300614143,
-          geoSirina: 45.86719876094158,
+          geoDuzina: 15.9203253,
+          geoSirina: 45.86719876,
           x: -5.995670606906713,
           y: 8,
           z: -0.549485189495478,
@@ -3490,16 +3490,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.920415330914878,
-        geoSirina: 45.86720454412652,
+        geoDuzina: 15.92041533,
+        geoSirina: 45.86720454,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.920389906636544,
-        geoSirina: 45.86720162312447,
+        geoDuzina: 15.92038991,
+        geoSirina: 45.86720162,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,
@@ -3523,8 +3523,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.846044975536136,
-          geoSirina: 45.83778320175736,
+          geoDuzina: 15.84604498,
+          geoSirina: 45.8377832,
           x: 1.969615506024416,
           y: 10,
           z: 0.34729635533386066,
@@ -3534,8 +3534,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 1,
         spojnaTockaVodica: {
-          geoDuzina: 15.84604602627809,
-          geoSirina: 45.83777876203042,
+          geoDuzina: 15.84604603,
+          geoSirina: 45.83777876,
           x: 2.0564395948578813,
           y: 10,
           z: -0.14510752117224335,
@@ -3544,8 +3544,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.846070382733439,
-          geoSirina: 45.83778613945417,
+          geoDuzina: 15.84607038,
+          geoSirina: 45.83778614,
           x: 3.939231012048832,
           y: 8,
           z: 0.6945927106677213,
@@ -3555,8 +3555,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 2,
         spojnaTockaVodica: {
-          geoDuzina: 15.846071433473421,
-          geoSirina: 45.83778169972701,
+          geoDuzina: 15.84607143,
+          geoSirina: 45.8377817,
           x: 4.026055100882298,
           y: 8,
           z: 0.20218883416161731,
@@ -3565,8 +3565,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.846095789933337,
-          geoSirina: 45.8377890771453,
+          geoDuzina: 15.84609579,
+          geoSirina: 45.83778908,
           x: 5.908846518073248,
           y: 8,
           z: 1.041889066001582,
@@ -3576,8 +3576,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 3,
         spojnaTockaVodica: {
-          geoDuzina: 15.846096840671349,
-          geoSirina: 45.83778463741793,
+          geoDuzina: 15.84609684,
+          geoSirina: 45.83778464,
           x: 5.995670606906713,
           y: 8,
           z: 0.549485189495478,
@@ -3586,8 +3586,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.845994161149317,
-          geoSirina: 45.83777732634671,
+          geoDuzina: 15.84599416,
+          geoSirina: 45.83777733,
           x: -1.969615506024416,
           y: 10,
           z: -0.34729635533386066,
@@ -3597,8 +3597,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 4,
         spojnaTockaVodica: {
-          geoDuzina: 15.845995211895216,
-          geoSirina: 45.8377728866202,
+          geoDuzina: 15.84599521,
+          geoSirina: 45.83777289,
           x: -1.8827914171909508,
           y: 10,
           z: -0.8397002318399647,
@@ -3607,8 +3607,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.8459687539598,
-          geoSirina: 45.83777438863288,
+          geoDuzina: 15.84596875,
+          geoSirina: 45.83777439,
           x: -3.939231012048832,
           y: 8,
           z: -0.6945927106677213,
@@ -3618,8 +3618,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 5,
         spojnaTockaVodica: {
-          geoDuzina: 15.845969804707671,
-          geoSirina: 45.83776994890658,
+          geoDuzina: 15.8459698,
+          geoSirina: 45.83776995,
           x: -3.852406923215367,
           y: 8,
           z: -1.1869965871738253,
@@ -3628,8 +3628,8 @@ export const STUPOVI = [
       {
         materijal: "Elektroporculan",
         spojnaTockaIzolatora: {
-          geoDuzina: 15.84594334677288,
-          geoSirina: 45.837771450913365,
+          geoDuzina: 15.84594335,
+          geoSirina: 45.83777145,
           x: -5.908846518073248,
           y: 8,
           z: -1.041889066001582,
@@ -3639,8 +3639,8 @@ export const STUPOVI = [
         izvedba: "KAPASTI",
         id: 6,
         spojnaTockaVodica: {
-          geoDuzina: 15.845944397522723,
-          geoSirina: 45.83776701118728,
+          geoDuzina: 15.8459444,
+          geoSirina: 45.83776701,
           x: -5.822022429239783,
           y: 8,
           z: -1.534292942507686,
@@ -3650,16 +3650,16 @@ export const STUPOVI = [
     tezina: 8768,
     spojneTockeZastitneUzadi: [
       {
-        geoDuzina: 15.846032271938459,
-        geoSirina: 45.83778173290682,
+        geoDuzina: 15.84603227,
+        geoSirina: 45.83778173,
         x: 0.984807753012208,
         y: 120,
         z: 0.17364817766693033,
         id: 1,
       },
       {
-        geoDuzina: 15.846006864745048,
-        geoSirina: 45.8377787952015,
+        geoDuzina: 15.84600686,
+        geoSirina: 45.8377788,
         x: -0.984807753012208,
         y: 120,
         z: -0.17364817766693033,

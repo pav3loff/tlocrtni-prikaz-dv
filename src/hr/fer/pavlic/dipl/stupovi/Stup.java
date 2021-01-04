@@ -20,6 +20,7 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public abstract class Stup {
 	
+	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private final static int RAZMAK = 2;
 	private int id;
 	private boolean isZatezni;
@@ -448,8 +449,10 @@ public abstract class Stup {
 					
 				WgsCoordinate spojnaTockaIzolatoraWgs = UtmWgsConverter.convertToWgs(spojnaTockaIzolatoraUtm);
 					
-				izolator.setStiGeoSirina(spojnaTockaIzolatoraWgs.getGeoSirina());
-				izolator.setStiGeoDuzina(spojnaTockaIzolatoraWgs.getGeoDuzina());
+				izolator.setStiGeoSirina(
+						Math.round(spojnaTockaIzolatoraWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
+				izolator.setStiGeoDuzina(
+						Math.round(spojnaTockaIzolatoraWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 				
 				double spojnaTockaVodicaX = izolator.getStvX();
 				double spojnaTockaVodicaZ = izolator.getStvZ();
@@ -461,8 +464,10 @@ public abstract class Stup {
 					
 				WgsCoordinate spojnaTockaVodicaWgs = UtmWgsConverter.convertToWgs(spojnaTockaVodicaUtm);
 					
-				izolator.setStvGeoSirina(spojnaTockaVodicaWgs.getGeoSirina());
-				izolator.setStvGeoDuzina(spojnaTockaVodicaWgs.getGeoDuzina());
+				izolator.setStvGeoSirina(
+						Math.round(spojnaTockaVodicaWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
+				izolator.setStvGeoDuzina(
+						Math.round(spojnaTockaVodicaWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 				
 			}
 			
@@ -480,8 +485,10 @@ public abstract class Stup {
 				WgsCoordinate spojnaTockaZuWgs = 
 						UtmWgsConverter.convertToWgs(spojnaTockaZuUtm);
 					
-				spojnaTockaZu.setGeoSirina(spojnaTockaZuWgs.getGeoSirina());
-				spojnaTockaZu.setGeoDuzina(spojnaTockaZuWgs.getGeoDuzina());
+				spojnaTockaZu.setGeoSirina(
+						Math.round(spojnaTockaZuWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
+				spojnaTockaZu.setGeoDuzina(
+						Math.round(spojnaTockaZuWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 				
 			}
 		} catch (Exception e) {

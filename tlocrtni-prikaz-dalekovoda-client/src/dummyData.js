@@ -1358,7 +1358,7 @@ export const STUPOVI = [
     id: 573,
   },
   {
-    oblikGlaveStupa: "PORTAL",
+    oblikGlaveStupa: "Y",
     geoDuzina: 15.951936,
     proizvodac: "Dalekovod d.o.o.",
     geoSirina: 45.860094,
@@ -1518,7 +1518,7 @@ export const STUPOVI = [
     id: 574,
   },
   {
-    oblikGlaveStupa: "PORTAL",
+    oblikGlaveStupa: "Y",
     geoDuzina: 15.966184,
     proizvodac: "Dalekovod d.o.o.",
     geoSirina: 45.860273,

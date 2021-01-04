@@ -1,15 +1,141 @@
-.stup {
+.stup-bacva {
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 10px;
-  color: #d1e8e2;
+  color: #cc9900;
 }
 
-.stup-detailed {
-  -webkit-animation: fadein 0.5s;
+.stup-bacva-detailed {
+  -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 15px;
-  color: #116466;
+  color: #cc9900;
+}
+
+.stup-jela {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #009933;
+}
+
+.stup-jela-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #009933;
+}
+
+.stup-dunav {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #0066ff;
+}
+
+.stup-dunav-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #0066ff;
+}
+
+.stup-portal {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #33cccc;
+}
+
+.stup-portal-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #33cccc;
+}
+
+.stup-y {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #ff6666;
+}
+
+.stup-y-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #ff6666;
+}
+
+.stup-macka {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.stup-macka-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.stup-dvostruka-jela {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #009933;
+}
+
+.stup-dvostruka-jela-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #009933;
+}
+
+.stup-dvostruki-portal {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #33cccc;
+}
+
+.stup-dvostruki-portal-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #33cccc;
+}
+
+.stup-dvostruka-macka {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.stup-dvostruka-macka-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.stup-dvostruki-y {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 10px;
+  color: #ff6666;
+}
+
+.stup-dvostruki-y-detailed {
+  -webkit-animation: fadein 1s;
+  cursor: pointer;
+  font-size: 15px;
+  color: #ff6666;
 }
 
 @keyframes fadein {

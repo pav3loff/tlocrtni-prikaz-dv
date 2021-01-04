@@ -4,6 +4,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import SpojnaTocka from "./SpojnaTocka";
 import ElementInfo from "./ElementInfo";
+import imageIzolator from "./images/imageIzolator.svg";
 
 import "./Izolator.css";
 
@@ -17,17 +18,6 @@ function Izolator(props) {
 
   return (
     <>
-      {/* Spojna točka izolatora */}
-      <SpojnaTocka
-        tip={"STI"}
-        id={props.id}
-        geoSirina={props.spojnaTockaIzolatora.geoSirina}
-        geoDuzina={props.spojnaTockaIzolatora.geoDuzina}
-        elementId={props.elementId + "STI" + props.id}
-        selectedElementId={props.selectedElementId}
-        setSelectedElementId={props.setSelectedElementId}
-      />
-
       {/* Izolator */}
       <>
         <Marker latitude={geoSirinaIzolatora} longitude={geoDuzinaIzolatora}>
@@ -37,11 +27,13 @@ function Izolator(props) {
             onClick={() => {
               props.setSelectedElementId(props.elementId);
             }}
+            transform={"rotate-" + -props.orijentacija}
           />
         </Marker>
 
         <ElementInfo
           elementId={props.elementId}
+          displayImage={imageIzolator}
           displayItems={{
             Id: props.id,
             Materijal: props.materijal,
@@ -52,6 +44,17 @@ function Izolator(props) {
           setSelectedElementId={props.setSelectedElementId}
         />
       </>
+
+      {/* Spojna točka izolatora */}
+      <SpojnaTocka
+        tip={"STI"}
+        id={props.id}
+        geoSirina={props.spojnaTockaIzolatora.geoSirina}
+        geoDuzina={props.spojnaTockaIzolatora.geoDuzina}
+        elementId={props.elementId + "STI" + props.id}
+        selectedElementId={props.selectedElementId}
+        setSelectedElementId={props.setSelectedElementId}
+      />
 
       {/* Spojna točka vodiča */}
       <SpojnaTocka

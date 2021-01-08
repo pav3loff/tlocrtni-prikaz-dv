@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Marker, Popup } from "react-map-gl";
 
-import ElementInfo from "./ElementInfo";
-
 import "./SpojnaTocka.css";
 
 const popupTipSize = 5;
@@ -55,17 +53,6 @@ function SpojnaTocka(props) {
           </p>
         </Popup>
       )}
-
-      <ElementInfo
-        elementId={props.elementId}
-        displayItems={{
-          "Spojna točka": props.tip,
-          "Geo. širina": props.geoSirina,
-          "Geo. dužina": props.geoDuzina,
-        }}
-        selectedElementId={props.selectedElementId}
-        setSelectedElementId={props.setSelectedElementId}
-      />
     </>
   );
 }

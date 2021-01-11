@@ -62,7 +62,7 @@ class Map extends React.Component {
         {...this.state.viewport}
         onViewportChange={(viewport) => this.updateViewport(viewport)}
         mapboxApiAccessToken={TOKEN}
-        mapStyle="mapbox://styles/mapbox/dark-v10"
+        mapStyle="mapbox://styles/mapbox/streets-v11"
       >
         {this.state.stupovi.map((stup) => {
           return isVisible(

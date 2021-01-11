@@ -1,19 +1,19 @@
 .spojna-tocka-izolatora {
   -webkit-animation: fadein 0.5s;
   font-size: 10px;
-  color: #d1e8e2;
+  color: blue;
 }
 
 .spojna-tocka-vodica {
   -webkit-animation: fadein 0.5s;
   font-size: 10px;
-  color: #d9b08c;
+  color: red;
 }
 
 .spojna-tocka-zastitnog-uzeta {
   -webkit-animation: fadein 0.5s;
   font-size: 10px;
-  color: white;
+  color: orange;
 }
 
 .popup {

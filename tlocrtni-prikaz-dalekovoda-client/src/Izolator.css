@@ -2,7 +2,7 @@
   -webkit-animation: fadein 0.5s;
   cursor: pointer;
   font-size: 12px;
-  color: #00cc99;
+  color: green;
 }
 
 @keyframes fadein {

@@ -44,14 +44,14 @@
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 10px;
-  color: #33cccc;
+  color: #cc0000;
 }
 
 .stup-portal-detailed {
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 15px;
-  color: #33cccc;
+  color: #cc0000;
 }
 
 .stup-y {
@@ -72,14 +72,14 @@
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 10px;
-  color: #ffffff;
+  color: black;
 }
 
 .stup-macka-detailed {
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 15px;
-  color: #ffffff;
+  color: black;
 }
 
 .stup-dvostruka-jela {
@@ -100,28 +100,28 @@
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 10px;
-  color: #33cccc;
+  color: #cc0000;
 }
 
 .stup-dvostruki-portal-detailed {
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 15px;
-  color: #33cccc;
+  color: #cc0000;
 }
 
 .stup-dvostruka-macka {
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 10px;
-  color: #ffffff;
+  color: black;
 }
 
 .stup-dvostruka-macka-detailed {
   -webkit-animation: fadein 1s;
   cursor: pointer;
   font-size: 15px;
-  color: #ffffff;
+  color: black;
 }
 
 .stup-dvostruki-y {

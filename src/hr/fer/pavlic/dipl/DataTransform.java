@@ -18,9 +18,11 @@ import hr.fer.pavlic.dipl.stupovi.DvostrukaJelaStup;
 import hr.fer.pavlic.dipl.stupovi.DvostrukaMackaStup;
 import hr.fer.pavlic.dipl.stupovi.DvostrukiPortalStup;
 import hr.fer.pavlic.dipl.stupovi.DvostrukiYStup;
+import hr.fer.pavlic.dipl.stupovi.Izolator;
 import hr.fer.pavlic.dipl.stupovi.JelaStup;
 import hr.fer.pavlic.dipl.stupovi.MackaStup;
 import hr.fer.pavlic.dipl.stupovi.PortalStup;
+import hr.fer.pavlic.dipl.stupovi.SpojnaTockaZastitnogUzeta;
 import hr.fer.pavlic.dipl.stupovi.Stup;
 import hr.fer.pavlic.dipl.stupovi.YStup;
 
@@ -78,17 +80,49 @@ public class DataTransform {
 			azuriraniStupovi.add(stup);
 		}
 		
-		// zapisati json u datoteku
-		JSONArray stupoviJsonOut = new JSONArray();
+		// zapisati json u datoteku (izvornim podatcima samo dodati informacije o polozajima svih elemenata u WGS84 sustavu
+		JSONObject dataOut = new JSONObject();
+		dataOut.put("stupovi", stupoviJson);
 		
-		for(Stup stup : azuriraniStupovi) {
-			JSONObject stupJson = stup.getJson();
+		JSONArray stupoviJsonOut = dataOut.getJSONArray("stupovi");
+		
+		for(int i = 0; i < stupoviJsonOut.length(); i++) {
+			JSONObject stupJson = stupoviJsonOut.getJSONObject(i);
+			Stup azuriraniStup = azuriraniStupovi.get(i);
 			
-			stupoviJsonOut.put(stupJson);
+			stupJson.put("geoSirina", azuriraniStup.getGeoSirina());
+			stupJson.put("geoDuzina", azuriraniStup.getGeoDuzina());
+			
+			JSONArray izolatoriJson = stupJson.getJSONArray("izolatori");
+			List<Izolator> azuriraniIzolatori = azuriraniStup.getIzolatori();
+			
+			for(int j = 0; j < izolatoriJson.length(); j++) {
+				JSONObject izolatorJson = izolatoriJson.getJSONObject(j);
+				Izolator azuriraniIzolator = azuriraniIzolatori.get(j);
+				
+				JSONObject stiJson = izolatorJson.getJSONObject("spojnaTockaIzolatora");
+				stiJson.put("geoSirina", azuriraniIzolator.getStiGeoSirina());
+				stiJson.put("geoDuzina", azuriraniIzolator.getStiGeoDuzina());
+				
+				JSONObject stvJson = izolatorJson.getJSONObject("spojnaTockaVodica");
+				stvJson.put("geoSirina", azuriraniIzolator.getStvGeoSirina());
+				stvJson.put("geoDuzina", azuriraniIzolator.getStvGeoDuzina());
+			}
+			
+			JSONArray spojneTockeZuJson = stupJson.getJSONArray("spojneTockeZastitneUzadi");
+			List<SpojnaTockaZastitnogUzeta> azuriraneSpojneTockeZu = azuriraniStup.getSpojneTockeZu();
+			
+			for(int j = 0; j < spojneTockeZuJson.length(); j++) {
+				JSONObject spojnaTockaZuJson = spojneTockeZuJson.getJSONObject(j);
+				SpojnaTockaZastitnogUzeta azuriranaSpojnaTockaZu = azuriraneSpojneTockeZu.get(j);
+				
+				spojnaTockaZuJson.put("geoSirina", azuriranaSpojnaTockaZu.getGeoSirina());
+				spojnaTockaZuJson.put("geoDuzina", azuriranaSpojnaTockaZu.getGeoDuzina());
+			}
 		}
 		
 		try(FileWriter writer = new FileWriter(
-				Paths.get("C:/Users/mario/Desktop/tlocrtni_prikaz_dalekovoda/dataOut.json").toFile())) {
+				Paths.get("C:/Users/mario/Desktop/tlocrtni_prikaz_dalekovoda/dataOut2.json").toFile())) {
 			writer.write(stupoviJsonOut.toString());
 		} catch (IOException exc) {
 			System.out.println("Neuspješno pisanje u datoteku!");

@@ -7,6 +7,7 @@ import ElementInfo from "./ElementInfo";
 import imageIzolator from "./images/imageIzolator.svg";
 
 import "./Izolator.css";
+import { getIzolatorIconRotation } from "./helperFunctions";
 
 function Izolator(props) {
   const geoSirinaIzolatora =
@@ -27,7 +28,15 @@ function Izolator(props) {
             onClick={() => {
               props.setSelectedElementId(props.elementId);
             }}
-            transform={"rotate-" + -props.orijentacija}
+            transform={
+              "rotate-" +
+              getIzolatorIconRotation(
+                props.orijentacija,
+                props.kutIzmedjuSpojneTockeVodicaIRavnineKonzole,
+                props.spojnaTockaIzolatora.x,
+                props.spojnaTockaVodica.z
+              )
+            }
           />
         </Marker>
 

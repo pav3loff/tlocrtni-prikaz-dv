@@ -38,3 +38,26 @@ export function getStupStyle(tipStupa, zoom) {
     return zoom < 21.5 ? "stup-dvostruki-y" : "stup-dvostruki-y-detailed";
   }
 }
+
+export function getIzolatorIconRotation(
+  stupOrientation,
+  kutSTVIRavnKonzole,
+  xSTI,
+  zSTV
+) {
+  var rotation = 0;
+
+  if (stupOrientation >= 0) {
+    rotation = 180 - Math.abs(stupOrientation);
+  } else {
+    rotation = Math.abs(stupOrientation);
+  }
+
+  if (zSTV >= 0) {
+    rotation -= 90 - Math.abs(kutSTVIRavnKonzole);
+  } else {
+    rotation += 90 - Math.abs(kutSTVIRavnKonzole);
+  }
+
+  return rotation;
+}

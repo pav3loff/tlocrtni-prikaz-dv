@@ -7,36 +7,20 @@ import ElementInfo from "./ElementInfo";
 import imageIzolator from "./images/imageIzolator.svg";
 
 import "./Izolator.css";
-import { getIzolatorIconRotation } from "./helperFunctions";
 
 function Izolator(props) {
-  const geoSirinaIzolatora =
-    (props.spojnaTockaIzolatora.geoSirina + props.spojnaTockaVodica.geoSirina) /
-    2;
-  const geoDuzinaIzolatora =
-    (props.spojnaTockaIzolatora.geoDuzina + props.spojnaTockaVodica.geoDuzina) /
-    2;
-
   return (
     <>
       {/* Izolator */}
       <>
-        <Marker latitude={geoSirinaIzolatora} longitude={geoDuzinaIzolatora}>
+        <Marker latitude={props.geoSirina} longitude={props.geoDuzina}>
           <FontAwesomeIcon
             className="izolator"
             icon={faBars}
             onClick={() => {
               props.setSelectedElementId(props.elementId);
             }}
-            transform={
-              "rotate-" +
-              getIzolatorIconRotation(
-                props.orijentacija,
-                props.kutIzmedjuSpojneTockeVodicaIRavnineKonzole,
-                props.spojnaTockaIzolatora.x,
-                props.spojnaTockaVodica.z
-              )
-            }
+            transform={"rotate-" + props.otklon}
           />
         </Marker>
 

@@ -17,8 +17,9 @@ import imageDvostrukaJela from "./images/imageDvostrukaJela.svg";
 import imageDvostrukiPortal from "./images/imageDvostrukiPortal.svg";
 import imageDvostrukaMacka from "./images/imageDvostrukaMacka.svg";
 import imageDvostrukiY from "./images/imageDvostrukiY.svg";
-
 import { getStupStyle } from "./helperFunctions";
+import Label from "./Label";
+import { ZOOM_TRESHOLD } from "./constants";
 
 import "./Stup.css";
 
@@ -28,12 +29,22 @@ function Stup(props) {
       <Marker latitude={props.geoSirina} longitude={props.geoDuzina}>
         <FontAwesomeIcon
           className={getStupStyle(props.oblikGlaveStupa, props.zoom)}
-          icon={props.zoom < 21.5 ? faDiceD6 : faCircle}
+          icon={props.zoom < ZOOM_TRESHOLD ? faDiceD6 : faCircle}
           onClick={() => {
             props.setSelectedElementId("STUP" + props.id);
           }}
         />
       </Marker>
+
+      <Label
+        id={props.id}
+        geoSirina={props.geoSirina}
+        geoDuzina={props.geoDuzina}
+        style={{
+          background: "#ededed",
+          marginLeft: props.zoom > ZOOM_TRESHOLD ? "20px" : "12px",
+        }}
+      />
 
       <ElementInfo
         elementId={"STUP" + props.id}
@@ -69,28 +80,20 @@ function Stup(props) {
           "Oznaka uzemljenja": props.oznakaUzemljenja,
           Težina: props.tezina,
           Tip: props.tipStupa,
-          Orijentacija: props.orijentacija,
-          "Geo. širina": props.geoSirina,
-          "Geo. dužina": props.geoDuzina,
         }}
         selectedElementId={props.selectedElementId}
         setSelectedElementId={props.setSelectedElementId}
       />
 
-      {props.zoom > 21.5 && (
+      {props.zoom > ZOOM_TRESHOLD && (
         <>
           {props.izolatori.map((izolator) => (
             <Izolator
               key={izolator.id}
               elementId={"STUP" + props.id + "IZOLATOR" + izolator.id}
               {...izolator}
-              bounds={props.bounds}
-              zoom={props.zoom}
-              orijentacija={props.orijentacija}
               selectedElementId={props.selectedElementId}
               setSelectedElementId={props.setSelectedElementId}
-              hoveredElementId={props.hoveredElementId}
-              setHoveredElementId={props.setHoveredElementId}
             />
           ))}
           {props.spojneTockeZastitneUzadi.map((stzu) => (

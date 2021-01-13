@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMapGL from "react-map-gl";
 
-import { TOKEN } from "./mapboxToken";
+import { TOKEN } from "./constants";
 import { STUPOVI } from "./dummyData";
 import Stup from "./Stup";
 import { isVisible } from "./helperFunctions";

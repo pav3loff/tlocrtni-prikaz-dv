@@ -9,7 +9,7 @@ function ElementInfo(props) {
       open={props.elementId === props.selectedElementId}
       onClose={() => props.setSelectedElementId(undefined)}
     >
-      <List>
+      <List className="list">
         {props.displayImage && (
           <ListItem className="list-item-image">
             <img alt={props.elementId} src={props.displayImage} />
@@ -17,7 +17,10 @@ function ElementInfo(props) {
         )}
         {Object.keys(props.displayItems).map((key) => {
           return (
-            <ListItem key={props.elementId + key + props.displayItems[key]}>
+            <ListItem
+              className="list-item"
+              key={props.elementId + key + props.displayItems[key]}
+            >
               <p>
                 <strong>{key}: </strong> {props.displayItems[key]}
               </p>

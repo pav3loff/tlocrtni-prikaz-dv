@@ -20,6 +20,16 @@ public class SpojnaTockaZastitnogUzeta {
 		this.geoSirina = geoSirina;
 		this.geoDuzina = geoDuzina;
 	}
+	
+	public SpojnaTockaZastitnogUzeta(SpojnaTockaZastitnogUzeta spojnaTockaZu) {
+		super();
+		this.id = spojnaTockaZu.id;
+		this.x = spojnaTockaZu.x;
+		this.y = spojnaTockaZu.y;
+		this.z = spojnaTockaZu.z;
+		this.geoSirina = spojnaTockaZu.geoSirina;
+		this.geoDuzina = spojnaTockaZu.geoDuzina;
+	}
 
 	public SpojnaTockaZastitnogUzeta(JSONObject spojnaTockaZuJson) {
 		if(!(spojnaTockaZuJson.isNull("id"))) {

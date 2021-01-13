@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 public class Izolator {
 	
+	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private int id;
 	private double stiX;
 	private double stiY;
@@ -15,6 +16,9 @@ public class Izolator {
 	private String materijal;
 	private String izvedba;
 	private int brojClanaka;
+	private double geoSirina;
+	private double geoDuzina;
+	private double otklon;
 	private double stiGeoSirina;
 	private double stiGeoDuzina;
 	private double stvGeoSirina;
@@ -34,6 +38,26 @@ public class Izolator {
 		this.materijal = materijal;
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
+		this.geoSirina = this.geoDuzina = 0;
+		this.otklon = 0;
+		this.stiGeoSirina = this.stiGeoDuzina = this.stvGeoSirina = this.stvGeoDuzina = 0;
+	}
+	
+	public Izolator(Izolator izolator) {
+		super();
+		this.id = izolator.id;
+		this.stiX = izolator.stiX;
+		this.stiY = izolator.stiY;
+		this.stiZ = izolator.stiZ;
+		this.stvX = izolator.stvX;
+		this.stvY = izolator.stvY;
+		this.stvZ = izolator.stvZ;
+		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = izolator.kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
+		this.materijal = izolator.materijal;
+		this.izvedba = izolator.izvedba;
+		this.brojClanaka = izolator.brojClanaka;
+		this.geoSirina = this.geoDuzina = 0;
+		this.otklon = 0;
 		this.stiGeoSirina = this.stiGeoDuzina = this.stvGeoSirina = this.stvGeoDuzina = 0;
 	}
 
@@ -112,6 +136,24 @@ public class Izolator {
 		
 		if(!(izolatorJson.isNull("brojClanaka"))) {
 			this.brojClanaka = izolatorJson.getInt("brojClanaka");
+		}
+		
+		if(!(izolatorJson.isNull("geoSirina"))) {
+			this.geoSirina = izolatorJson.getDouble("geoSirina");
+		} else {
+			this.geoSirina = 0;
+		}
+		
+		if(!(izolatorJson.isNull("geoDuzina"))) {
+			this.geoDuzina = izolatorJson.getDouble("geoDuzina");
+		} else {
+			this.geoDuzina = 0;
+		}
+		
+		if(!(izolatorJson.isNull("otklon"))) {
+			this.otklon = izolatorJson.getDouble("otklon");
+		} else {
+			this.otklon = 0;
 		}
 	}
 
@@ -203,6 +245,30 @@ public class Izolator {
 		this.brojClanaka = brojClanaka;
 	}
 
+	public double getGeoSirina() {
+		return geoSirina;
+	}
+
+	public void setGeoSirina(double geoSirina) {
+		this.geoSirina = geoSirina;
+	}
+
+	public double getGeoDuzina() {
+		return geoDuzina;
+	}
+
+	public void setGeoDuzina(double geoDuzina) {
+		this.geoDuzina = geoDuzina;
+	}
+
+	public double getOtklon() {
+		return otklon;
+	}
+
+	public void setOtklon(double otklon) {
+		this.otklon = otklon;
+	}
+
 	public double getStiGeoSirina() {
 		return stiGeoSirina;
 	}
@@ -234,7 +300,7 @@ public class Izolator {
 	public void setStvGeoDuzina(double stvGeoDuzina) {
 		this.stvGeoDuzina = stvGeoDuzina;
 	}
-
+	
 	public JSONObject getJson() {
 		JSONObject stiJson = new JSONObject();
 		stiJson.put("x", this.stiX);
@@ -256,10 +322,46 @@ public class Izolator {
 		izolatorJson.put("materijal", this.materijal);
 		izolatorJson.put("izvedba", this.izvedba);
 		izolatorJson.put("brojClanaka", this.brojClanaka);
+		izolatorJson.put("geoSirina", this.geoSirina);
+		izolatorJson.put("geoDuzina", this.geoDuzina);
+		izolatorJson.put("otklon", this.otklon);
 		izolatorJson.put("spojnaTockaIzolatora", stiJson);
 		izolatorJson.put("spojnaTockaVodica", stvJson);
 		
 		return izolatorJson;
+	}
+	
+	/**
+	 * Geo. širina izolatora dobiva se kao aritmetička sredina geo. širine STI i geo. širine STV
+	 * Geo. dužina izolatora dobiva se kao arirmetička sredina geo. dužine STI i geo. dužine STV
+	 */
+	public void updateLatLong() {
+		this.geoSirina = Math.round(
+				((this.stiGeoSirina + this.stvGeoSirina) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
+		this.geoDuzina = Math.round(
+				((this.stiGeoDuzina + this.stvGeoDuzina) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
+	}
+	
+	/**
+	 * Otklon je kut kojeg centralna os izolatora zatvara s ravninom stupa
+	 * Dobiva se pomoću orijentacije stupa te kuta između spojne točke vodiča i ravnine konzole
+	 */
+	public void updateOtklon(double orijentacija) {
+		double otklon;
+		
+		if(orijentacija >= 0) {
+			otklon = 180 - Math.abs(orijentacija);
+		} else {
+			otklon = Math.abs(orijentacija);
+		}
+		
+		if(this.stvZ >= 0) {
+			otklon -= 90 - Math.abs(this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
+		} else {
+			otklon += 90 - Math.abs(this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
+		}
+		
+		this.otklon = otklon;
 	}
 
 }

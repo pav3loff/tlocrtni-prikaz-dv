@@ -32,7 +32,7 @@ public class DataTransform {
 		// procitati podatke u izvornom obliku i prilagoditi ih u JSON oblik
 		IDataLoader dataLoader = new JsonObjectLoader();
 		
-		Path path = Paths.get("C:/Users/mario/Desktop/tlocrtni_prikaz_dalekovoda/podatci.json");
+		Path path = Paths.get(CURRENT_DIR + "\\data.json");
 		
 		JSONObject jsonObject = dataLoader.parseData(path);	
 		
@@ -81,7 +81,7 @@ public class DataTransform {
 		}
 		
 		try(FileWriter writer = new FileWriter(
-				Paths.get(CURRENT_DIR + "\\dummyData.js").toFile())) {
+				Paths.get(CURRENT_DIR + "\\Data-Display\\src\\dummyData.js").toFile())) {
 			writer.write("export const STUPOVI = ");
 			writer.write(stupoviOut.toString());
 		} catch (IOException exc) {

@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,7 +31,7 @@ public class DataTransform {
 	
 	private final static String CURRENT_DIR = System.getProperty("user.dir");
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {		
 		// procitati podatke u izvornom obliku i prilagoditi ih u JSON oblik
 		IDataLoader dataLoader = new JsonObjectLoader();
 		
@@ -74,18 +77,38 @@ public class DataTransform {
 		}
 		
 		// zapisati json u datoteku (izvornim podatcima samo dodati informacije o polozajima svih elemenata u WGS84 sustavu
-		JSONArray stupoviOut = new JSONArray();
-		
-		for(Stup stup : azuriraniStupovi) {
-			stupoviOut.put(stup.getJson());
-		}
-		
-		try(FileWriter writer = new FileWriter(
-				Paths.get(CURRENT_DIR + "\\Data-Display\\src\\dummyData.js").toFile())) {
-			writer.write("export const STUPOVI = ");
-			writer.write(stupoviOut.toString());
-		} catch (IOException exc) {
-			System.out.println("Neuspješno pisanje u datoteku!");
+		if(args[0].equals("-json")) {
+			JSONArray stupoviOut = new JSONArray();
+			
+			for(Stup stup : azuriraniStupovi) {
+				stupoviOut.put(stup.getJson());
+			}
+			
+			try(FileWriter writer = new FileWriter(
+					Paths.get(CURRENT_DIR + "\\Data-Display\\src\\dummyData.js").toFile())) {
+				writer.write("export const STUPOVI = ");
+				writer.write(stupoviOut.toString());
+			} catch (IOException exc) {
+				System.out.println("Neuspješno pisanje u datoteku!");
+			}
+		} else if(args[0].equals("-xml")) {
+			Document document = DocumentHelper.createDocument();
+			
+			Element root = document.addElement("osm");
+			root.addAttribute("version", "0.6");
+			
+			for(Stup stup : azuriraniStupovi) {
+				stup.getAsOsmXmlElement(root);
+			}
+			
+			try(FileWriter writer = new FileWriter(
+					Paths.get(CURRENT_DIR + "\\dummyData.xml").toFile())) {
+				writer.write(root.asXML().toString());
+			} catch (IOException exc) {
+				System.out.println("Neuspješno pisanje u datoteku!");
+			}
+		} else {
+			System.out.println("Neispravan format za izvoz podataka!");
 		}
 	}
 	

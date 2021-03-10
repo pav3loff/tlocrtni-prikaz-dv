@@ -1,19 +1,22 @@
 package hr.fer.pavlic.dipl.stupovi;
 
+import org.dom4j.Element;
 import org.json.JSONObject;
 
 public class SpojnaTockaZastitnogUzeta {
 
 	private int id;
+	private String uid;
 	private double x;
 	private double y;
 	private double z;
 	private double geoSirina;
 	private double geoDuzina;
 	
-	public SpojnaTockaZastitnogUzeta(int id, double x, double y, double z, double geoSirina, double geoDuzina) {
+	public SpojnaTockaZastitnogUzeta(int id, String uid, double x, double y, double z, double geoSirina, double geoDuzina) {
 		super();
 		this.id = id;
+		this.uid = uid;
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -24,6 +27,7 @@ public class SpojnaTockaZastitnogUzeta {
 	public SpojnaTockaZastitnogUzeta(SpojnaTockaZastitnogUzeta spojnaTockaZu) {
 		super();
 		this.id = spojnaTockaZu.id;
+		this.uid = spojnaTockaZu.uid;
 		this.x = spojnaTockaZu.x;
 		this.y = spojnaTockaZu.y;
 		this.z = spojnaTockaZu.z;
@@ -34,6 +38,10 @@ public class SpojnaTockaZastitnogUzeta {
 	public SpojnaTockaZastitnogUzeta(JSONObject spojnaTockaZuJson) {
 		if(!(spojnaTockaZuJson.isNull("id"))) {
 			this.id = spojnaTockaZuJson.getInt("id");
+		}
+		
+		if(!(spojnaTockaZuJson.isNull("uid"))) {
+			this.uid = spojnaTockaZuJson.getString("uid");
 		}
 		
 		if(!(spojnaTockaZuJson.isNull("x"))) {
@@ -67,6 +75,14 @@ public class SpojnaTockaZastitnogUzeta {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public double getX() {
@@ -120,6 +136,22 @@ public class SpojnaTockaZastitnogUzeta {
 		stzuJson.put("geoDuzina", this.geoDuzina);
 		
 		return stzuJson;
+	}
+	
+	public Element getAsOsmXmlElement(Element parent) {
+		Element stzuNode = parent.addElement("node")
+				.addAttribute("id", this.uid)
+				.addAttribute("version", "1")
+				.addAttribute("lat", Double.toString(this.geoSirina))
+				.addAttribute("lon", Double.toString(this.geoDuzina));
+
+		stzuNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stzu");
+		stzuNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.id));
+		stzuNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.x));
+		stzuNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.y));
+		stzuNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.z));
+		
+		return parent;
 	}
 	
 }

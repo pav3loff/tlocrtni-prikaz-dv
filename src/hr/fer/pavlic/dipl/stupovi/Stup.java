@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Stream;
 
+import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -287,6 +288,35 @@ public abstract class Stup {
 				Util.getSpojneTockeZuAsJsonArray(this.spojneTockeZu));
 		
 		return stupJson;
+	}
+	
+	public Element getAsOsmXmlElement(Element parent) {
+		Element stupNode = parent.addElement("node")
+				.addAttribute("id", Integer.toString(this.id))
+				.addAttribute("version", "1")
+				.addAttribute("lat", Double.toString(this.geoSirina))
+				.addAttribute("lon", Double.toString(this.geoDuzina));
+
+		stupNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stup");
+		stupNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.id));
+		stupNode.addElement("tag").addAttribute("k", "oblikGlaveStupa").addAttribute("v", this.getType().toString());
+		stupNode.addElement("tag").addAttribute("k", "isZatezni").addAttribute("v", Boolean.toString(this.isZatezni));
+		stupNode.addElement("tag").addAttribute("k", "visina").addAttribute("v", Double.toString(this.visina));
+		stupNode.addElement("tag").addAttribute("k", "tipStupa").addAttribute("v", this.tipStupa);
+		stupNode.addElement("tag").addAttribute("k", "proizvodac").addAttribute("v", this.proizvodac);
+		stupNode.addElement("tag").addAttribute("k", "tezina").addAttribute("v", Double.toString(this.tezina));
+		stupNode.addElement("tag").addAttribute("k", "oznakaUzemljenja").addAttribute("v", this.oznakaUzemljenja);
+		stupNode.addElement("tag").addAttribute("k", "vrstaZastite").addAttribute("v", this.vrstaZastite);
+		
+		for(Izolator izolator : this.izolatori) {
+			izolator.getAsOsmXmlElement(parent);
+		}
+		
+		for(SpojnaTockaZastitnogUzeta stzu : this.spojneTockeZu) {
+			stzu.getAsOsmXmlElement(parent);
+		}
+		
+		return parent;
 	}
 	
 	public void transform() {

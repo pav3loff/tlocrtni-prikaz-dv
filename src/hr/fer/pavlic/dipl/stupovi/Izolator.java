@@ -1,11 +1,13 @@
 package hr.fer.pavlic.dipl.stupovi;
 
+import org.dom4j.Element;
 import org.json.JSONObject;
 
 public class Izolator {
 	
 	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private int id;
+	private String uid;
 	private double stiX;
 	private double stiY;
 	private double stiZ;
@@ -24,10 +26,11 @@ public class Izolator {
 	private double stvGeoSirina;
 	private double stvGeoDuzina;
 	
-	public Izolator(int id, double stiX, double stiY, double stiZ, double stvX, double stvY, double stvZ,
+	public Izolator(int id, String uid, double stiX, double stiY, double stiZ, double stvX, double stvY, double stvZ,
 			double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, String materijal, String izvedba, int brojClanaka) {
 		super();
 		this.id = id;
+		this.uid = uid;
 		this.stiX = stiX;
 		this.stiY = stiY;
 		this.stiZ = stiZ;
@@ -46,6 +49,7 @@ public class Izolator {
 	public Izolator(Izolator izolator) {
 		super();
 		this.id = izolator.id;
+		this.uid = izolator.uid;
 		this.stiX = izolator.stiX;
 		this.stiY = izolator.stiY;
 		this.stiZ = izolator.stiZ;
@@ -64,6 +68,10 @@ public class Izolator {
 	public Izolator(JSONObject izolatorJson) {
 		if(!(izolatorJson.isNull("id"))) {
 			this.id = izolatorJson.getInt("id");
+		}
+		
+		if(!(izolatorJson.isNull("uid"))) {
+			this.uid = izolatorJson.getString("uid");
 		}
 		
 		if(!(izolatorJson.isNull("spojnaTockaIzolatora"))) {
@@ -163,6 +171,14 @@ public class Izolator {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getUid() {
+		return uid;
+	}
+	
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 
 	public double getStiX() {
@@ -301,6 +317,14 @@ public class Izolator {
 		this.stvGeoDuzina = stvGeoDuzina;
 	}
 	
+	public String getStiUid() {
+		return this.uid + "000";
+	}
+	
+	public String getStvUid() {
+		return this.uid + "111";
+	}
+	
 	public JSONObject getJson() {
 		JSONObject stiJson = new JSONObject();
 		stiJson.put("x", this.stiX);
@@ -318,6 +342,7 @@ public class Izolator {
 		
 		JSONObject izolatorJson = new JSONObject();
 		izolatorJson.put("id", this.id);
+		izolatorJson.put("uid", this.uid);
 		izolatorJson.put("kutIzmedjuSpojneTockeVodicaIRavnineKonzole", this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
 		izolatorJson.put("materijal", this.materijal);
 		izolatorJson.put("izvedba", this.izvedba);
@@ -329,6 +354,46 @@ public class Izolator {
 		izolatorJson.put("spojnaTockaVodica", stvJson);
 		
 		return izolatorJson;
+	}
+	
+	public Element getAsOsmXmlElement(Element parent) {
+		Element izolatorNode = parent.addElement("node")
+								.addAttribute("id", this.uid)
+								.addAttribute("version", "1")
+								.addAttribute("lat", Double.toString(this.geoSirina))
+								.addAttribute("lon", Double.toString(this.geoDuzina));
+		
+		izolatorNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "izolator");
+		izolatorNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.id));
+		izolatorNode.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.materijal);
+		izolatorNode.addElement("tag").addAttribute("k", "izvedba").addAttribute("v", this.izvedba);
+		izolatorNode.addElement("tag").addAttribute("k", "brojClanaka").addAttribute("v", Integer.toString(this.brojClanaka));
+		
+		Element stiNode = parent.addElement("node")
+				.addAttribute("id", this.getStiUid())
+				.addAttribute("version", "1")
+				.addAttribute("lat", Double.toString(this.getStiGeoSirina()))
+				.addAttribute("lon", Double.toString(this.getStiGeoDuzina()));
+		
+		stiNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "sti");
+		stiNode.addElement("tag").addAttribute("k", "id").addAttribute("v", this.getStiUid());
+		stiNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.stiX));
+		stiNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.stiY));
+		stiNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.stiZ));
+		
+		Element stvNode = parent.addElement("node")
+				.addAttribute("id", this.getStvUid())
+				.addAttribute("version", "1")
+				.addAttribute("lat", Double.toString(this.getStvGeoSirina()))
+				.addAttribute("lon", Double.toString(this.getStvGeoDuzina()));
+		
+		stvNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stv");
+		stvNode.addElement("tag").addAttribute("k", "id").addAttribute("v", this.getStvUid());
+		stvNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.stvX));
+		stvNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.stvY));
+		stvNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.stvZ));
+		
+		return parent;
 	}
 	
 	/**

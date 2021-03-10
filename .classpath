@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/mario/Downloads/jackson-datatype-json-org-2.11.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/mario/Downloads/json-20200518.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mario/Downloads/json-20180813.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mario/Downloads/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

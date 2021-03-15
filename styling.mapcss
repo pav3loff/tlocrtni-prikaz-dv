@@ -1,0 +1,115 @@
+meta {
+	title: "DV";
+	author: "paveloff"; 
+	version: "1.0_2021-03-01"; 
+	description: "opis";
+}
+
+setting::hide_icons {
+  type: boolean;
+  label: tr("Hide icons at low zoom");
+  default: true;
+}
+
+node|z-21[type=stup] {
+	icon-image: "C:/Users/mario/Desktop/dv/test.png";
+	icon-width: 15;
+	icon-height: 15;
+	icon-offset-y: 3;
+	text: "id";
+	text-color: white;
+	text-halo-color: black;
+	text-halo-radius: 1;
+	font-family: "Droid Sans";
+	font-size: 11;
+}
+
+node|z21-[type=stup] {
+	symbol-shape: circle;
+	symbol-size: 10;
+	symbol-fill-color: white;
+}
+
+node|z-22[type=izolator][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
+node|z22-23[type=izolator] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: lime;
+}
+
+node|z23-[type=izolator] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: lime;
+	text: "id";
+	text-color: white;
+	text-halo-color: black;
+	text-halo-radius: 1;
+	font-family: "Droid Sans";
+	font-size: 11;
+}
+
+node|z-22[type=stzu][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
+node|z22-23[type=stzu] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: red;
+}
+
+node|z23-[type=stzu] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: red;
+	text: "type";
+	text-color: white;
+	font-family: "Droid Sans";
+	font-size: 11;
+}
+
+node|z-22[type=sti][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
+node|z22-23[type=sti] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: orange;
+}
+
+node|z23-[type=sti] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: orange;
+	text: "type";
+	text-color: white;
+	font-family: "Droid Sans";
+	font-size: 11;
+}
+
+node|z-22[type=stv][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
+node|z22-23[type=stv] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: blue;
+}
+
+node|z23-[type=stv] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: blue;
+	text: "type";
+	text-color: white;
+	font-family: "Droid Sans";
+	font-size: 11;
+}
+
+

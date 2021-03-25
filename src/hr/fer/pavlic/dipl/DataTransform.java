@@ -35,7 +35,7 @@ public class DataTransform {
 		// procitati podatke u izvornom obliku i prilagoditi ih u JSON oblik
 		IDataLoader dataLoader = new JsonObjectLoader();
 		
-		Path path = Paths.get(CURRENT_DIR + "\\data.json");
+		Path path = Paths.get(CURRENT_DIR + "\\inputData.json");
 		
 		JSONObject jsonObject = dataLoader.parseData(path);	
 		
@@ -102,7 +102,7 @@ public class DataTransform {
 			}
 			
 			try(FileWriter writer = new FileWriter(
-					Paths.get(CURRENT_DIR + "\\dummyData.xml").toFile())) {
+					Paths.get(CURRENT_DIR + "\\exported.xml").toFile())) {
 				writer.write(root.asXML().toString());
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");

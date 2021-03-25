@@ -15,6 +15,7 @@ import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import hr.fer.pavlic.dipl.util.UidGenerator;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmWgsConverter;
 import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
@@ -23,7 +24,7 @@ public abstract class Stup {
 	
 	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private final static int RAZMAK = 2;
-	private int id;
+	private int idStupa;
 	private boolean isZatezni;
 	private double orijentacija;
 	private double geoSirina;
@@ -41,11 +42,11 @@ public abstract class Stup {
 		super();
 	}
 	
-	public Stup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
+	public Stup(int idStupa, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
 		super();
-		this.id = id;
+		this.idStupa = idStupa;
 		this.isZatezni = isZatezni;
 		this.orijentacija = orijentacija;
 		this.geoSirina = geoSirina;
@@ -61,8 +62,8 @@ public abstract class Stup {
 	}
 	
 	public Stup(JSONObject stupJson) {
-		if(!(stupJson.isNull("id"))) {
-			this.setId(stupJson.getInt("id"));
+		if(!(stupJson.isNull("idStupa"))) {
+			this.setIdStupa(stupJson.getInt("idStupa"));
 		}
 		
 		if(!(stupJson.isNull("isZatezni"))) {
@@ -153,8 +154,8 @@ public abstract class Stup {
 		}
 		
 		// metoda containsKey sucelja Map objekte ne uspoređuje s equals; potrebno je ručno implementirati
-		private static SpojnaTocka getKeyIfExists(Map<SpojnaTocka, List<Izolator>> parovi, SpojnaTocka st) {
-			for(Entry<SpojnaTocka, List<Izolator>> par : parovi.entrySet()) {
+		private static SpojnaTockaIzolatora getKeyIfExists(Map<SpojnaTockaIzolatora, List<Izolator>> parovi, SpojnaTockaIzolatora st) {
+			for(Entry<SpojnaTockaIzolatora, List<Izolator>> par : parovi.entrySet()) {
 				if(par.getKey().equals(st)) {
 					return par.getKey();
 				}
@@ -164,12 +165,12 @@ public abstract class Stup {
 		}
 	}
 	
-	public int getId() {
-		return id;
+	public int getIdStupa() {
+		return idStupa;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdStupa(int idStupa) {
+		this.idStupa = idStupa;
 	}
 
 	public boolean isZatezni() {
@@ -271,7 +272,7 @@ public abstract class Stup {
 	public JSONObject getJson() {
 		JSONObject stupJson = new JSONObject();
 		
-		stupJson.put("id", this.id);
+		stupJson.put("idStupa", this.idStupa);
 		stupJson.put("oblikGlaveStupa", this.getType());
 		stupJson.put("isZatezni", this.isZatezni);
 		stupJson.put("orijentacija", this.orijentacija);
@@ -292,13 +293,13 @@ public abstract class Stup {
 	
 	public Element getAsOsmXmlElement(Element parent) {
 		Element stupNode = parent.addElement("node")
-				.addAttribute("id", Integer.toString(this.id))
+				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
 				.addAttribute("lat", Double.toString(this.geoSirina))
 				.addAttribute("lon", Double.toString(this.geoDuzina));
 
 		stupNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stup");
-		stupNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.id));
+		stupNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idStupa));
 		stupNode.addElement("tag").addAttribute("k", "oblikGlaveStupa").addAttribute("v", this.getType().toString());
 		stupNode.addElement("tag").addAttribute("k", "isZatezni").addAttribute("v", Boolean.toString(this.isZatezni));
 		stupNode.addElement("tag").addAttribute("k", "visina").addAttribute("v", Double.toString(this.visina));
@@ -571,12 +572,12 @@ public abstract class Stup {
 		// nosivi stup tipa jela: 2 izolatora s jedna i 4 s druge strane
 		// zatezni stupovi nemaju parove jednakih STI
 		// grupiranje parova
-		Map<SpojnaTocka, List<Izolator>> parovi = new LinkedHashMap<>();
+		Map<SpojnaTockaIzolatora, List<Izolator>> parovi = new LinkedHashMap<>();
 					
 		for(Izolator izolator : izolatori) {
-			SpojnaTocka st = new SpojnaTocka(izolator.getStiX(), 
+			SpojnaTockaIzolatora sti = new SpojnaTockaIzolatora(izolator.getIdSti(), izolator.getStiX(), 
 					izolator.getStiY(), izolator.getStiZ());
-					SpojnaTocka kljuc = Util.getKeyIfExists(parovi, st);
+					SpojnaTockaIzolatora kljuc = Util.getKeyIfExists(parovi, sti);
 						
 			if(kljuc != null) {
 				List<Izolator> par = parovi.get(kljuc);
@@ -584,23 +585,23 @@ public abstract class Stup {
 							
 				parovi.put(kljuc, par);
 			} else {
-				parovi.put(st, new LinkedList<>(Arrays.asList(izolator)));
+				parovi.put(sti, new LinkedList<>(Arrays.asList(izolator)));
 			}
 		}
 					
 		// sortirati parove prema padajućoj vrijednosti koordinate Y STI
-		Stream<Entry<SpojnaTocka, List<Izolator>>> streamParova = parovi.entrySet()
-				.stream().sorted(Collections.reverseOrder(Entry.comparingByKey(new Comparator<SpojnaTocka>() {
+		Stream<Entry<SpojnaTockaIzolatora, List<Izolator>>> streamParova = parovi.entrySet()
+				.stream().sorted(Collections.reverseOrder(Entry.comparingByKey(new Comparator<SpojnaTockaIzolatora>() {
 
 					@Override
-					public int compare(SpojnaTocka st1, SpojnaTocka st2) {
-						return Double.compare(st1.getY(), st1.getY());
+					public int compare(SpojnaTockaIzolatora sti1, SpojnaTockaIzolatora sti2) {
+						return Double.compare(sti1.getY(), sti1.getY());
 					}
 								
 				})));
 					
 		List<Izolator> azuriraniIzolatori = new LinkedList<>();
-		Iterator<Entry<SpojnaTocka, List<Izolator>>> streamParovaIterator = streamParova.iterator();
+		Iterator<Entry<SpojnaTockaIzolatora, List<Izolator>>> streamParovaIterator = streamParova.iterator();
 					
 		int i = 1;
 		int predznak = isDesno ? 1 : -1; // desna strana ima predznak +, a lijeva -

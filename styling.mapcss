@@ -17,9 +17,7 @@ node|z-21[type=stup] {
 	icon-height: 15;
 	icon-offset-y: 3;
 	text: "id";
-	text-color: white;
-	text-halo-color: black;
-	text-halo-radius: 1;
+	text-color: black;
 	font-family: "Droid Sans";
 	font-size: 11;
 }
@@ -45,9 +43,7 @@ node|z23-[type=izolator] {
 	symbol-size: 5;
 	symbol-fill-color: lime;
 	text: "id";
-	text-color: white;
-	text-halo-color: black;
-	text-halo-radius: 1;
+	text-color: black;
 	font-family: "Droid Sans";
 	font-size: 11;
 }
@@ -66,8 +62,8 @@ node|z23-[type=stzu] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: red;
-	text: "type";
-	text-color: white;
+	text: "id";
+	text-color: black;
 	font-family: "Droid Sans";
 	font-size: 11;
 }
@@ -86,8 +82,8 @@ node|z23-[type=sti] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: orange;
-	text: "type";
-	text-color: white;
+	text: "id";
+	text-color: black;
 	font-family: "Droid Sans";
 	font-size: 11;
 }
@@ -106,8 +102,8 @@ node|z23-[type=stv] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: blue;
-	text: "type";
-	text-color: white;
+	text: "id";
+	text-color: black;
 	font-family: "Droid Sans";
 	font-size: 11;
 }

@@ -3,20 +3,20 @@ package hr.fer.pavlic.dipl.stupovi;
 import org.dom4j.Element;
 import org.json.JSONObject;
 
+import hr.fer.pavlic.dipl.util.UidGenerator;
+
 public class SpojnaTockaZastitnogUzeta {
 
-	private int id;
-	private String uid;
+	private int idStzu;
 	private double x;
 	private double y;
 	private double z;
 	private double geoSirina;
 	private double geoDuzina;
 	
-	public SpojnaTockaZastitnogUzeta(int id, String uid, double x, double y, double z, double geoSirina, double geoDuzina) {
+	public SpojnaTockaZastitnogUzeta(int idStzu, double x, double y, double z, double geoSirina, double geoDuzina) {
 		super();
-		this.id = id;
-		this.uid = uid;
+		this.idStzu = idStzu;
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -26,8 +26,7 @@ public class SpojnaTockaZastitnogUzeta {
 	
 	public SpojnaTockaZastitnogUzeta(SpojnaTockaZastitnogUzeta spojnaTockaZu) {
 		super();
-		this.id = spojnaTockaZu.id;
-		this.uid = spojnaTockaZu.uid;
+		this.idStzu = spojnaTockaZu.idStzu;
 		this.x = spojnaTockaZu.x;
 		this.y = spojnaTockaZu.y;
 		this.z = spojnaTockaZu.z;
@@ -36,12 +35,8 @@ public class SpojnaTockaZastitnogUzeta {
 	}
 
 	public SpojnaTockaZastitnogUzeta(JSONObject spojnaTockaZuJson) {
-		if(!(spojnaTockaZuJson.isNull("id"))) {
-			this.id = spojnaTockaZuJson.getInt("id");
-		}
-		
-		if(!(spojnaTockaZuJson.isNull("uid"))) {
-			this.uid = spojnaTockaZuJson.getString("uid");
+		if(!(spojnaTockaZuJson.isNull("idStzu"))) {
+			this.idStzu = spojnaTockaZuJson.getInt("idStzu");
 		}
 		
 		if(!(spojnaTockaZuJson.isNull("x"))) {
@@ -69,20 +64,12 @@ public class SpojnaTockaZastitnogUzeta {
 		}
 	}
 
-	public int getId() {
-		return id;
+	public int getIdStzu() {
+		return idStzu;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setIdStzu(int idStzu) {
+		this.idStzu = idStzu;
 	}
 
 	public double getX() {
@@ -128,7 +115,7 @@ public class SpojnaTockaZastitnogUzeta {
 	public JSONObject getAsJson() {
 		JSONObject stzuJson = new JSONObject();
 		
-		stzuJson.put("id", this.id);
+		stzuJson.put("idStzu", this.idStzu);
 		stzuJson.put("x", this.x);
 		stzuJson.put("y", this.y);
 		stzuJson.put("z", this.z);
@@ -140,13 +127,13 @@ public class SpojnaTockaZastitnogUzeta {
 	
 	public Element getAsOsmXmlElement(Element parent) {
 		Element stzuNode = parent.addElement("node")
-				.addAttribute("id", this.uid)
+				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
 				.addAttribute("lat", Double.toString(this.geoSirina))
 				.addAttribute("lon", Double.toString(this.geoDuzina));
 
 		stzuNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stzu");
-		stzuNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.id));
+		stzuNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idStzu));
 		stzuNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.x));
 		stzuNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.y));
 		stzuNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.z));

@@ -1,16 +1,26 @@
 package hr.fer.pavlic.dipl.stupovi;
 
-public class SpojnaTocka {
+public class SpojnaTockaIzolatora {
 	
+	private int idSti;
 	private double x;
 	private double y;
 	private double z;
 	
-	public SpojnaTocka(double x, double y, double z) {
+	public SpojnaTockaIzolatora(int idSti, double x, double y, double z) {
 		super();
+		this.idSti = idSti;
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public int getIdSti() {
+		return idSti;
+	}
+	
+	public void setIdSti(int idSti) {
+		this.idSti = idSti;
 	}
 
 	public double getX() {
@@ -39,11 +49,11 @@ public class SpojnaTocka {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof SpojnaTocka)) {
+		if(!(obj instanceof SpojnaTockaIzolatora)) {
 			return false;
 		}
 		
-		SpojnaTocka other = (SpojnaTocka) obj;
+		SpojnaTockaIzolatora other = (SpojnaTockaIzolatora) obj;
 		
 		return this.x == other.x && this.y == other.y && this.z == other.z;
 	}

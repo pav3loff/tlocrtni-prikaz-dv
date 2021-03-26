@@ -36,7 +36,7 @@ public abstract class Stup {
 	private String oznakaUzemljenja;
 	private String vrstaZastite;
 	private List<Izolator> izolatori;
-	private List<SpojnaTockaZastitnogUzeta> spojneTockeZu;
+	private List<SpojnaTocka> spojneTockeZu;
 	
 	public Stup() {
 		super();
@@ -44,7 +44,7 @@ public abstract class Stup {
 	
 	public Stup(int idStupa, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
-			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {
 		super();
 		this.idStupa = idStupa;
 		this.isZatezni = isZatezni;
@@ -121,12 +121,12 @@ public abstract class Stup {
 		if(!(stupJson.isNull("spojneTockeZastitneUzadi"))) {
 			JSONArray spojneTockeZuJson = stupJson.getJSONArray("spojneTockeZastitneUzadi");
 			
-			this.spojneTockeZu = new LinkedList<SpojnaTockaZastitnogUzeta>();
+			this.spojneTockeZu = new LinkedList<SpojnaTocka>();
 			
 			for(int i = 0; i < spojneTockeZuJson.length(); i++) {
 				JSONObject spojnaTockaZuJson = spojneTockeZuJson.getJSONObject(i);
 				
-				this.spojneTockeZu.add(new SpojnaTockaZastitnogUzeta(spojnaTockaZuJson));
+				this.spojneTockeZu.add(new SpojnaTocka(spojnaTockaZuJson));
 			}
 		}
 	}
@@ -143,20 +143,20 @@ public abstract class Stup {
 		}
 		
 		private static JSONArray getSpojneTockeZuAsJsonArray(
-				List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+				List<SpojnaTocka> spojneTockeZu) {
 			JSONArray spojneTockeZuJson = new JSONArray();
 			
-			for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
+			for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
 				spojneTockeZuJson.put(spojnaTockaZu.getAsJson());
 			}
 			
 			return spojneTockeZuJson;
 		}
 		
-		// metoda containsKey sucelja Map objekte ne usporeÄ‘uje s equals; potrebno je ruÄ?no implementirati
-		private static SpojnaTockaIzolatora getKeyIfExists(Map<SpojnaTockaIzolatora, List<Izolator>> parovi, SpojnaTockaIzolatora st) {
-			for(Entry<SpojnaTockaIzolatora, List<Izolator>> par : parovi.entrySet()) {
-				if(par.getKey().equals(st)) {
+		// metoda containsKey sucelja Map objekte ne usporeÄ‘uje s equals; potrebno je ruï¿½?no implementirati
+		private static SpojnaTocka getKeyIfExists(Map<SpojnaTocka, List<Izolator>> parovi, SpojnaTocka sti) {
+			for(Entry<SpojnaTocka, List<Izolator>> par : parovi.entrySet()) {
+				if(par.getKey().equals(sti)) {
 					return par.getKey();
 				}
 			}
@@ -261,11 +261,11 @@ public abstract class Stup {
 		this.izolatori = izolatori;
 	}
 	
-	public List<SpojnaTockaZastitnogUzeta> getSpojneTockeZu() {
+	public List<SpojnaTocka> getSpojneTockeZu() {
 		return spojneTockeZu;
 	}
 
-	public void setSpojneTockeZu(List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+	public void setSpojneTockeZu(List<SpojnaTocka> spojneTockeZu) {
 		this.spojneTockeZu = spojneTockeZu;
 	}
 
@@ -313,7 +313,7 @@ public abstract class Stup {
 			izolator.getAsOsmXmlElement(parent);
 		}
 		
-		for(SpojnaTockaZastitnogUzeta stzu : this.spojneTockeZu) {
+		for(SpojnaTocka stzu : this.spojneTockeZu) {
 			stzu.getAsOsmXmlElement(parent);
 		}
 		
@@ -329,13 +329,13 @@ public abstract class Stup {
 	}
 	
 	/**
-	 * Transformiraju se one spojne toÄ?ke koje su udaljene od centralne osi stupa
-	 * Spojne toÄ?ke koje su na centralnoj osi (imaju X = 0) nije potrebno mijenjati
-	 * Koordinate X spojnih toÄ?aka izolatora poprimaju vrijednosti RAZMAK * i (..., -6, -4, -2, 2, 4, 6, ...)
-	 * Koordinate X spojnih toÄ?aka zaÅ¡titne uÅ¾adi poprimaju vrijednosti RAZMAK * i + 1 (..., -5, -3, -1, 1, 3, 5, ...)
+	 * Transformiraju se one spojne toï¿½?ke koje su udaljene od centralne osi stupa
+	 * Spojne toï¿½?ke koje su na centralnoj osi (imaju X = 0) nije potrebno mijenjati
+	 * Koordinate X spojnih toï¿½?aka izolatora poprimaju vrijednosti RAZMAK * i (..., -6, -4, -2, 2, 4, 6, ...)
+	 * Koordinate X spojnih toï¿½?aka zaÅ¡titne uÅ¾adi poprimaju vrijednosti RAZMAK * i + 1 (..., -5, -3, -1, 1, 3, 5, ...)
 	 */
 	private void separateST() {
-		// transformacija spojnih toÄ?aka izolatora
+		// transformacija spojnih toï¿½?aka izolatora
 		List<Izolator> azuriraniIzolatori = new LinkedList<>();
 		List<Izolator> desniIzolatori = new LinkedList<>();
 		List<Izolator> lijeviIzolatori = new LinkedList<>();
@@ -343,9 +343,9 @@ public abstract class Stup {
 		// raspodjela izolatora lijevo i desno
 		// centralni izolator (X = 0) ostaje nepromijenjen (ako postoji)
 		for(Izolator izolator : this.izolatori) {
-			if(izolator.getStiX() > 0) { // izolator je s jedne strane
+			if(izolator.getSti().getX() > 0) { // izolator je s jedne strane
 				desniIzolatori.add(izolator);
-			} else if(izolator.getStiX() < 0) { // izolator je s druge strane
+			} else if(izolator.getSti().getX() < 0) { // izolator je s druge strane
 				lijeviIzolatori.add(izolator);
 			} else { // izolator je na centralnoj osi - ne mijenja se
 				azuriraniIzolatori.add(izolator);
@@ -366,33 +366,33 @@ public abstract class Stup {
 		
 		this.izolatori = azuriraniIzolatori;
 		
-		// transformacija spojnih toÄ?aka zaÅ¡titne uÅ¾adi
-		List<SpojnaTockaZastitnogUzeta> spojneTockeZu = this.spojneTockeZu;
-		List<SpojnaTockaZastitnogUzeta> azuriraneSpojneTockeZu = new LinkedList<>();
-		List<SpojnaTockaZastitnogUzeta> desneSpojneTockeZu = new LinkedList<>();
-		List<SpojnaTockaZastitnogUzeta> lijeveSpojneTockeZu = new LinkedList<>();
+		// transformacija spojnih toï¿½?aka zaÅ¡titne uÅ¾adi
+		List<SpojnaTocka> spojneTockeZu = this.spojneTockeZu;
+		List<SpojnaTocka> azuriraneSpojneTockeZu = new LinkedList<>();
+		List<SpojnaTocka> desneSpojneTockeZu = new LinkedList<>();
+		List<SpojnaTocka> lijeveSpojneTockeZu = new LinkedList<>();
 		
-		// raspodjela spojnih toÄ?aka zaÅ¡titne uÅ¾adi lijevo i desno
-		// centralna spojna toÄ?ka ZU (X = 0) ostaje nepromijenjena (ako postoji)
-		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
-			if(spojnaTockaZu.getX() > 0) { // spojna toÄ?ka je s jedne strane
+		// raspodjela spojnih toï¿½?aka zaÅ¡titne uÅ¾adi lijevo i desno
+		// centralna spojna toï¿½?ka ZU (X = 0) ostaje nepromijenjena (ako postoji)
+		for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
+			if(spojnaTockaZu.getX() > 0) { // spojna toï¿½?ka je s jedne strane
 				desneSpojneTockeZu.add(spojnaTockaZu);
-			} else if(spojnaTockaZu.getX() < 0) { // spojna toÄ?ka je s druge strane
+			} else if(spojnaTockaZu.getX() < 0) { // spojna toï¿½?ka je s druge strane
 				lijeveSpojneTockeZu.add(spojnaTockaZu);
-			} else { // spojna toÄ?ka je na centralnoj osi - ne mijenja se
+			} else { // spojna toï¿½?ka je na centralnoj osi - ne mijenja se
 				azuriraneSpojneTockeZu.add(spojnaTockaZu);
 			}
 		}
 		
 		if(desneSpojneTockeZu.size() > 0) {
-			List<SpojnaTockaZastitnogUzeta> azuriraneSpojneTockeZuDesno = getSeparatedSpojneTockeZu(desneSpojneTockeZu, true);
+			List<SpojnaTocka> azuriraneSpojneTockeZuDesno = getSeparatedSpojneTockeZu(desneSpojneTockeZu, true);
 		
 			azuriraneSpojneTockeZu.addAll(azuriraneSpojneTockeZuDesno);
 		}
 		
 		
 		if(lijeveSpojneTockeZu.size() > 0) {
-			List<SpojnaTockaZastitnogUzeta> azuriraneSpojneTockeZuLijevo = getSeparatedSpojneTockeZu(lijeveSpojneTockeZu, false);
+			List<SpojnaTocka> azuriraneSpojneTockeZuLijevo = getSeparatedSpojneTockeZu(lijeveSpojneTockeZu, false);
 			
 			azuriraneSpojneTockeZu.addAll(azuriraneSpojneTockeZuLijevo);
 		}
@@ -401,8 +401,8 @@ public abstract class Stup {
 	}
 	
 	/**
-	 * VraÄ‡a novu listu izolatora s aÅ¾uriranim vrijednostima (x, y, z) spojnih toÄ?aka izolatora i vodiÄ?a
-	 * Za transformaciju je bitna orijentacija stupa i kut izmeÄ‘u spojne toÄ?ke vodiÄ?a i ravnine konzole
+	 * VraÄ‡a novu listu izolatora s aÅ¾uriranim vrijednostima (x, y, z) spojnih toï¿½?aka izolatora i vodiï¿½?a
+	 * Za transformaciju je bitna orijentacija stupa i kut izmeÄ‘u spojne toï¿½?ke vodiï¿½?a i ravnine konzole
 	 */
 	private List<Izolator> getAdjustedIzolatori(List<Izolator> izolatori) {
 		List<Izolator> adjustedIzolatori = new LinkedList<>();
@@ -414,9 +414,9 @@ public abstract class Stup {
 		double alfa = Math.toRadians(this.orijentacija);
 		
 		for(Izolator izolator : adjustedIzolatori) {
-			double xSti = izolator.getStiX();
-			double zSti = izolator.getStiZ();
-			double zStv = izolator.getStvZ();
+			double xSti = izolator.getSti().getX();
+			double zSti = izolator.getSti().getZ();
+			double zStv = izolator.getStv().getZ();
 			
 			// izracun X STV
 			double beta = Math.toRadians(Math.abs(izolator.getKutIzmedjuSpojneTockeVodicaIRavnineKonzole()));
@@ -424,93 +424,93 @@ public abstract class Stup {
 			double xStv = xSti - d;
 			
 			// prilagodba STI (rotacija koordinatnog sustava za orijentaciju stupa)
-			double azuriraniX = xSti * Math.cos(alfa) - zSti * Math.sin(alfa);
-			double azuriraniZ = xSti * Math.sin(alfa) + zSti * Math.cos(alfa);
+			double azuriraniXSti = xSti * Math.cos(alfa) - zSti * Math.sin(alfa);
+			double azuriraniZSti = xSti * Math.sin(alfa) + zSti * Math.cos(alfa);
 			
 			// prilagodba STV (rotacija koordinatnog sustava za orijentaciju stupa)
 			double azuriraniXStv = xStv * Math.cos(alfa) - zStv * Math.sin(alfa);
 			double azuriraniZStv = xStv * Math.sin(alfa) + zStv * Math.cos(alfa);
 			
-			izolator.setStiX(azuriraniX);
-			izolator.setStiZ(azuriraniZ);
-			izolator.setStvX(azuriraniXStv);
-			izolator.setStvZ(azuriraniZStv);
+			izolator.getSti().setX(Math.round(azuriraniXSti * 100.0) / 100.0);
+			izolator.getSti().setZ(Math.round(azuriraniZSti * 100.0) / 100.0);
+			izolator.getStv().setX(Math.round(azuriraniXStv * 100.0) / 100.0);
+			izolator.getStv().setZ(Math.round(azuriraniZStv * 100.0) / 100.0);
 		}
 		
 		return adjustedIzolatori;
 	}
 	
 	/**
-	 * VraÄ‡a novu listu spojnih toÄ?aka zaÅ¡titne uÅ¾adi s aÅ¾uriranim vrijednostima (x, y, z)
+	 * VraÄ‡a novu listu spojnih toï¿½?aka zaÅ¡titne uÅ¾adi s aÅ¾uriranim vrijednostima (x, y, z)
 	 */
-	private List<SpojnaTockaZastitnogUzeta> getAdjustedSpojneTockeZu(List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
-		List<SpojnaTockaZastitnogUzeta> adjustedSpojneTockeZu = new LinkedList<>();
+	private List<SpojnaTocka> getAdjustedSpojneTockeZu(List<SpojnaTocka> spojneTockeZu) {
+		List<SpojnaTocka> adjustedSpojneTockeZu = new LinkedList<>();
 		
-		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
-			adjustedSpojneTockeZu.add(new SpojnaTockaZastitnogUzeta(spojnaTockaZu));
+		for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
+			adjustedSpojneTockeZu.add(new SpojnaTocka(spojnaTockaZu));
 		}
 		
 		double alfa = Math.toRadians(this.orijentacija);
 		
-		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : adjustedSpojneTockeZu) {
+		for(SpojnaTocka spojnaTockaZu : adjustedSpojneTockeZu) {
 			double x = spojnaTockaZu.getX();
 			double z = spojnaTockaZu.getZ();
 			
 			double azuriraniX = x * Math.cos(alfa) - z * Math.sin(alfa);
 			double azuriraniZ = x * Math.sin(alfa) + z * Math.cos(alfa);
 			
-			spojnaTockaZu.setX(azuriraniX);
-			spojnaTockaZu.setZ(azuriraniZ);
+			spojnaTockaZu.setX(Math.round(azuriraniX * 100.0) / 100.0);
+			spojnaTockaZu.setZ(Math.round(azuriraniZ * 100.0) / 100.0);
 		}
 		
 		return adjustedSpojneTockeZu;
 	}
 	
 	/**
-	 * Koordinate poloÅ¾aja stupa izvorno su u WGS84 sustavu, a koordinate spojnih toÄ?aka su u Kartezijevom sustavu u kojem je stup u ishodiÅ¡tu
-	 * Koordinate poloÅ¾aja spojnih toÄ?aka dobivaju se na sljedeÄ‡i naÄ?in:
+	 * Koordinate poloÅ¾aja stupa izvorno su u WGS84 sustavu, a koordinate spojnih toï¿½?aka su u Kartezijevom sustavu u kojem je stup u ishodiÅ¡tu
+	 * Koordinate poloÅ¾aja spojnih toï¿½?aka dobivaju se na sljedeÄ‡i naï¿½?in:
 	 * - PoloÅ¾aj stupa transformira se u UTM sustav
-	 * - PoloÅ¾aj spojne toÄ?ke raÄ?una se kao (x = x + xStupa, z = z + zStupa) gdje je xStupa vrijednost easting udaljenosti stupa u UTM sustavu, a zStupa vrijednost je northing udaljenosti stupa u UTM sustavu
-	 * - Dobiveni poloÅ¾aj spojne toÄ?ke u UTM sustavu transformira se natrag u WGS84 sustav
+	 * - PoloÅ¾aj spojne toï¿½?ke raï¿½?una se kao (x = x + xStupa, z = z + zStupa) gdje je xStupa vrijednost easting udaljenosti stupa u UTM sustavu, a zStupa vrijednost je northing udaljenosti stupa u UTM sustavu
+	 * - Dobiveni poloÅ¾aj spojne toï¿½?ke u UTM sustavu transformira se natrag u WGS84 sustav
 	 */
 	private void convertUtmToWgs() {
 		try {
-			// Potrebno je oÄ?uvati podatke o poloÅ¾aju spojnih toÄ?aka nakon razdvajanja
+			// Potrebno je oï¿½?uvati podatke o poloÅ¾aju spojnih toï¿½?aka nakon razdvajanja
 			List<Izolator> izolatori = getAdjustedIzolatori(this.izolatori);
-			List<SpojnaTockaZastitnogUzeta> spojneTockeZu = getAdjustedSpojneTockeZu(this.spojneTockeZu);
+			List<SpojnaTocka> spojneTockeZu = getAdjustedSpojneTockeZu(this.spojneTockeZu);
 			
-			// Konverzija spojnih toÄ?aka izolatora i vodiÄ?a
+			// Konverzija spojnih toï¿½?aka izolatora i vodiï¿½?a
 			UtmCoordinate stupUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(this.geoSirina, this.geoDuzina));
 			
 			for(Izolator izolator : izolatori) {
 				UtmCoordinate stiUtm = new UtmCoordinate(
 						stupUtm.getLongZone(), stupUtm.getLatZone(), 
-						stupUtm.getEasting() + izolator.getStiX(), 
-						stupUtm.getNorthing() + izolator.getStiZ());
+						stupUtm.getEasting() + izolator.getSti().getX(), 
+						stupUtm.getNorthing() + izolator.getSti().getZ());
 					
 				WgsCoordinate stiWgs = UtmWgsConverter.convertToWgs(stiUtm);
 					
-				izolator.setStiGeoSirina(
+				izolator.getSti().setGeoSirina(
 						Math.round(stiWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
-				izolator.setStiGeoDuzina(
+				izolator.getSti().setGeoDuzina(
 						Math.round(stiWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 					
 				UtmCoordinate stvUtm = new UtmCoordinate(
 						stupUtm.getLongZone(), stupUtm.getLatZone(),
-						stupUtm.getEasting() + izolator.getStvX(),
-						stupUtm.getNorthing() + izolator.getStvZ());
+						stupUtm.getEasting() + izolator.getStv().getX(),
+						stupUtm.getNorthing() + izolator.getStv().getZ());
 					
 				WgsCoordinate stvWgs = UtmWgsConverter.convertToWgs(stvUtm);
 					
-				izolator.setStvGeoSirina(
+				izolator.getStv().setGeoSirina(
 						Math.round(stvWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
-				izolator.setStvGeoDuzina(
+				izolator.getStv().setGeoDuzina(
 						Math.round(stvWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 				
 			}
 			
-			// Konverzija spojnih toÄ?aka zaÅ¡titne uÅ¾adi
-			for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
+			// Konverzija spojnih toï¿½?aka zaÅ¡titne uÅ¾adi
+			for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
 				UtmCoordinate spojnaTockaZuUtm = new UtmCoordinate(
 						stupUtm.getLongZone(), stupUtm.getLatZone(), 
 						stupUtm.getEasting() + spojnaTockaZu.getX(), 
@@ -525,25 +525,25 @@ public abstract class Stup {
 						Math.round(spojnaTockaZuWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 			}
 			
-			// Postavljanje vrijednosti (geo. Å¡irina, geo. duÅ¾ina) spojnih toÄ?aka izolatora i vodiÄ?a
-			// Vrijednosti (x, y, z) spojnih toÄ?aka izolatora i vodiÄ?a nakon razdvajanja su oÄ?uvane
+			// Postavljanje vrijednosti (geo. Å¡irina, geo. duÅ¾ina) spojnih toï¿½?aka izolatora i vodiï¿½?a
+			// Vrijednosti (x, y, z) spojnih toï¿½?aka izolatora i vodiï¿½?a nakon razdvajanja su oï¿½?uvane
 			for(int i = 0, length = this.izolatori.size(); i < length; i++) {
 				Izolator izolator = this.izolatori.get(i);
 				Izolator azuriraniIzolator = izolatori.get(i);
 				
 				izolator.setGeoSirina(azuriraniIzolator.getGeoSirina());
 				izolator.setGeoDuzina(azuriraniIzolator.getGeoDuzina());
-				izolator.setStiGeoSirina(azuriraniIzolator.getStiGeoSirina());
-				izolator.setStiGeoDuzina(azuriraniIzolator.getStiGeoDuzina());
-				izolator.setStvGeoSirina(azuriraniIzolator.getStvGeoSirina());
-				izolator.setStvGeoDuzina(azuriraniIzolator.getStvGeoDuzina());
+				izolator.getSti().setGeoSirina(azuriraniIzolator.getSti().getGeoSirina());
+				izolator.getSti().setGeoDuzina(azuriraniIzolator.getSti().getGeoDuzina());
+				izolator.getStv().setGeoSirina(azuriraniIzolator.getStv().getGeoSirina());
+				izolator.getStv().setGeoDuzina(azuriraniIzolator.getStv().getGeoDuzina());
 			}
 			
-			// Postavljanje vrijednosti (geo. Å¡irina, geo. duÅ¾ina) spojnih toÄ?aka zaÅ¡titne uÅ¾adi
-			// Vrijednosti (x, y, z) spojnih toÄ?aka zaÅ¡titne uÅ¾adi nakon razdvajanja su oÄ?uvane
+			// Postavljanje vrijednosti (geo. Å¡irina, geo. duÅ¾ina) spojnih toï¿½?aka zaÅ¡titne uÅ¾adi
+			// Vrijednosti (x, y, z) spojnih toï¿½?aka zaÅ¡titne uÅ¾adi nakon razdvajanja su oï¿½?uvane
 			for(int i = 0, length = this.spojneTockeZu.size(); i < length; i++) {
-				SpojnaTockaZastitnogUzeta spojnaTockaZu = this.spojneTockeZu.get(i);
-				SpojnaTockaZastitnogUzeta azuriranaSpojnaTockaZu = spojneTockeZu.get(i);
+				SpojnaTocka spojnaTockaZu = this.spojneTockeZu.get(i);
+				SpojnaTocka azuriranaSpojnaTockaZu = spojneTockeZu.get(i);
 				
 				spojnaTockaZu.setGeoSirina(azuriranaSpojnaTockaZu.getGeoSirina());
 				spojnaTockaZu.setGeoDuzina(azuriranaSpojnaTockaZu.getGeoDuzina());
@@ -565,19 +565,19 @@ public abstract class Stup {
 	}
 	
 	/**
-	 * VraÄ‡a izmijenjenu listu izolatora kojima su spojne toÄ?ke izolatora i vodiÄ?a razdvojene (izbjegavanje preklapanja)
+	 * VraÄ‡a izmijenjenu listu izolatora kojima su spojne toï¿½?ke izolatora i vodiï¿½?a razdvojene (izbjegavanje preklapanja)
 	 */
 	private List<Izolator> getSeparatedIzolatori(List<Izolator> izolatori, boolean isDesno) {
 		// nosivi stup tipa bacva i dunav: 6 izolatora sa svake strane -> 3 para jednakih STI
 		// nosivi stup tipa jela: 2 izolatora s jedna i 4 s druge strane
 		// zatezni stupovi nemaju parove jednakih STI
 		// grupiranje parova
-		Map<SpojnaTockaIzolatora, List<Izolator>> parovi = new LinkedHashMap<>();
+		Map<SpojnaTocka, List<Izolator>> parovi = new LinkedHashMap<>();
 					
 		for(Izolator izolator : izolatori) {
-			SpojnaTockaIzolatora sti = new SpojnaTockaIzolatora(izolator.getIdSti(), izolator.getStiX(), 
-					izolator.getStiY(), izolator.getStiZ());
-					SpojnaTockaIzolatora kljuc = Util.getKeyIfExists(parovi, sti);
+			SpojnaTocka sti = new SpojnaTocka(izolator.getSti().getIdSt(), izolator.getSti().getX(), 
+					izolator.getSti().getY(), izolator.getSti().getZ(), TipSpojneTocke.STI);
+					SpojnaTocka kljuc = Util.getKeyIfExists(parovi, sti);
 						
 			if(kljuc != null) {
 				List<Izolator> par = parovi.get(kljuc);
@@ -590,18 +590,18 @@ public abstract class Stup {
 		}
 					
 		// sortirati parove prema padajuÄ‡oj vrijednosti koordinate Y STI
-		Stream<Entry<SpojnaTockaIzolatora, List<Izolator>>> streamParova = parovi.entrySet()
-				.stream().sorted(Collections.reverseOrder(Entry.comparingByKey(new Comparator<SpojnaTockaIzolatora>() {
+		Stream<Entry<SpojnaTocka, List<Izolator>>> streamParova = parovi.entrySet()
+				.stream().sorted(Collections.reverseOrder(Entry.comparingByKey(new Comparator<SpojnaTocka>() {
 
 					@Override
-					public int compare(SpojnaTockaIzolatora sti1, SpojnaTockaIzolatora sti2) {
+					public int compare(SpojnaTocka sti1, SpojnaTocka sti2) {
 						return Double.compare(sti1.getY(), sti1.getY());
 					}
 								
 				})));
 					
 		List<Izolator> azuriraniIzolatori = new LinkedList<>();
-		Iterator<Entry<SpojnaTockaIzolatora, List<Izolator>>> streamParovaIterator = streamParova.iterator();
+		Iterator<Entry<SpojnaTocka, List<Izolator>>> streamParovaIterator = streamParova.iterator();
 					
 		int i = 1;
 		int predznak = isDesno ? 1 : -1; // desna strana ima predznak +, a lijeva -
@@ -612,8 +612,8 @@ public abstract class Stup {
 						
 			for(Izolator izolator : par) {
 				double noviX = RAZMAK * i * predznak;
-				izolator.setStiX(noviX);
-				izolator.setStvX(noviX);
+				izolator.getSti().setX(noviX);
+				izolator.getStv().setX(noviX);
 			}
 						
 			azuriraniIzolatori.addAll(par);
@@ -625,15 +625,15 @@ public abstract class Stup {
 	}
 	
 	/**
-	 * VraÄ‡a izmijenjenu listu spojnih toÄ?aka koje su razdvojene (izbjegavanje preklapanja)
+	 * VraÄ‡a izmijenjenu listu spojnih toï¿½?aka koje su razdvojene (izbjegavanje preklapanja)
 	 */
-	private List<SpojnaTockaZastitnogUzeta> getSeparatedSpojneTockeZu(List<SpojnaTockaZastitnogUzeta> spojneTockeZu, 
+	private List<SpojnaTocka> getSeparatedSpojneTockeZu(List<SpojnaTocka> spojneTockeZu, 
 			boolean isDesno) {
-		// sortirati spojne toÄ?ke zaÅ¡titne uÅ¾adi prema rastuÄ‡oj koordinati X
-		spojneTockeZu.sort(new Comparator<SpojnaTockaZastitnogUzeta>() {
+		// sortirati spojne toï¿½?ke zaÅ¡titne uÅ¾adi prema rastuÄ‡oj koordinati X
+		spojneTockeZu.sort(new Comparator<SpojnaTocka>() {
 
 			@Override
-			public int compare(SpojnaTockaZastitnogUzeta stZu1, SpojnaTockaZastitnogUzeta stZu2) {
+			public int compare(SpojnaTocka stZu1, SpojnaTocka stZu2) {
 				return isDesno ? 
 						Double.compare(stZu1.getX(), stZu2.getX()) : 
 						Double.compare(stZu2.getX(), stZu1.getX());
@@ -644,7 +644,7 @@ public abstract class Stup {
 		int i = 0;
 		int predznak = isDesno ? 1 : -1;
 					
-		for(SpojnaTockaZastitnogUzeta spojnaTockaZu : spojneTockeZu) {
+		for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
 			// koordinata X = RAZMAK * i + 1 (desna strana)
 			// koordinata X = (RAZMAK * i + 1) * -1 (lijeva strana)
 			spojnaTockaZu.setX((RAZMAK * i + 1) * predznak);

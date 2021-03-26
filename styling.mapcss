@@ -48,17 +48,17 @@ node|z23-[type=izolator] {
 	font-size: 11;
 }
 
-node|z-22[type=stzu][setting("hide_icons")] {
+node|z-22[type=STZU][setting("hide_icons")] {
 	symbol-shape: none;
 }
 
-node|z22-23[type=stzu] {
+node|z22-23[type=STZU] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: red;
 }
 
-node|z23-[type=stzu] {
+node|z23-[type=STZU] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: red;
@@ -68,17 +68,17 @@ node|z23-[type=stzu] {
 	font-size: 11;
 }
 
-node|z-22[type=sti][setting("hide_icons")] {
+node|z-22[type=STI][setting("hide_icons")] {
 	symbol-shape: none;
 }
 
-node|z22-23[type=sti] {
+node|z22-23[type=STI] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: orange;
 }
 
-node|z23-[type=sti] {
+node|z23-[type=STI] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: orange;
@@ -88,17 +88,17 @@ node|z23-[type=sti] {
 	font-size: 11;
 }
 
-node|z-22[type=stv][setting("hide_icons")] {
+node|z-22[type=STV][setting("hide_icons")] {
 	symbol-shape: none;
 }
 
-node|z22-23[type=stv] {
+node|z22-23[type=STV] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: blue;
 }
 
-node|z23-[type=stv] {
+node|z23-[type=STV] {
 	symbol-shape: circle;
 	symbol-size: 5;
 	symbol-fill-color: blue;

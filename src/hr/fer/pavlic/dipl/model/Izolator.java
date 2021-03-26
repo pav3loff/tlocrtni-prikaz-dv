@@ -9,14 +9,6 @@ public class Izolator {
 	
 	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private int idIzolatora;
-	private int idSti;
-	private double stiX;
-	private double stiY;
-	private double stiZ;
-	private int idStv;
-	private double stvX;
-	private double stvY;
-	private double stvZ;
 	private double kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 	private String materijal;
 	private String izvedba;
@@ -24,50 +16,34 @@ public class Izolator {
 	private double geoSirina;
 	private double geoDuzina;
 	private double otklon;
-	private double stiGeoSirina;
-	private double stiGeoDuzina;
-	private double stvGeoSirina;
-	private double stvGeoDuzina;
+	private SpojnaTocka sti;
+	private SpojnaTocka stv;
 	
-	public Izolator(int idIzolatora, int idSti, double stiX, double stiY, double stiZ, int idStv, double stvX, double stvY, double stvZ,
-			double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, String materijal, String izvedba, int brojClanaka) {
+	public Izolator(int idIzolatora, double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, 
+			String materijal, String izvedba, int brojClanaka, SpojnaTocka sti, SpojnaTocka stv) {
 		super();
 		this.idIzolatora = idIzolatora;
-		this.idSti = idSti;
-		this.stiX = stiX;
-		this.stiY = stiY;
-		this.stiZ = stiZ;
-		this.idStv = idStv;
-		this.stvX = stvX;
-		this.stvY = stvY;
-		this.stvZ = stvZ;
 		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 		this.materijal = materijal;
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
 		this.geoSirina = this.geoDuzina = 0;
 		this.otklon = 0;
-		this.stiGeoSirina = this.stiGeoDuzina = this.stvGeoSirina = this.stvGeoDuzina = 0;
+		this.sti = sti;
+		this.stv = stv;
 	}
 	
 	public Izolator(Izolator izolator) {
 		super();
 		this.idIzolatora = izolator.idIzolatora;
-		this.idSti = izolator.idSti;
-		this.stiX = izolator.stiX;
-		this.stiY = izolator.stiY;
-		this.stiZ = izolator.stiZ;
-		this.idStv = izolator.idStv;
-		this.stvX = izolator.stvX;
-		this.stvY = izolator.stvY;
-		this.stvZ = izolator.stvZ;
 		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = izolator.kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 		this.materijal = izolator.materijal;
 		this.izvedba = izolator.izvedba;
 		this.brojClanaka = izolator.brojClanaka;
 		this.geoSirina = this.geoDuzina = 0;
 		this.otklon = 0;
-		this.stiGeoSirina = this.stiGeoDuzina = this.stvGeoSirina = this.stvGeoDuzina = 0;
+		this.sti = izolator.sti;
+		this.stv = izolator.stv;
 	}
 
 	public Izolator(JSONObject izolatorJson) {
@@ -78,65 +54,13 @@ public class Izolator {
 		if(!(izolatorJson.isNull("spojnaTockaIzolatora"))) {
 			JSONObject stiJson = izolatorJson.getJSONObject("spojnaTockaIzolatora");
 			
-			if(!(stiJson.isNull("idSti"))) {
-				this.idSti = stiJson.getInt("idSti");
-			}
-			
-			if(!(stiJson.isNull("x"))) {
-				this.stiX = stiJson.getDouble("x");
-			}
-			
-			if(!(stiJson.isNull("y"))) {
-				this.stiY = stiJson.getDouble("y");
-			}
-			
-			if(!(stiJson.isNull("z"))) {
-				this.stiZ = stiJson.getDouble("z");
-			}
-			
-			if(!(stiJson.isNull("geoSirina"))) {
-				this.stiGeoSirina = stiJson.getDouble("geoSirina");
-			} else {
-				this.stiGeoSirina = 0;
-			}
-			
-			if(!(stiJson.isNull("geoDuzina"))) {
-				this.stiGeoDuzina = stiJson.getDouble("geoDuzina");
-			} else {
-				this.stiGeoDuzina = 0;
-			}
+			this.sti = new SpojnaTocka(stiJson);
 		}
 		
 		if(!(izolatorJson.isNull("spojnaTockaVodica"))) {
 			JSONObject stvJson = izolatorJson.getJSONObject("spojnaTockaVodica");
 			
-			if(!(stvJson.isNull("idStv"))) {
-				this.idStv = stvJson.getInt("idStv");
-			}
-			
-			if(!(stvJson.isNull("x"))) {
-				this.stvX = stvJson.getDouble("x");
-			}
-			
-			if(!(stvJson.isNull("y"))) {
-				this.stvY = stvJson.getDouble("y");
-			}
-			
-			if(!(stvJson.isNull("z"))) {
-				this.stvZ = stvJson.getDouble("z");
-			}
-			
-			if(!(stvJson.isNull("geoSirina"))) {
-				this.stvGeoSirina = stvJson.getDouble("geoSirina");
-			} else {
-				this.stvGeoSirina = 0;
-			}
-			
-			if(!(stvJson.isNull("geoDuzina"))) {
-				this.stvGeoDuzina = stvJson.getDouble("geoDuzina");
-			} else {
-				this.stvGeoDuzina = 0;
-			}
+			this.stv = new SpojnaTocka(stvJson);
 		}
 		
 		if(!(izolatorJson.isNull("kutIzmedjuSpojneTockeVodicaIRavnineKonzole"))) {
@@ -181,70 +105,6 @@ public class Izolator {
 
 	public void setIdIzolatora(int idIzolatora) {
 		this.idIzolatora = idIzolatora;
-	}
-	
-	public int getIdSti() {
-		return idSti;
-	}
-	
-	public void setIdSti(int idSti) {
-		this.idSti = idSti;
-	}
-
-	public double getStiX() {
-		return stiX;
-	}
-
-	public void setStiX(double stiX) {
-		this.stiX = stiX;
-	}
-
-	public double getStiY() {
-		return stiY;
-	}
-
-	public void setStiY(double stiY) {
-		this.stiY = stiY;
-	}
-
-	public double getStiZ() {
-		return stiZ;
-	}
-
-	public void setStiZ(double stiZ) {
-		this.stiZ = stiZ;
-	}
-	
-	public int getIdStv() {
-		return this.idStv;
-	}
-	
-	public void setIdStv(int idStv) {
-		this.idStv = idStv;
-	}
-
-	public double getStvX() {
-		return stvX;
-	}
-
-	public void setStvX(double stvX) {
-		this.stvX = stvX;
-	}
-
-	public double getStvY() {
-		return stvY;
-	}
-
-	public void setStvY(double stvY) {
-		this.stvY = stvY;
-	}
-
-	public double getStvZ() {
-		return stvZ;
-	}
-
-	public void setStvZ(double stvZ) {
-		this.stvZ = stvZ;
 	}
 
 	public double getKutIzmedjuSpojneTockeVodicaIRavnineKonzole() {
@@ -302,56 +162,24 @@ public class Izolator {
 	public void setOtklon(double otklon) {
 		this.otklon = otklon;
 	}
-
-	public double getStiGeoSirina() {
-		return stiGeoSirina;
-	}
-
-	public void setStiGeoSirina(double stiGeoSirina) {
-		this.stiGeoSirina = stiGeoSirina;
-	}
-
-	public double getStiGeoDuzina() {
-		return stiGeoDuzina;
-	}
-
-	public void setStiGeoDuzina(double stiGeoDuzina) {
-		this.stiGeoDuzina = stiGeoDuzina;
-	}
-
-	public double getStvGeoSirina() {
-		return stvGeoSirina;
-	}
-
-	public void setStvGeoSirina(double stvGeoSirina) {
-		this.stvGeoSirina = stvGeoSirina;
-	}
-
-	public double getStvGeoDuzina() {
-		return stvGeoDuzina;
-	}
-
-	public void setStvGeoDuzina(double stvGeoDuzina) {
-		this.stvGeoDuzina = stvGeoDuzina;
-	}
 	
+	public SpojnaTocka getSti() {
+		return sti;
+	}
+
+	public void setSti(SpojnaTocka sti) {
+		this.sti = sti;
+	}
+
+	public SpojnaTocka getStv() {
+		return stv;
+	}
+
+	public void setStv(SpojnaTocka stv) {
+		this.stv = stv;
+	}
+
 	public JSONObject getJson() {
-		JSONObject stiJson = new JSONObject();
-		stiJson.put("idSti", this.idSti);
-		stiJson.put("x", this.stiX);
-		stiJson.put("y", this.stiY);
-		stiJson.put("z", this.stiZ);
-		stiJson.put("geoSirina", this.stiGeoSirina);
-		stiJson.put("geoDuzina", this.stiGeoDuzina);
-		
-		JSONObject stvJson = new JSONObject();
-		stvJson.put("idStv", this.idStv);
-		stvJson.put("x", this.stvX);
-		stvJson.put("y", this.stvY);
-		stvJson.put("z", this.stvZ);
-		stvJson.put("geoSirina", this.stvGeoSirina);
-		stvJson.put("geoDuzina", this.stvGeoDuzina);
-		
 		JSONObject izolatorJson = new JSONObject();
 		izolatorJson.put("idIzolatora", this.idIzolatora);
 		izolatorJson.put("kutIzmedjuSpojneTockeVodicaIRavnineKonzole", this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
@@ -361,8 +189,8 @@ public class Izolator {
 		izolatorJson.put("geoSirina", this.geoSirina);
 		izolatorJson.put("geoDuzina", this.geoDuzina);
 		izolatorJson.put("otklon", this.otklon);
-		izolatorJson.put("spojnaTockaIzolatora", stiJson);
-		izolatorJson.put("spojnaTockaVodica", stvJson);
+		izolatorJson.put("spojnaTockaIzolatora", this.sti.getAsJson());
+		izolatorJson.put("spojnaTockaVodica", this.stv.getAsJson());
 		
 		return izolatorJson;
 	}
@@ -380,47 +208,27 @@ public class Izolator {
 		izolatorNode.addElement("tag").addAttribute("k", "izvedba").addAttribute("v", this.izvedba);
 		izolatorNode.addElement("tag").addAttribute("k", "brojClanaka").addAttribute("v", Integer.toString(this.brojClanaka));
 		
-		Element stiNode = parent.addElement("node")
-				.addAttribute("id", UidGenerator.getUidString())
-				.addAttribute("version", "1")
-				.addAttribute("lat", Double.toString(this.getStiGeoSirina()))
-				.addAttribute("lon", Double.toString(this.getStiGeoDuzina()));
+		this.sti.getAsOsmXmlElement(parent);
 		
-		stiNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "sti");
-		stiNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idSti));
-		stiNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.stiX));
-		stiNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.stiY));
-		stiNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.stiZ));
-		
-		Element stvNode = parent.addElement("node")
-				.addAttribute("id", UidGenerator.getUidString())
-				.addAttribute("version", "1")
-				.addAttribute("lat", Double.toString(this.getStvGeoSirina()))
-				.addAttribute("lon", Double.toString(this.getStvGeoDuzina()));
-		
-		stvNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stv");
-		stvNode.addElement("tag").addAttribute("k", "id").addAttribute("v",  Integer.toString(this.idStv));
-		stvNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.stvX));
-		stvNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.stvY));
-		stvNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.stvZ));
+		this.stv.getAsOsmXmlElement(parent);
 		
 		return parent;
 	}
 	
 	/**
-	 * Geo. širina izolatora dobiva se kao aritmeti�?ka sredina geo. širine STI i geo. širine STV
-	 * Geo. dužina izolatora dobiva se kao arirmeti�?ka sredina geo. dužine STI i geo. dužine STV
+	 * Geo. širina izolatora dobiva se kao aritmeti�?ka sredina geo. širine STI i geo. širine STV
+	 * Geo. dužina izolatora dobiva se kao arirmeti�?ka sredina geo. dužine STI i geo. dužine STV
 	 */
 	public void updateLatLong() {
 		this.geoSirina = Math.round(
-				((this.stiGeoSirina + this.stvGeoSirina) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
+				((this.sti.getGeoSirina() + this.stv.getGeoSirina()) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
 		this.geoDuzina = Math.round(
-				((this.stiGeoDuzina + this.stvGeoDuzina) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
+				((this.sti.getGeoDuzina() + this.stv.getGeoDuzina()) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
 	}
 	
 	/**
 	 * Otklon je kut kojeg centralna os izolatora zatvara s ravninom stupa
-	 * Dobiva se pomoću orijentacije stupa te kuta između spojne to�?ke vodi�?a i ravnine konzole
+	 * Dobiva se pomoću orijentacije stupa te kuta između spojne to�?ke vodi�?a i ravnine konzole
 	 */
 	public void updateOtklon(double orijentacija) {
 		double otklon;
@@ -431,7 +239,7 @@ public class Izolator {
 			otklon = Math.abs(orijentacija);
 		}
 		
-		if(this.stvZ >= 0) {
+		if(this.stv.getZ() >= 0) {
 			otklon -= 90 - Math.abs(this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
 		} else {
 			otklon += 90 - Math.abs(this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);

@@ -12,7 +12,7 @@ public class DunavStup extends Stup {
 	
 	public DunavStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
-			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTockaZastitnogUzeta> spojneTockeZu) {
+			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {
 		super(id, isZatezni, orijentacija, geoSirina, geoDuzina, visina, tipStupa, proizvodac, tezina,
 				oznakaUzemljenja, vrstaZastite, izolatori, spojneTockeZu);
 	}

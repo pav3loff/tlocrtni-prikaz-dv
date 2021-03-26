@@ -15,17 +15,18 @@ import org.json.JSONObject;
 
 import hr.fer.pavlic.dipl.inputreader.IDataLoader;
 import hr.fer.pavlic.dipl.inputreader.JsonObjectLoader;
-import hr.fer.pavlic.dipl.stupovi.BacvaStup;
-import hr.fer.pavlic.dipl.stupovi.DunavStup;
-import hr.fer.pavlic.dipl.stupovi.DvostrukaJelaStup;
-import hr.fer.pavlic.dipl.stupovi.DvostrukaMackaStup;
-import hr.fer.pavlic.dipl.stupovi.DvostrukiPortalStup;
-import hr.fer.pavlic.dipl.stupovi.DvostrukiYStup;
-import hr.fer.pavlic.dipl.stupovi.JelaStup;
-import hr.fer.pavlic.dipl.stupovi.MackaStup;
-import hr.fer.pavlic.dipl.stupovi.PortalStup;
-import hr.fer.pavlic.dipl.stupovi.Stup;
-import hr.fer.pavlic.dipl.stupovi.YStup;
+import hr.fer.pavlic.dipl.model.BacvaStup;
+import hr.fer.pavlic.dipl.model.Dalekovod;
+import hr.fer.pavlic.dipl.model.DunavStup;
+import hr.fer.pavlic.dipl.model.DvostrukaJelaStup;
+import hr.fer.pavlic.dipl.model.DvostrukaMackaStup;
+import hr.fer.pavlic.dipl.model.DvostrukiPortalStup;
+import hr.fer.pavlic.dipl.model.DvostrukiYStup;
+import hr.fer.pavlic.dipl.model.JelaStup;
+import hr.fer.pavlic.dipl.model.MackaStup;
+import hr.fer.pavlic.dipl.model.PortalStup;
+import hr.fer.pavlic.dipl.model.Stup;
+import hr.fer.pavlic.dipl.model.YStup;
 
 public class DataTransform {
 	
@@ -76,6 +77,15 @@ public class DataTransform {
 			azuriraniStupovi.add(stup);
 		}
 		
+		JSONArray dalekovodiJson = jsonObject.getJSONArray("dalekovodi");
+		List<Dalekovod> azuriraniDalekovodi = new LinkedList<>();
+		
+		for(int i = 0; i < dalekovodiJson.length(); i++) {
+			azuriraniDalekovodi.add(new Dalekovod(dalekovodiJson.getJSONObject(i)));
+		}
+		
+		
+		
 		// zapisati json u datoteku (izvornim podatcima samo dodati informacije o polozajima svih elemenata u WGS84 sustavu
 		if(args[0].equals("-json")) {
 			JSONArray stupoviOut = new JSONArray();
@@ -102,7 +112,7 @@ public class DataTransform {
 			}
 			
 			try(FileWriter writer = new FileWriter(
-					Paths.get(CURRENT_DIR + "\\exported.xml").toFile())) {
+					Paths.get(CURRENT_DIR + "\\outputData.xml").toFile())) {
 				writer.write(root.asXML().toString());
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");

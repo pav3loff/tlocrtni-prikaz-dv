@@ -137,7 +137,14 @@ node|z23-[type=STV] {
 	font-size: 11;
 }
 
-way|z21-[type="vodic"] {
+way|z-23[type="vodic"] {
+	width: 1;
+	color: gray;
+}
+
+way|z23-[type="vodic"] {
+	width: 1;
+	color: gray;
 	text: "oznakaFaze";
 	text-position: line;
 	text-offset-y: 15;
@@ -147,8 +154,18 @@ way|z21-[type="vodic"] {
 	font-family: "Droid Sans";
 	font-size: 14;
 	font-weight: bold;
+	casing-width: 1;
+	casing-color: black;
 }
 
-way[type="zastitno_uze"] {
-	
+way|z-23[type="zastitno_uze"] {
+	width: 1;
+	color: white;
+}
+
+way|z23-[type="zastitno_uze"] {
+	width: 1;
+	color: white;
+	casing-width: 1;
+	casing-color: black;
 }

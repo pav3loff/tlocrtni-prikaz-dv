@@ -1,5 +1,7 @@
 package hr.fer.pavlic.dipl.utmwgstransf;
 
+import org.json.JSONArray;
+
 public class WgsCoordinate {
 	
 	private double geoSirina;
@@ -25,6 +27,15 @@ public class WgsCoordinate {
 	
 	public void setGeoDuzina(double geoDuzina) {
 		this.geoDuzina = geoDuzina;
+	}
+	
+	public JSONArray getJson() {
+		JSONArray wgsCoordinateJson = new JSONArray();
+		
+		wgsCoordinateJson.put(this.geoSirina);
+		wgsCoordinateJson.put(this.geoDuzina);
+		
+		return wgsCoordinateJson;
 	}
 	
 	@Override

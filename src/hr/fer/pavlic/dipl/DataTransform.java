@@ -38,7 +38,7 @@ public class DataTransform {
 		// procitati podatke u izvornom obliku i prilagoditi ih u JSON oblik
 		IDataLoader dataLoader = new JsonObjectLoader();
 		
-		Path path = Paths.get(CURRENT_DIR + "\\inputData.json");
+		Path path = Paths.get(CURRENT_DIR + "\\input-data.json");
 		
 		JSONObject jsonObject = dataLoader.parseData(path);	
 		
@@ -89,7 +89,7 @@ public class DataTransform {
 		
 		for(Dalekovod dalekovod : dalekovodi) {
 			for(Vodic vodic : dalekovod.getVodici()) {
-				vodic.generateRasponi(azuriraniStupovi);
+				vodic.updateKoordinateStv(azuriraniStupovi);
 			}
 		}
 		
@@ -102,21 +102,40 @@ public class DataTransform {
 		}
 		
 		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
-			zastitnoUze.generateRasponi(azuriraniStupovi);
+			zastitnoUze.updateKoordinateStzu(azuriraniStupovi);
 		}
 		
 		// zapisati u datoteku
 		if(args[0].equals("-json")) {
-			JSONArray stupoviOut = new JSONArray();
+			JSONObject output = new JSONObject();
+			
+			JSONArray stupoviJsonOut = new JSONArray();
 			
 			for(Stup stup : azuriraniStupovi) {
-				stupoviOut.put(stup.getJson());
+				stupoviJsonOut.put(stup.getJson());
 			}
 			
+			output.append("stupovi", stupoviJsonOut);
+			
+			JSONArray dalekovodiJsonOut = new JSONArray();
+			
+			for(Dalekovod dalekovod : dalekovodi) {
+				dalekovodiJsonOut.put(dalekovod.getJson());
+			}
+			
+			output.append("dalekovodi", dalekovodiJsonOut);
+			
+			JSONArray zastitnaUzadJsonOut = new JSONArray();
+			
+			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+				zastitnaUzadJsonOut.put(zastitnoUze.getJson());
+			}
+			
+			output.append("zastitnaUzad", zastitnaUzadJsonOut);
+			
 			try(FileWriter writer = new FileWriter(
-					Paths.get(CURRENT_DIR + "\\Data-Display\\src\\dummyData.js").toFile())) {
-				writer.write("export const STUPOVI = ");
-				writer.write(stupoviOut.toString());
+					Paths.get(CURRENT_DIR + "\\output-data.json").toFile())) {
+				writer.write(output.toString());
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");
 			}
@@ -139,7 +158,7 @@ public class DataTransform {
 			}
 			
 			try(FileWriter writer = new FileWriter(
-					Paths.get(CURRENT_DIR + "\\outputData.xml").toFile())) {
+					Paths.get(CURRENT_DIR + "\\output-data.xml").toFile())) {
 				writer.write(root.asXML().toString());
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");

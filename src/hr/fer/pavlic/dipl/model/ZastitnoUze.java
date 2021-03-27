@@ -13,11 +13,9 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 public class ZastitnoUze {
 	
 	private int idZastitnogUzeta;
-	private List<Integer> idStzu;
-	private List<WgsCoordinate> koordinateStzu;
-	// OSM XML way (linije) zahtijevaju reference na čvorove kojima prolaze (čvorovi se referenciraju preko uida)
-	private List<Long> osmXmlStzuUids;
-	private List<Raspon> rasponi;
+	private List<Integer> idStzu; // identifikatori spojnih točaka zaštitne užadi na koje se spaja
+	private List<WgsCoordinate> koordinateStzu; // polje koordinata STZU u sustavu WGS84
+	private List<Long> osmXmlStzuUids; // OSM XML way (linije) zahtijevaju reference na čvorove kojima prolaze (čvorovi se referenciraju preko uida)
 	
 	public ZastitnoUze() {
 		super();
@@ -29,7 +27,6 @@ public class ZastitnoUze {
 		this.idStzu = idStzu;
 		this.koordinateStzu = new LinkedList<>();
 		this.osmXmlStzuUids = new LinkedList<>();
-		this.rasponi = new LinkedList<>();
 	}
 	
 	public ZastitnoUze(JSONObject zastitnoUzeJson) {
@@ -51,7 +48,6 @@ public class ZastitnoUze {
 		
 		this.koordinateStzu = new LinkedList<>();
 		this.osmXmlStzuUids = new LinkedList<>();
-		this.rasponi = new LinkedList<>();
 	}
 
 	public int getIdZastitnogUzeta() {
@@ -85,16 +81,8 @@ public class ZastitnoUze {
 	public void setOsmXmlStzuUids(List<Long> osmXmlStzuUids) {
 		this.osmXmlStzuUids = osmXmlStzuUids;
 	}
-
-	public List<Raspon> getRasponi() {
-		return rasponi;
-	}
-
-	public void setRasponi(List<Raspon> rasponi) {
-		this.rasponi = rasponi;
-	}
 	
-	private void updateKoordinateStzu(List<Stup> stupovi) {
+	public void updateKoordinateStzu(List<Stup> stupovi) {
 		// redom proci kroz sve id-eve stzuova i za svaki pronaci koordinate tog stzua
 		for(Integer idStzu : this.idStzu) {
 			for(Stup stup : stupovi) {
@@ -108,27 +96,29 @@ public class ZastitnoUze {
 			}
 		}
 	}
-
-	public void generateRasponi(List<Stup> stupovi) {
-		this.updateKoordinateStzu(stupovi);
+	
+	public JSONObject getJson() {
+		JSONObject zastitnoUzeJson = new JSONObject();
 		
-		// u listi koordinata stzu nalaze se koordinate kroz koje zaštitno uže prolazi
-		// ako lista ima sveukupno 5 koordinata, rasponi se generiraju kao:
-		// 1. raspon: POCETAK - 1. koordinata, KRAJ - 2. koordinata
-		// 2. raspon: POCETAK - 2. koordinata, KRAJ - 3. koordinata
-		// 3. raspon: POCETAK - 3. koordinata, KRAJ - 4. koordinata
-		// 4. raspon: POCETAK - 4. koordinata, KRAJ - 5. koordinata
+		zastitnoUzeJson.put("idZastitnogUzeta", this.idZastitnogUzeta);
 		
-		for(int i = 1; i < this.koordinateStzu.size(); i++) {
-			// trenutni iterator je i, a prethodni je i - 1
-			WgsCoordinate pocKoordinata = this.koordinateStzu.get(i - 1);
-			WgsCoordinate krajKoordinata = this.koordinateStzu.get(i);
-			
-			Raspon raspon = new Raspon(pocKoordinata.getGeoSirina(), pocKoordinata.getGeoDuzina(), 
-					krajKoordinata.getGeoSirina(), krajKoordinata.getGeoDuzina());
-			
-			this.rasponi.add(raspon);
+		JSONArray idStzuJson = new JSONArray();
+		
+		for(Integer idStzu : this.idStzu) {
+			idStzuJson.put(idStzu);
 		}
+		
+		zastitnoUzeJson.put("idStzu", idStzuJson);
+		
+		JSONArray koordinateStzuJson = new JSONArray();
+		
+		for(WgsCoordinate koordinataStzu : koordinateStzu) {
+			koordinateStzuJson.put(koordinataStzu.getJson());
+		}
+		
+		zastitnoUzeJson.put("koordinateStzu", koordinateStzuJson);
+		
+		return zastitnoUzeJson;
 	}
 	
 	public void getAsOsmXmlElement(Element parent) {

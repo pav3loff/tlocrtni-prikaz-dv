@@ -15,11 +15,9 @@ public class Vodic {
 	private int idVodica;
 	private String oznakaFaze;
 	private String materijal;
-	private List<Integer> idStv;
-	private List<WgsCoordinate> koordinateStv;
-	// OSM XML way (linije) zahtijevaju reference na čvorove kojima prolaze (čvorovi se referenciraju preko uida)
-	private List<Long> osmXmlStvUids;
-	private List<Raspon> rasponi;
+	private List<Integer> idStv; // identifikatori spojnih točaka vodiča na koje se spaja
+	private List<WgsCoordinate> koordinateStv; // polje koordinata STV u sustavu WGS84
+	private List<Long> osmXmlStvUids; // OSM XML way (linije) zahtijevaju reference na čvorove kojima prolaze (čvorovi se referenciraju preko uida)
 	
 	public Vodic() {
 		super();
@@ -33,7 +31,6 @@ public class Vodic {
 		this.idStv = idStv;
 		this.koordinateStv = new LinkedList<>();
 		this.osmXmlStvUids = new LinkedList<>();
-		this.rasponi = new LinkedList<>();
 	}
 	
 	public Vodic(JSONObject vodicJson) {
@@ -63,7 +60,6 @@ public class Vodic {
 		
 		this.koordinateStv = new LinkedList<>();
 		this.osmXmlStvUids = new LinkedList<>();
-		this.rasponi = new LinkedList<>();
 	}
 
 	public int getIdVodica() {
@@ -114,15 +110,7 @@ public class Vodic {
 		this.osmXmlStvUids = osmXmlStvUids;
 	}
 
-	public List<Raspon> getRasponi() {
-		return rasponi;
-	}
-
-	public void setRasponi(List<Raspon> rasponi) {
-		this.rasponi = rasponi;
-	}
-
-	private void updateKoordinateStv(List<Stup> stupovi) {
+	public void updateKoordinateStv(List<Stup> stupovi) {
 		// redom proci kroz sve id-eve stvova i za svaki pronaci koordinate tog stva
 		for(Integer idStv : this.idStv) {
 			for(Stup stup : stupovi) {
@@ -139,26 +127,30 @@ public class Vodic {
 		}
 	}
 	
-	public void generateRasponi(List<Stup> stupovi) {
-		this.updateKoordinateStv(stupovi);
+	public JSONObject getJson() {
+		JSONObject vodicJson = new JSONObject();
 		
-		// u listi koordinata stv nalaze se koordinate kroz koje vodic prolazi
-		// ako lista ima sveukupno 5 koordinata, rasponi se generiraju kao:
-		// 1. raspon: POCETAK - 1. koordinata, KRAJ - 2. koordinata
-		// 2. raspon: POCETAK - 2. koordinata, KRAJ - 3. koordinata
-		// 3. raspon: POCETAK - 3. koordinata, KRAJ - 4. koordinata
-		// 4. raspon: POCETAK - 4. koordinata, KRAJ - 5. koordinata
+		vodicJson.put("idVodica", this.idVodica);
+		vodicJson.put("oznakaFaze", this.oznakaFaze);
+		vodicJson.put("materijal", this.materijal);
 		
-		for(int i = 1; i < this.koordinateStv.size(); i++) {
-			// trenutni iterator je i, a prethodni je i - 1
-			WgsCoordinate pocKoordinata = this.koordinateStv.get(i - 1);
-			WgsCoordinate krajKoordinata = this.koordinateStv.get(i);
-			
-			Raspon raspon = new Raspon(pocKoordinata.getGeoSirina(), pocKoordinata.getGeoDuzina(), 
-					krajKoordinata.getGeoSirina(), krajKoordinata.getGeoDuzina());
-			
-			this.rasponi.add(raspon);
+		JSONArray idStvJson = new JSONArray();
+		
+		for(Integer idStv : this.idStv) {
+			idStvJson.put(idStv);
 		}
+		
+		vodicJson.put("idStv", idStvJson);
+		
+		JSONArray koordinateStvJson = new JSONArray();
+		
+		for(WgsCoordinate koordinataStv : koordinateStv) {
+			koordinateStvJson.put(koordinataStv.getJson());
+		}
+		
+		vodicJson.put("koordinateStv", koordinateStvJson);
+		
+		return vodicJson;
 	}
 	
 	public void getAsOsmXmlElement(Element parent, int idDalekovoda, int naponDalekovoda) {

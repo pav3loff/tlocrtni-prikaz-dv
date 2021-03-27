@@ -70,6 +70,22 @@ public class Dalekovod {
 		this.vodici = vodici;
 	}
 	
+	public JSONObject getJson() {
+		JSONObject dalekovodJson = new JSONObject();
+		
+		dalekovodJson.put("idDalekovoda", this.idDalekovoda);
+		dalekovodJson.put("napon", this.napon);
+		
+		JSONArray vodiciJson = new JSONArray();
+		for(Vodic vodic : this.vodici) {
+			vodiciJson.put(vodic.getJson());
+		}
+		
+		dalekovodJson.put("vodici", vodiciJson);
+		
+		return dalekovodJson;
+	}
+	
 	public void getAsOsmXmlElement(Element parent) {
 		for(Vodic vodic : this.vodici) {
 			vodic.getAsOsmXmlElement(parent, idDalekovoda, napon);

@@ -291,7 +291,7 @@ public abstract class Stup {
 		return stupJson;
 	}
 	
-	public Element getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element parent) {
 		Element stupNode = parent.addElement("node")
 				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
@@ -316,8 +316,6 @@ public abstract class Stup {
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
 			stzu.getAsOsmXmlElement(parent);
 		}
-		
-		return parent;
 	}
 	
 	public void transform() {

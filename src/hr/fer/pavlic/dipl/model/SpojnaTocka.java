@@ -14,6 +14,7 @@ public class SpojnaTocka {
 	private double geoSirina;
 	private double geoDuzina;
 	private TipSpojneTocke tip;
+	private long uid;
 	
 	public SpojnaTocka(int idSt, double x, double y, double z, TipSpojneTocke tip) {
 		super();
@@ -24,6 +25,7 @@ public class SpojnaTocka {
 		this.tip = tip;
 		this.geoSirina = 0;
 		this.geoDuzina = 0;
+		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 	
 	public SpojnaTocka(int idSt, double x, double y, double z, double geoSirina, double geoDuzina, TipSpojneTocke tip) {
@@ -35,6 +37,7 @@ public class SpojnaTocka {
 		this.geoSirina = geoSirina;
 		this.geoDuzina = geoDuzina;
 		this.tip = tip;
+		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 	
 	public SpojnaTocka(SpojnaTocka spojnaTocka) {
@@ -46,6 +49,7 @@ public class SpojnaTocka {
 		this.geoSirina = spojnaTocka.geoSirina;
 		this.geoDuzina = spojnaTocka.geoDuzina;
 		this.tip = spojnaTocka.tip;
+		this.uid = spojnaTocka.uid;
 	}
 
 	public SpojnaTocka(JSONObject spojnaTockaJson) {
@@ -84,6 +88,8 @@ public class SpojnaTocka {
 		} else {
 			this.geoDuzina = 0;
 		}
+		
+		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 
 	public int getIdSt() {
@@ -134,6 +140,22 @@ public class SpojnaTocka {
 		this.geoDuzina = geoDuzina;
 	}
 
+	public TipSpojneTocke getTip() {
+		return tip;
+	}
+
+	public void setTip(TipSpojneTocke tip) {
+		this.tip = tip;
+	}
+
+	public long getUid() {
+		return uid;
+	}
+
+	public void setUid(long uid) {
+		this.uid = uid;
+	}
+
 	public JSONObject getAsJson() {
 		JSONObject stJson = new JSONObject();
 		
@@ -154,9 +176,9 @@ public class SpojnaTocka {
 		return stJson;
 	}
 	
-	public Element getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element parent) {
 		Element stNode = parent.addElement("node")
-				.addAttribute("id", UidGenerator.getUidString())
+				.addAttribute("id", Long.toString(this.uid))
 				.addAttribute("version", "1")
 				.addAttribute("lat", Double.toString(this.geoSirina))
 				.addAttribute("lon", Double.toString(this.geoDuzina));
@@ -166,8 +188,6 @@ public class SpojnaTocka {
 		stNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.x));
 		stNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.y));
 		stNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.z));
-		
-		return parent;
 	}
 	
 	@Override

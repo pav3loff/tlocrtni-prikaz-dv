@@ -3,6 +3,7 @@ package hr.fer.pavlic.dipl.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -67,6 +68,12 @@ public class Dalekovod {
 
 	public void setVodici(List<Vodic> vodici) {
 		this.vodici = vodici;
+	}
+	
+	public void getAsOsmXmlElement(Element parent) {
+		for(Vodic vodic : this.vodici) {
+			vodic.getAsOsmXmlElement(parent, idDalekovoda, napon);
+		}
 	}
 
 }

@@ -26,7 +26,9 @@ import hr.fer.pavlic.dipl.model.JelaStup;
 import hr.fer.pavlic.dipl.model.MackaStup;
 import hr.fer.pavlic.dipl.model.PortalStup;
 import hr.fer.pavlic.dipl.model.Stup;
+import hr.fer.pavlic.dipl.model.Vodic;
 import hr.fer.pavlic.dipl.model.YStup;
+import hr.fer.pavlic.dipl.model.ZastitnoUze;
 
 public class DataTransform {
 	
@@ -77,16 +79,33 @@ public class DataTransform {
 			azuriraniStupovi.add(stup);
 		}
 		
+		// za svaki vodic pronaci koordinate stv i generirati raspone
 		JSONArray dalekovodiJson = jsonObject.getJSONArray("dalekovodi");
-		List<Dalekovod> azuriraniDalekovodi = new LinkedList<>();
+		List<Dalekovod> dalekovodi = new LinkedList<>();
 		
 		for(int i = 0; i < dalekovodiJson.length(); i++) {
-			azuriraniDalekovodi.add(new Dalekovod(dalekovodiJson.getJSONObject(i)));
+			dalekovodi.add(new Dalekovod(dalekovodiJson.getJSONObject(i)));
 		}
 		
+		for(Dalekovod dalekovod : dalekovodi) {
+			for(Vodic vodic : dalekovod.getVodici()) {
+				vodic.generateRasponi(azuriraniStupovi);
+			}
+		}
 		
+		// za svako zastitno uze pronaci koordinate stzu i generirati raspone
+		JSONArray zastitnaUzadJson = jsonObject.getJSONArray("zastitnaUzad");
+		List<ZastitnoUze> zastitnaUzad = new LinkedList<>();
 		
-		// zapisati json u datoteku (izvornim podatcima samo dodati informacije o polozajima svih elemenata u WGS84 sustavu
+		for(int i = 0; i < zastitnaUzadJson.length(); i++) {
+			zastitnaUzad.add(new ZastitnoUze(zastitnaUzadJson.getJSONObject(i)));
+		}
+		
+		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+			zastitnoUze.generateRasponi(azuriraniStupovi);
+		}
+		
+		// zapisati u datoteku
 		if(args[0].equals("-json")) {
 			JSONArray stupoviOut = new JSONArray();
 			
@@ -109,6 +128,14 @@ public class DataTransform {
 			
 			for(Stup stup : azuriraniStupovi) {
 				stup.getAsOsmXmlElement(root);
+			}
+			
+			for(Dalekovod dalekovod : dalekovodi) {
+				dalekovod.getAsOsmXmlElement(root);
+			}
+			
+			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+				zastitnoUze.getAsOsmXmlElement(root);
 			}
 			
 			try(FileWriter writer = new FileWriter(

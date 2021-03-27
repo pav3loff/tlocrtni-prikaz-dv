@@ -195,7 +195,7 @@ public class Izolator {
 		return izolatorJson;
 	}
 	
-	public Element getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element parent) {
 		Element izolatorNode = parent.addElement("node")
 								.addAttribute("id", UidGenerator.getUidString())
 								.addAttribute("version", "1")
@@ -211,8 +211,6 @@ public class Izolator {
 		this.sti.getAsOsmXmlElement(parent);
 		
 		this.stv.getAsOsmXmlElement(parent);
-		
-		return parent;
 	}
 	
 	/**

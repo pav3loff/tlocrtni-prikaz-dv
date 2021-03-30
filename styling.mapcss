@@ -11,30 +11,38 @@ setting::hide_icons {
   default: true;
 }
 
-node|z-17[type=stup] {
-	icon-image: "C:/Users/mario/Desktop/dv/test.png";
-	icon-width: 15;
-	icon-height: 15;
-	icon-offset-y: 3;
+node|z-11[type=stup] {
+	symbol-shape: circle;
+	symbol-size: 12;
+	symbol-fill-color: #98ba4e;
+	symbol-stroke-color: black;
+	z-index: 2;
+}
+
+node|z11-17[type=stup] {
+	symbol-shape: circle;
+	symbol-size: 12;
+	symbol-fill-color: #98ba4e;
+	symbol-stroke-color: black;
 	text: "id";
-	text-color: black;
+	text-color: red;
 	font-family: "Droid Sans";
 	font-size: 11;
 	z-index: 2;
 }
 
 node|z17-19[type=stup] {
-	icon-image: "C:/Users/mario/Desktop/dv/test.png";
-	icon-width: 15;
-	icon-height: 15;
-	icon-offset-y: 3;
+	symbol-shape: circle;
+	symbol-size: 12;
+	symbol-fill-color: #98ba4e;
+	symbol-stroke-color: black;
 	z-index: 2;
 }
 
 node|z19-[type=stup] {
 	symbol-shape: circle;
 	symbol-size: 15;
-	symbol-fill-color: white;
+	symbol-fill-color: #98ba4e;
 	symbol-stroke-color: black;
 }
 
@@ -109,11 +117,11 @@ node|z23-[type=STI] {
 	font-size: 11;
 }
 
-node|z-18[type=STV][setting("hide_icons")] {
+node|z-17[type=STV][setting("hide_icons")] {
 	symbol-shape: none;
 }
 
-node|z18-20[type=STV] {
+node|z17-20[type=STV] {
 	symbol-shape: circle;
 	symbol-size: 3;
 	symbol-fill-color: lime;
@@ -139,12 +147,12 @@ node|z23-[type=STV] {
 
 way|z-23[type="vodic"] {
 	width: 1;
-	color: gray;
+	color: #4ebab5;
 }
 
 way|z23-[type="vodic"] {
 	width: 1;
-	color: gray;
+	color: #4ebab5;
 	text: "oznakaFaze";
 	text-position: line;
 	text-offset-y: 15;

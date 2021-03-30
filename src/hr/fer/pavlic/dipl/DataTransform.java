@@ -107,6 +107,8 @@ public class DataTransform {
 		
 		// zapisati u datoteku
 		if(args[0].equals("-json")) {
+			System.out.println("Izvoz podataka u .json formatu...");
+			
 			JSONObject output = new JSONObject();
 			
 			JSONArray stupoviJsonOut = new JSONArray();
@@ -139,7 +141,11 @@ public class DataTransform {
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");
 			}
-		} else if(args[0].equals("-xml")) {
+			
+			System.out.println("Izvoz podataka uspješan!");
+		} else if(args[0].equals("-osmxml")) {
+			System.out.println("Izvoz podataka u OSM XML formatu...");
+			
 			Document document = DocumentHelper.createDocument();
 			
 			Element root = document.addElement("osm");
@@ -163,6 +169,8 @@ public class DataTransform {
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");
 			}
+			
+			System.out.println("Izvoz podataka uspješan!");
 		} else {
 			System.out.println("Neispravan format za izvoz podataka!");
 		}

@@ -156,7 +156,7 @@ public class SpojnaTocka {
 		this.uid = uid;
 	}
 
-	public JSONObject getAsJson() {
+	public JSONObject getJson() {
 		JSONObject stJson = new JSONObject();
 		
 		if(tip == TipSpojneTocke.STI) {

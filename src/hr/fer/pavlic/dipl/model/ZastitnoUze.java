@@ -8,25 +8,22 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import hr.fer.pavlic.dipl.util.UidGenerator;
-import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class ZastitnoUze {
 	
 	private int idZastitnogUzeta;
-	private List<Integer> idStzu; // identifikatori spojnih točaka zaštitne užadi na koje se spaja
-	private List<WgsCoordinate> koordinateStzu; // polje koordinata STZU u sustavu WGS84
-	private List<Long> osmXmlStzuUids; // OSM XML way (linije) zahtijevaju reference na čvorove kojima prolaze (čvorovi se referenciraju preko uida)
+	private List<Integer> idSt; // identifikatori spojnih točaka na koje se spaja
+	private List<SpojnaTocka> spojneTocke; // polje koordinata u sustavu WGS84
 	
 	public ZastitnoUze() {
 		super();
 	}
 
-	public ZastitnoUze(int idZastitnogUzeta, List<Integer> idStzu) {
+	public ZastitnoUze(int idZastitnogUzeta, List<Integer> idSt) {
 		super();
 		this.idZastitnogUzeta = idZastitnogUzeta;
-		this.idStzu = idStzu;
-		this.koordinateStzu = new LinkedList<>();
-		this.osmXmlStzuUids = new LinkedList<>();
+		this.idSt = idSt;
+		this.spojneTocke = new LinkedList<>();
 	}
 	
 	public ZastitnoUze(JSONObject zastitnoUzeJson) {
@@ -34,20 +31,19 @@ public class ZastitnoUze {
 			this.setIdZastitnogUzeta(zastitnoUzeJson.getInt("idZastitnogUzeta"));
 		}
 		
-		if(!(zastitnoUzeJson.isNull("idStzu"))) {
-			JSONArray idStzuJson = zastitnoUzeJson.getJSONArray("idStzu");
+		if(!(zastitnoUzeJson.isNull("idSt"))) {
+			JSONArray idStJson = zastitnoUzeJson.getJSONArray("idSt");
 			
-			this.idStzu = new LinkedList<>();
+			this.idSt = new LinkedList<>();
 			
-			for(int i = 0; i < idStzuJson.length(); i++) {
-				int idStzu = idStzuJson.getInt(i);
+			for(int i = 0; i < idStJson.length(); i++) {
+				int idStzu = idStJson.getInt(i);
 				
-				this.idStzu.add(idStzu);
+				this.idSt.add(idStzu);
 			}
 		}
 		
-		this.koordinateStzu = new LinkedList<>();
-		this.osmXmlStzuUids = new LinkedList<>();
+		this.spojneTocke = new LinkedList<>();
 	}
 
 	public int getIdZastitnogUzeta() {
@@ -58,39 +54,29 @@ public class ZastitnoUze {
 		this.idZastitnogUzeta = idZastitnogUzeta;
 	}
 
-	public List<Integer> getIdStzu() {
-		return idStzu;
+	public List<Integer> getIdSt() {
+		return idSt;
 	}
 
-	public void setIdStzu(List<Integer> idStzu) {
-		this.idStzu = idStzu;
+	public void setIdSt(List<Integer> idSt) {
+		this.idSt = idSt;
 	}
 	
-	public List<WgsCoordinate> getKoordinateStzu() {
-		return koordinateStzu;
+	public List<SpojnaTocka> getSpojneTocke() {
+		return spojneTocke;
 	}
 
-	public void setKoordinateStzu(List<WgsCoordinate> koordinateStzu) {
-		this.koordinateStzu = koordinateStzu;
-	}
-
-	public List<Long> getOsmXmlStzuUids() {
-		return osmXmlStzuUids;
-	}
-
-	public void setOsmXmlStzuUids(List<Long> osmXmlStzuUids) {
-		this.osmXmlStzuUids = osmXmlStzuUids;
+	public void setSpojneTocke(List<SpojnaTocka> spojneTocke) {
+		this.spojneTocke = spojneTocke;
 	}
 	
 	public void updateKoordinateStzu(List<Stup> stupovi) {
-		// redom proci kroz sve id-eve stzuova i za svaki pronaci koordinate tog stzua
-		for(Integer idStzu : this.idStzu) {
+		// redom proci kroz sve id-eve st i za svaki pronaci koordinate
+		for(Integer idSt : this.idSt) {
 			for(Stup stup : stupovi) {
-				for(SpojnaTocka stzu : stup.getSpojneTockeZu()) {
-					if(idStzu == stzu.getIdSt()) {
-						this.koordinateStzu.add(new WgsCoordinate(stzu.getGeoSirina(), stzu.getGeoDuzina()));
-						
-						this.osmXmlStzuUids.add(stzu.getUid()); // samo za generiranje WAYova u OSM XMLu
+				for(SpojnaTocka st : stup.getSpojneTockeZu()) {
+					if(idSt == st.getIdSt()) {
+						this.spojneTocke.add(st);
 					}
 				}
 			}
@@ -102,21 +88,21 @@ public class ZastitnoUze {
 		
 		zastitnoUzeJson.put("idZastitnogUzeta", this.idZastitnogUzeta);
 		
-		JSONArray idStzuJson = new JSONArray();
+		JSONArray idStJson = new JSONArray();
 		
-		for(Integer idStzu : this.idStzu) {
-			idStzuJson.put(idStzu);
+		for(Integer idSt : this.idSt) {
+			idStJson.put(idSt);
 		}
 		
-		zastitnoUzeJson.put("idStzu", idStzuJson);
+		zastitnoUzeJson.put("idSt", idStJson);
 		
-		JSONArray koordinateStzuJson = new JSONArray();
+		JSONArray spojneTockeJson = new JSONArray();
 		
-		for(WgsCoordinate koordinataStzu : koordinateStzu) {
-			koordinateStzuJson.put(koordinataStzu.getJson());
+		for(SpojnaTocka st : spojneTocke) {
+			spojneTockeJson.put(st.getJson());
 		}
 		
-		zastitnoUzeJson.put("koordinateStzu", koordinateStzuJson);
+		zastitnoUzeJson.put("spojneTocke", spojneTockeJson);
 		
 		return zastitnoUzeJson;
 	}
@@ -129,8 +115,8 @@ public class ZastitnoUze {
 		zastitnoUzeWay.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idZastitnogUzeta));
 		zastitnoUzeWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "zastitno_uze");
 		
-		for(Long uid : osmXmlStzuUids) {
-			zastitnoUzeWay.addElement("nd").addAttribute("ref", Long.toString(uid));
+		for(SpojnaTocka st : this.spojneTocke) {
+			zastitnoUzeWay.addElement("nd").addAttribute("ref", Long.toString(st.getUid()));
 		}
 	}
 

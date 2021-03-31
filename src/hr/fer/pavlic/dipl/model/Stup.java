@@ -37,6 +37,7 @@ public abstract class Stup {
 	private String vrstaZastite;
 	private List<Izolator> izolatori;
 	private List<SpojnaTocka> spojneTockeZu;
+	private Konzola konzola;
 	
 	public Stup() {
 		super();
@@ -147,7 +148,7 @@ public abstract class Stup {
 			JSONArray spojneTockeZuJson = new JSONArray();
 			
 			for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
-				spojneTockeZuJson.put(spojnaTockaZu.getAsJson());
+				spojneTockeZuJson.put(spojnaTockaZu.getJson());
 			}
 			
 			return spojneTockeZuJson;
@@ -269,6 +270,14 @@ public abstract class Stup {
 		this.spojneTockeZu = spojneTockeZu;
 	}
 
+	public Konzola getKonzola() {
+		return konzola;
+	}
+
+	public void setKonzola(Konzola konzola) {
+		this.konzola = konzola;
+	}
+
 	public JSONObject getJson() {
 		JSONObject stupJson = new JSONObject();
 		
@@ -316,6 +325,8 @@ public abstract class Stup {
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
 			stzu.getAsOsmXmlElement(parent);
 		}
+		
+		this.konzola.getAsOsmXmlElement(parent);
 	}
 	
 	public void transform() {
@@ -324,6 +335,8 @@ public abstract class Stup {
 		convertUtmToWgs();
 		
 		updateIzolatori();
+		
+		generateKonzola();
 	}
 	
 	/**
@@ -651,6 +664,53 @@ public abstract class Stup {
 		}
 		
 		return spojneTockeZu;
+	}
+	
+	/**
+	 * Generira oblik konzole stupa za prikaz u JOSM alatu
+	 * Dva nasuprotna vrha četverokuta konzole koji su duž osi konzole dobivaju se pomoću STI koje su najudaljenije od cent. osi stupa
+	 * Dva ostala nasuprotna vrha (duž okomice na os konzole) dobivaju se način (x=0, z=RAZMAK), (x=0, z=-RAZMAK)
+	 * Bitan je redoslijed navođenja tih vrhova/točaka za uspješno generiranje geometrijskog oblika u OSM XML-u
+	 * Redoslijed (nasuprotni vrhovi ne smiju biti susjedni u listi):
+	 *   2
+	 *  / \
+	 * 1---3
+	 *  \ /
+	 *   4
+	 */
+	private void generateKonzola() {
+		// pronalazak STI koje su najudaljenije od centr. osi stupa (sa svake strane po jedna)
+		// Dva nasuprotna vrha duž osi konzole imaju koordinate (x=xMin, z=0) i (x=xMax, z=0)
+		// Dva ostala nasuprotna vrha imaju koordinate (x=0, z=RAZMAK) i (x=0, z=-RAZMAK)
+		double xMin = 0, xMax = 0;
+		for(Izolator izolator : this.izolatori) {
+			SpojnaTocka sti = izolator.getSti();
+			
+			if(sti.getX() < xMin) {
+				xMin = sti.getX();
+			}
+			
+			if(sti.getX() > xMax) {
+				xMax = sti.getX();
+			}
+		}
+				
+		Tocka2D t1 = new Tocka2D(xMin - RAZMAK, 0);
+		Tocka2D t2 = new Tocka2D(0, RAZMAK);
+		Tocka2D t3 = new Tocka2D(xMax + RAZMAK, 0);
+		Tocka2D t4 = new Tocka2D(0, -1 * RAZMAK);
+		
+		double kutRotacije = Math.toRadians(this.orijentacija);
+				
+		List<Tocka2D> tocke = Arrays.asList(t1, t2, t3, t4);
+		for(Tocka2D tocka : tocke) {
+			tocka.rotateTocka2D(kutRotacije);
+		}
+		
+		Konzola konzola = new Konzola(tocke);
+		konzola.updateKoordinateVrhovaKonzole(this.geoSirina, this.geoDuzina);
+		
+		this.konzola = konzola;
 	}
 	
 	public abstract TipStupa getType();

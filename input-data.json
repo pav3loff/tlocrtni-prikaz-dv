@@ -438,7 +438,7 @@
                 {
                     "idIzolatora":1740,
                     "materijal":"Elektroporculan",
-                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":90,
+                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":135,
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
@@ -476,7 +476,7 @@
                 {
                     "idIzolatora":7110,
                     "materijal":"Elektroporculan",
-                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":90,
+                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":135,
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
@@ -514,7 +514,7 @@
                 {
                     "idIzolatora":7124,
                     "materijal":"Elektroporculan",
-                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":90,
+                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":135,
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
@@ -552,7 +552,7 @@
                 {
                     "idIzolatora":5030,
                     "materijal":"Elektroporculan",
-                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":90,
+                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":45,
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
@@ -590,7 +590,7 @@
                 {
                     "idIzolatora":6285,
                     "materijal":"Elektroporculan",
-                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":90,
+                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":45,
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
@@ -628,7 +628,7 @@
                 {
                     "idIzolatora":6943,
                     "materijal":"Elektroporculan",
-                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":90,
+                    "kutIzmedjuSpojneTockeVodicaIRavnineKonzole":45,
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
@@ -826,11 +826,11 @@
 	"zastitnaUzad": [
 		{
 			"idZastitnogUzeta": 7777,
-			"idStzu": [7743, 1159, 5350, 7877]
+			"idSt": [7743, 1159, 5350, 7877]
 		},
 		{
 			"idZastitnogUzeta": 9999,
-			"idStzu": [9440, 4195, 6187, 1295]
+			"idSt": [9440, 4195, 6187, 1295]
 		}
 	],
 	"dalekovodi": [
@@ -842,19 +842,19 @@
 					"idVodica": 5999,
 					"oznakaFaze": "L1",
 					"materijal": "Alucel",
-					"idStv": [6763, 3562, 9191, 5995, 2188, 3121]
+					"idSt": [6763, 3562, 9191, 5995, 2188, 3121]
 				},
 				{
 					"idVodica": 5712,
 					"oznakaFaze": "L2",
 					"materijal": "Alucel",
-					"idStv": [4183, 3935, 9524, 4289, 3546, 8273]
+					"idSt": [4183, 3935, 9524, 4289, 3546, 8273]
 				},
 				{
 					"idVodica": 6635,
 					"oznakaFaze": "L3",
 					"materijal": "Alucel",
-					"idStv": [8197, 7029, 8692, 5303, 8428, 4187]
+					"idSt": [8197, 7029, 8692, 5303, 8428, 4187]
 				}
 			]
 		},
@@ -866,19 +866,19 @@
 					"idVodica": 1114,
 					"oznakaFaze": "L1",
 					"materijal": "Alucel",
-					"idStv": [6134, 6985, 5000, 8050, 8009, 2375]
+					"idSt": [6134, 6985, 5000, 8050, 8009, 2375]
 				},
 				{
 					"idVodica": 5542,
 					"oznakaFaze": "L2",
 					"materijal": "Alucel",
-					"idStv": [4672, 8735, 4339, 4861, 8069, 4803]
+					"idSt": [4672, 8735, 4339, 4861, 8069, 4803]
 				},
 				{
 					"idVodica": 1777,
 					"oznakaFaze": "L3",
 					"materijal": "Alucel",
-					"idStv": [6556, 5762, 8044, 3086, 2554, 1179]
+					"idSt": [6556, 5762, 8044, 3086, 2554, 1179]
 				}
 			]
 		}

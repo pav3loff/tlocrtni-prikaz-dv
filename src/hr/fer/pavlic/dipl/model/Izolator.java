@@ -189,8 +189,8 @@ public class Izolator {
 		izolatorJson.put("geoSirina", this.geoSirina);
 		izolatorJson.put("geoDuzina", this.geoDuzina);
 		izolatorJson.put("otklon", this.otklon);
-		izolatorJson.put("spojnaTockaIzolatora", this.sti.getAsJson());
-		izolatorJson.put("spojnaTockaVodica", this.stv.getAsJson());
+		izolatorJson.put("spojnaTockaIzolatora", this.sti.getJson());
+		izolatorJson.put("spojnaTockaVodica", this.stv.getJson());
 		
 		return izolatorJson;
 	}

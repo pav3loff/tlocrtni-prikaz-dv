@@ -1,7 +1,5 @@
 package hr.fer.pavlic.dipl.utmwgstransf;
 
-import org.json.JSONArray;
-
 public class WgsCoordinate {
 	
 	private double geoSirina;
@@ -29,13 +27,15 @@ public class WgsCoordinate {
 		this.geoDuzina = geoDuzina;
 	}
 	
-	public JSONArray getJson() {
-		JSONArray wgsCoordinateJson = new JSONArray();
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof WgsCoordinate)) {
+			return false;
+		}
 		
-		wgsCoordinateJson.put(this.geoSirina);
-		wgsCoordinateJson.put(this.geoDuzina);
+		WgsCoordinate other = (WgsCoordinate) obj;
 		
-		return wgsCoordinateJson;
+		return this.geoSirina == other.geoSirina && this.geoDuzina == other.geoDuzina;
 	}
 	
 	@Override

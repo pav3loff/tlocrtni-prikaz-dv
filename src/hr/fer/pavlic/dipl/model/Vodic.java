@@ -8,29 +8,26 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import hr.fer.pavlic.dipl.util.UidGenerator;
-import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Vodic {
 	
 	private int idVodica;
 	private String oznakaFaze;
 	private String materijal;
-	private List<Integer> idStv; // identifikatori spojnih točaka vodiča na koje se spaja
-	private List<WgsCoordinate> koordinateStv; // polje koordinata STV u sustavu WGS84
-	private List<Long> osmXmlStvUids; // OSM XML way (linije) zahtijevaju reference na čvorove kojima prolaze (čvorovi se referenciraju preko uida)
+	private List<Integer> idSt; // identifikatori spojnih točaka na koje se spaja
+	private List<SpojnaTocka> spojneTocke; // polje koordinata u sustavu WGS84
 	
 	public Vodic() {
 		super();
 	}
 	
-	public Vodic(int idVodica, String oznakaFaze, String materijal, List<Integer> idStv) {
+	public Vodic(int idVodica, String oznakaFaze, String materijal, List<Integer> idSt) {
 		super();
 		this.idVodica = idVodica;
 		this.oznakaFaze = oznakaFaze;
 		this.materijal = materijal;
-		this.idStv = idStv;
-		this.koordinateStv = new LinkedList<>();
-		this.osmXmlStvUids = new LinkedList<>();
+		this.idSt = idSt;
+		this.spojneTocke = new LinkedList<>();
 	}
 	
 	public Vodic(JSONObject vodicJson) {
@@ -46,20 +43,19 @@ public class Vodic {
 			this.setMaterijal(vodicJson.getString("materijal"));
 		}
 		
-		if(!(vodicJson.isNull("idStv"))) {
-			JSONArray idStvJson = vodicJson.getJSONArray("idStv");
+		if(!(vodicJson.isNull("idSt"))) {
+			JSONArray idStJson = vodicJson.getJSONArray("idSt");
 			
-			this.idStv = new LinkedList<>();
+			this.idSt = new LinkedList<>();
 			
-			for(int i = 0; i < idStvJson.length(); i++) {
-				int idStv = idStvJson.getInt(i);
+			for(int i = 0; i < idStJson.length(); i++) {
+				int idSt = idStJson.getInt(i);
 				
-				this.idStv.add(idStv);
+				this.idSt.add(idSt);
 			}
 		}
 		
-		this.koordinateStv = new LinkedList<>();
-		this.osmXmlStvUids = new LinkedList<>();
+		this.spojneTocke = new LinkedList<>();
 	}
 
 	public int getIdVodica() {
@@ -86,41 +82,37 @@ public class Vodic {
 		this.materijal = materijal;
 	}
 
-	public List<Integer> getIdStv() {
-		return idStv;
+	public List<Integer> getIdSt() {
+		return idSt;
 	}
 
-	public void setIdStv(List<Integer> idStv) {
-		this.idStv = idStv;
+	public void setIdSt(List<Integer> idSt) {
+		this.idSt = idSt;
 	}
 
-	public List<WgsCoordinate> getKoordinateStv() {
-		return koordinateStv;
+	public List<SpojnaTocka> getSpojneTocke() {
+		return spojneTocke;
 	}
 
-	public void setKoordinateStv(List<WgsCoordinate> koordinateStv) {
-		this.koordinateStv = koordinateStv;
-	}
-	
-	public List<Long> getOsmXmlStvUids() {
-		return osmXmlStvUids;
+	public void setSpojneTocke(List<SpojnaTocka> spojneTocke) {
+		this.spojneTocke = spojneTocke;
 	}
 
-	public void setOsmXmlStvUids(List<Long> osmXmlStvUids) {
-		this.osmXmlStvUids = osmXmlStvUids;
-	}
-
-	public void updateKoordinateStv(List<Stup> stupovi) {
-		// redom proci kroz sve id-eve stvova i za svaki pronaci koordinate tog stva
-		for(Integer idStv : this.idStv) {
+	public void updateKoordinateSt(List<Stup> stupovi) {
+		// redom proci kroz sve id-eve stva i za svaki pronaci koordinate
+		for(Integer idSt : this.idSt) {
 			for(Stup stup : stupovi) {
 				for(Izolator izolator : stup.getIzolatori()) {
 					SpojnaTocka stv = izolator.getStv();
+					SpojnaTocka sti = izolator.getSti();
 					
-					if(idStv == stv.getIdSt()) {
-						this.koordinateStv.add(new WgsCoordinate(stv.getGeoSirina(), stv.getGeoDuzina()));
+					if(idSt == stv.getIdSt()) {
+						this.spojneTocke.add(stv);
 						
-						this.osmXmlStvUids.add(stv.getUid()); // samo za generiranje WAYova u OSM XMLu
+						// Svaki od izolatora u paru (spajaju se na istu spojnu točku) sadrže ju - bilo koju od te dvije spojne točke potrebno je zanemariti
+						if(!(this.spojneTocke.contains(sti))) {
+							this.spojneTocke.add(sti);
+						}
 					}
 				}
 			}
@@ -134,21 +126,21 @@ public class Vodic {
 		vodicJson.put("oznakaFaze", this.oznakaFaze);
 		vodicJson.put("materijal", this.materijal);
 		
-		JSONArray idStvJson = new JSONArray();
+		JSONArray idStJson = new JSONArray();
 		
-		for(Integer idStv : this.idStv) {
-			idStvJson.put(idStv);
+		for(Integer idSt : this.idSt) {
+			idStJson.put(idSt);
 		}
 		
-		vodicJson.put("idStv", idStvJson);
+		vodicJson.put("idSt", idStJson);
 		
-		JSONArray koordinateStvJson = new JSONArray();
+		JSONArray spojneTockeJson = new JSONArray();
 		
-		for(WgsCoordinate koordinataStv : koordinateStv) {
-			koordinateStvJson.put(koordinataStv.getJson());
+		for(SpojnaTocka st : spojneTocke) {
+			spojneTockeJson.put(st.getJson());
 		}
 		
-		vodicJson.put("koordinateStv", koordinateStvJson);
+		vodicJson.put("spojneTocke", spojneTockeJson);
 		
 		return vodicJson;
 	}
@@ -165,8 +157,8 @@ public class Vodic {
 		vodicWay.addElement("tag").addAttribute("k", "oznakaFaze").addAttribute("v", this.oznakaFaze);
 		vodicWay.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.materijal);
 		
-		for(Long uid : osmXmlStvUids) {
-			vodicWay.addElement("nd").addAttribute("ref", Long.toString(uid));
+		for(SpojnaTocka st : this.spojneTocke) {
+			vodicWay.addElement("nd").addAttribute("ref", Long.toString(st.getUid()));
 		}
 	}
 

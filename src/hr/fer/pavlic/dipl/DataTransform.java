@@ -89,7 +89,7 @@ public class DataTransform {
 		
 		for(Dalekovod dalekovod : dalekovodi) {
 			for(Vodic vodic : dalekovod.getVodici()) {
-				vodic.updateKoordinateStv(azuriraniStupovi);
+				vodic.updateKoordinateSt(azuriraniStupovi);
 			}
 		}
 		

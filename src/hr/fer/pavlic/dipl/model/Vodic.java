@@ -161,5 +161,21 @@ public class Vodic {
 			vodicWay.addElement("nd").addAttribute("ref", Long.toString(st.getUid()));
 		}
 	}
+	
+	/**
+	 * Ako vodic prolazi kroz tocke 1, 2, 3 i 4 rasponi glase:
+	 * 1 - 2, 3 - 4
+	 */
+	public List<Raspon> generirajRaspone() {
+		List<Raspon> rasponi = new LinkedList<>();
+		
+		for(int i = 1; i < this.idSt.size(); i += 2) {
+			Raspon raspon = new Raspon(this.idSt.get(i - 1), this.idSt.get(i));
+			
+			rasponi.add(raspon);
+		}
+		
+		return rasponi;
+	}
 
 }

@@ -201,4 +201,10 @@ public class SpojnaTocka {
 		return this.idSt == other.idSt;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("------[%s] ID: %d, X: %.2f, Y: %.2f, Z: %.2f, LAT: %f, LONG: %f\n", 
+				this.tip.toString(), this.idSt, this.x, this.y, this.z, this.geoSirina, this.geoDuzina);
+	}
+	
 }

@@ -245,5 +245,10 @@ public class Izolator {
 		
 		this.otklon = otklon;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("---[IZOLATOR] ID: %d\n", this.idIzolatora);
+	}
 
 }

@@ -22,9 +22,11 @@ import hr.fer.pavlic.dipl.model.DvostrukaJelaStup;
 import hr.fer.pavlic.dipl.model.DvostrukaMackaStup;
 import hr.fer.pavlic.dipl.model.DvostrukiPortalStup;
 import hr.fer.pavlic.dipl.model.DvostrukiYStup;
+import hr.fer.pavlic.dipl.model.Izolator;
 import hr.fer.pavlic.dipl.model.JelaStup;
 import hr.fer.pavlic.dipl.model.MackaStup;
 import hr.fer.pavlic.dipl.model.PortalStup;
+import hr.fer.pavlic.dipl.model.SpojnaTocka;
 import hr.fer.pavlic.dipl.model.Stup;
 import hr.fer.pavlic.dipl.model.Vodic;
 import hr.fer.pavlic.dipl.model.YStup;
@@ -42,9 +44,10 @@ public class DataTransform {
 		
 		JSONObject jsonObject = dataLoader.parseData(path);	
 		
-		// transformirati podatke da nema preklapanja spojnih tocaka + promjena orijentacije tocaka
+		// Mapiranje svih JSON objekata na Java razrede
+		// Stupovi
 		JSONArray stupoviJson = jsonObject.getJSONArray("stupovi");
-		List<Stup> azuriraniStupovi = new LinkedList<>();
+		List<Stup> stupovi = new LinkedList<>();
 	
 		for(int i = 0; i < stupoviJson.length(); i++) {
 			JSONObject stupJson = stupoviJson.getJSONObject(i);
@@ -74,12 +77,10 @@ public class DataTransform {
 				throw new Exception("Oblik stupa nije prepoznat!");
 			}
 			
-			stup.transform();
-			
-			azuriraniStupovi.add(stup);
+			stupovi.add(stup);
 		}
 		
-		// za svaki vodic pronaci koordinate stv i generirati raspone
+		// Dalekovodi
 		JSONArray dalekovodiJson = jsonObject.getJSONArray("dalekovodi");
 		List<Dalekovod> dalekovodi = new LinkedList<>();
 		
@@ -87,13 +88,7 @@ public class DataTransform {
 			dalekovodi.add(new Dalekovod(dalekovodiJson.getJSONObject(i)));
 		}
 		
-		for(Dalekovod dalekovod : dalekovodi) {
-			for(Vodic vodic : dalekovod.getVodici()) {
-				vodic.updateKoordinateSt(azuriraniStupovi);
-			}
-		}
-		
-		// za svako zastitno uze pronaci koordinate stzu i generirati raspone
+		// Zastitna uzad
 		JSONArray zastitnaUzadJson = jsonObject.getJSONArray("zastitnaUzad");
 		List<ZastitnoUze> zastitnaUzad = new LinkedList<>();
 		
@@ -101,11 +96,35 @@ public class DataTransform {
 			zastitnaUzad.add(new ZastitnoUze(zastitnaUzadJson.getJSONObject(i)));
 		}
 		
-		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
-			zastitnoUze.updateKoordinateStzu(azuriraniStupovi);
+		// Transformacije se obavljaju striktno redom
+		// 1. transf: Razdvajanje STI i STZU
+		for(Stup stup : stupovi) {
+			stup.separateSti();
+			stup.separateStzu();
 		}
 		
-		// zapisati u datoteku
+		// 2. transf: Konverzija STI, STZU UTM -> WGS (ukljucuje i azuriranje polozaja STI i STZU s obzirom na orijentaciju stupa)
+		for(Stup stup : stupovi) {
+			stup.convertStiUtmToWgs();
+			stup.convertStzuUtmToWgs();
+		}
+		
+		// 3. transf: Pozicioniranje STV uzimajući u obzir položaj susjednog stupa (nagib vodiča) - potrebno znati stupove i dalekovode
+		for(Stup stup : stupovi) {
+			stup.adjustStv(stupovi, dalekovodi);
+		}
+		
+//		for(Dalekovod dalekovod : dalekovodi) {
+//			for(Vodic vodic : dalekovod.getVodici()) {
+//				vodic.updateKoordinateSt(azuriraniStupovi);
+//			}
+//		}
+//		
+//		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+//			zastitnoUze.updateKoordinateStzu(azuriraniStupovi);
+//		}
+//		
+//		// zapisati u datoteku
 		if(args[0].equals("-json")) {
 			System.out.println("Izvoz podataka u .json formatu...");
 			
@@ -113,7 +132,7 @@ public class DataTransform {
 			
 			JSONArray stupoviJsonOut = new JSONArray();
 			
-			for(Stup stup : azuriraniStupovi) {
+			for(Stup stup : stupovi) {
 				stupoviJsonOut.put(stup.getJson());
 			}
 			
@@ -139,10 +158,10 @@ public class DataTransform {
 					Paths.get(CURRENT_DIR + "\\output-data.json").toFile())) {
 				writer.write(output.toString());
 			} catch (IOException exc) {
-				System.out.println("Neuspje�no pisanje u datoteku!");
+				System.out.println("Neuspješno pisanje u datoteku!");
 			}
 			
-			System.out.println("Izvoz podataka uspje�an!");
+			System.out.println("Izvoz podataka uspješan!");
 		} else if(args[0].equals("-osmxml")) {
 			System.out.println("Izvoz podataka u OSM XML formatu...");
 			
@@ -151,26 +170,26 @@ public class DataTransform {
 			Element root = document.addElement("osm");
 			root.addAttribute("version", "0.6");
 			
-			for(Stup stup : azuriraniStupovi) {
+			for(Stup stup : stupovi) {
 				stup.getAsOsmXmlElement(root);
 			}
 			
-			for(Dalekovod dalekovod : dalekovodi) {
-				dalekovod.getAsOsmXmlElement(root);
-			}
-			
-			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
-				zastitnoUze.getAsOsmXmlElement(root);
-			}
+//			for(Dalekovod dalekovod : dalekovodi) {
+//				dalekovod.getAsOsmXmlElement(root);
+//			}
+//			
+//			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+//				zastitnoUze.getAsOsmXmlElement(root);
+//			}
 			
 			try(FileWriter writer = new FileWriter(
-					Paths.get(CURRENT_DIR + "\\output-data.xml").toFile())) {
+					Paths.get(CURRENT_DIR + "\\output-dataTEST.xml").toFile())) {
 				writer.write(root.asXML().toString());
 			} catch (IOException exc) {
-				System.out.println("Neuspje�no pisanje u datoteku!");
+				System.out.println("Neuspješno pisanje u datoteku!");
 			}
 			
-			System.out.println("Izvoz podataka uspje�an!");
+			System.out.println("Izvoz podataka uspješan!");
 		} else {
 			System.out.println("Neispravan format za izvoz podataka!");
 		}

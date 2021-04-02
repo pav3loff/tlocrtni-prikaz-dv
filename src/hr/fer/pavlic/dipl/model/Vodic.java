@@ -7,15 +7,20 @@ import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import hr.fer.pavlic.dipl.util.Pravac;
 import hr.fer.pavlic.dipl.util.UidGenerator;
+import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
+import hr.fer.pavlic.dipl.utmwgstransf.UtmWgsConverter;
+import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Vodic {
 	
+	private final static int RAZMAK = 2;
 	private int idVodica;
 	private String oznakaFaze;
 	private String materijal;
 	private List<Integer> idSt; // identifikatori spojnih točaka na koje se spaja
-	private List<SpojnaTocka> spojneTocke; // polje koordinata u sustavu WGS84
+	private List<Izolator> spojniIzolatori; // Izolatori kojima pripadaju STV na koje je spojen vodic
 	
 	public Vodic() {
 		super();
@@ -27,7 +32,6 @@ public class Vodic {
 		this.oznakaFaze = oznakaFaze;
 		this.materijal = materijal;
 		this.idSt = idSt;
-		this.spojneTocke = new LinkedList<>();
 	}
 	
 	public Vodic(JSONObject vodicJson) {
@@ -55,7 +59,7 @@ public class Vodic {
 			}
 		}
 		
-		this.spojneTocke = new LinkedList<>();
+		this.spojniIzolatori = new LinkedList<>();
 	}
 
 	public int getIdVodica() {
@@ -90,57 +94,204 @@ public class Vodic {
 		this.idSt = idSt;
 	}
 
-	public List<SpojnaTocka> getSpojneTocke() {
-		return spojneTocke;
+	public List<Izolator> getSpojniIzolatori() {
+		return spojniIzolatori;
 	}
 
-	public void setSpojneTocke(List<SpojnaTocka> spojneTocke) {
-		this.spojneTocke = spojneTocke;
+	public void setSpojneTocke(List<Izolator> spojniIzolatori) {
+		this.spojniIzolatori = spojniIzolatori;
 	}
-
-	public void updateKoordinateSt(List<Stup> stupovi) {
-		// redom proci kroz sve id-eve stva i za svaki pronaci koordinate
+	
+	public void nadiIzolatore(List<Stup> stupovi) {
 		for(Integer idSt : this.idSt) {
 			for(Stup stup : stupovi) {
 				for(Izolator izolator : stup.getIzolatori()) {
 					SpojnaTocka stv = izolator.getStv();
-					SpojnaTocka sti = izolator.getSti();
 					
 					if(idSt == stv.getIdSt()) {
-						this.spojneTocke.add(stv);
-						
-						// Svaki od izolatora u paru (spajaju se na istu spojnu točku) sadrže ju - bilo koju od te dvije spojne točke potrebno je zanemariti
-						if(!(this.spojneTocke.contains(sti))) {
-							this.spojneTocke.add(sti);
-						}
+						this.spojniIzolatori.add(izolator);
 					}
 				}
 			}
 		}
 	}
 	
+	public void azurirajStv() {
+		List<RasponVodicaIzmeduDvaIzolatora> rasponi = generirajRaspone();
+		
+		for(RasponVodicaIzmeduDvaIzolatora raspon : rasponi) {
+			// Nagib pravca izmedu STI susjednih stupova
+			SpojnaTocka pocSti = raspon.getPocIzolator().getSti();
+			SpojnaTocka krajSti = raspon.getKrajIzolator().getSti();
+			
+			// Dobiti STI u UTM sustavu
+			try {
+				UtmCoordinate pocStiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(pocSti.getGeoSirina(), pocSti.getGeoDuzina()));
+				UtmCoordinate krajStiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(krajSti.getGeoSirina(), krajSti.getGeoDuzina()));
+			
+				// Pravac p1 prolazi kroz sljedece 2 tocke: (pocStiUtm.easting, pocStiUtm.northing) i (krajStiUtm.easting, krajStiUtm.northing)
+				// Horizontalni pravac p2 treba prolaziti kroz sljedece 2 tocke: (pocStiUtm.easting, pocStiUtm.northing) i (krajStiUtm.easting, pocStiUtm.northing)
+				Pravac p1 = new Pravac(pocStiUtm.getEasting(), pocStiUtm.getNorthing(), krajStiUtm.getEasting(), krajStiUtm.getNorthing());
+				Pravac p2 = new Pravac(pocStiUtm.getEasting(), pocStiUtm.getNorthing(), krajStiUtm.getEasting(), pocStiUtm.getNorthing());
+				double kut = p1.nadiKutIzmeduPravca(p2);
+				
+				// Duz pravca p1 pocStv ce se postaviti na udaljenost RAZMAK od pocSti
+				// Duz pravca p1 krajStv ce se postaviti na udaljenost RAZMAK od krajSti
+				// Stv ce u odnosu na pripadni Sti imati koordinate (xSti +/- x, zSti +/- z)
+				// Predznak ce ovisiti o polozaju dvaju susjednih stupova (efektivno njihovih STI)
+				double x = RAZMAK * Math.abs(Math.sin(Math.toRadians(90 - kut)));
+				double z = RAZMAK * Math.abs(Math.sin(Math.toRadians(kut)));
+				
+				if(pocStiUtm.getEasting() > krajStiUtm.getEasting()) {
+					if(pocStiUtm.getNorthing() > krajStiUtm.getNorthing()) {
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting() - x, pocStiUtm.getNorthing() - z));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting() + x, krajStiUtm.getNorthing() + z));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					} else if(pocStiUtm.getNorthing() < krajStiUtm.getNorthing()) {
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting() - x, pocStiUtm.getNorthing() + z));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting() + x, krajStiUtm.getNorthing() - z));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					} else { // susjedne STI su tocno horizontalno
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting() - x, pocStiUtm.getNorthing()));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting() + x, krajStiUtm.getNorthing()));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					}
+				} else if(pocStiUtm.getEasting() < krajStiUtm.getEasting()) {
+					if(pocStiUtm.getNorthing() > krajStiUtm.getNorthing()) {
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting() + x, pocStiUtm.getNorthing() - z));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting() - x, krajStiUtm.getNorthing() + z));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					} else if(pocStiUtm.getNorthing() < krajStiUtm.getNorthing()) {
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting() + x, pocStiUtm.getNorthing() + z));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting() - x, krajStiUtm.getNorthing() - z));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					} else { // susjedne STI su tocno horizontalno
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting() + x, pocStiUtm.getNorthing()));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting() - x, krajStiUtm.getNorthing()));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					}
+				} else { // susjedne STI su tocno vertikalno
+					if(pocStiUtm.getNorthing() > krajStiUtm.getNorthing()) {
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting(), pocStiUtm.getNorthing() - z));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting(), krajStiUtm.getNorthing() + z));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					} else if(pocStiUtm.getNorthing() < krajStiUtm.getNorthing()) {
+						WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(pocStiUtm.getLongZone(), pocStiUtm.getLatZone(), 
+										pocStiUtm.getEasting(), pocStiUtm.getNorthing() + z));
+						
+						WgsCoordinate krajStvWgs = UtmWgsConverter.convertToWgs(
+								new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
+										krajStiUtm.getEasting(), krajStiUtm.getNorthing() - z));
+						
+						raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+						raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+						
+						raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+						raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+					} else { // susjedne STI su tocno horizontalno
+						
+					}
+				}
+				
+				// Izolatori (STV) u rasponima su prilagodeni, sad ih je potrebno kopirati u originalno polje izolatora
+				for(Izolator izolator : this.spojniIzolatori) {
+					if(izolator.getIdIzolatora() == raspon.getPocIzolator().getIdIzolatora()) {
+						izolator.setStv(raspon.getPocIzolator().getStv());
+					} else if(izolator.getIdIzolatora() == raspon.getKrajIzolator().getIdIzolatora()) {
+						izolator.setStv(raspon.getKrajIzolator().getStv());
+					}
+				}
+			} catch (Exception e) {
+				System.out.println("Neuspjesna konverzija STI!");
+			}
+		}
+	}
+	
+	private List<RasponVodicaIzmeduDvaIzolatora> generirajRaspone() {
+		List<RasponVodicaIzmeduDvaIzolatora> rasponi = new LinkedList<>();
+		
+		for(int i = 1; i < this.spojniIzolatori.size(); i += 2) {
+			rasponi.add(new RasponVodicaIzmeduDvaIzolatora(this.spojniIzolatori.get(i - 1), this.spojniIzolatori.get(i)));
+		}
+		
+		return rasponi;
+	}
+	
 	public JSONObject getJson() {
 		JSONObject vodicJson = new JSONObject();
 		
-		vodicJson.put("idVodica", this.idVodica);
-		vodicJson.put("oznakaFaze", this.oznakaFaze);
-		vodicJson.put("materijal", this.materijal);
-		
-		JSONArray idStJson = new JSONArray();
-		
-		for(Integer idSt : this.idSt) {
-			idStJson.put(idSt);
-		}
-		
-		vodicJson.put("idSt", idStJson);
-		
-		JSONArray spojneTockeJson = new JSONArray();
-		
-		for(SpojnaTocka st : spojneTocke) {
-			spojneTockeJson.put(st.getJson());
-		}
-		
-		vodicJson.put("spojneTocke", spojneTockeJson);
+		// ...
 		
 		return vodicJson;
 	}
@@ -157,25 +308,15 @@ public class Vodic {
 		vodicWay.addElement("tag").addAttribute("k", "oznakaFaze").addAttribute("v", this.oznakaFaze);
 		vodicWay.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.materijal);
 		
-		for(SpojnaTocka st : this.spojneTocke) {
-			vodicWay.addElement("nd").addAttribute("ref", Long.toString(st.getUid()));
+		for(Izolator izolator : this.spojniIzolatori) {
+			izolator.getAsOsmXmlElement(parent);
+			
+			// ... Tocno poredati referentne STI I STV
 		}
 	}
 	
-	/**
-	 * Ako vodic prolazi kroz tocke 1, 2, 3 i 4 rasponi glase:
-	 * 1 - 2, 3 - 4
-	 */
-	public List<Raspon> generirajRaspone() {
-		List<Raspon> rasponi = new LinkedList<>();
-		
-		for(int i = 1; i < this.idSt.size(); i += 2) {
-			Raspon raspon = new Raspon(this.idSt.get(i - 1), this.idSt.get(i));
-			
-			rasponi.add(raspon);
-		}
-		
-		return rasponi;
+	public String toString() {
+		return String.format("[VODIC] ID: %d\n", this.idVodica);
 	}
 
 }

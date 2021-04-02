@@ -22,11 +22,9 @@ import hr.fer.pavlic.dipl.model.DvostrukaJelaStup;
 import hr.fer.pavlic.dipl.model.DvostrukaMackaStup;
 import hr.fer.pavlic.dipl.model.DvostrukiPortalStup;
 import hr.fer.pavlic.dipl.model.DvostrukiYStup;
-import hr.fer.pavlic.dipl.model.Izolator;
 import hr.fer.pavlic.dipl.model.JelaStup;
 import hr.fer.pavlic.dipl.model.MackaStup;
 import hr.fer.pavlic.dipl.model.PortalStup;
-import hr.fer.pavlic.dipl.model.SpojnaTocka;
 import hr.fer.pavlic.dipl.model.Stup;
 import hr.fer.pavlic.dipl.model.Vodic;
 import hr.fer.pavlic.dipl.model.YStup;
@@ -109,21 +107,28 @@ public class DataTransform {
 			stup.convertStzuUtmToWgs();
 		}
 		
-		// 3. transf: Pozicioniranje STV uzimajući u obzir položaj susjednog stupa (nagib vodiča) - potrebno znati stupove i dalekovode
-		for(Stup stup : stupovi) {
-			stup.adjustStv(stupovi, dalekovodi);
+		// 3. transf: Generiranje polja izolatora unutar vodica - to polje odgovarat ce polju identifikatora STV na koje se vodic spaja
+		for(Dalekovod dalekovod : dalekovodi) {
+			for(Vodic vodic : dalekovod.getVodici()) {
+				vodic.nadiIzolatore(stupovi);
+			}
 		}
 		
-//		for(Dalekovod dalekovod : dalekovodi) {
-//			for(Vodic vodic : dalekovod.getVodici()) {
-//				vodic.updateKoordinateSt(azuriraniStupovi);
-//			}
-//		}
-//		
-//		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
-//			zastitnoUze.updateKoordinateStzu(azuriraniStupovi);
-//		}
-//		
+		// 4. transf: Pomocu polja izolatora (sadrzi vec proracunate STI) izracunati polozaje STV
+		for(Dalekovod dalekovod : dalekovodi) {
+			for(Vodic vodic : dalekovod.getVodici()) {
+				vodic.azurirajStv();
+			}
+		}
+		
+		for(Stup stup : stupovi) {
+			stup.generateKonzola();
+		}
+		
+		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+			zastitnoUze.updateKoordinateStzu(stupovi);
+		}
+		
 //		// zapisati u datoteku
 		if(args[0].equals("-json")) {
 			System.out.println("Izvoz podataka u .json formatu...");
@@ -174,13 +179,13 @@ public class DataTransform {
 				stup.getAsOsmXmlElement(root);
 			}
 			
-//			for(Dalekovod dalekovod : dalekovodi) {
-//				dalekovod.getAsOsmXmlElement(root);
-//			}
-//			
-//			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
-//				zastitnoUze.getAsOsmXmlElement(root);
-//			}
+			for(Dalekovod dalekovod : dalekovodi) {
+				dalekovod.getAsOsmXmlElement(root);
+			}
+			
+			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+				zastitnoUze.getAsOsmXmlElement(root);
+			}
 			
 			try(FileWriter writer = new FileWriter(
 					Paths.get(CURRENT_DIR + "\\output-dataTEST.xml").toFile())) {

@@ -15,7 +15,6 @@ import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import hr.fer.pavlic.dipl.util.Pravac;
 import hr.fer.pavlic.dipl.util.UidGenerator;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmWgsConverter;
@@ -134,16 +133,6 @@ public abstract class Stup {
 	}
 	
 	private static class Util {
-		private static JSONArray getIzolatoriAsJsonArray(List<Izolator> izolatori) {
-			JSONArray izolatoriJson = new JSONArray();
-			
-			for(Izolator izolator : izolatori) {
-				izolatoriJson.put(izolator.getJson());
-			}
-			
-			return izolatoriJson;
-		}
-		
 		private static JSONArray getSpojneTockeZuAsJsonArray(
 				List<SpojnaTocka> spojneTockeZu) {
 			JSONArray spojneTockeZuJson = new JSONArray();
@@ -294,7 +283,6 @@ public abstract class Stup {
 		stupJson.put("tezina", this.tezina);
 		stupJson.put("oznakaUzemljenja", this.oznakaUzemljenja);
 		stupJson.put("vrstaZastite", this.vrstaZastite);
-		stupJson.put("izolatori", Util.getIzolatoriAsJsonArray(this.izolatori));
 		stupJson.put("spojneTockeZastitneUzadi", 
 				Util.getSpojneTockeZuAsJsonArray(this.spojneTockeZu));
 		
@@ -318,16 +306,13 @@ public abstract class Stup {
 		stupNode.addElement("tag").addAttribute("k", "tezina").addAttribute("v", Double.toString(this.tezina));
 		stupNode.addElement("tag").addAttribute("k", "oznakaUzemljenja").addAttribute("v", this.oznakaUzemljenja);
 		stupNode.addElement("tag").addAttribute("k", "vrstaZastite").addAttribute("v", this.vrstaZastite);
-		
-		for(Izolator izolator : this.izolatori) {
-			izolator.getAsOsmXmlElement(parent);
-		}
+
 		
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
 			stzu.getAsOsmXmlElement(parent);
 		}
 		
-		//this.konzola.getAsOsmXmlElement(parent);
+		this.konzola.getAsOsmXmlElement(parent);
 	}
 	
 	/**
@@ -615,120 +600,6 @@ public abstract class Stup {
 	}
 	
 	/**
-	 * Na stup 1 i stup 2 spojen je isti vodič.
-	 * Kako bi se dobio položaj STV stupa 1, potrebno je znati položaj STV stupa 2.
-	 * Iako se vodiči spajaju na STV, nagib pravca koji bi se spajao na STI oba stupa bio bi isti.
-	 * Dovoljno je zamisliti pravac koji ide od STI stupa 1 do STI stupa 2, a STV stupa 1 bit će duž tog pravca.
-	 * Iz perspektive stupa 2 situacija je jednaka - položaj STV stupa 2 određen je položajem stupa 1.
-	 * Položaj STV stupa 2 također će biti duž zamišljenog pravca.
-	 * Trenutna STV zove se trenStv, a STV susjednog stupa zove se susStv
-	 */
-	public void adjustStv(List<Stup> stupovi, List<Dalekovod> dalekovodi) throws Exception {
-		for(Izolator izolator : this.izolatori) {
-			SpojnaTocka trenStv = izolator.getStv();
-			SpojnaTocka trenSti = izolator.getSti();
-			
-			// Pronaći vodič koji se spaja na trenutnu stv
-			Vodic vodic = nadiVodic(dalekovodi, trenStv.getIdSt());
-			
-			// Dohvatiti onaj raspon vodiča čiji je dio trenutna stv
-			Raspon raspon = nadiRaspon(vodic, trenStv.getIdSt());
-			
-			// Kad je raspon dobijen, id susjedne stv je onaj drugi u rasponu
-			int susStvId = raspon.getIdStPoc() == trenStv.getIdSt() ? raspon.getIdStKraj() : raspon.getIdStPoc();
-			SpojnaTocka susSti = null;;
-			
-			// Prema identifikatoru susStvId naci susStv, a izolator čija je susStv ima odgovarajucu susSti koja je potrebna za generiranje zamisljene linije
-			for(Stup stup : stupovi) {
-				for(Izolator izolator2 : stup.getIzolatori()) {
-					if(izolator2.getStv().getIdSt() == susStvId) {
-						susSti = izolator2.getSti();
-					}
-				}
-			}
-			
-			// Obje STI imaju položaje u WGS sustavu, potrebna je konverzija
-			// Dobijaju se dvije tocke koje odreduju pravac s nekim nagibom
-			UtmCoordinate trenStiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(trenSti.getGeoSirina(), trenSti.getGeoDuzina()));
-			UtmCoordinate susStiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(susSti.getGeoSirina(), susSti.getGeoDuzina()));
-			
-			// Nagib pravca je trazeni kut
-			// Kut se moze dobiti racunanjem kuta izmedu pravca s nagibom (dvije tocke kojima prolazi su dobijene iznad) i horizontalnog pravca (bilo koje dvije tocke na x osi)
-			Pravac pravac = new Pravac(trenStiUtm.getEasting(), trenStiUtm.getNorthing(), susStiUtm.getEasting(), susStiUtm.getNorthing());
-			
-			double kut = nadiNagibPravca(pravac);
-			//       .
-			//      /|
-			//     / |
-			//Razm/  |h
-			//   /   |
-			//  /kut |
-			// .------
-			//    x
-			
-			// Imamo Razm (RAZMAK), imamo kut -> položaj gornje tocke (STV) se moze izracunati; lijeva tocka je trenSti
-			double h = RAZMAK * Math.sin(Math.toRadians(kut));
-			double x = RAZMAK * Math.sin(Math.toRadians(90 - kut));
-			
-			double trenStvZ = trenSti.getZ() + h;
-			double trenStvX = trenSti.getX() + x;
-			
-			double susStvX = susSti.getX() - x;
-			double susStvZ = susSti.getZ() - h;
-			
-			// Konverzija polozaja STV u WGS sustav
-			WgsCoordinate trenStvWgs = UtmWgsConverter.convertToWgs(new UtmCoordinate(trenStiUtm.getLongZone(), 
-					trenStiUtm.getLatZone(), trenStvX, trenStvZ));
-			
-			izolator.getStv().setX(trenStvX);
-			izolator.getStv().setZ(trenStvZ);
-			izolator.getStv().setGeoSirina(trenStvWgs.getGeoSirina());
-			izolator.getStv().setGeoDuzina(trenStvWgs.getGeoDuzina());
-		}
-	}
-	
-	private Vodic nadiVodic(List<Dalekovod> dalekovodi, int idStv) throws Exception {
-		for(Dalekovod dalekovod : dalekovodi) {
-			for(Vodic vodic : dalekovod.getVodici()) {
-				for(Integer idSt : vodic.getIdSt()) {
-					if(idSt == idStv) {
-						return vodic;
-					}
-				}
-			}
-		}
-		
-		throw new Exception("Vodic nije pronaden!");
-	}
-	
-	private Raspon nadiRaspon(Vodic vodic, int idStv) throws Exception {
-		List<Raspon> rasponi = vodic.generirajRaspone();
-		
-		for(Raspon raspon : rasponi) {
-			if(raspon.getIdStPoc() == idStv || raspon.getIdStKraj() == idStv) {
-				return raspon;
-			}
-		}
-		
-		throw new Exception("Raspon nije pronaden!");
-	}
-	
-	private double nadiNagibPravca(Pravac p1) {
-		Pravac p2 = new Pravac(1, 0, 0, 0); // Horizontalni pravac;
-		
-		double kut1 = Math.atan2(p1.getY1() - p1.getY2(), p1.getX1() - p1.getX2());
-		double kut2 = Math.atan2(p2.getY1() - p2.getY2(), p2.getX1() - p2.getX2());
-		
-		double rezultat = Math.toDegrees(kut1) - Math.toDegrees(kut2);
-		
-		if(p1.getY1() < 0) {
-			rezultat = 360 - Math.abs(Math.toDegrees(kut1) - Math.toDegrees(kut2));
-		}
-		
-		return rezultat;
-	}
-	
-	/**
 	 * Generira oblik konzole stupa za prikaz u JOSM alatu
 	 * Dva nasuprotna vrha četverokuta konzole koji su duž osi konzole dobivaju se pomoću STI koje su najudaljenije od cent. osi stupa
 	 * Dva ostala nasuprotna vrha (duž okomice na os konzole) dobivaju se način (x=0, z=RAZMAK), (x=0, z=-RAZMAK)
@@ -740,7 +611,7 @@ public abstract class Stup {
 	 *  \ /
 	 *   4
 	 */
-	private void generateKonzola() {
+	public void generateKonzola() {
 		// pronalazak STI koje su najudaljenije od centr. osi stupa (sa svake strane po jedna)
 		// Dva nasuprotna vrha duž osi konzole imaju koordinate (x=xMin, z=0) i (x=xMax, z=0)
 		// Dva ostala nasuprotna vrha imaju koordinate (x=0, z=RAZMAK) i (x=0, z=-RAZMAK)

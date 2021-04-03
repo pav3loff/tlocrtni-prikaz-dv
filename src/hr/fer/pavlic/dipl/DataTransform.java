@@ -188,7 +188,7 @@ public class DataTransform {
 			}
 			
 			try(FileWriter writer = new FileWriter(
-					Paths.get(CURRENT_DIR + "\\output-dataTEST.xml").toFile())) {
+					Paths.get(CURRENT_DIR + "\\output-data.xml").toFile())) {
 				writer.write(root.asXML().toString());
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");

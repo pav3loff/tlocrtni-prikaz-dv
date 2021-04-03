@@ -18,6 +18,7 @@ public class Izolator {
 	private double otklon;
 	private SpojnaTocka sti;
 	private SpojnaTocka stv;
+	private long uid;
 	
 	public Izolator(int idIzolatora, double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, 
 			String materijal, String izvedba, int brojClanaka, SpojnaTocka sti, SpojnaTocka stv) {
@@ -31,6 +32,7 @@ public class Izolator {
 		this.otklon = 0;
 		this.sti = sti;
 		this.stv = stv;
+		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 	
 	public Izolator(Izolator izolator) {
@@ -44,6 +46,7 @@ public class Izolator {
 		this.otklon = 0;
 		this.sti = izolator.sti;
 		this.stv = izolator.stv;
+		this.uid = izolator.uid;
 	}
 
 	public Izolator(JSONObject izolatorJson) {
@@ -97,6 +100,8 @@ public class Izolator {
 		} else {
 			this.otklon = 0;
 		}
+		
+		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 
 	public int getIdIzolatora() {
@@ -179,6 +184,14 @@ public class Izolator {
 		this.stv = stv;
 	}
 
+	public long getUid() {
+		return uid;
+	}
+
+	public void setUid(long uid) {
+		this.uid = uid;
+	}
+
 	public JSONObject getJson() {
 		JSONObject izolatorJson = new JSONObject();
 		izolatorJson.put("idIzolatora", this.idIzolatora);
@@ -196,8 +209,10 @@ public class Izolator {
 	}
 	
 	public void getAsOsmXmlElement(Element parent) {
+		this.updateLatLong();
+		
 		Element izolatorNode = parent.addElement("node")
-								.addAttribute("id", UidGenerator.getUidString())
+								.addAttribute("id", Long.toString(this.uid))
 								.addAttribute("version", "1")
 								.addAttribute("lat", Double.toString(this.geoSirina))
 								.addAttribute("lon", Double.toString(this.geoDuzina));

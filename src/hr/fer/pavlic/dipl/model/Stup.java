@@ -24,6 +24,8 @@ public abstract class Stup {
 	
 	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private final static int RAZMAK = 2;
+	private final static int DIM_KONZ_X = 2;
+	private final static int DIM_KONZ_Y = 1;
 	private int idStupa;
 	private boolean isZatezni;
 	private double orijentacija;
@@ -628,10 +630,10 @@ public abstract class Stup {
 			}
 		}
 				
-		Tocka2D t1 = new Tocka2D(xMin - RAZMAK, 0);
-		Tocka2D t2 = new Tocka2D(0, RAZMAK);
-		Tocka2D t3 = new Tocka2D(xMax + RAZMAK, 0);
-		Tocka2D t4 = new Tocka2D(0, -1 * RAZMAK);
+		Tocka2D t1 = new Tocka2D(xMin - DIM_KONZ_X, 0);
+		Tocka2D t2 = new Tocka2D(0, DIM_KONZ_Y);
+		Tocka2D t3 = new Tocka2D(xMax + DIM_KONZ_X, 0);
+		Tocka2D t4 = new Tocka2D(0, -1 * DIM_KONZ_Y);
 		
 		double kutRotacije = Math.toRadians(this.orijentacija);
 				

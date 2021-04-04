@@ -15,7 +15,6 @@ public class Izolator {
 	private int brojClanaka;
 	private double geoSirina;
 	private double geoDuzina;
-	private double otklon;
 	private SpojnaTocka sti;
 	private SpojnaTocka stv;
 	private long uid;
@@ -29,7 +28,6 @@ public class Izolator {
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
 		this.geoSirina = this.geoDuzina = 0;
-		this.otklon = 0;
 		this.sti = sti;
 		this.stv = stv;
 		this.uid = Long.valueOf(UidGenerator.getUidString());
@@ -43,7 +41,6 @@ public class Izolator {
 		this.izvedba = izolator.izvedba;
 		this.brojClanaka = izolator.brojClanaka;
 		this.geoSirina = this.geoDuzina = 0;
-		this.otklon = 0;
 		this.sti = izolator.sti;
 		this.stv = izolator.stv;
 		this.uid = izolator.uid;
@@ -93,12 +90,6 @@ public class Izolator {
 			this.geoDuzina = izolatorJson.getDouble("geoDuzina");
 		} else {
 			this.geoDuzina = 0;
-		}
-		
-		if(!(izolatorJson.isNull("otklon"))) {
-			this.otklon = izolatorJson.getDouble("otklon");
-		} else {
-			this.otklon = 0;
 		}
 		
 		this.uid = Long.valueOf(UidGenerator.getUidString());
@@ -159,14 +150,6 @@ public class Izolator {
 	public void setGeoDuzina(double geoDuzina) {
 		this.geoDuzina = geoDuzina;
 	}
-
-	public double getOtklon() {
-		return otklon;
-	}
-
-	public void setOtklon(double otklon) {
-		this.otklon = otklon;
-	}
 	
 	public SpojnaTocka getSti() {
 		return sti;
@@ -201,7 +184,6 @@ public class Izolator {
 		izolatorJson.put("brojClanaka", this.brojClanaka);
 		izolatorJson.put("geoSirina", this.geoSirina);
 		izolatorJson.put("geoDuzina", this.geoDuzina);
-		izolatorJson.put("otklon", this.otklon);
 		izolatorJson.put("spojnaTockaIzolatora", this.sti.getJson());
 		izolatorJson.put("spojnaTockaVodica", this.stv.getJson());
 		
@@ -237,28 +219,6 @@ public class Izolator {
 				((this.sti.getGeoSirina() + this.stv.getGeoSirina()) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
 		this.geoDuzina = Math.round(
 				((this.sti.getGeoDuzina() + this.stv.getGeoDuzina()) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
-	}
-	
-	/**
-	 * Otklon je kut kojeg centralna os izolatora zatvara s ravninom stupa
-	 * Dobiva se pomoću orijentacije stupa te kuta između spojne to�?ke vodi�?a i ravnine konzole
-	 */
-	public void updateOtklon(double orijentacija) {
-		double otklon;
-		
-		if(orijentacija >= 0) {
-			otklon = 180 - Math.abs(orijentacija);
-		} else {
-			otklon = Math.abs(orijentacija);
-		}
-		
-		if(this.stv.getZ() >= 0) {
-			otklon -= 90 - Math.abs(this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
-		} else {
-			otklon += 90 - Math.abs(this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
-		}
-		
-		this.otklon = otklon;
 	}
 	
 	@Override

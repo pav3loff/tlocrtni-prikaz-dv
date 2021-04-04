@@ -121,15 +121,17 @@ public class DataTransform {
 			}
 		}
 		
+		// Crtanje konzole
 		for(Stup stup : stupovi) {
 			stup.generateKonzola();
 		}
 		
+		// Spajanje zastitne uzadi na STZU
 		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
 			zastitnoUze.updateKoordinateStzu(stupovi);
 		}
 		
-//		// zapisati u datoteku
+		// zapisati u datoteku
 		if(args[0].equals("-json")) {
 			System.out.println("Izvoz podataka u .json formatu...");
 			

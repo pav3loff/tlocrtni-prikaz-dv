@@ -57,9 +57,9 @@ public class Tocka2D {
 		this.z = noviZ;
 	}
 	
-	public void calculateWgsCoordinate(double geoSirinaStupa, double geoDuzinaStupa) {
+	public void izracunajKoordinatePremaReferentnojTocki(double refGeoSirina, double refGeoDuzina) {
 		try {
-			UtmCoordinate stupUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(geoSirinaStupa, geoDuzinaStupa));
+			UtmCoordinate stupUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(refGeoSirina, refGeoDuzina));
 			
 			UtmCoordinate tockaUtm = new UtmCoordinate(
 					stupUtm.getLongZone(), stupUtm.getLatZone(), 

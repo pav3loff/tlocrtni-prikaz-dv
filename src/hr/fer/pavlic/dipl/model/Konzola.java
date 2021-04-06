@@ -25,7 +25,7 @@ public class Konzola {
 	
 	public void updateKoordinateVrhovaKonzole(double geoSirinaStupa, double geoDuzinaStupa) {
 		for(Tocka2D tocka : this.vrhoviKonzole) {
-			tocka.calculateWgsCoordinate(geoSirinaStupa, geoDuzinaStupa);
+			tocka.izracunajKoordinatePremaReferentnojTocki(geoSirinaStupa, geoDuzinaStupa);
 		}
 	}
 

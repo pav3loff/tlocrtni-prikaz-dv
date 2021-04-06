@@ -1,13 +1,23 @@
 package hr.fer.pavlic.dipl.model;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.dom4j.Element;
 import org.json.JSONObject;
 
+import hr.fer.pavlic.dipl.util.Pravac;
 import hr.fer.pavlic.dipl.util.UidGenerator;
+import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
+import hr.fer.pavlic.dipl.utmwgstransf.UtmWgsConverter;
+import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Izolator {
 	
 	private final static double DECIMALNO_MJESTO = 100000000.0;
+	private final static double RAZMAK_IZOLATORA_I_ST = 1;
+	private final static double SIRINA_IZOLATORA = 0.2;
 	private int idIzolatora;
 	private double kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 	private String materijal;
@@ -174,6 +184,182 @@ public class Izolator {
 	public void setUid(long uid) {
 		this.uid = uid;
 	}
+	
+	private List<VrhPravokutnikaIzolatora> izracunajVrhovePravokutnika() {	
+		List<VrhPravokutnikaIzolatora> vrhoviPravokutnika = new LinkedList<>();
+		
+		SpojnaTocka sti = this.getSti();
+		SpojnaTocka stv = this.getStv();
+		
+		try {
+			UtmCoordinate stiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(sti.getGeoSirina(), sti.getGeoDuzina()));
+			UtmCoordinate stvUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(stv.getGeoSirina(), stv.getGeoDuzina()));
+			
+			// Potrebno je odrediti kut izmedu pravca p1 (koji ide od STI do STV) i pravca p2 (koji ide od STI a paralelan je s ekvatorom)
+			// Pravac p2 kroz tocke STI i (stvEasting, stiNorthing)
+			Pravac p1 = new Pravac(stiUtm.getEasting(), stiUtm.getNorthing(), stvUtm.getEasting(), stvUtm.getNorthing());
+			Pravac p2 = new Pravac(stiUtm.getEasting(), stiUtm.getNorthing(), stvUtm.getEasting(), stiUtm.getNorthing());
+			double kut = p1.nadiKutIzmeduPravca(p2);
+			
+			// Potrebno je odrediti tocke u kojima se stranice pravokutnika sijeku s pravcem p1: sjeciste1 i sjeciste2
+			// Pravokutnik treba biti tocno izmedu STI i STV: sjeciste1 nalazi se duz pravca p1 i od STI je udaljeno za RAZMAK_IZOLATORA_I_ST
+			//												  sjeciste2 nalazi se duz pravca p2 i od STV je udaljeno za RAZMAK_IZOLATORA_I_ST
+			// sjeciste1 ce u odnosu na STI imati koordinate (xSti +/- x, zSti +/- z)
+			// sjeciste2 ce u odnostu na STV imati koordinate (xStv +/- x, zStv +/- z)
+			// Predznak ce ovisiti o polozaju STI i STV
+			double x = RAZMAK_IZOLATORA_I_ST * Math.abs(Math.sin(Math.toRadians(90 - kut)));
+			double z = RAZMAK_IZOLATORA_I_ST * Math.abs(Math.sin(Math.toRadians(kut)));
+		
+			double sjeciste1UtmEasting = 0, sjeciste1UtmNorthing = 0;
+			double sjeciste2UtmEasting = 0, sjeciste2UtmNorthing = 0;
+			double vrh1Easting = 0, vrh1Northing = 0;
+			double vrh2Easting = 0, vrh2Northing = 0;
+			double vrh3Easting = 0, vrh3Northing = 0;
+			double vrh4Easting = 0, vrh4Northing = 0;
+			
+			if(stiUtm.getEasting() > stvUtm.getEasting()) {
+				if(stiUtm.getNorthing() > stvUtm.getNorthing()) {
+					sjeciste1UtmEasting = stiUtm.getEasting() - x;
+					sjeciste1UtmNorthing = stiUtm.getNorthing() - z;
+					sjeciste2UtmEasting = stvUtm.getEasting() + x;
+					sjeciste2UtmNorthing = stvUtm.getNorthing() + z;
+					
+					vrh1Easting = sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.abs(Math.cos(Math.toRadians(90 + kut)));
+					vrh1Northing = sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.abs(Math.sin(Math.toRadians(90 + kut)));
+					vrh2Easting = sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.abs(Math.cos(Math.toRadians(90 + kut)));
+					vrh2Northing = sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.abs(Math.sin(Math.toRadians(90 + kut)));
+					vrh3Easting = sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.abs(Math.cos(Math.toRadians(90 + kut)));
+					vrh3Northing = sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.abs(Math.sin(Math.toRadians(90 + kut)));
+					vrh4Easting = sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.abs(Math.cos(Math.toRadians(90 + kut)));
+					vrh4Northing = sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.abs(Math.sin(Math.toRadians(90 + kut)));
+				} else if(stiUtm.getNorthing() < stvUtm.getNorthing()) {
+					sjeciste1UtmEasting = stiUtm.getEasting() - x;
+					sjeciste1UtmNorthing = stiUtm.getNorthing() + z;
+					sjeciste2UtmEasting = stvUtm.getEasting() + x;
+					sjeciste2UtmNorthing = stvUtm.getNorthing() - z;
+					
+					vrh1Easting = sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh1Northing = sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh2Easting = sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh2Northing = sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh3Easting = sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh3Northing = sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh4Easting = sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh4Northing = sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+				} else { // susjedne STI su tocno horizontalno
+					sjeciste1UtmEasting = stiUtm.getEasting() - x;
+					sjeciste1UtmNorthing = stiUtm.getNorthing();
+					sjeciste2UtmEasting = stvUtm.getEasting() + x;
+					sjeciste2UtmNorthing = stvUtm.getNorthing();
+					
+					vrh1Easting = sjeciste1UtmEasting;
+					vrh1Northing = sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh2Easting = sjeciste1UtmEasting;
+					vrh2Northing = sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh3Easting = sjeciste2UtmEasting;
+					vrh3Northing = sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh4Easting = sjeciste2UtmEasting;
+					vrh4Northing = sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+				}
+			} else if(stiUtm.getEasting() < stvUtm.getEasting()) {
+				if(stiUtm.getNorthing() > stvUtm.getNorthing()) {
+					sjeciste1UtmEasting = stiUtm.getEasting() + x;
+					sjeciste1UtmNorthing = stiUtm.getNorthing() - z;
+					sjeciste2UtmEasting = stvUtm.getEasting() - x;
+					sjeciste2UtmNorthing = stvUtm.getNorthing() + z;
+					
+					vrh1Easting = sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh1Northing = sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh2Easting = sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh2Northing = sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh3Easting = sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh3Northing = sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh4Easting = sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh4Northing = sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+				} else if(stiUtm.getNorthing() < stvUtm.getNorthing()) {
+					sjeciste1UtmEasting = stiUtm.getEasting() + x;
+					sjeciste1UtmNorthing = stiUtm.getNorthing() + z;
+					sjeciste2UtmEasting = stvUtm.getEasting() - x;
+					sjeciste2UtmNorthing = stvUtm.getNorthing() - z;
+					
+					vrh1Easting = sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh1Northing = sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh2Easting = sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh2Northing = sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh3Easting = sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh3Northing = sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh4Easting = sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh4Northing = sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+				} else { // susjedne STI su tocno horizontalno
+					sjeciste1UtmEasting = stiUtm.getEasting() + x;
+					sjeciste1UtmNorthing = stiUtm.getNorthing();
+					sjeciste2UtmEasting = stvUtm.getEasting() - x;
+					sjeciste2UtmNorthing = stvUtm.getNorthing();
+					
+					vrh1Easting = sjeciste1UtmEasting;
+					vrh1Northing = sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh2Easting = sjeciste1UtmEasting;
+					vrh2Northing = sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh3Easting = sjeciste2UtmEasting;
+					vrh3Northing = sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+					vrh4Easting = sjeciste2UtmEasting;
+					vrh4Northing = sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut));
+				}
+			} else { // susjedne STI su tocno vertikalno
+				if(stiUtm.getNorthing() > stvUtm.getNorthing()) {
+					sjeciste1UtmEasting = stiUtm.getEasting();
+					sjeciste1UtmNorthing = stiUtm.getNorthing() - z;
+					sjeciste2UtmEasting = stvUtm.getEasting();
+					sjeciste2UtmNorthing = stvUtm.getNorthing() + z;
+					
+					vrh1Easting = sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh1Northing = sjeciste1UtmNorthing;
+					vrh2Easting = sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh2Northing = sjeciste1UtmNorthing;
+					vrh3Easting = sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh3Northing = sjeciste2UtmNorthing;
+					vrh4Easting = sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh4Northing = sjeciste2UtmNorthing;
+				} else if(stiUtm.getNorthing() < stvUtm.getNorthing()) {
+					sjeciste1UtmEasting = stiUtm.getEasting();
+					sjeciste1UtmNorthing = stiUtm.getNorthing() + z;
+					sjeciste2UtmEasting = stvUtm.getEasting();
+					sjeciste2UtmNorthing = stvUtm.getNorthing() - z;
+					
+					vrh1Easting = sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh1Northing = sjeciste1UtmNorthing;
+					vrh2Easting = sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh2Northing = sjeciste1UtmNorthing;
+					vrh3Easting = sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh3Northing = sjeciste2UtmNorthing;
+					vrh4Easting = sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut));
+					vrh4Northing = sjeciste2UtmNorthing;
+				} 
+			}
+			
+			// Prva dva vrha pravokutnika nalaze se duz pravca koji je okomit na pravac p1, a sijece ga u tocki sjeciste 1
+			// Ostala dva vrha pravokutnika nalaze se duz pravca koji je okomit na pravac p1, a sijece ga u tocki sjeciste 2
+			// Vrhovi pravokutnika onda imaju koordinate X oblika: (sjecisteX +/- RAZMAK_IZOLATORA_I_ST * sin(90 + kut)), a koordinate Z oblika: (sjecisteZ +/- SIRINA_IZOLATORA * cos(90 + kut))
+			VrhPravokutnikaIzolatora vrh1 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+					stiUtm.getLongZone(), stiUtm.getLatZone(), vrh1Easting, vrh1Northing));
+			VrhPravokutnikaIzolatora vrh2 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+					stiUtm.getLongZone(), stiUtm.getLatZone(), vrh2Easting, vrh2Northing));
+			VrhPravokutnikaIzolatora vrh3 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+					stiUtm.getLongZone(), stiUtm.getLatZone(), vrh3Easting, vrh3Northing));
+			VrhPravokutnikaIzolatora vrh4 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+					stiUtm.getLongZone(), stiUtm.getLatZone(), vrh4Easting, vrh4Northing));
+			
+			vrhoviPravokutnika.addAll(Arrays.asList(vrh1, vrh2, vrh3, vrh4));
+			
+			for(VrhPravokutnikaIzolatora vrhPravokutnika : vrhoviPravokutnika) {
+				vrhPravokutnika.izracunajWgs();
+			}
+		} catch (Exception e) {
+			System.out.println("Neuspjesna konverzija!");
+		}
+		
+		return vrhoviPravokutnika;
+	}
 
 	public JSONObject getJson() {
 		JSONObject izolatorJson = new JSONObject();
@@ -193,17 +379,11 @@ public class Izolator {
 	public void getAsOsmXmlElement(Element parent) {
 		this.updateLatLong();
 		
-		Element izolatorNode = parent.addElement("node")
-								.addAttribute("id", Long.toString(this.uid))
-								.addAttribute("version", "1")
-								.addAttribute("lat", Double.toString(this.geoSirina))
-								.addAttribute("lon", Double.toString(this.geoDuzina));
+		// Odrediti vrhove pravokutnika izolatora
+		List<VrhPravokutnikaIzolatora> vrhoviPravokutnika = izracunajVrhovePravokutnika();
+		PrikazIzolatoraZateznogStupa pravokutnikIzolatora = new PrikazIzolatoraZateznogStupa(this, vrhoviPravokutnika);
 		
-		izolatorNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "izolator");
-		izolatorNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idIzolatora));
-		izolatorNode.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.materijal);
-		izolatorNode.addElement("tag").addAttribute("k", "izvedba").addAttribute("v", this.izvedba);
-		izolatorNode.addElement("tag").addAttribute("k", "brojClanaka").addAttribute("v", Integer.toString(this.brojClanaka));
+		pravokutnikIzolatora.getAsOsmXmlElement(parent);
 		
 		this.sti.getAsOsmXmlElement(parent);
 		

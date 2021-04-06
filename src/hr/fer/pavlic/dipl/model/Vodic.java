@@ -15,7 +15,7 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Vodic {
 	
-	private final static int RAZMAK = 4;
+	private final static int RAZMAK_STI_I_STV = 6;
 	private int idVodica;
 	private String oznakaFaze;
 	private String materijal;
@@ -135,12 +135,12 @@ public class Vodic {
 				Pravac p2 = new Pravac(pocStiUtm.getEasting(), pocStiUtm.getNorthing(), krajStiUtm.getEasting(), pocStiUtm.getNorthing());
 				double kut = p1.nadiKutIzmeduPravca(p2);
 				
-				// Duz pravca p1 pocStv ce se postaviti na udaljenost RAZMAK od pocSti
-				// Duz pravca p1 krajStv ce se postaviti na udaljenost RAZMAK od krajSti
+				// Duz pravca p1 pocStv ce se postaviti na udaljenost RAZMAK_STI_I_STV od pocSti
+				// Duz pravca p1 krajStv ce se postaviti na udaljenost RAZMAK_STI_I_STV od krajSti
 				// Stv ce u odnosu na pripadni Sti imati koordinate (xSti +/- x, zSti +/- z)
 				// Predznak ce ovisiti o polozaju dvaju susjednih stupova (efektivno njihovih STI)
-				double x = RAZMAK * Math.abs(Math.sin(Math.toRadians(90 - kut)));
-				double z = RAZMAK * Math.abs(Math.sin(Math.toRadians(kut)));
+				double x = RAZMAK_STI_I_STV * Math.abs(Math.sin(Math.toRadians(90 - kut)));
+				double z = RAZMAK_STI_I_STV * Math.abs(Math.sin(Math.toRadians(kut)));
 				
 				double pocStvUtmEasting = 0;
 				double pocStvUtmNorthing = 0;
@@ -192,9 +192,7 @@ public class Vodic {
 						pocStvUtmNorthing = pocStiUtm.getNorthing() + z;
 						krajStvUtmEasting = krajStiUtm.getEasting();
 						krajStvUtmNorthing = krajStiUtm.getNorthing() - z;
-					} else { // susjedne STI su tocno horizontalno
-						
-					}
+					} 
 				}
 				
 				WgsCoordinate pocStvWgs = UtmWgsConverter.convertToWgs(
@@ -272,16 +270,26 @@ public class Vodic {
 	private List<SpojnaTocka> nadiReferentneSt() {
 		List<SpojnaTocka> referetneSt = new LinkedList<>();
 		
-		for(Integer idSt : this.idSt) {
+		for(int i = 0; i < this.idSt.size(); i++) {
 			for(Izolator izolator : this.spojniIzolatori) {
-				if(idSt == izolator.getStv().getIdSt()) {
+				if(this.idSt.get(i) == izolator.getStv().getIdSt()) {
 					SpojnaTocka sti = izolator.getSti();
 					SpojnaTocka stv = izolator.getStv();
 					
-					referetneSt.add(stv);
-					
-					if(!(referetneSt.contains(sti))) {
-						referetneSt.add(sti);
+					// Samo u jednom slucaju ce vodic krenuti od STI pa tek onda STV -> samo za pocetni stup (onaj od kojeg vodic krece)
+					// U svim ostalim slucajevima ce vodic prvo ici na STV pa na STI
+					if(i == 0) { 
+						if(!(referetneSt.contains(sti))) {
+							referetneSt.add(sti);
+						}
+						
+						referetneSt.add(stv);
+					} else {
+						referetneSt.add(stv);
+						
+						if(!(referetneSt.contains(sti))) {
+							referetneSt.add(sti);
+						}
 					}
 				}
 			}

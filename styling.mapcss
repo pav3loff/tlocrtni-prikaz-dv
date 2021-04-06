@@ -171,6 +171,7 @@ way|z23-[type="vodic"] {
 	font-weight: bold;
 	casing-width: 1;
 	casing-color: black;
+	z-index: 2;
 }
 
 way|z-22[type="zastitno_uze"] {
@@ -193,4 +194,16 @@ way[type="konzola"] {
 	width: 0.5;
 	color: black;
 	z-index: 0;
+}
+
+way[type="izolator"] {
+	color: black;
+	width: 0.5;
+	fill-color: #4ebab5;
+	fill-extent: 1000;
+	fill-opacity: 1;
+}
+
+node[type=vrhIzolatora][setting("hide_icons")] {
+	symbol-shape: none;
 }

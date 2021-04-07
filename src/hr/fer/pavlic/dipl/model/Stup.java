@@ -309,6 +309,9 @@ public abstract class Stup {
 		stupNode.addElement("tag").addAttribute("k", "oznakaUzemljenja").addAttribute("v", this.oznakaUzemljenja);
 		stupNode.addElement("tag").addAttribute("k", "vrstaZastite").addAttribute("v", this.vrstaZastite);
 
+		for(Izolator izolator : this.izolatori) {
+			izolator.getAsOsmXmlElement(parent, this.isZatezni);
+		}
 		
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
 			stzu.getAsOsmXmlElement(parent);
@@ -456,6 +459,13 @@ public abstract class Stup {
 				this.izolatori.get(i).getSti().setGeoSirina(
 						Math.round(stiWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 				this.izolatori.get(i).getSti().setGeoDuzina(
+						Math.round(stiWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
+				
+				// Lat i long STV se takoder odmah moze postaviti i jednaki su kao za STI (ukoliko na neki STV nije spojen vodic - STI, STV i izolator bit ce u istoj tocki)
+				// Ako se vodic spaja na neku STV, sam ce ju kasnije prilagoditi
+				this.izolatori.get(i).getStv().setGeoSirina(
+						Math.round(stiWgs.getGeoSirina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
+				this.izolatori.get(i).getStv().setGeoDuzina(
 						Math.round(stiWgs.getGeoDuzina() * DECIMALNO_MJESTO) / DECIMALNO_MJESTO);
 				
 				// Nakon što su lat i long dobijeni, stare vrijednosti x, y, z potrebno je vratiti

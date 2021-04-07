@@ -22,6 +22,7 @@ import hr.fer.pavlic.dipl.model.DvostrukaJelaStup;
 import hr.fer.pavlic.dipl.model.DvostrukaMackaStup;
 import hr.fer.pavlic.dipl.model.DvostrukiPortalStup;
 import hr.fer.pavlic.dipl.model.DvostrukiYStup;
+import hr.fer.pavlic.dipl.model.Izolator;
 import hr.fer.pavlic.dipl.model.JelaStup;
 import hr.fer.pavlic.dipl.model.MackaStup;
 import hr.fer.pavlic.dipl.model.PortalStup;
@@ -121,7 +122,24 @@ public class DataTransform {
 			}
 		}
 		
-		// Crtanje konzole
+		// Azurirati one izolatore onog stupa cije STV je vodic konfigurirao
+		for(Stup stup : stupovi) {
+			for(Izolator izolator : stup.getIzolatori()) {
+				for(Dalekovod dalekovod : dalekovodi) {
+					for(Vodic vodic : dalekovod.getVodici()) {
+						List<Izolator> azuriraniIzolatori = vodic.getSpojniIzolatori();
+						
+						for(Izolator azuriraniIzolator : azuriraniIzolatori) {
+							if(izolator.getIdIzolatora() == azuriraniIzolator.getIdIzolatora()) {
+								izolator.setStv(azuriraniIzolator.getStv());
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		// Generiranje oblika konzole
 		for(Stup stup : stupovi) {
 			stup.generateKonzola();
 		}

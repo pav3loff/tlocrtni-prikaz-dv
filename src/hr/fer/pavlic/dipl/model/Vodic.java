@@ -253,10 +253,6 @@ public class Vodic {
 		vodicWay.addElement("tag").addAttribute("k", "oznakaFaze").addAttribute("v", this.oznakaFaze);
 		vodicWay.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.materijal);
 		
-		for(Izolator izolator : this.spojniIzolatori) {
-			izolator.getAsOsmXmlElement(parent);
-		}
-		
 		// Generirati referentne STI I STV
 		List<SpojnaTocka> referentneSt = nadiReferentneSt();
 		for(SpojnaTocka refSt : referentneSt) {

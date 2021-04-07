@@ -196,6 +196,26 @@ way[type="konzola"] {
 	z-index: 0;
 }
 
+node|z-21[type="izolator"][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
+node|z22[type="izolator"][setting("hide_icons")] {
+	symbol-shape: circle;
+	symbol-size: 10;
+	symbol-fill-color: #4ebab5;
+	symbol-stroke-color: black;
+	z-index: 4;
+}
+
+node|z23-[type="izolator"][setting("hide_icons")] {
+	symbol-shape: circle;
+	symbol-size: 15;
+	symbol-fill-color: #4ebab5;
+	symbol-stroke-color: black;
+	z-index: 4;
+}
+
 way[type="izolator"] {
 	color: black;
 	width: 0.5;

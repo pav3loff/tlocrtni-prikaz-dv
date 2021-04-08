@@ -8,15 +8,15 @@ import org.dom4j.Element;
  * Izolator zateznog stupa prikazuje se u obliku pravokutnika (4 tocke)
  * Izolator nosivog stupa prikazuje se u obliku kruga
  */
-public class PrikazIzolatoraZateznogStupa {
+public class PrikazIzolatora {
 	
 	private Izolator izolator;
-	private List<VrhPravokutnikaIzolatora> vrhoviPravokutnika;
+	private List<TockaPrikazaIzolatora> tockePrikazaIzolatora;
 	
-	public PrikazIzolatoraZateznogStupa(Izolator izolator, List<VrhPravokutnikaIzolatora> vrhoviPravokutnika) {
+	public PrikazIzolatora(Izolator izolator, List<TockaPrikazaIzolatora> tockePrikazaIzolatora) {
 		super();
 		this.izolator = izolator;
-		this.vrhoviPravokutnika = vrhoviPravokutnika;
+		this.tockePrikazaIzolatora = tockePrikazaIzolatora;
 	}
 
 	public Izolator getIzolator() {
@@ -27,12 +27,12 @@ public class PrikazIzolatoraZateznogStupa {
 		this.izolator = izolator;
 	}
 
-	public List<VrhPravokutnikaIzolatora> getVrhoviPravokutnika() {
-		return vrhoviPravokutnika;
+	public List<TockaPrikazaIzolatora> getTockePrikazaIzolatora() {
+		return tockePrikazaIzolatora;
 	}
 
-	public void setVrhoviPravokutnika(List<VrhPravokutnikaIzolatora> vrhoviPravokutnika) {
-		this.vrhoviPravokutnika = vrhoviPravokutnika;
+	public void setTockePrikazaIzolatora(List<TockaPrikazaIzolatora> tockePrikazaIzolatora) {
+		this.tockePrikazaIzolatora = tockePrikazaIzolatora;
 	}
 
 	public void getAsOsmXmlElement(Element parent) {
@@ -47,19 +47,19 @@ public class PrikazIzolatoraZateznogStupa {
 		izolatorWay.addElement("tag").addAttribute("k", "izvedba").addAttribute("v", this.izolator.getIzvedba());
 		izolatorWay.addElement("tag").addAttribute("k", "brojClanaka").addAttribute("v", Integer.toString(this.izolator.getBrojClanaka()));
 		
-		for(VrhPravokutnikaIzolatora vrhPravokutnika : this.vrhoviPravokutnika) {
+		for(TockaPrikazaIzolatora tockaPrikazaIzolatora : this.tockePrikazaIzolatora) {
 			Element vrh = parent.addElement("node")
-					.addAttribute("id", Long.toString(vrhPravokutnika.getUid()))
+					.addAttribute("id", Long.toString(tockaPrikazaIzolatora.getUid()))
 					.addAttribute("version", "1")
-					.addAttribute("lat", Double.toString(vrhPravokutnika.getVrhWgs().getGeoSirina()))
-					.addAttribute("lon", Double.toString(vrhPravokutnika.getVrhWgs().getGeoDuzina()));
+					.addAttribute("lat", Double.toString(tockaPrikazaIzolatora.getTockaWgs().getGeoSirina()))
+					.addAttribute("lon", Double.toString(tockaPrikazaIzolatora.getTockaWgs().getGeoDuzina()));
 
-			vrh.addElement("tag").addAttribute("k", "type").addAttribute("v", "vrhIzolatora");
+			vrh.addElement("tag").addAttribute("k", "type").addAttribute("v", "tockaPrikazaIzolatora");
 			
-			izolatorWay.addElement("nd").addAttribute("ref", Long.toString(vrhPravokutnika.getUid()));
+			izolatorWay.addElement("nd").addAttribute("ref", Long.toString(tockaPrikazaIzolatora.getUid()));
 		}
 		
-		izolatorWay.addElement("nd").addAttribute("ref", Long.toString(this.vrhoviPravokutnika.get(0).getUid())); // Još jednom dodati početnu točku, da se linija zatvori u poligon
+		izolatorWay.addElement("nd").addAttribute("ref", Long.toString(this.tockePrikazaIzolatora.get(0).getUid())); // Još jednom dodati početnu točku, da se linija zatvori u poligon
 	}
 
 }

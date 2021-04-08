@@ -5,38 +5,38 @@ import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmWgsConverter;
 import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
-public class VrhPravokutnikaIzolatora {
+public class TockaPrikazaIzolatora {
 	
-	private UtmCoordinate vrhUtm;
-	private WgsCoordinate vrhWgs;
+	private UtmCoordinate tockaUtm;
+	private WgsCoordinate tockaWgs;
 	private long uid;
 	
-	public VrhPravokutnikaIzolatora(UtmCoordinate vrhUtm) {
+	public TockaPrikazaIzolatora(UtmCoordinate tockaUtm) {
 		super();
-		this.vrhUtm = vrhUtm;
+		this.tockaUtm = tockaUtm;
 		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 
-	public VrhPravokutnikaIzolatora(WgsCoordinate vrhWgs) {
+	public TockaPrikazaIzolatora(WgsCoordinate tockaWgs) {
 		super();
-		this.vrhWgs = vrhWgs;
+		this.tockaWgs = tockaWgs;
 		this.uid = Long.valueOf(UidGenerator.getUidString());
 	}
 
-	public UtmCoordinate getVrhUtm() {
-		return vrhUtm;
+	public UtmCoordinate getTockaUtm() {
+		return tockaUtm;
 	}
 
-	public void setVrhUtm(UtmCoordinate vrhUtm) {
-		this.vrhUtm = vrhUtm;
+	public void setTockaUtm(UtmCoordinate tockaUtm) {
+		this.tockaUtm = tockaUtm;
 	}
 
-	public WgsCoordinate getVrhWgs() {
-		return vrhWgs;
+	public WgsCoordinate getTockaWgs() {
+		return tockaWgs;
 	}
 
-	public void setVrhWgs(WgsCoordinate vrhWgs) {
-		this.vrhWgs = vrhWgs;
+	public void setTockaWgs(WgsCoordinate tockaWgs) {
+		this.tockaWgs = tockaWgs;
 	}
 
 	public long getUid() {
@@ -48,12 +48,12 @@ public class VrhPravokutnikaIzolatora {
 	}
 
 	public void izracunajWgs() {
-		this.vrhWgs = UtmWgsConverter.convertToWgs(this.vrhUtm);
+		this.tockaWgs = UtmWgsConverter.convertToWgs(this.tockaUtm);
 	}
 	
 	public void izracunajUtm() {
 		try {
-			this.vrhUtm = UtmWgsConverter.convertToUtm(this.vrhWgs);
+			this.tockaUtm = UtmWgsConverter.convertToUtm(this.tockaWgs);
 		} catch (Exception e) {
 			System.out.println("Neuspjesna konverzija!");
 		}

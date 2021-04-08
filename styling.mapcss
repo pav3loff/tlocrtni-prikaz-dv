@@ -16,7 +16,6 @@ node|z-11[type=stup] {
 	symbol-size: 12;
 	symbol-fill-color: #98ba4e;
 	symbol-stroke-color: black;
-	z-index: 2;
 }
 
 node|z11-17[type=stup] {
@@ -28,7 +27,6 @@ node|z11-17[type=stup] {
 	text-color: red;
 	font-family: "Droid Sans";
 	font-size: 11;
-	z-index: 2;
 }
 
 node|z17-19[type=stup] {
@@ -36,7 +34,6 @@ node|z17-19[type=stup] {
 	symbol-size: 12;
 	symbol-fill-color: #98ba4e;
 	symbol-stroke-color: black;
-	z-index: 2;
 }
 
 node|z19-[type=stup] {
@@ -44,27 +41,6 @@ node|z19-[type=stup] {
 	symbol-size: 15;
 	symbol-fill-color: #98ba4e;
 	symbol-stroke-color: black;
-}
-
-node|z-22[type=izolator][setting("hide_icons")] {
-	symbol-shape: none;
-}
-
-node|z22-23[type=izolator] {
-	symbol-shape: square;
-	symbol-size: 5;
-	symbol-fill-color: lime;
-	symbol-stroke-color: black;
-}
-
-node|z23-[type=izolator] {
-	symbol-shape: square;
-	symbol-size: 10;
-	symbol-fill-color: lime;
-	symbol-stroke-color: black;
-	text-color: black;
-	font-family: "Droid Sans";
-	font-size: 11;
 }
 
 node|z-18[type=STZU][setting("hide_icons")] {
@@ -93,7 +69,7 @@ node|z23-[type=STZU] {
 	text-color: black;
 	font-family: "Droid Sans";
 	font-size: 11;
-	z-index: 3;
+	z-index: 1;
 }
 
 node|z-18[type=STI][setting("hide_icons")] {
@@ -124,6 +100,10 @@ node|z23-[type=STI] {
 	font-size: 11;
 }
 
+node[type=STI][invisible=yes][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
 node|z-17[type=STV][setting("hide_icons")] {
 	symbol-shape: none;
 }
@@ -152,6 +132,10 @@ node|z23-[type=STV] {
 	font-size: 11;
 }
 
+node[type=STV][invisible=yes][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
 way|z-22[type="vodic"] {
 	width: 1;
 	color: #4ebab5;
@@ -171,7 +155,6 @@ way|z23-[type="vodic"] {
 	font-weight: bold;
 	casing-width: 1;
 	casing-color: black;
-	z-index: 2;
 }
 
 way|z-22[type="zastitno_uze"] {
@@ -186,44 +169,54 @@ way|z23-[type="zastitno_uze"] {
 	casing-color: black;
 }
 
-node[type=vrhKonzole][setting("hide_icons")] {
-	symbol-shape: none;
-}
-
 way[type="konzola"] {
 	width: 0.5;
 	color: black;
-	z-index: 0;
 }
 
-node|z-21[type="izolator"][setting("hide_icons")] {
+node|z-19[type="izolator"][setting("hide_icons")] {
 	symbol-shape: none;
 }
 
-node|z22[type="izolator"][setting("hide_icons")] {
+node|z20[type="izolator"] {
 	symbol-shape: circle;
-	symbol-size: 10;
+	symbol-size: 2;
 	symbol-fill-color: #4ebab5;
 	symbol-stroke-color: black;
-	z-index: 4;
 }
 
-node|z23-[type="izolator"][setting("hide_icons")] {
+node|z21[type="izolator"] {
+	symbol-shape: circle;
+	symbol-size: 5;
+	symbol-fill-color: #4ebab5;
+	symbol-stroke-color: black;
+}
+
+node|z22[type="izolator"] {
+	symbol-shape: circle;
+	symbol-size: 8;
+	symbol-fill-color: #4ebab5;
+	symbol-stroke-color: black;
+}
+
+node|z23-[type="izolator"] {
 	symbol-shape: circle;
 	symbol-size: 15;
 	symbol-fill-color: #4ebab5;
 	symbol-stroke-color: black;
-	z-index: 4;
 }
 
-way[type="izolator"] {
+area[type="izolator"] {
 	color: black;
 	width: 0.5;
 	fill-color: #4ebab5;
-	fill-extent: 1000;
 	fill-opacity: 1;
 }
 
-node[type=vrhIzolatora][setting("hide_icons")] {
+node[type=tockaPrikazaIzolatora][setting("hide_icons")] {
+	symbol-shape: none;
+}
+
+node[type=vrhKonzole][setting("hide_icons")] {
 	symbol-shape: none;
 }

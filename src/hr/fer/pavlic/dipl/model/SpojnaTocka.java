@@ -176,7 +176,7 @@ public class SpojnaTocka {
 		return stJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element parent, boolean isStupZatezni) {
 		Element stNode = parent.addElement("node")
 				.addAttribute("id", Long.toString(this.uid))
 				.addAttribute("version", "1")
@@ -188,6 +188,10 @@ public class SpojnaTocka {
 		stNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.x));
 		stNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.y));
 		stNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.z));
+		
+		if(!isStupZatezni) {
+			stNode.addElement("tag").addAttribute("k", "invisible").addAttribute("v", "yes"); // Ako je stup nosivi, izolator, STI i STV su u jednoj tocki pa je STI i STV moguce zanemariti u prikazu
+		}
 	}
 	
 	@Override

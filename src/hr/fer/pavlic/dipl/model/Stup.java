@@ -314,7 +314,7 @@ public abstract class Stup {
 		}
 		
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
-			stzu.getAsOsmXmlElement(parent);
+			stzu.getAsOsmXmlElement(parent, this.isZatezni);
 		}
 		
 		this.konzola.getAsOsmXmlElement(parent);

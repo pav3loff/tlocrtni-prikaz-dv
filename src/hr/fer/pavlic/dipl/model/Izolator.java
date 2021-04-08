@@ -16,6 +16,7 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 public class Izolator {
 	
 	private final static double DECIMALNO_MJESTO = 100000000.0;
+	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.1;
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
 	private int idIzolatora;
@@ -185,8 +186,8 @@ public class Izolator {
 		this.uid = uid;
 	}
 	
-	private List<VrhPravokutnikaIzolatora> izracunajVrhovePravokutnika() {	
-		List<VrhPravokutnikaIzolatora> vrhoviPravokutnika = new LinkedList<>();
+	private List<TockaPrikazaIzolatora> izracunajVrhovePravokutnika() {	
+		List<TockaPrikazaIzolatora> vrhoviPravokutnika = new LinkedList<>();
 		
 		SpojnaTocka sti = this.getSti();
 		SpojnaTocka stv = this.getStv();
@@ -269,22 +270,22 @@ public class Izolator {
 			// Prva dva vrha pravokutnika nalaze se duz pravca koji je okomit na pravac p1, a sijece ga u tocki sjeciste 1
 			// Ostala dva vrha pravokutnika nalaze se duz pravca koji je okomit na pravac p1, a sijece ga u tocki sjeciste 2
 			// Vrhovi pravokutnika onda imaju koordinate X oblika: (sjecisteX +/- SIRINA_IZOLATORA * cos(90 + kut)), a koordinate Z oblika: (sjecisteZ +/- SIRINA_IZOLATORA * sin(90 + kut))
-			VrhPravokutnikaIzolatora vrh1 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+			TockaPrikazaIzolatora vrh1 = new TockaPrikazaIzolatora(new UtmCoordinate(
 					stiUtm.getLongZone(), stiUtm.getLatZone(), sjeciste1UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut)), 
 					sjeciste1UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut))));
-			VrhPravokutnikaIzolatora vrh2 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+			TockaPrikazaIzolatora vrh2 = new TockaPrikazaIzolatora(new UtmCoordinate(
 					stiUtm.getLongZone(), stiUtm.getLatZone(), sjeciste1UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut)), 
 					sjeciste1UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut))));
-			VrhPravokutnikaIzolatora vrh3 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+			TockaPrikazaIzolatora vrh3 = new TockaPrikazaIzolatora(new UtmCoordinate(
 					stiUtm.getLongZone(), stiUtm.getLatZone(), sjeciste2UtmEasting + SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut)), 
 					sjeciste2UtmNorthing + SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut))));
-			VrhPravokutnikaIzolatora vrh4 = new VrhPravokutnikaIzolatora(new UtmCoordinate(
+			TockaPrikazaIzolatora vrh4 = new TockaPrikazaIzolatora(new UtmCoordinate(
 					stiUtm.getLongZone(), stiUtm.getLatZone(), sjeciste2UtmEasting - SIRINA_IZOLATORA * Math.cos(Math.toRadians(90 + kut)), 
 					sjeciste2UtmNorthing - SIRINA_IZOLATORA * Math.sin(Math.toRadians(90 + kut))));
 			
 			vrhoviPravokutnika.addAll(Arrays.asList(vrh1, vrh3, vrh4, vrh2)); // Redoslijed vrhova je bitan zbog odgovarajuceg spajanja
 			
-			for(VrhPravokutnikaIzolatora vrhPravokutnika : vrhoviPravokutnika) {
+			for(TockaPrikazaIzolatora vrhPravokutnika : vrhoviPravokutnika) {
 				vrhPravokutnika.izracunajWgs();
 			}
 		} catch (Exception e) {
@@ -292,6 +293,33 @@ public class Izolator {
 		}
 		
 		return vrhoviPravokutnika;
+	}
+	
+	private List<TockaPrikazaIzolatora> izracunajTockeNaKruznici() {
+		List<TockaPrikazaIzolatora> tockeKruznice = new LinkedList<>();
+		
+		SpojnaTocka sti = this.getSti();
+
+		try {
+			UtmCoordinate stiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(sti.getGeoSirina(), sti.getGeoDuzina()));
+			
+			// Za prikaz izolatora nosivog stupa (oblik kruga) potrebno je oko STI generirati kruznicu, buduci da se STI i izolator na takvom stupu preklapaju (u tlocrtnom prikazu)
+			for(int i = 0; i < 360; i += 20) {
+				double x = stiUtm.getEasting() + RADIJUS_KRUZNICE_IZOLATORA * Math.cos(Math.toRadians(i));
+				double z = stiUtm.getNorthing() + RADIJUS_KRUZNICE_IZOLATORA * Math.sin(Math.toRadians(i));
+				
+				tockeKruznice.add(new TockaPrikazaIzolatora(new UtmCoordinate(stiUtm.getLongZone(), stiUtm.getLatZone(), x, z)));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Neuspjesna konverzija!");
+		}
+		
+		for(TockaPrikazaIzolatora tockaKruznice : tockeKruznice) {
+			tockaKruznice.izracunajWgs();
+		}
+		
+		return tockeKruznice;
 	}
 
 	public JSONObject getJson() {
@@ -310,35 +338,24 @@ public class Izolator {
 	}
 	
 	public void getAsOsmXmlElement(Element parent, boolean isStupZatezni) {
+		this.sti.getAsOsmXmlElement(parent, isStupZatezni);
+		this.stv.getAsOsmXmlElement(parent, isStupZatezni);
+		
+		List<TockaPrikazaIzolatora> tockePrikaza;
+		
 		// Ako je stup zatezni, njegovi izolatori prikazuju se kao pravokutnici (OSM ne podrzava ikone oblika pravokutnika)
 		// Ako je stup nosivi, njegovi izolatori prikazuju se kao krugovi (OSM podrzava ikone oblika kruga)
-		if(isStupZatezni) {
-			this.updateLatLong();
-			
+		if(isStupZatezni) {			
 			// Odrediti vrhove pravokutnika izolatora
-			List<VrhPravokutnikaIzolatora> vrhoviPravokutnika = izracunajVrhovePravokutnika();
-			PrikazIzolatoraZateznogStupa pravokutnikIzolatora = new PrikazIzolatoraZateznogStupa(this, vrhoviPravokutnika);
-			
-			pravokutnikIzolatora.getAsOsmXmlElement(parent);
+			tockePrikaza = izracunajVrhovePravokutnika();
 		} else {
-			this.updateLatLong();
-			
-			Element izolatorNode = parent.addElement("node")
-					.addAttribute("id", Long.toString(this.getUid()))
-					.addAttribute("version", "1")
-					.addAttribute("lat", Double.toString(this.geoSirina))
-					.addAttribute("lon", Double.toString(this.geoDuzina));
-			
-			izolatorNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "izolator");
-			izolatorNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.getIdIzolatora()));
-			izolatorNode.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.getMaterijal());
-			izolatorNode.addElement("tag").addAttribute("k", "izvedba").addAttribute("v", this.getIzvedba());
-			izolatorNode.addElement("tag").addAttribute("k", "brojClanaka").addAttribute("v", Integer.toString(this.getBrojClanaka()));
+			// Odrediti tocke kruznice izolatora
+			tockePrikaza = izracunajTockeNaKruznici();
 		}
 		
-		this.sti.getAsOsmXmlElement(parent);
+		PrikazIzolatora prikazIzolatora = new PrikazIzolatora(this, tockePrikaza);
 		
-		this.stv.getAsOsmXmlElement(parent);
+		prikazIzolatora.getAsOsmXmlElement(parent);
 	}
 	
 	/**

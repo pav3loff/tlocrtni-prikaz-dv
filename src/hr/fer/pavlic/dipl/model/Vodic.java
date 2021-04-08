@@ -15,7 +15,7 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Vodic {
 	
-	private final static int RAZMAK_STI_I_STV = 6;
+	private final static int RAZMAK_STI_I_STV = 4;
 	private int idVodica;
 	private String oznakaFaze;
 	private String materijal;

@@ -304,7 +304,7 @@ public class Izolator {
 			UtmCoordinate stiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(sti.getGeoSirina(), sti.getGeoDuzina()));
 			
 			// Za prikaz izolatora nosivog stupa (oblik kruga) potrebno je oko STI generirati kruznicu, buduci da se STI i izolator na takvom stupu preklapaju (u tlocrtnom prikazu)
-			for(int i = 0; i < 360; i += 20) {
+			for(int i = 0; i < 360; i += 30) {
 				double x = stiUtm.getEasting() + RADIJUS_KRUZNICE_IZOLATORA * Math.cos(Math.toRadians(i));
 				double z = stiUtm.getNorthing() + RADIJUS_KRUZNICE_IZOLATORA * Math.sin(Math.toRadians(i));
 				

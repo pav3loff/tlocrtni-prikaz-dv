@@ -20,7 +20,6 @@ public class Izolator {
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
 	private int idIzolatora;
-	private double kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 	private String materijal;
 	private String izvedba;
 	private int brojClanaka;
@@ -30,11 +29,9 @@ public class Izolator {
 	private SpojnaTocka stv;
 	private long uid;
 	
-	public Izolator(int idIzolatora, double kutIzmedjuSpojneTockeVodicaIRavnineKonzole, 
-			String materijal, String izvedba, int brojClanaka, SpojnaTocka sti, SpojnaTocka stv) {
+	public Izolator(int idIzolatora, String materijal, String izvedba, int brojClanaka, SpojnaTocka sti, SpojnaTocka stv) {
 		super();
 		this.idIzolatora = idIzolatora;
-		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 		this.materijal = materijal;
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
@@ -47,7 +44,6 @@ public class Izolator {
 	public Izolator(Izolator izolator) {
 		super();
 		this.idIzolatora = izolator.idIzolatora;
-		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = izolator.kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 		this.materijal = izolator.materijal;
 		this.izvedba = izolator.izvedba;
 		this.brojClanaka = izolator.brojClanaka;
@@ -72,11 +68,6 @@ public class Izolator {
 			JSONObject stvJson = izolatorJson.getJSONObject("spojnaTockaVodica");
 			
 			this.stv = new SpojnaTocka(stvJson);
-		}
-		
-		if(!(izolatorJson.isNull("kutIzmedjuSpojneTockeVodicaIRavnineKonzole"))) {
-			this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = 
-					izolatorJson.getDouble("kutIzmedjuSpojneTockeVodicaIRavnineKonzole");
 		}
 		
 		if(!(izolatorJson.isNull("materijal"))) {
@@ -112,14 +103,6 @@ public class Izolator {
 
 	public void setIdIzolatora(int idIzolatora) {
 		this.idIzolatora = idIzolatora;
-	}
-
-	public double getKutIzmedjuSpojneTockeVodicaIRavnineKonzole() {
-		return kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
-	}
-
-	public void setKutIzmedjuSpojneTockeVodicaIRavnineKonzole(double kutIzmedjuSpojneTockeVodicaIRavnineKonzole) {
-		this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole = kutIzmedjuSpojneTockeVodicaIRavnineKonzole;
 	}
 
 	public String getMaterijal() {
@@ -325,7 +308,6 @@ public class Izolator {
 	public JSONObject getJson() {
 		JSONObject izolatorJson = new JSONObject();
 		izolatorJson.put("idIzolatora", this.idIzolatora);
-		izolatorJson.put("kutIzmedjuSpojneTockeVodicaIRavnineKonzole", this.kutIzmedjuSpojneTockeVodicaIRavnineKonzole);
 		izolatorJson.put("materijal", this.materijal);
 		izolatorJson.put("izvedba", this.izvedba);
 		izolatorJson.put("brojClanaka", this.brojClanaka);

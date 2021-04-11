@@ -158,7 +158,7 @@ public class DataTransform {
 			JSONArray stupoviJsonOut = new JSONArray();
 			
 			for(Stup stup : stupovi) {
-				stupoviJsonOut.put(stup.getJson());
+				stupoviJsonOut.put(stup.getAsJson());
 			}
 			
 			output.append("stupovi", stupoviJsonOut);
@@ -166,7 +166,7 @@ public class DataTransform {
 			JSONArray dalekovodiJsonOut = new JSONArray();
 			
 			for(Dalekovod dalekovod : dalekovodi) {
-				dalekovodiJsonOut.put(dalekovod.getJson());
+				dalekovodiJsonOut.put(dalekovod.getAsJson());
 			}
 			
 			output.append("dalekovodi", dalekovodiJsonOut);
@@ -174,7 +174,7 @@ public class DataTransform {
 			JSONArray zastitnaUzadJsonOut = new JSONArray();
 			
 			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
-				zastitnaUzadJsonOut.put(zastitnoUze.getJson());
+				zastitnaUzadJsonOut.put(zastitnoUze.getAsJson());
 			}
 			
 			output.append("zastitnaUzad", zastitnaUzadJsonOut);

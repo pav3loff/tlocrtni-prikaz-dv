@@ -3,6 +3,7 @@ package hr.fer.pavlic.dipl.model;
 import java.util.List;
 
 import org.dom4j.Element;
+import org.json.JSONArray;
 
 /**
  * Izolator zateznog stupa prikazuje se u obliku pravokutnika (4 tocke)
@@ -33,6 +34,16 @@ public class PrikazIzolatora {
 
 	public void setTockePrikazaIzolatora(List<TockaPrikazaIzolatora> tockePrikazaIzolatora) {
 		this.tockePrikazaIzolatora = tockePrikazaIzolatora;
+	}
+	
+	public JSONArray getAsJson() {
+		JSONArray prikazJson = new JSONArray();
+		
+		for(TockaPrikazaIzolatora tocka : this.tockePrikazaIzolatora) {
+			prikazJson.put(tocka.getAsJson());
+		}
+		
+		return prikazJson;
 	}
 
 	public void getAsOsmXmlElement(Element parent) {

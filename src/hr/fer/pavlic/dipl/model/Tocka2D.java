@@ -1,6 +1,7 @@
 package hr.fer.pavlic.dipl.model;
 
 import org.dom4j.Element;
+import org.json.JSONArray;
 
 import hr.fer.pavlic.dipl.util.UidGenerator;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
@@ -73,6 +74,15 @@ public class Tocka2D {
 		} catch (Exception e) {
 			System.out.println("Neuspješna konverzija!");
 		}
+	}
+	
+	public JSONArray getAsJson() {
+		JSONArray tockaJson = new JSONArray();
+		
+		tockaJson.put(this.geoSirina);
+		tockaJson.put(this.geoDuzina);
+		
+		return tockaJson;
 	}
 	
 	public void getAsOsmXmlElement(Element parent) {

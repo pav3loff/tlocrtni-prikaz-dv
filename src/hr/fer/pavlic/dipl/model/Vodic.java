@@ -15,16 +15,12 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Vodic {
 	
-	private final static int RAZMAK_STI_I_STV = 4;
+	private final static double RAZMAK_STI_I_STV = 4;
 	private int idVodica;
 	private String oznakaFaze;
 	private String materijal;
 	private List<Integer> idSt; // identifikatori spojnih točaka na koje se spaja
 	private List<Izolator> spojniIzolatori; // Izolatori kojima pripadaju STV na koje je spojen vodic
-	
-	public Vodic() {
-		super();
-	}
 	
 	public Vodic(int idVodica, String oznakaFaze, String materijal, List<Integer> idSt) {
 		super();
@@ -233,10 +229,19 @@ public class Vodic {
 		return rasponi;
 	}
 	
-	public JSONObject getJson() {
+	public JSONObject getAsJson() {
 		JSONObject vodicJson = new JSONObject();
 		
-		// ...
+		vodicJson.put("idVodica", this.idVodica);
+		vodicJson.put("oznakaFaze", this.oznakaFaze);
+		vodicJson.put("materijal", this.materijal);
+		
+		JSONArray koordinateSpojistaJson = new JSONArray();
+		for(Izolator izolator : this.spojniIzolatori) {
+			koordinateSpojistaJson.put(izolator.getStv().getAsSimpleJson());
+		}
+		
+		vodicJson.put("koordinateSpojista", koordinateSpojistaJson);
 		
 		return vodicJson;
 	}

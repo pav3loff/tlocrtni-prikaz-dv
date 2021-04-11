@@ -1,5 +1,7 @@
 package hr.fer.pavlic.dipl.model;
 
+import org.json.JSONArray;
+
 import hr.fer.pavlic.dipl.util.UidGenerator;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmCoordinate;
 import hr.fer.pavlic.dipl.utmwgstransf.UtmWgsConverter;
@@ -57,6 +59,15 @@ public class TockaPrikazaIzolatora {
 		} catch (Exception e) {
 			System.out.println("Neuspjesna konverzija!");
 		}
+	}
+	
+	public JSONArray getAsJson() {
+		JSONArray tockaJson = new JSONArray();
+		
+		tockaJson.put(this.tockaWgs.getGeoSirina());
+		tockaJson.put(this.tockaWgs.getGeoDuzina());
+		
+		return tockaJson;
 	}
 	
 }

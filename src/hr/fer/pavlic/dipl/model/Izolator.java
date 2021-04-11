@@ -15,7 +15,6 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Izolator {
 	
-	private final static double DECIMALNO_MJESTO = 100000000.0;
 	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.1;
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
@@ -23,22 +22,21 @@ public class Izolator {
 	private String materijal;
 	private String izvedba;
 	private int brojClanaka;
-	private double geoSirina;
-	private double geoDuzina;
 	private SpojnaTocka sti;
 	private SpojnaTocka stv;
 	private long uid;
+	private boolean isStupZatezni;
 	
-	public Izolator(int idIzolatora, String materijal, String izvedba, int brojClanaka, SpojnaTocka sti, SpojnaTocka stv) {
+	public Izolator(int idIzolatora, String materijal, String izvedba, int brojClanaka, SpojnaTocka sti, SpojnaTocka stv, boolean isStupZatezni) {
 		super();
 		this.idIzolatora = idIzolatora;
 		this.materijal = materijal;
 		this.izvedba = izvedba;
 		this.brojClanaka = brojClanaka;
-		this.geoSirina = this.geoDuzina = 0;
 		this.sti = sti;
 		this.stv = stv;
 		this.uid = Long.valueOf(UidGenerator.getUidString());
+		this.isStupZatezni = isStupZatezni;
 	}
 	
 	public Izolator(Izolator izolator) {
@@ -47,13 +45,13 @@ public class Izolator {
 		this.materijal = izolator.materijal;
 		this.izvedba = izolator.izvedba;
 		this.brojClanaka = izolator.brojClanaka;
-		this.geoSirina = this.geoDuzina = 0;
 		this.sti = izolator.sti;
 		this.stv = izolator.stv;
 		this.uid = izolator.uid;
+		this.isStupZatezni = izolator.isStupZatezni;
 	}
 
-	public Izolator(JSONObject izolatorJson) {
+	public Izolator(JSONObject izolatorJson, boolean isStupZatezni) {
 		if(!(izolatorJson.isNull("idIzolatora"))) {
 			this.idIzolatora = izolatorJson.getInt("idIzolatora");
 		}
@@ -82,19 +80,8 @@ public class Izolator {
 			this.brojClanaka = izolatorJson.getInt("brojClanaka");
 		}
 		
-		if(!(izolatorJson.isNull("geoSirina"))) {
-			this.geoSirina = izolatorJson.getDouble("geoSirina");
-		} else {
-			this.geoSirina = 0;
-		}
-		
-		if(!(izolatorJson.isNull("geoDuzina"))) {
-			this.geoDuzina = izolatorJson.getDouble("geoDuzina");
-		} else {
-			this.geoDuzina = 0;
-		}
-		
 		this.uid = Long.valueOf(UidGenerator.getUidString());
+		this.isStupZatezni = isStupZatezni;
 	}
 
 	public int getIdIzolatora() {
@@ -129,22 +116,6 @@ public class Izolator {
 		this.brojClanaka = brojClanaka;
 	}
 
-	public double getGeoSirina() {
-		return geoSirina;
-	}
-
-	public void setGeoSirina(double geoSirina) {
-		this.geoSirina = geoSirina;
-	}
-
-	public double getGeoDuzina() {
-		return geoDuzina;
-	}
-
-	public void setGeoDuzina(double geoDuzina) {
-		this.geoDuzina = geoDuzina;
-	}
-	
 	public SpojnaTocka getSti() {
 		return sti;
 	}
@@ -169,6 +140,14 @@ public class Izolator {
 		this.uid = uid;
 	}
 	
+	public boolean isStupZatezni() {
+		return isStupZatezni;
+	}
+
+	public void setStupZatezni(boolean isStupZatezni) {
+		this.isStupZatezni = isStupZatezni;
+	}
+
 	private List<TockaPrikazaIzolatora> izracunajVrhovePravokutnika() {	
 		List<TockaPrikazaIzolatora> vrhoviPravokutnika = new LinkedList<>();
 		
@@ -304,30 +283,54 @@ public class Izolator {
 		
 		return tockeKruznice;
 	}
-
-	public JSONObject getJson() {
+	
+	public JSONObject getAsSimpleJson() {
 		JSONObject izolatorJson = new JSONObject();
+		
+		izolatorJson.put("spojnaTockaIzolatora", this.sti.getAsSimpleJson());
+		izolatorJson.put("spojnaTockaVodica", this.stv.getAsSimpleJson());
+		
+		return izolatorJson;
+	}
+
+	public JSONObject getAsJson() {
+		JSONObject izolatorJson = new JSONObject();
+		
 		izolatorJson.put("idIzolatora", this.idIzolatora);
 		izolatorJson.put("materijal", this.materijal);
 		izolatorJson.put("izvedba", this.izvedba);
 		izolatorJson.put("brojClanaka", this.brojClanaka);
-		izolatorJson.put("geoSirina", this.geoSirina);
-		izolatorJson.put("geoDuzina", this.geoDuzina);
-		izolatorJson.put("spojnaTockaIzolatora", this.sti.getJson());
-		izolatorJson.put("spojnaTockaVodica", this.stv.getJson());
-		
-		return izolatorJson;
-	}
-	
-	public void getAsOsmXmlElement(Element parent, boolean isStupZatezni) {
-		this.sti.getAsOsmXmlElement(parent, isStupZatezni);
-		this.stv.getAsOsmXmlElement(parent, isStupZatezni);
+		izolatorJson.put("spojnaTockaIzolatora", this.sti.getAsJson());
+		izolatorJson.put("spojnaTockaVodica", this.stv.getAsJson());
 		
 		List<TockaPrikazaIzolatora> tockePrikaza;
 		
 		// Ako je stup zatezni, njegovi izolatori prikazuju se kao pravokutnici (OSM ne podrzava ikone oblika pravokutnika)
 		// Ako je stup nosivi, njegovi izolatori prikazuju se kao krugovi (OSM podrzava ikone oblika kruga)
-		if(isStupZatezni) {			
+		if(this.isStupZatezni) {			
+			// Odrediti vrhove pravokutnika izolatora
+			tockePrikaza = izracunajVrhovePravokutnika();
+		} else {
+			// Odrediti tocke kruznice izolatora
+			tockePrikaza = izracunajTockeNaKruznici();
+		}
+		
+		PrikazIzolatora prikazIzolatora = new PrikazIzolatora(this, tockePrikaza);
+		
+		izolatorJson.put("prikaz", prikazIzolatora.getAsJson());
+		
+		return izolatorJson;
+	}
+	
+	public void getAsOsmXmlElement(Element parent) {
+		this.sti.getAsOsmXmlElement(parent, this.isStupZatezni);
+		this.stv.getAsOsmXmlElement(parent, this.isStupZatezni);
+		
+		List<TockaPrikazaIzolatora> tockePrikaza;
+		
+		// Ako je stup zatezni, njegovi izolatori prikazuju se kao pravokutnici (OSM ne podrzava ikone oblika pravokutnika)
+		// Ako je stup nosivi, njegovi izolatori prikazuju se kao krugovi (OSM podrzava ikone oblika kruga)
+		if(this.isStupZatezni) {			
 			// Odrediti vrhove pravokutnika izolatora
 			tockePrikaza = izracunajVrhovePravokutnika();
 		} else {
@@ -338,17 +341,6 @@ public class Izolator {
 		PrikazIzolatora prikazIzolatora = new PrikazIzolatora(this, tockePrikaza);
 		
 		prikazIzolatora.getAsOsmXmlElement(parent);
-	}
-	
-	/**
-	 * Geo. širina izolatora dobiva se kao aritmeti�?ka sredina geo. širine STI i geo. širine STV
-	 * Geo. dužina izolatora dobiva se kao arirmeti�?ka sredina geo. dužine STI i geo. dužine STV
-	 */
-	public void updateLatLong() {
-		this.geoSirina = Math.round(
-				((this.sti.getGeoSirina() + this.stv.getGeoSirina()) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
-		this.geoDuzina = Math.round(
-				((this.sti.getGeoDuzina() + this.stv.getGeoDuzina()) / 2) * DECIMALNO_MJESTO) / DECIMALNO_MJESTO;
 	}
 	
 	@Override

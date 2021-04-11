@@ -6,10 +6,6 @@ import org.json.JSONObject;
 
 public class JelaStup extends Stup {
 	
-	public JelaStup() {
-		super();
-	}
-	
 	public JelaStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {

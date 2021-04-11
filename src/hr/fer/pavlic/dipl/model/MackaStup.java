@@ -5,11 +5,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 public class MackaStup extends Stup {
-	
-	public MackaStup() {
-		super();
-	}
-	
+
 	public MackaStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {

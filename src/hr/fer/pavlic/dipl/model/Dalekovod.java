@@ -70,7 +70,7 @@ public class Dalekovod {
 		this.vodici = vodici;
 	}
 	
-	public JSONObject getJson() {
+	public JSONObject getAsJson() {
 		JSONObject dalekovodJson = new JSONObject();
 		
 		dalekovodJson.put("idDalekovoda", this.idDalekovoda);
@@ -78,7 +78,7 @@ public class Dalekovod {
 		
 		JSONArray vodiciJson = new JSONArray();
 		for(Vodic vodic : this.vodici) {
-			vodiciJson.put(vodic.getJson());
+			vodiciJson.put(vodic.getAsJson());
 		}
 		
 		dalekovodJson.put("vodici", vodiciJson);

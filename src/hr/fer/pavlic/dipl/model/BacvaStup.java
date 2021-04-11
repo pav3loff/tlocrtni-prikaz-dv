@@ -6,10 +6,6 @@ import org.json.JSONObject;
 
 public class BacvaStup extends Stup {
 	
-	public BacvaStup() {
-		super();
-	}
-	
 	public BacvaStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {

@@ -5,11 +5,7 @@ import java.util.List;
 import org.json.JSONObject;
 
 public class DvostrukiYStup extends Stup {
-	
-	public DvostrukiYStup() {
-		super();
-	}
-	
+
 	public DvostrukiYStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {

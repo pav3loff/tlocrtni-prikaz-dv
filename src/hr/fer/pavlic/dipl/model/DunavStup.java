@@ -6,10 +6,6 @@ import org.json.JSONObject;
 
 public class DunavStup extends Stup {
 	
-	public DunavStup() {
-		super();
-	}
-	
 	public DunavStup(int id, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {

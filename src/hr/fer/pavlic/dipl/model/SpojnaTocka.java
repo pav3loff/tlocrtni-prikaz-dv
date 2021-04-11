@@ -1,6 +1,7 @@
 package hr.fer.pavlic.dipl.model;
 
 import org.dom4j.Element;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import hr.fer.pavlic.dipl.util.UidGenerator;
@@ -155,8 +156,17 @@ public class SpojnaTocka {
 	public void setUid(long uid) {
 		this.uid = uid;
 	}
+	
+	public JSONArray getAsSimpleJson() {
+		JSONArray stJson = new JSONArray();
+		
+		stJson.put(this.geoSirina);
+		stJson.put(this.geoDuzina);
+		
+		return stJson;
+	}
 
-	public JSONObject getJson() {
+	public JSONObject getAsJson() {
 		JSONObject stJson = new JSONObject();
 		
 		if(tip == TipSpojneTocke.STI) {

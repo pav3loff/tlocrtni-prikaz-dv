@@ -41,10 +41,6 @@ public abstract class Stup {
 	private List<SpojnaTocka> spojneTockeZu;
 	private Konzola konzola;
 	
-	public Stup() {
-		super();
-	}
-	
 	public Stup(int idStupa, boolean isZatezni, double orijentacija, double geoSirina, double geoDuzina,
 			double visina, String tipStupa, String proizvodac, double tezina, String oznakaUzemljenja,
 			String vrstaZastite, List<Izolator> izolatori, List<SpojnaTocka> spojneTockeZu) {
@@ -117,7 +113,13 @@ public abstract class Stup {
 			for(int i = 0; i < izolatoriJson.length(); i++) {
 				JSONObject izolatorJson = izolatoriJson.getJSONObject(i);
 				
-				this.izolatori.add(new Izolator(izolatorJson));
+				boolean isStupZatezni = true;
+				
+				if(!(stupJson.isNull("isZatezni"))) {
+					isStupZatezni = stupJson.getBoolean("isZatezni");
+				}
+				
+				this.izolatori.add(new Izolator(izolatorJson, isStupZatezni));
 			}
 		}
 		
@@ -135,15 +137,35 @@ public abstract class Stup {
 	}
 	
 	private static class Util {
+		private static JSONArray getIzolatoriAsJsonArray(List<Izolator> izolatori, boolean isStupZatezni) {
+			JSONArray izolatoriJson = new JSONArray();
+			
+			for(Izolator izolator : izolatori) {
+				izolatoriJson.put(izolator.getAsJson());
+			}
+			
+			return izolatoriJson;
+		}
+		
 		private static JSONArray getSpojneTockeZuAsJsonArray(
 				List<SpojnaTocka> spojneTockeZu) {
 			JSONArray spojneTockeZuJson = new JSONArray();
 			
 			for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
-				spojneTockeZuJson.put(spojnaTockaZu.getJson());
+				spojneTockeZuJson.put(spojnaTockaZu.getAsJson());
 			}
 			
 			return spojneTockeZuJson;
+		}
+		
+		private static JSONArray getKonzolaAsJsonArray(Konzola konzola) {
+			JSONArray konzolaJson = new JSONArray();
+			
+			for(Tocka2D vrh : konzola.getVrhoviKonzole()) {
+				konzolaJson.put(vrh.getAsJson());
+			}
+			
+			return konzolaJson;
 		}
 		
 		// metoda containsKey sucelja Map objekte ne uspoređuje s equals; potrebno je ru�?no implementirati
@@ -270,7 +292,7 @@ public abstract class Stup {
 		this.konzola = konzola;
 	}
 
-	public JSONObject getJson() {
+	public JSONObject getAsJson() {
 		JSONObject stupJson = new JSONObject();
 		
 		stupJson.put("idStupa", this.idStupa);
@@ -285,8 +307,9 @@ public abstract class Stup {
 		stupJson.put("tezina", this.tezina);
 		stupJson.put("oznakaUzemljenja", this.oznakaUzemljenja);
 		stupJson.put("vrstaZastite", this.vrstaZastite);
-		stupJson.put("spojneTockeZastitneUzadi", 
-				Util.getSpojneTockeZuAsJsonArray(this.spojneTockeZu));
+		stupJson.put("izolatori", Util.getIzolatoriAsJsonArray(this.izolatori, this.isZatezni));
+		stupJson.put("spojneTockeZastitneUzadi", Util.getSpojneTockeZuAsJsonArray(this.spojneTockeZu));
+		stupJson.put("konzola", Util.getKonzolaAsJsonArray(this.konzola));
 		
 		return stupJson;
 	}
@@ -310,7 +333,7 @@ public abstract class Stup {
 		stupNode.addElement("tag").addAttribute("k", "vrstaZastite").addAttribute("v", this.vrstaZastite);
 
 		for(Izolator izolator : this.izolatori) {
-			izolator.getAsOsmXmlElement(parent, this.isZatezni);
+			izolator.getAsOsmXmlElement(parent);
 		}
 		
 		for(SpojnaTocka stzu : this.spojneTockeZu) {

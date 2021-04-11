@@ -83,26 +83,18 @@ public class ZastitnoUze {
 		}
 	}
 	
-	public JSONObject getJson() {
+	public JSONObject getAsJson() {
 		JSONObject zastitnoUzeJson = new JSONObject();
 		
 		zastitnoUzeJson.put("idZastitnogUzeta", this.idZastitnogUzeta);
 		
-		JSONArray idStJson = new JSONArray();
-		
-		for(Integer idSt : this.idSt) {
-			idStJson.put(idSt);
-		}
-		
-		zastitnoUzeJson.put("idSt", idStJson);
-		
-		JSONArray spojneTockeJson = new JSONArray();
+		JSONArray koordinateSpojistaJson = new JSONArray();
 		
 		for(SpojnaTocka st : spojneTocke) {
-			spojneTockeJson.put(st.getJson());
+			koordinateSpojistaJson.put(st.getAsSimpleJson());
 		}
 		
-		zastitnoUzeJson.put("spojneTocke", spojneTockeJson);
+		zastitnoUzeJson.put("koordinateSpojista", koordinateSpojistaJson);
 		
 		return zastitnoUzeJson;
 	}

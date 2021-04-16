@@ -158,15 +158,13 @@ public class Izolator {
 			UtmCoordinate stiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(sti.getGeoSirina(), sti.getGeoDuzina()));
 			UtmCoordinate stvUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(stv.getGeoSirina(), stv.getGeoDuzina()));
 			
-			// Potrebno je odrediti kut izmedu pravca p1 (koji ide od STI do STV) i pravca p2 (koji ide od STI a paralelan je s ekvatorom)
-			// Pravac p2 kroz tocke STI i (stvEasting, stiNorthing)
-			Pravac p1 = new Pravac(stiUtm.getEasting(), stiUtm.getNorthing(), stvUtm.getEasting(), stvUtm.getNorthing());
-			Pravac p2 = new Pravac(stiUtm.getEasting(), stiUtm.getNorthing(), stvUtm.getEasting(), stiUtm.getNorthing());
-			double kut = p1.nadiKutIzmeduPravca(p2);
+			// Potrebno je odrediti kut nagiba pravca p (koji ide od STI do STV)
+			Pravac p = new Pravac(stiUtm.getEasting(), stiUtm.getNorthing(), stvUtm.getEasting(), stvUtm.getNorthing());
+			double kut = p.nadiKutNagibaPravca();
 			
 			// Potrebno je odrediti tocke u kojima se stranice pravokutnika sijeku s pravcem p1: sjeciste1 i sjeciste2
-			// Pravokutnik treba biti tocno izmedu STI i STV: sjeciste1 nalazi se duz pravca p1 i od STI je udaljeno za RAZMAK_IZOLATORA_I_ST
-			//												  sjeciste2 nalazi se duz pravca p2 i od STV je udaljeno za RAZMAK_IZOLATORA_I_ST
+			// Pravokutnik treba biti tocno izmedu STI i STV: sjeciste1 nalazi se duz pravca p i od STI je udaljeno za RAZMAK_IZOLATORA_I_ST
+			//												  sjeciste2 nalazi se duz pravca p i od STV je udaljeno za RAZMAK_IZOLATORA_I_ST
 			// sjeciste1 ce u odnosu na STI imati koordinate (xSti +/- x, zSti +/- z)
 			// sjeciste2 ce u odnostu na STV imati koordinate (xStv +/- x, zStv +/- z)
 			// Predznak ce ovisiti o polozaju STI i STV

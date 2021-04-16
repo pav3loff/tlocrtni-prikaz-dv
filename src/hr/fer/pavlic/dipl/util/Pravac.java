@@ -47,18 +47,14 @@ public class Pravac {
 		this.y2 = y2;
 	}
 	
-	public double nadiKutIzmeduPravca(Pravac p2) {
-		// Pravac p2 treba biti horizontalan (ali mu pocetna tocka mora biti jednaka pocetnoj tocki trenutnog pravca p1
-		double kut1 = Math.atan2(this.getY1() - this.getY2(), this.getX1() - this.getX2());
-		double kut2 = Math.atan2(p2.getY1() - p2.getY2(), p2.getX1() - p2.getX2());
+	public double nadiKutNagibaPravca() {
+		double kut = Math.toDegrees(Math.atan2(this.getY1() - this.getY2(), this.getX1() - this.getX2()));
 		
-		double rezultat = Math.toDegrees(kut1) - Math.toDegrees(kut2);
-		
-		if(rezultat + 360 < 360) {
-			return 360 + rezultat;
+		if(kut + 360 < 360) {
+			return 360 + kut;
 		}
 		
-		return rezultat;
+		return kut;
 	}
 
 }

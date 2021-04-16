@@ -168,7 +168,7 @@ public abstract class Stup {
 			return konzolaJson;
 		}
 		
-		// metoda containsKey sucelja Map objekte ne uspoređuje s equals; potrebno je ru�?no implementirati
+		// metoda containsKey sucelja Map objekte ne uspoređuje s equals; potrebno je rucno implementirati
 		private static SpojnaTocka getKeyIfExists(Map<SpojnaTocka, List<Izolator>> parovi, SpojnaTocka sti) {
 			for(Entry<SpojnaTocka, List<Izolator>> par : parovi.entrySet()) {
 				if(par.getKey().equals(sti)) {
@@ -416,6 +416,96 @@ public abstract class Stup {
 	}
 	
 	/**
+	 * Vraća izmijenjenu listu izolatora kojima su STI razdvojene (izbjegavanje preklapanja)
+	 */
+	private List<Izolator> getSeparatedSti(List<Izolator> izolatori, boolean isDesno) {
+		// nosivi stup tipa bacva i dunav: 6 izolatora sa svake strane -> 3 para jednakih STI
+		// nosivi stup tipa jela: 2 izolatora s jedna i 4 s druge strane
+		// zatezni stupovi nemaju parove jednakih STI
+		// grupiranje parova
+		Map<SpojnaTocka, List<Izolator>> parovi = new LinkedHashMap<>();
+					
+		for(Izolator izolator : izolatori) {
+			SpojnaTocka sti = new SpojnaTocka(izolator.getSti().getIdSt(), izolator.getSti().getX(), 
+					izolator.getSti().getY(), izolator.getSti().getZ(), TipSpojneTocke.STI);
+					SpojnaTocka kljuc = Util.getKeyIfExists(parovi, sti);
+						
+			if(kljuc != null) {
+				List<Izolator> par = parovi.get(kljuc);
+				par.add(izolator);
+							
+				parovi.put(kljuc, par);
+			} else {
+				parovi.put(sti, new LinkedList<>(Arrays.asList(izolator)));
+			}
+		}
+					
+		// sortirati parove prema padajućoj vrijednosti koordinate Y STI
+		Stream<Entry<SpojnaTocka, List<Izolator>>> streamParova = parovi.entrySet()
+				.stream().sorted(Collections.reverseOrder(Entry.comparingByKey(new Comparator<SpojnaTocka>() {
+
+					@Override
+					public int compare(SpojnaTocka sti1, SpojnaTocka sti2) {
+						return Double.compare(sti1.getY(), sti2.getY());
+					}
+								
+				})));
+					
+		List<Izolator> azuriraniIzolatori = new LinkedList<>();
+		Iterator<Entry<SpojnaTocka, List<Izolator>>> streamParovaIterator = streamParova.iterator();
+					
+		int i = 1;
+		int predznak = isDesno ? 1 : -1; // desna strana ima predznak +, a lijeva -
+					
+		// koordinata X = RAZMAK * i * predznak
+		while(streamParovaIterator.hasNext()) {
+			List<Izolator> par = streamParovaIterator.next().getValue();
+						
+			for(Izolator izolator : par) {
+				double noviX = RAZMAK * i * predznak;
+				izolator.getSti().setX(noviX);
+			}
+						
+			azuriraniIzolatori.addAll(par);
+						
+			i += 1;
+		}
+		
+		return azuriraniIzolatori;
+	}
+	
+	/**
+	 * Vraća izmijenjenu listu STZU koje su razdvojene (izbjegavanje preklapanja)
+	 */
+	private List<SpojnaTocka> getSeparatedStzu(List<SpojnaTocka> spojneTockeZu, 
+			boolean isDesno) {
+		// sortirati STZU užadi prema rastućoj koordinati X
+		spojneTockeZu.sort(new Comparator<SpojnaTocka>() {
+
+			@Override
+			public int compare(SpojnaTocka stZu1, SpojnaTocka stZu2) {
+				return isDesno ? 
+						Double.compare(stZu1.getX(), stZu2.getX()) : 
+						Double.compare(stZu2.getX(), stZu1.getX());
+			}
+						
+		});
+					
+		int i = 0;
+		int predznak = isDesno ? 1 : -1;
+					
+		for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
+			// koordinata X = RAZMAK * i + 1 (desna strana)
+			// koordinata X = (RAZMAK * i + 1) * -1 (lijeva strana)
+			spojnaTockaZu.setX((RAZMAK * i + 1) * predznak);
+						
+			i += 1;
+		}
+		
+		return spojneTockeZu;
+	}
+	
+	/**
 	 * Ažurira vrijednosti (x, y, z) STI, zbog utjecaja orijentacije stupa (ravnina konzole nije uvijek paralelna s ekvatorom)
 	 */
 	private void adjustStiByOrijentacijaStupa() {
@@ -542,96 +632,6 @@ public abstract class Stup {
 		} catch (Exception e) {
 			System.out.println("Neuspješna konverzija STZU!");
 		}
-	}
-	
-	/**
-	 * Vraća izmijenjenu listu izolatora kojima su STI razdvojene (izbjegavanje preklapanja)
-	 */
-	private List<Izolator> getSeparatedSti(List<Izolator> izolatori, boolean isDesno) {
-		// nosivi stup tipa bacva i dunav: 6 izolatora sa svake strane -> 3 para jednakih STI
-		// nosivi stup tipa jela: 2 izolatora s jedna i 4 s druge strane
-		// zatezni stupovi nemaju parove jednakih STI
-		// grupiranje parova
-		Map<SpojnaTocka, List<Izolator>> parovi = new LinkedHashMap<>();
-					
-		for(Izolator izolator : izolatori) {
-			SpojnaTocka sti = new SpojnaTocka(izolator.getSti().getIdSt(), izolator.getSti().getX(), 
-					izolator.getSti().getY(), izolator.getSti().getZ(), TipSpojneTocke.STI);
-					SpojnaTocka kljuc = Util.getKeyIfExists(parovi, sti);
-						
-			if(kljuc != null) {
-				List<Izolator> par = parovi.get(kljuc);
-				par.add(izolator);
-							
-				parovi.put(kljuc, par);
-			} else {
-				parovi.put(sti, new LinkedList<>(Arrays.asList(izolator)));
-			}
-		}
-					
-		// sortirati parove prema padajućoj vrijednosti koordinate Y STI
-		Stream<Entry<SpojnaTocka, List<Izolator>>> streamParova = parovi.entrySet()
-				.stream().sorted(Collections.reverseOrder(Entry.comparingByKey(new Comparator<SpojnaTocka>() {
-
-					@Override
-					public int compare(SpojnaTocka sti1, SpojnaTocka sti2) {
-						return Double.compare(sti1.getY(), sti1.getY());
-					}
-								
-				})));
-					
-		List<Izolator> azuriraniIzolatori = new LinkedList<>();
-		Iterator<Entry<SpojnaTocka, List<Izolator>>> streamParovaIterator = streamParova.iterator();
-					
-		int i = 1;
-		int predznak = isDesno ? 1 : -1; // desna strana ima predznak +, a lijeva -
-					
-		// koordinata X = RAZMAK * i * predznak
-		while(streamParovaIterator.hasNext()) {
-			List<Izolator> par = streamParovaIterator.next().getValue();
-						
-			for(Izolator izolator : par) {
-				double noviX = RAZMAK * i * predznak;
-				izolator.getSti().setX(noviX);
-			}
-						
-			azuriraniIzolatori.addAll(par);
-						
-			i += 1;
-		}
-		
-		return azuriraniIzolatori;
-	}
-	
-	/**
-	 * Vraća izmijenjenu listu STZU koje su razdvojene (izbjegavanje preklapanja)
-	 */
-	private List<SpojnaTocka> getSeparatedStzu(List<SpojnaTocka> spojneTockeZu, 
-			boolean isDesno) {
-		// sortirati STZU užadi prema rastućoj koordinati X
-		spojneTockeZu.sort(new Comparator<SpojnaTocka>() {
-
-			@Override
-			public int compare(SpojnaTocka stZu1, SpojnaTocka stZu2) {
-				return isDesno ? 
-						Double.compare(stZu1.getX(), stZu2.getX()) : 
-						Double.compare(stZu2.getX(), stZu1.getX());
-			}
-						
-		});
-					
-		int i = 0;
-		int predznak = isDesno ? 1 : -1;
-					
-		for(SpojnaTocka spojnaTockaZu : spojneTockeZu) {
-			// koordinata X = RAZMAK * i + 1 (desna strana)
-			// koordinata X = (RAZMAK * i + 1) * -1 (lijeva strana)
-			spojnaTockaZu.setX((RAZMAK * i + 1) * predznak);
-						
-			i += 1;
-		}
-		
-		return spojneTockeZu;
 	}
 	
 	/**

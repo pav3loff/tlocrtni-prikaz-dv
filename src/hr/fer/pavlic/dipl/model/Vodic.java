@@ -125,14 +125,13 @@ public class Vodic {
 				UtmCoordinate pocStiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(pocSti.getGeoSirina(), pocSti.getGeoDuzina()));
 				UtmCoordinate krajStiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(krajSti.getGeoSirina(), krajSti.getGeoDuzina()));
 			
-				// Pravac p1 prolazi kroz sljedece 2 tocke: (pocStiUtm.easting, pocStiUtm.northing) i (krajStiUtm.easting, krajStiUtm.northing)
-				// Horizontalni pravac p2 treba prolaziti kroz sljedece 2 tocke: (pocStiUtm.easting, pocStiUtm.northing) i (krajStiUtm.easting, pocStiUtm.northing)
-				Pravac p1 = new Pravac(pocStiUtm.getEasting(), pocStiUtm.getNorthing(), krajStiUtm.getEasting(), krajStiUtm.getNorthing());
-				Pravac p2 = new Pravac(pocStiUtm.getEasting(), pocStiUtm.getNorthing(), krajStiUtm.getEasting(), pocStiUtm.getNorthing());
-				double kut = p1.nadiKutIzmeduPravca(p2);
+				// Pravac p prolazi kroz sljedece 2 tocke: (pocStiUtm.easting, pocStiUtm.northing) i (krajStiUtm.easting, krajStiUtm.northing)
+				// Iz tih dvaju tocaka dobiva se kut nagiba pravca
+				Pravac p = new Pravac(pocStiUtm.getEasting(), pocStiUtm.getNorthing(), krajStiUtm.getEasting(), krajStiUtm.getNorthing());
+				double kut = p.nadiKutNagibaPravca();
 				
-				// Duz pravca p1 pocStv ce se postaviti na udaljenost RAZMAK_STI_I_STV od pocSti
-				// Duz pravca p1 krajStv ce se postaviti na udaljenost RAZMAK_STI_I_STV od krajSti
+				// Duz pravca p pocStv ce se postaviti na udaljenost RAZMAK_STI_I_STV od pocSti
+				// Duz pravca p krajStv ce se postaviti na udaljenost RAZMAK_STI_I_STV od krajSti
 				// Stv ce u odnosu na pripadni Sti imati koordinate (xSti +/- x, zSti +/- z)
 				// Predznak ce ovisiti o polozaju dvaju susjednih stupova (efektivno njihovih STI)
 				double x = RAZMAK_STI_I_STV * Math.abs(Math.sin(Math.toRadians(90 - kut)));

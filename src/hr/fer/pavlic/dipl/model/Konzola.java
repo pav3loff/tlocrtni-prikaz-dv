@@ -1,5 +1,6 @@
 package hr.fer.pavlic.dipl.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.dom4j.Element;
@@ -30,15 +31,20 @@ public class Konzola {
 	}
 
 	public void getAsOsmXmlElement(Element parent) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
+		for(Tocka2D tocka : this.vrhoviKonzole) {
+			tocka.getAsOsmXmlElement(parent);
+		}
+		
 		Element konzolaWay = parent.addElement("way")
 				.addAttribute("id", UidGenerator.getUidString())
-				.addAttribute("version", "1");
+				.addAttribute("version", "1")
+				.addAttribute("timestamp", timestamp.toString());
 		
 		konzolaWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "konzola");
 		
 		for(Tocka2D tocka : this.vrhoviKonzole) {
-			tocka.getAsOsmXmlElement(parent);
-			
 			konzolaWay.addElement("nd").addAttribute("ref", Long.toString(tocka.getUid()));
 		}
 		

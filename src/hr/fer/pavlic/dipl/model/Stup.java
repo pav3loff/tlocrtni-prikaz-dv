@@ -1,5 +1,6 @@
 package hr.fer.pavlic.dipl.model;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -315,9 +316,12 @@ public abstract class Stup {
 	}
 	
 	public void getAsOsmXmlElement(Element parent) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
 		Element stupNode = parent.addElement("node")
 				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
+				.addAttribute("timestamp", timestamp.toString())
 				.addAttribute("lat", Double.toString(this.geoSirina))
 				.addAttribute("lon", Double.toString(this.geoDuzina));
 

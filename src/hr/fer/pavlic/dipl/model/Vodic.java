@@ -1,5 +1,6 @@
 package hr.fer.pavlic.dipl.model;
 
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -246,9 +247,12 @@ public class Vodic {
 	}
 	
 	public void getAsOsmXmlElement(Element parent, int idDalekovoda, int naponDalekovoda) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
 		Element vodicWay = parent.addElement("way")
 				.addAttribute("id", UidGenerator.getUidString())
-				.addAttribute("version", "1");
+				.addAttribute("version", "1")
+				.addAttribute("timestamp", timestamp.toString());
 		
 		vodicWay.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idVodica));
 		vodicWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "vodic");

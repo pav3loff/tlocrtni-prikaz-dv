@@ -1,5 +1,7 @@
 package hr.fer.pavlic.dipl.model;
 
+import java.sql.Timestamp;
+
 import org.dom4j.Element;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -187,9 +189,12 @@ public class SpojnaTocka {
 	}
 	
 	public void getAsOsmXmlElement(Element parent, boolean isStupZatezni) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
 		Element stNode = parent.addElement("node")
 				.addAttribute("id", Long.toString(this.uid))
 				.addAttribute("version", "1")
+				.addAttribute("timestamp", timestamp.toString())
 				.addAttribute("lat", Double.toString(this.geoSirina))
 				.addAttribute("lon", Double.toString(this.geoDuzina));
 

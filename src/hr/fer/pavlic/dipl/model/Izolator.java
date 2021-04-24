@@ -18,6 +18,7 @@ public class Izolator {
 	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.1;
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
+	private final static int STUPANJ = 30;
 	private int idIzolatora;
 	private String materijal;
 	private String izvedba;
@@ -264,7 +265,7 @@ public class Izolator {
 			UtmCoordinate stiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(sti.getGeoSirina(), sti.getGeoDuzina()));
 			
 			// Za prikaz izolatora nosivog stupa (oblik kruga) potrebno je oko STI generirati kruznicu, buduci da se STI i izolator na takvom stupu preklapaju (u tlocrtnom prikazu)
-			for(int i = 0; i < 360; i += 30) {
+			for(int i = 0; i < 360; i += STUPANJ) {
 				double x = stiUtm.getEasting() + RADIJUS_KRUZNICE_IZOLATORA * Math.cos(Math.toRadians(i));
 				double z = stiUtm.getNorthing() + RADIJUS_KRUZNICE_IZOLATORA * Math.sin(Math.toRadians(i));
 				

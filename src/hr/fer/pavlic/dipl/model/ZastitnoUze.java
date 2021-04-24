@@ -1,5 +1,6 @@
 package hr.fer.pavlic.dipl.model;
 
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -100,9 +101,12 @@ public class ZastitnoUze {
 	}
 	
 	public void getAsOsmXmlElement(Element parent) {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
 		Element zastitnoUzeWay = parent.addElement("way")
 				.addAttribute("id", UidGenerator.getUidString())
-				.addAttribute("version", "1");
+				.addAttribute("version", "1")
+				.addAttribute("timestamp", timestamp.toString());
 		
 		zastitnoUzeWay.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idZastitnogUzeta));
 		zastitnoUzeWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "zastitno_uze");

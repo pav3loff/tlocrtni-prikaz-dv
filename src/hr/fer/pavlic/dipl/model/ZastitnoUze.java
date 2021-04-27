@@ -100,10 +100,10 @@ public class ZastitnoUze {
 		return zastitnoUzeJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element root) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Element zastitnoUzeWay = parent.addElement("way")
+		Element zastitnoUzeWay = root.addElement("way")
 				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString());
@@ -114,6 +114,17 @@ public class ZastitnoUze {
 		for(SpojnaTocka st : this.spojneTocke) {
 			zastitnoUzeWay.addElement("nd").addAttribute("ref", Long.toString(st.getUid()));
 		}
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(object instanceof ZastitnoUze) {
+			ZastitnoUze other = (ZastitnoUze) object;
+			
+			return this.idZastitnogUzeta == other.idZastitnogUzeta;
+		}
+		
+		return false;
 	}
 
 }

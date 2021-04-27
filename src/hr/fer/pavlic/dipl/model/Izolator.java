@@ -321,9 +321,22 @@ public class Izolator {
 		return izolatorJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent) {
-		this.sti.getAsOsmXmlElement(parent, this.isStupZatezni);
-		this.stv.getAsOsmXmlElement(parent, this.isStupZatezni);
+	public JSONObject getInfoJson() {
+		JSONObject izolatorJson = new JSONObject();
+		
+		izolatorJson.put("idIzolatora", this.idIzolatora);
+		izolatorJson.put("materijal", this.materijal);
+		izolatorJson.put("izvedba", this.izvedba);
+		izolatorJson.put("brojClanaka", this.brojClanaka);
+		izolatorJson.put("spojnaTockaIzolatora", this.sti.getAsJson());
+		izolatorJson.put("spojnaTockaVodica", this.stv.getAsJson());
+		
+		return izolatorJson;
+	}
+	
+	public void getAsOsmXmlElement(Element root) {
+		this.sti.getAsOsmXmlElement(root, this.isStupZatezni);
+		this.stv.getAsOsmXmlElement(root, this.isStupZatezni);
 		
 		List<TockaPrikazaIzolatora> tockePrikaza;
 		
@@ -339,7 +352,7 @@ public class Izolator {
 		
 		PrikazIzolatora prikazIzolatora = new PrikazIzolatora(this, tockePrikaza);
 		
-		prikazIzolatora.getAsOsmXmlElement(parent);
+		prikazIzolatora.getAsOsmXmlElement(root);
 	}
 	
 	@Override

@@ -87,10 +87,10 @@ public class Tocka2D {
 		return tockaJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element root) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Element tockaNode = parent.addElement("node")
+		Element tockaNode = root.addElement("node")
 				.addAttribute("id", Long.toString(this.uid))
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString())

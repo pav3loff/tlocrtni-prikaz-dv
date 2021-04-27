@@ -246,10 +246,10 @@ public class Vodic {
 		return vodicJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent, int idDalekovoda, int naponDalekovoda) {
+	public void getAsOsmXmlElement(Element root, int idDalekovoda, int naponDalekovoda) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Element vodicWay = parent.addElement("way")
+		Element vodicWay = root.addElement("way")
 				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString());
@@ -304,6 +304,16 @@ public class Vodic {
 	
 	public String toString() {
 		return String.format("[VODIC] ID: %d\n", this.idVodica);
+	}
+	
+	public boolean equals(Object object) {
+		if(object instanceof Vodic) {
+			Vodic other = (Vodic) object;
+			
+			return this.idVodica == other.idVodica;
+		}
+		
+		return false;
 	}
 
 }

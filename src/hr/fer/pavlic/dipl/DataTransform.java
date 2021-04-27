@@ -152,71 +152,92 @@ public class DataTransform {
 		// zapisati u datoteku
 		if(args[0].equals("-json")) {
 			System.out.println("Izvoz podataka u .json formatu...");
-			
+					
 			JSONObject output = new JSONObject();
-			
+					
 			JSONArray stupoviJsonOut = new JSONArray();
-			
+					
 			for(Stup stup : stupovi) {
 				stupoviJsonOut.put(stup.getAsJson());
 			}
-			
+					
 			output.append("stupovi", stupoviJsonOut);
-			
+					
 			JSONArray dalekovodiJsonOut = new JSONArray();
-			
+					
 			for(Dalekovod dalekovod : dalekovodi) {
 				dalekovodiJsonOut.put(dalekovod.getAsJson());
 			}
-			
+					
 			output.append("dalekovodi", dalekovodiJsonOut);
-			
+					
 			JSONArray zastitnaUzadJsonOut = new JSONArray();
-			
+					
 			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
 				zastitnaUzadJsonOut.put(zastitnoUze.getAsJson());
 			}
-			
+					
 			output.append("zastitnaUzad", zastitnaUzadJsonOut);
-			
+					
 			try(FileWriter writer = new FileWriter(
 					Paths.get(CURRENT_DIR + "\\output-data.json").toFile())) {
 				writer.write(output.toString());
+				
+				System.out.println("Izvoz podataka uspješan!");
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");
 			}
-			
-			System.out.println("Izvoz podataka uspješan!");
-		} else if(args[0].equals("-osmxml")) {
+		} else if(args[0].equals("-osm")) {
 			System.out.println("Izvoz podataka u OSM XML formatu...");
-			
+					
 			Document document = DocumentHelper.createDocument();
-			
+					
 			Element root = document.addElement("osm");
 			root.addAttribute("version", "0.6");
-			
+
 			for(Stup stup : stupovi) {
 				stup.getAsOsmXmlElement(root);
 			}
-			
+					
 			for(Dalekovod dalekovod : dalekovodi) {
 				dalekovod.getAsOsmXmlElement(root);
 			}
-			
+					
 			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
 				zastitnoUze.getAsOsmXmlElement(root);
 			}
-			
+					
 			try(FileWriter writer = new FileWriter(
 					Paths.get(CURRENT_DIR + "\\output-data.osm").toFile())) {
 				writer.write(root.asXML().toString());
+				
+				System.out.println("Izvoz podataka uspješan!");
 			} catch (IOException exc) {
 				System.out.println("Neuspješno pisanje u datoteku!");
 			}
-			
-			System.out.println("Izvoz podataka uspješan!");
 		} else {
 			System.out.println("Neispravan format za izvoz podataka!");
+		}
+		
+		if(args[1].equals("-generate-info")) {
+			System.out.println("Izvoz popratnih podataka...");
+			
+			JSONArray stupoviInfoArrayJson = new JSONArray();
+			for(Stup stup : stupovi) {
+				stupoviInfoArrayJson.put(stup.getInfoJson(stupovi, dalekovodi, zastitnaUzad));
+			}
+			
+			JSONObject output = new JSONObject();
+			output.put("stupovi", stupoviInfoArrayJson);
+			
+			try(FileWriter writer = new FileWriter(
+					Paths.get(CURRENT_DIR + "\\element-info.json").toFile())) {
+				writer.write(output.toString());
+				
+				System.out.println("Izvoz podataka uspješan!");
+			} catch (IOException exc) {
+				System.out.println("Neuspješno pisanje u datoteku!");
+			}
 		}
 	}
 	

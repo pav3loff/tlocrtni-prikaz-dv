@@ -86,10 +86,21 @@ public class Dalekovod {
 		return dalekovodJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element root) {
 		for(Vodic vodic : this.vodici) {
-			vodic.getAsOsmXmlElement(parent, idDalekovoda, napon);
+			vodic.getAsOsmXmlElement(root, idDalekovoda, napon);
 		}
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(object instanceof Dalekovod) {
+			Dalekovod other = (Dalekovod) object;
+			
+			return this.idDalekovoda == other.idDalekovoda;
+		}
+		
+		return false;
 	}
 
 }

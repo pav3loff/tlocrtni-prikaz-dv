@@ -148,6 +148,16 @@ public abstract class Stup {
 			return izolatoriJson;
 		}
 		
+		private static JSONArray getIzolatoriInfoAsJsonArray(List<Izolator> izolatori, boolean isStupZatezni) {
+			JSONArray izolatoriJson = new JSONArray();
+			
+			for(Izolator izolator : izolatori) {
+				izolatoriJson.put(izolator.getInfoJson());
+			}
+			
+			return izolatoriJson;
+		}
+		
 		private static JSONArray getSpojneTockeZuAsJsonArray(
 				List<SpojnaTocka> spojneTockeZu) {
 			JSONArray spojneTockeZuJson = new JSONArray();
@@ -315,10 +325,10 @@ public abstract class Stup {
 		return stupJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element root) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Element stupNode = parent.addElement("node")
+		Element stupNode = root.addElement("node")
 				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString())
@@ -337,14 +347,14 @@ public abstract class Stup {
 		stupNode.addElement("tag").addAttribute("k", "vrstaZastite").addAttribute("v", this.vrstaZastite);
 
 		for(Izolator izolator : this.izolatori) {
-			izolator.getAsOsmXmlElement(parent);
+			izolator.getAsOsmXmlElement(root);
 		}
 		
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
-			stzu.getAsOsmXmlElement(parent, this.isZatezni);
+			stzu.getAsOsmXmlElement(root, this.isZatezni);
 		}
 		
-		this.konzola.getAsOsmXmlElement(parent);
+		this.konzola.getAsOsmXmlElement(root);
 	}
 	
 	/**
@@ -690,6 +700,80 @@ public abstract class Stup {
 	@Override
 	public String toString() {
 		return String.format("[STUP] ID: %d, LAT: %f, LONG: %f\n", this.idStupa, this.geoSirina, this.geoDuzina);
+	}
+
+	public JSONObject getInfoJson(List<Stup> stupovi, List<Dalekovod> dalekovodi, List<ZastitnoUze> zastitnaUzad) {
+		JSONObject stupInfoJson = new JSONObject();
+		
+		stupInfoJson.put("idStupa", this.idStupa);
+		stupInfoJson.put("oblikGlaveStupa", this.getType());
+		stupInfoJson.put("isZatezni", this.isZatezni);
+		stupInfoJson.put("orijentacija", this.orijentacija);
+		stupInfoJson.put("geoSirina", this.geoSirina);
+		stupInfoJson.put("geoDuzina", this.geoDuzina);
+		stupInfoJson.put("visina", this.visina);
+		stupInfoJson.put("tipStupa", this.tipStupa);
+		stupInfoJson.put("proizvodac", this.proizvodac);
+		stupInfoJson.put("tezina", this.tezina);
+		stupInfoJson.put("oznakaUzemljenja", this.oznakaUzemljenja);
+		stupInfoJson.put("vrstaZastite", this.vrstaZastite);
+		stupInfoJson.put("izolatori", Util.getIzolatoriInfoAsJsonArray(this.izolatori, this.isZatezni));
+		
+		// Generiranje informacija o ovjesenim vodicima
+		List<Vodic> ovjeseniVodici = new LinkedList<>();
+		for(Dalekovod dalekovod : dalekovodi) {
+			for(Vodic vodic : dalekovod.getVodici()) {
+				for(Izolator izolator : this.izolatori) {
+					if(vodic.getIdSt().contains(izolator.getStv().getIdSt())) {
+						ovjeseniVodici.add(vodic);
+					}
+				}
+			}
+		}
+		
+		JSONArray ovjeseniVodiciJson = new JSONArray();
+		for(Vodic ovjeseniVodic : ovjeseniVodici) {
+			Dalekovod pripadajuciDalekovod = null;
+			
+			for(Dalekovod dalekovod : dalekovodi) {
+				if(dalekovod.getVodici().contains(ovjeseniVodic)) {
+					pripadajuciDalekovod = dalekovod;
+				}
+			}
+			
+			JSONObject ovjeseniVodicJson = new JSONObject();
+			ovjeseniVodicJson.put("idDalekovoda", pripadajuciDalekovod.getIdDalekovoda());
+			ovjeseniVodicJson.put("idDalekovoda", pripadajuciDalekovod.getNapon());
+			ovjeseniVodicJson.put("idVodica", ovjeseniVodic.getIdVodica());
+			ovjeseniVodicJson.put("oznakaFaze", ovjeseniVodic.getOznakaFaze());
+			ovjeseniVodicJson.put("materijal", ovjeseniVodic.getMaterijal());
+			
+			ovjeseniVodiciJson.put(ovjeseniVodicJson);
+		}
+		
+		stupInfoJson.put("ovjeseniVodici", ovjeseniVodiciJson);
+		
+		// Generiranje informacija o ovjesenoj zastitnoj uzadi
+		List<ZastitnoUze> ovjesenaZastitnaUzad = new LinkedList<>();
+		for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+			for(SpojnaTocka stzu : this.spojneTockeZu) {
+				if(zastitnoUze.getIdSt().contains(stzu.getIdSt())) {
+					ovjesenaZastitnaUzad.add(zastitnoUze);
+				}
+			}
+		}
+		
+		JSONArray ovjesenaZastitnaUzadJson = new JSONArray();
+		for(ZastitnoUze ovjesenoZastitnoUze : ovjesenaZastitnaUzad) {
+			JSONObject ovjesenoZastitnoUzeJson = new JSONObject();
+			ovjesenoZastitnoUzeJson.put("idZastitnogUzeta", ovjesenoZastitnoUze.getIdZastitnogUzeta());
+			
+			ovjesenaZastitnaUzadJson.put(ovjesenoZastitnoUzeJson);
+		}
+		
+		stupInfoJson.put("ovjesenaZastitnaUzad", ovjesenaZastitnaUzadJson);
+		
+		return stupInfoJson;
 	}
 
 }

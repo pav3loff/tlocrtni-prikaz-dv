@@ -47,11 +47,11 @@ public class PrikazIzolatora {
 		return prikazJson;
 	}
 
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element root) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
 		for(TockaPrikazaIzolatora tockaPrikazaIzolatora : this.tockePrikazaIzolatora) {
-			Element vrh = parent.addElement("node")
+			Element vrh = root.addElement("node")
 					.addAttribute("id", Long.toString(tockaPrikazaIzolatora.getUid()))
 					.addAttribute("version", "1")
 					.addAttribute("timestamp", timestamp.toString())
@@ -61,7 +61,7 @@ public class PrikazIzolatora {
 			vrh.addElement("tag").addAttribute("k", "type").addAttribute("v", "tockaPrikazaIzolatora");
 		}
 		
-		Element izolatorWay = parent.addElement("way")
+		Element izolatorWay = root.addElement("way")
 				.addAttribute("id", Long.toString(this.izolator.getUid()))
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString());

@@ -30,14 +30,14 @@ public class Konzola {
 		}
 	}
 
-	public void getAsOsmXmlElement(Element parent) {
+	public void getAsOsmXmlElement(Element root) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
 		for(Tocka2D tocka : this.vrhoviKonzole) {
-			tocka.getAsOsmXmlElement(parent);
+			tocka.getAsOsmXmlElement(root);
 		}
 		
-		Element konzolaWay = parent.addElement("way")
+		Element konzolaWay = root.addElement("way")
 				.addAttribute("id", UidGenerator.getUidString())
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString());

@@ -188,10 +188,10 @@ public class SpojnaTocka {
 		return stJson;
 	}
 	
-	public void getAsOsmXmlElement(Element parent, boolean isStupZatezni) {
+	public void getAsOsmXmlElement(Element root, boolean isStupZatezni) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		Element stNode = parent.addElement("node")
+		Element stNode = root.addElement("node")
 				.addAttribute("id", Long.toString(this.uid))
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString())
@@ -200,9 +200,9 @@ public class SpojnaTocka {
 
 		stNode.addElement("tag").addAttribute("k", "type").addAttribute("v", tip.toString());
 		stNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idSt));
-		stNode.addElement("tag").addAttribute("k", "x").addAttribute("v", Double.toString(this.x));
-		stNode.addElement("tag").addAttribute("k", "y").addAttribute("v", Double.toString(this.y));
-		stNode.addElement("tag").addAttribute("k", "z").addAttribute("v", Double.toString(this.z));
+		stNode.addElement("tag").addAttribute("k", "st_x").addAttribute("v", Double.toString(this.x));
+		stNode.addElement("tag").addAttribute("k", "st_y").addAttribute("v", Double.toString(this.y));
+		stNode.addElement("tag").addAttribute("k", "st_z").addAttribute("v", Double.toString(this.z));
 		
 		if(!isStupZatezni) {
 			stNode.addElement("tag").addAttribute("k", "invisible").addAttribute("v", "yes"); // Ako je stup nosivi, izolator, STI i STV su u jednoj tocki pa je STI i STV moguce zanemariti u prikazu

@@ -199,7 +199,7 @@ public class SpojnaTocka {
 				.addAttribute("lon", Double.toString(this.geoDuzina));
 
 		stNode.addElement("tag").addAttribute("k", "type").addAttribute("v", tip.toString());
-		stNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idSt));
+		stNode.addElement("tag").addAttribute("k", "idSt").addAttribute("v", Integer.toString(this.idSt));
 		stNode.addElement("tag").addAttribute("k", "st_x").addAttribute("v", Double.toString(this.x));
 		stNode.addElement("tag").addAttribute("k", "st_y").addAttribute("v", Double.toString(this.y));
 		stNode.addElement("tag").addAttribute("k", "st_z").addAttribute("v", Double.toString(this.z));

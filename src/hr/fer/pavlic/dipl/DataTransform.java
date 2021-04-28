@@ -196,7 +196,7 @@ public class DataTransform {
 			root.addAttribute("version", "0.6");
 
 			for(Stup stup : stupovi) {
-				stup.getAsOsmXmlElement(root);
+				stup.getAsOsmXmlElement(root, false);
 			}
 					
 			for(Dalekovod dalekovod : dalekovodi) {
@@ -209,6 +209,34 @@ public class DataTransform {
 					
 			try(FileWriter writer = new FileWriter(
 					Paths.get(CURRENT_DIR + "\\output-data.osm").toFile())) {
+				writer.write(root.asXML().toString());
+				
+				System.out.println("Izvoz podataka uspješan!");
+			} catch (IOException exc) {
+				System.out.println("Neuspješno pisanje u datoteku!");
+			}
+		} else if(args[0].equals("-osm-simple")) {
+			System.out.println("Izvoz podataka u pojednostavljenom OSM XML formatu...");
+			
+			Document document = DocumentHelper.createDocument();
+					
+			Element root = document.addElement("osm");
+			root.addAttribute("version", "0.6");
+
+			for(Stup stup : stupovi) {
+				stup.getAsOsmXmlElement(root, true);
+			}
+					
+			for(Dalekovod dalekovod : dalekovodi) {
+				dalekovod.getAsOsmXmlElement(root);
+			}
+					
+			for(ZastitnoUze zastitnoUze : zastitnaUzad) {
+				zastitnoUze.getAsOsmXmlElement(root);
+			}
+					
+			try(FileWriter writer = new FileWriter(
+					Paths.get(CURRENT_DIR + "\\output-data-simple.osm").toFile())) {
 				writer.write(root.asXML().toString());
 				
 				System.out.println("Izvoz podataka uspješan!");

@@ -325,7 +325,7 @@ public abstract class Stup {
 		return stupJson;
 	}
 	
-	public void getAsOsmXmlElement(Element root) {
+	public void getAsOsmXmlElement(Element root, boolean isSimple) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
 		Element stupNode = root.addElement("node")
@@ -336,7 +336,7 @@ public abstract class Stup {
 				.addAttribute("lon", Double.toString(this.geoDuzina));
 
 		stupNode.addElement("tag").addAttribute("k", "type").addAttribute("v", "stup");
-		stupNode.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idStupa));
+		stupNode.addElement("tag").addAttribute("k", "idStupa").addAttribute("v", Integer.toString(this.idStupa));
 		stupNode.addElement("tag").addAttribute("k", "oblikGlaveStupa").addAttribute("v", this.getType().toString());
 		stupNode.addElement("tag").addAttribute("k", "isZatezni").addAttribute("v", Boolean.toString(this.isZatezni));
 		stupNode.addElement("tag").addAttribute("k", "visina").addAttribute("v", Double.toString(this.visina));
@@ -347,7 +347,7 @@ public abstract class Stup {
 		stupNode.addElement("tag").addAttribute("k", "vrstaZastite").addAttribute("v", this.vrstaZastite);
 
 		for(Izolator izolator : this.izolatori) {
-			izolator.getAsOsmXmlElement(root);
+			izolator.getAsOsmXmlElement(root, isSimple);
 		}
 		
 		for(SpojnaTocka stzu : this.spojneTockeZu) {
@@ -718,6 +718,7 @@ public abstract class Stup {
 		stupInfoJson.put("oznakaUzemljenja", this.oznakaUzemljenja);
 		stupInfoJson.put("vrstaZastite", this.vrstaZastite);
 		stupInfoJson.put("izolatori", Util.getIzolatoriInfoAsJsonArray(this.izolatori, this.isZatezni));
+		stupInfoJson.put("spojneTockeZastitneUzadi", Util.getSpojneTockeZuAsJsonArray(this.spojneTockeZu));
 		
 		// Generiranje informacija o ovjesenim vodicima
 		List<Vodic> ovjeseniVodici = new LinkedList<>();
@@ -725,7 +726,9 @@ public abstract class Stup {
 			for(Vodic vodic : dalekovod.getVodici()) {
 				for(Izolator izolator : this.izolatori) {
 					if(vodic.getIdSt().contains(izolator.getStv().getIdSt())) {
-						ovjeseniVodici.add(vodic);
+						if(!(ovjeseniVodici.contains(vodic))) {
+							ovjeseniVodici.add(vodic);
+						}
 					}
 				}
 			}
@@ -736,14 +739,14 @@ public abstract class Stup {
 			Dalekovod pripadajuciDalekovod = null;
 			
 			for(Dalekovod dalekovod : dalekovodi) {
-				if(dalekovod.getVodici().contains(ovjeseniVodic)) {
+				if(!(dalekovod.getVodici().contains(ovjeseniVodic))) {
 					pripadajuciDalekovod = dalekovod;
 				}
 			}
 			
 			JSONObject ovjeseniVodicJson = new JSONObject();
 			ovjeseniVodicJson.put("idDalekovoda", pripadajuciDalekovod.getIdDalekovoda());
-			ovjeseniVodicJson.put("idDalekovoda", pripadajuciDalekovod.getNapon());
+			ovjeseniVodicJson.put("naponDalekovoda", pripadajuciDalekovod.getNapon());
 			ovjeseniVodicJson.put("idVodica", ovjeseniVodic.getIdVodica());
 			ovjeseniVodicJson.put("oznakaFaze", ovjeseniVodic.getOznakaFaze());
 			ovjeseniVodicJson.put("materijal", ovjeseniVodic.getMaterijal());

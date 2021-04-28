@@ -18,7 +18,8 @@ public class Izolator {
 	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.1;
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
-	private final static int STUPANJ = 30;
+	private final static int MANJE_DETALJA = 120;
+	private final static int VISE_DETALJA = 30;
 	private int idIzolatora;
 	private String materijal;
 	private String izvedba;
@@ -256,7 +257,7 @@ public class Izolator {
 		return vrhoviPravokutnika;
 	}
 	
-	private List<TockaPrikazaIzolatora> izracunajTockeNaKruznici() {
+	private List<TockaPrikazaIzolatora> izracunajTockeNaKruznici(boolean isSimple) {
 		List<TockaPrikazaIzolatora> tockeKruznice = new LinkedList<>();
 		
 		SpojnaTocka sti = this.getSti();
@@ -265,7 +266,9 @@ public class Izolator {
 			UtmCoordinate stiUtm = UtmWgsConverter.convertToUtm(new WgsCoordinate(sti.getGeoSirina(), sti.getGeoDuzina()));
 			
 			// Za prikaz izolatora nosivog stupa (oblik kruga) potrebno je oko STI generirati kruznicu, buduci da se STI i izolator na takvom stupu preklapaju (u tlocrtnom prikazu)
-			for(int i = 0; i < 360; i += STUPANJ) {
+			int stupanj = isSimple ? MANJE_DETALJA : VISE_DETALJA;
+			
+			for(int i = 0; i < 360; i += stupanj) {
 				double x = stiUtm.getEasting() + RADIJUS_KRUZNICE_IZOLATORA * Math.cos(Math.toRadians(i));
 				double z = stiUtm.getNorthing() + RADIJUS_KRUZNICE_IZOLATORA * Math.sin(Math.toRadians(i));
 				
@@ -311,7 +314,7 @@ public class Izolator {
 			tockePrikaza = izracunajVrhovePravokutnika();
 		} else {
 			// Odrediti tocke kruznice izolatora
-			tockePrikaza = izracunajTockeNaKruznici();
+			tockePrikaza = izracunajTockeNaKruznici(false);
 		}
 		
 		PrikazIzolatora prikazIzolatora = new PrikazIzolatora(this, tockePrikaza);
@@ -334,7 +337,7 @@ public class Izolator {
 		return izolatorJson;
 	}
 	
-	public void getAsOsmXmlElement(Element root) {
+	public void getAsOsmXmlElement(Element root, boolean isSimple) {
 		this.sti.getAsOsmXmlElement(root, this.isStupZatezni);
 		this.stv.getAsOsmXmlElement(root, this.isStupZatezni);
 		
@@ -347,7 +350,7 @@ public class Izolator {
 			tockePrikaza = izracunajVrhovePravokutnika();
 		} else {
 			// Odrediti tocke kruznice izolatora
-			tockePrikaza = izracunajTockeNaKruznici();
+			tockePrikaza = izracunajTockeNaKruznici(isSimple);
 		}
 		
 		PrikazIzolatora prikazIzolatora = new PrikazIzolatora(this, tockePrikaza);

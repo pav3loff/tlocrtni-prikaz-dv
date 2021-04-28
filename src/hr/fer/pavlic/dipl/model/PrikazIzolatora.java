@@ -68,7 +68,7 @@ public class PrikazIzolatora {
 		
 		izolatorWay.addElement("tag").addAttribute("k", "area").addAttribute("v", "yes");
 		izolatorWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "izolator");
-		izolatorWay.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.izolator.getIdIzolatora()));
+		izolatorWay.addElement("tag").addAttribute("k", "idIzolatora").addAttribute("v", Integer.toString(this.izolator.getIdIzolatora()));
 		izolatorWay.addElement("tag").addAttribute("k", "materijal").addAttribute("v", this.izolator.getMaterijal());
 		izolatorWay.addElement("tag").addAttribute("k", "izvedba").addAttribute("v", this.izolator.getIzvedba());
 		izolatorWay.addElement("tag").addAttribute("k", "brojClanaka").addAttribute("v", Integer.toString(this.izolator.getBrojClanaka()));

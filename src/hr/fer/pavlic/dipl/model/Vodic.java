@@ -254,7 +254,7 @@ public class Vodic {
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString());
 		
-		vodicWay.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idVodica));
+		vodicWay.addElement("tag").addAttribute("k", "idVodica").addAttribute("v", Integer.toString(this.idVodica));
 		vodicWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "vodic");
 		vodicWay.addElement("tag").addAttribute("k", "idDalekovoda").addAttribute("v", Integer.toString(idDalekovoda));
 		vodicWay.addElement("tag").addAttribute("k", "naponDalekovoda").addAttribute("v", Integer.toString(naponDalekovoda));	

@@ -108,7 +108,7 @@ public class ZastitnoUze {
 				.addAttribute("version", "1")
 				.addAttribute("timestamp", timestamp.toString());
 		
-		zastitnoUzeWay.addElement("tag").addAttribute("k", "id").addAttribute("v", Integer.toString(this.idZastitnogUzeta));
+		zastitnoUzeWay.addElement("tag").addAttribute("k", "idZastitnogUzeta").addAttribute("v", Integer.toString(this.idZastitnogUzeta));
 		zastitnoUzeWay.addElement("tag").addAttribute("k", "type").addAttribute("v", "zastitno_uze");
 		
 		for(SpojnaTocka st : this.spojneTocke) {

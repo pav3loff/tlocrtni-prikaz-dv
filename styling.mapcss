@@ -23,7 +23,7 @@ node|z11-17[type=stup] {
 	symbol-size: 12;
 	symbol-fill-color: #98ba4e;
 	symbol-stroke-color: black;
-	text: "id";
+	text: "idStupa";
 	text-color: red;
 	font-family: "Droid Sans";
 	font-size: 11;

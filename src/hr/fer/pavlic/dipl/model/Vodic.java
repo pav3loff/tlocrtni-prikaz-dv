@@ -199,11 +199,21 @@ public class Vodic {
 						new UtmCoordinate(krajStiUtm.getLongZone(), krajStiUtm.getLatZone(), 
 								krajStvUtmEasting, krajStvUtmNorthing));
 				
-				raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
-				raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+				if(raspon.getPocIzolator().isStupZatezni()) {
+					raspon.getPocIzolator().getStv().setGeoSirina(pocStvWgs.getGeoSirina());
+					raspon.getPocIzolator().getStv().setGeoDuzina(pocStvWgs.getGeoDuzina());
+				} else {
+					raspon.getPocIzolator().getStv().setGeoSirina(pocSti.getGeoSirina());
+					raspon.getKrajIzolator().getStv().setGeoDuzina(pocSti.getGeoDuzina());
+				}
 				
-				raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
-				raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+				if(raspon.getKrajIzolator().isStupZatezni()) {
+					raspon.getKrajIzolator().getStv().setGeoSirina(krajStvWgs.getGeoSirina());
+					raspon.getKrajIzolator().getStv().setGeoDuzina(krajStvWgs.getGeoDuzina());
+				} else {
+					raspon.getKrajIzolator().getStv().setGeoSirina(krajSti.getGeoSirina());
+					raspon.getKrajIzolator().getStv().setGeoDuzina(krajSti.getGeoDuzina());
+				}
 				
 				// Izolatori (STV) u rasponima su prilagodeni, sad ih je potrebno kopirati u originalno polje izolatora
 				for(Izolator izolator : this.spojniIzolatori) {
@@ -223,7 +233,16 @@ public class Vodic {
 		List<RasponVodicaIzmeduDvaIzolatora> rasponi = new LinkedList<>();
 		
 		for(int i = 1; i < this.spojniIzolatori.size(); i += 2) {
-			rasponi.add(new RasponVodicaIzmeduDvaIzolatora(this.spojniIzolatori.get(i - 1), this.spojniIzolatori.get(i)));
+			Izolator pocIzolator = this.spojniIzolatori.get(i - 1);
+			Izolator krajIzolator = this.spojniIzolatori.get(i);
+			
+			if((!(pocIzolator.isStupZatezni()) && !(krajIzolator.isStupZatezni())) || 
+					(!(pocIzolator.isStupZatezni()) && i == 1) || 
+					(!(krajIzolator.isStupZatezni()) && i == 1)) {
+				i--;
+			}
+			
+			rasponi.add(new RasponVodicaIzmeduDvaIzolatora(pocIzolator, krajIzolator));
 		}
 		
 		return rasponi;

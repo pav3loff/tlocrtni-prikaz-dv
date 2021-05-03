@@ -15,10 +15,10 @@ import hr.fer.pavlic.dipl.utmwgstransf.WgsCoordinate;
 
 public class Izolator {
 	
-	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.1;
+	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.15;
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
-	private final static int MANJE_DETALJA = 120;
+	private final static int MANJE_DETALJA = 90;
 	private final static int VISE_DETALJA = 30;
 	private int idIzolatora;
 	private String materijal;
@@ -47,8 +47,8 @@ public class Izolator {
 		this.materijal = izolator.materijal;
 		this.izvedba = izolator.izvedba;
 		this.brojClanaka = izolator.brojClanaka;
-		this.sti = izolator.sti;
-		this.stv = izolator.stv;
+		this.sti = new SpojnaTocka(izolator.getSti());
+		this.stv = new SpojnaTocka(izolator.getStv());
 		this.uid = izolator.uid;
 		this.isStupZatezni = izolator.isStupZatezni;
 	}

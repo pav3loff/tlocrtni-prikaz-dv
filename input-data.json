@@ -2,9 +2,9 @@
     "stupovi":[
         {
             "idStupa":581,
-            "geoSirina":45.85504,
-            "geoDuzina":15.888793,
-            "orijentacija":180,
+            "geoSirina":45.890318,
+            "geoDuzina":15.976537,
+            "orijentacija":90,
             "isZatezni":true,
             "tipStupa":"Zc29",
             "oblikGlaveStupa":"DVOSTRUKI_Y",
@@ -138,11 +138,11 @@
                 }
             ]
         },
-        {
+		{
             "idStupa":582,
-            "geoSirina":45.86504,
-            "geoDuzina":15.888793,
-            "orijentacija":0,
+            "geoSirina":45.891334,
+            "geoDuzina":15.984863,
+            "orijentacija":120,
             "isZatezni":true,
             "tipStupa":"Zc29",
             "oblikGlaveStupa":"DVOSTRUKA_MACKA",
@@ -384,11 +384,11 @@
                 }
             ]
         },
-        {
+		{
             "idStupa":583,
-            "geoSirina":45.87504,
-            "geoDuzina":15.888793,
-            "orijentacija":0,
+            "geoSirina":45.897307,
+            "geoDuzina":15.988725,
+            "orijentacija":155,
             "isZatezni":true,
             "tipStupa":"Zc29",
             "oblikGlaveStupa":"DVOSTRUKA_MACKA",
@@ -630,11 +630,149 @@
                 }
             ]
         },
-        {
+		{
             "idStupa":584,
-            "geoSirina":45.88504,
-            "geoDuzina":15.868793,
-            "orijentacija":45,
+            "geoSirina":45.904335,
+            "geoDuzina":15.988811,
+            "orijentacija":180,
+            "isZatezni":true,
+            "tipStupa":"Zc29",
+            "oblikGlaveStupa":"DVOSTRUKA_MACKA",
+            "proizvodac":"Dalekovod d.o.o.",
+            "vrstaZastite":"Zn",
+            "visina":120.512,
+            "tezina":8768,
+            "oznakaUzemljenja":"P+2x10",
+            "izolatori":[
+                {
+                    "idIzolatora":2134,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":1054,
+                        "x":0.5,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":2995,
+                        "x":0.5,
+                        "y":10,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":3887,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":2479,
+                        "x":3,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":1289,
+                        "x":3,
+                        "y":8,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":9992,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":7463,
+                        "x":3.5,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":4303,
+                        "x":3.5,
+                        "y":8,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":2007,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":2932,
+                        "x":-0.5,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":3050,
+                        "x":-0.5,
+                        "y":10,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":5399,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":5841,
+                        "x":-3,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":7861,
+                        "x":-3,
+                        "y":8,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":8089,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":8115,
+                        "x":-3.5,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":4086,
+                        "x":-3.5,
+                        "y":8,
+                        "z":-0.5
+                    }
+                }
+            ],
+            "spojneTockeZastitneUzadi":[
+                {
+                    "idStzu":2350,
+                    "x":1.5,
+                    "y":120,
+                    "z":0
+                },
+                {
+                    "idStzu":3187,
+                    "x":-1.5,
+                    "y":120,
+                    "z":0
+                }
+            ]
+        },
+		{
+            "idStupa":585,
+            "geoSirina":45.9043144,
+            "geoDuzina":15.9916734,
+            "orijentacija":180,
             "isZatezni":true,
             "tipStupa":"Zc29",
             "oblikGlaveStupa":"JELA",
@@ -659,7 +797,7 @@
                         "idStv":4803,
                         "x":1.2,
                         "y":10,
-                        "z":-0.5
+                        "z":0.5
                     }
                 },
                 {
@@ -675,9 +813,9 @@
                     },
                     "spojnaTockaVodica":{
                         "idStv":2375,
-                        "x":1.2,
+                        "x":1.5,
                         "y":10,
-                        "z":-0.5
+                        "z":0.5
                     }
                 },
                 {
@@ -686,16 +824,16 @@
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
-                        "idSti":3736,
+                        "idSti":9736,
                         "x":-1.2,
                         "y":10,
                         "z":0
                     },
                     "spojnaTockaVodica":{
                         "idStv":1179,
-                        "x":1.2,
+                        "x":-1.2,
                         "y":10,
-                        "z":-0.5
+                        "z":0.5
                     }
                 }
             ],
@@ -708,89 +846,11 @@
                 }
             ]
         },
-        {
-            "idStupa":585,
-            "geoSirina":45.88504,
-            "geoDuzina":15.908793,
-            "orijentacija":-45,
-            "isZatezni":true,
-            "tipStupa":"Zc29",
-            "oblikGlaveStupa":"JELA",
-            "proizvodac":"Dalekovod d.o.o.",
-            "vrstaZastite":"Zn",
-            "visina":120.512,
-            "tezina":8768,
-            "oznakaUzemljenja":"P+2x10",
-            "izolatori":[
-                {
-                    "idIzolatora":1829,
-                    "materijal":"Elektroporculan",
-                    "brojClanaka":8,
-                    "izvedba":"KAPASTI",
-                    "spojnaTockaIzolatora":{
-                        "idSti":5946,
-                        "x":1.2,
-                        "y":10,
-                        "z":0
-                    },
-                    "spojnaTockaVodica":{
-                        "idStv":8273,
-                        "x":1.2,
-                        "y":10,
-                        "z":-0.5
-                    }
-                },
-                {
-                    "idIzolatora":4091,
-                    "materijal":"Elektroporculan",
-                    "brojClanaka":8,
-                    "izvedba":"KAPASTI",
-                    "spojnaTockaIzolatora":{
-                        "idSti":2423,
-                        "x":1.5,
-                        "y":8,
-                        "z":0
-                    },
-                    "spojnaTockaVodica":{
-                        "idStv":4187,
-                        "x":1.2,
-                        "y":10,
-                        "z":-0.5
-                    }
-                },
-                {
-                    "idIzolatora":8537,
-                    "materijal":"Elektroporculan",
-                    "brojClanaka":8,
-                    "izvedba":"KAPASTI",
-                    "spojnaTockaIzolatora":{
-                        "idSti":4482,
-                        "x":-1.2,
-                        "y":10,
-                        "z":0
-                    },
-                    "spojnaTockaVodica":{
-                        "idStv":3121,
-                        "x":1.2,
-                        "y":10,
-                        "z":-0.5
-                    }
-                }
-            ],
-            "spojneTockeZastitneUzadi":[
-                {
-                    "idStzu":7877,
-                    "x":0,
-                    "y":120,
-                    "z":0
-                }
-            ]
-        },
 		{
-            "idStupa":590,
-            "geoSirina":45.88504,
-            "geoDuzina":15.95352,
-            "orijentacija":-45,
+            "idStupa":586,
+            "geoSirina":45.8972364,
+            "geoDuzina":15.9916305,
+            "orijentacija":215,
             "isZatezni":false,
             "tipStupa":"Zc29",
             "oblikGlaveStupa":"JELA",
@@ -801,63 +861,273 @@
             "oznakaUzemljenja":"P+2x10",
             "izolatori":[
                 {
-                    "idIzolatora":4722,
+                    "idIzolatora":2292,
                     "materijal":"Elektroporculan",
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
-                        "idSti":1768,
+                        "idSti":3891,
                         "x":1.2,
                         "y":10,
                         "z":0
                     },
                     "spojnaTockaVodica":{
-                        "idStv":1996,
+                        "idStv":5803,
                         "x":1.2,
-                        "y":10,
-                        "z":-0.5
+                        "y":8.5,
+                        "z":0
                     }
                 },
                 {
-                    "idIzolatora":8333,
+                    "idIzolatora":1081,
                     "materijal":"Elektroporculan",
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
-                        "idSti":7411,
+                        "idSti":3855,
                         "x":1.5,
                         "y":8,
                         "z":0
                     },
                     "spojnaTockaVodica":{
-                        "idStv":3588,
-                        "x":1.2,
-                        "y":10,
-                        "z":-0.5
+                        "idStv":3375,
+                        "x":1.5,
+                        "y":6.5,
+                        "z":0
                     }
                 },
                 {
-                    "idIzolatora":9777,
+                    "idIzolatora":9979,
                     "materijal":"Elektroporculan",
                     "brojClanaka":8,
                     "izvedba":"KAPASTI",
                     "spojnaTockaIzolatora":{
-                        "idSti":4255,
+                        "idSti":1736,
                         "x":-1.2,
                         "y":10,
                         "z":0
                     },
                     "spojnaTockaVodica":{
-                        "idStv":6577,
+                        "idStv":5179,
+                        "x":-1.2,
+                        "y":8.5,
+                        "z":0
+                    }
+                }
+            ],
+            "spojneTockeZastitneUzadi":[
+                {
+                    "idStzu":6295,
+                    "x":0,
+                    "y":120,
+                    "z":0
+                }
+            ]
+        },
+		{
+            "idStupa":587,
+            "geoSirina":45.8913225,
+            "geoDuzina":15.9947633,
+            "orijentacija":240,
+            "isZatezni":true,
+            "tipStupa":"Zc29",
+            "oblikGlaveStupa":"JELA",
+            "proizvodac":"Dalekovod d.o.o.",
+            "vrstaZastite":"Zn",
+            "visina":120.512,
+            "tezina":8768,
+            "oznakaUzemljenja":"P+2x10",
+            "izolatori":[
+                {
+                    "idIzolatora":2846,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":7543,
                         "x":1.2,
                         "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":2345,
+                        "x":1.2,
+                        "y":8.5,
+                        "z":0.5
+                    }
+                },
+				{
+                    "idIzolatora":3226,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":7543,
+                        "x":1.2,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":3215,
+                        "x":1.2,
+                        "y":8.5,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":1421,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":3552,
+                        "x":1.5,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":3754,
+                        "x":1.5,
+                        "y":6.5,
+                        "z":0.5
+                    }
+                },
+				{
+                    "idIzolatora":5221,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":3552,
+                        "x":1.5,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":7774,
+                        "x":1.5,
+                        "y":6.5,
+                        "z":-0.5
+                    }
+                },
+                {
+                    "idIzolatora":9544,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":1112,
+                        "x":-1.2,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":5977,
+                        "x":-1.2,
+                        "y":8.5,
+                        "z":0.5
+                    }
+                },
+				{
+                    "idIzolatora":4124,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":1112,
+                        "x":-1.2,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":6607,
+                        "x":-1.2,
+                        "y":8.5,
                         "z":-0.5
                     }
                 }
             ],
             "spojneTockeZastitneUzadi":[
                 {
-                    "idStzu":9883,
+                    "idStzu":2225,
+                    "x":0,
+                    "y":120,
+                    "z":0
+                }
+            ]
+        },
+		{
+            "idStupa":588,
+            "geoSirina":45.8901874,
+            "geoDuzina":16.0027885,
+            "orijentacija":270,
+            "isZatezni":true,
+            "tipStupa":"Zc29",
+            "oblikGlaveStupa":"JELA",
+            "proizvodac":"Dalekovod d.o.o.",
+            "vrstaZastite":"Zn",
+            "visina":120.512,
+            "tezina":8768,
+            "oznakaUzemljenja":"P+2x10",
+            "izolatori":[
+                {
+                    "idIzolatora":5324,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":7643,
+                        "x":1.2,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":1543,
+                        "x":1.2,
+                        "y":10,
+                        "z":0.5
+                    }
+                },
+                {
+                    "idIzolatora":8476,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":6244,
+                        "x":1.5,
+                        "y":8,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":8365,
+                        "x":1.5,
+                        "y":10,
+                        "z":0.5
+                    }
+                },
+                {
+                    "idIzolatora":1434,
+                    "materijal":"Elektroporculan",
+                    "brojClanaka":8,
+                    "izvedba":"KAPASTI",
+                    "spojnaTockaIzolatora":{
+                        "idSti":7365,
+                        "x":-1.2,
+                        "y":10,
+                        "z":0
+                    },
+                    "spojnaTockaVodica":{
+                        "idStv":8766,
+                        "x":-1.2,
+                        "y":10,
+                        "z":0.5
+                    }
+                }
+            ],
+            "spojneTockeZastitneUzadi":[
+                {
+                    "idStzu":4495,
                     "x":0,
                     "y":120,
                     "z":0
@@ -868,11 +1138,15 @@
 	"zastitnaUzad": [
 		{
 			"idZastitnogUzeta": 7777,
-			"idSt": [7743, 1159, 5350, 7877]
+			"idSt": [9440, 1159, 5350, 2350]
 		},
 		{
 			"idZastitnogUzeta": 9999,
-			"idSt": [9440, 4195, 6187, 1295]
+			"idSt": [7743, 4195, 6187, 3187]
+		},
+		{
+			"idZastitnogUzeta": 1533,
+			"idSt": [1295, 6295, 2225, 4495]
 		}
 	],
 	"dalekovodi": [
@@ -884,19 +1158,19 @@
 					"idVodica": 5999,
 					"oznakaFaze": "L1",
 					"materijal": "Alucel",
-					"idSt": [6763, 3562, 9191, 5995, 2188, 3121, 6577]
+					"idSt": [6134, 3562, 9191, 5995, 2188, 2995]
 				},
 				{
 					"idVodica": 5712,
 					"oznakaFaze": "L2",
 					"materijal": "Alucel",
-					"idSt": [4183, 3935, 9524, 4289, 3546, 8273]
+					"idSt": [4672, 3935, 9524, 4289, 3546, 1289]
 				},
 				{
 					"idVodica": 6635,
 					"oznakaFaze": "L3",
 					"materijal": "Alucel",
-					"idSt": [8197, 7029, 8692, 5303, 8428, 4187]
+					"idSt": [6556, 7029, 8692, 5303, 8428, 4303]
 				}
 			]
 		},
@@ -908,19 +1182,43 @@
 					"idVodica": 1114,
 					"oznakaFaze": "L1",
 					"materijal": "Alucel",
-					"idSt": [6134, 6985, 5000, 8050, 8009, 2375]
+					"idSt": [6763, 6985, 5000, 8050, 8009, 3050]
 				},
 				{
 					"idVodica": 5542,
 					"oznakaFaze": "L2",
 					"materijal": "Alucel",
-					"idSt": [4672, 8735, 4339, 4861, 8069, 4803]
+					"idSt": [4183, 8735, 4339, 4861, 8069, 7861]
 				},
 				{
 					"idVodica": 1777,
 					"oznakaFaze": "L3",
 					"materijal": "Alucel",
-					"idSt": [6556, 5762, 8044, 3086, 2554, 1179]
+					"idSt": [8197, 5762, 8044, 3086, 2554, 4086]
+				}
+			]
+		},
+		{
+			"idDalekovoda": 9946,
+			"napon": 1000,
+			"vodici": [
+				{
+					"idVodica": 3224,
+					"oznakaFaze": "L1",
+					"materijal": "Alucel",
+					"idSt": [4803, 5803, 2345, 3215, 1543]
+				},
+				{
+					"idVodica": 1672,
+					"oznakaFaze": "L2",
+					"materijal": "Alucel",
+					"idSt": [2375, 3375, 3754, 7774, 8365]
+				},
+				{
+					"idVodica": 9977,
+					"oznakaFaze": "L3",
+					"materijal": "Alucel",
+					"idSt": [1179, 5179, 5977, 6607, 8766]
 				}
 			]
 		}

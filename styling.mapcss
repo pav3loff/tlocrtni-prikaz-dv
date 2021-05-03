@@ -101,7 +101,7 @@ node|z23-[type=STI] {
 	font-size: 11;
 }
 
-node[type=STI][invisible=yes][setting("hide_icons")] {
+node[type=STI][invisible=true][setting("hide_icons")] {
 	symbol-shape: none;
 }
 
@@ -133,7 +133,7 @@ node|z23-[type=STV] {
 	font-size: 11;
 }
 
-node[type=STV][invisible=yes][setting("hide_icons")] {
+node[type=STV][invisible=true][setting("hide_icons")] {
 	symbol-shape: none;
 }
 

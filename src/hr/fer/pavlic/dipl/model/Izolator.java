@@ -18,7 +18,7 @@ public class Izolator {
 	private final static double RADIJUS_KRUZNICE_IZOLATORA = 0.15;
 	private final static double RAZMAK_IZOLATORA_I_ST = 1;
 	private final static double SIRINA_IZOLATORA = 0.2;
-	private final static int MANJE_DETALJA = 90;
+	private final static int MANJE_DETALJA = 120;
 	private final static int VISE_DETALJA = 30;
 	private int idIzolatora;
 	private String materijal;

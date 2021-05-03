@@ -205,7 +205,9 @@ public class SpojnaTocka {
 		stNode.addElement("tag").addAttribute("k", "st_z").addAttribute("v", Double.toString(this.z));
 		
 		if(!isStupZatezni) {
-			stNode.addElement("tag").addAttribute("k", "invisible").addAttribute("v", "yes"); // Ako je stup nosivi, izolator, STI i STV su u jednoj tocki pa je STI i STV moguce zanemariti u prikazu
+			stNode.addElement("tag").addAttribute("k", "invisible").addAttribute("v", "true"); // Ako je stup nosivi, izolator, STI i STV su u jednoj tocki pa je STI i STV moguce zanemariti u prikazu
+		} else {
+			stNode.addElement("tag").addAttribute("k", "invisible").addAttribute("v", "false");
 		}
 	}
 	

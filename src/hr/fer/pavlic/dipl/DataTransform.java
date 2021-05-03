@@ -247,7 +247,7 @@ public class DataTransform {
 			System.out.println("Neispravan format za izvoz podataka!");
 		}
 		
-		if(args[1].equals("-generate-info")) {
+		if(args.length == 2 && args[1].equals("-generate-info")) {
 			System.out.println("Izvoz popratnih podataka...");
 			
 			JSONArray stupoviInfoArrayJson = new JSONArray();
